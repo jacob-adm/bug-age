@@ -9,7 +9,7 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 
 fn run_git(dir: &Path, args: &[&str], date: &str) {
-    let ok = Command::new("git")
+    let ok = bug_age::git::command()
         .arg("-C").arg(dir)
         .args(["-c", "commit.gpgsign=false", "-c", "tag.gpgsign=false", "-c", "init.defaultBranch=main"])
         .args(args)
@@ -27,7 +27,7 @@ fn commit(dir: &Path, file: &str, body: &str, msg: &str, date: &str) -> String {
     std::fs::write(p, body).unwrap();
     run_git(dir, &["add", "-A"], date);
     run_git(dir, &["commit", "-q", "-m", msg], date);
-    let out = Command::new("git").arg("-C").arg(dir).args(["rev-parse", "HEAD"]).output().unwrap();
+    let out = bug_age::git::command().arg("-C").arg(dir).args(["rev-parse", "HEAD"]).output().unwrap();
     String::from_utf8(out.stdout).unwrap().trim().to_string()
 }
 
@@ -127,4 +127,25 @@ fn removed_ranges_respects_scope_and_counts() {
                 --- a/core/tests/t.rs\n+++ b/core/tests/t.rs\n@@ -1,3 +1,0 @@\n";
     assert_eq!(removed_ranges(diff, "core"), vec![("core/src/lib.rs".to_string(), 2, 1)]);
     assert!(in_scope("core/src/a.rs", "core") && !in_scope("core/benches/b.rs", "core") && !in_scope("other/a.rs", "core"));
+}
+
+#[test]
+fn ignores_git_env_inherited_from_hooks() {
+    // A git hook exports GIT_DIR/GIT_INDEX_FILE; bug-age must still read --repo, not the caller.
+    let r = synthetic_repo("hookenv");
+    let decoy = synthetic_repo("decoy");
+    let decoy_head = |d: &Path| {
+        let o = bug_age::git::command().arg("-C").arg(d).args(["rev-parse", "HEAD"]).output().unwrap();
+        String::from_utf8(o.stdout).unwrap()
+    };
+    let before = decoy_head(&decoy.dir);
+    let out = Command::new(env!("CARGO_BIN_EXE_bug-age"))
+        .args(["catalog", "--repo", r.dir.to_str().unwrap(), "--path", "core"])
+        .env("GIT_DIR", decoy.dir.join(".git"))
+        .env("GIT_INDEX_FILE", decoy.dir.join(".git/index"))
+        .output().unwrap();
+    assert!(out.status.success(), "{}", String::from_utf8_lossy(&out.stderr));
+    let cat: Value = serde_json::from_slice(&out.stdout).unwrap();
+    assert_eq!(cat["fixes"][0]["sha"], r.fix.as_str(), "catalog must come from --repo");
+    assert_eq!(decoy_head(&decoy.dir), before, "decoy repository must be untouched");
 }

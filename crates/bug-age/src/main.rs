@@ -2,16 +2,22 @@
 //!
 //!   bug-age catalog --repo DIR --path CRATE [--head REV] [--out FILE]
 //!   bug-age szz     --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--out FILE]
+//!   bug-age sweep   --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD [options]
 
-use bug_age::{catalog, szz};
+use bug_age::runner::{Docker, Local, Runner, Spec};
+use bug_age::{catalog, sweep, szz};
+use sha2::{Digest, Sha256};
 use serde_json::{json, Value};
 use std::collections::HashMap;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use std::process::ExitCode;
 
 const USAGE: &str = "usage: bug-age [--version | --help]
        bug-age catalog --repo DIR --path CRATE [--head REV] [--out FILE]
-       bug-age szz --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--out FILE]";
+       bug-age szz --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--out FILE]
+       bug-age sweep --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD
+             [--build CMD] [--start SHA] [--runner docker|local] [--repeats N] [--image IMG]
+             [--time-travel-script FILE|none] [--scratch DIR] [--logs DIR] [--out FILE]";
 
 fn flags(args: &[String]) -> Result<HashMap<String, String>, String> {
     let mut map = HashMap::new();
@@ -72,6 +78,77 @@ fn cmd_szz(f: &HashMap<String, String>) -> Result<(), String> {
                  "summary": summary, "bugs": bugs}), f.get("out"))
 }
 
+fn tool_version(cmd: &str, args: &[&str]) -> String {
+    std::process::Command::new(cmd).args(args).output()
+        .map(|o| String::from_utf8_lossy(&o.stdout).lines().next().unwrap_or_default().to_string())
+        .unwrap_or_else(|_| "unavailable".into())
+}
+
+fn cmd_sweep(f: &HashMap<String, String>) -> Result<(), String> {
+    let opt = |k: &str, d: &str| f.get(k).cloned().unwrap_or_else(|| d.to_string());
+    let fix = need(f, "fix")?.to_string();
+    let home = std::env::var("HOME").unwrap_or_default();
+    let spec = Spec {
+        repo: PathBuf::from(need(f, "repo")?),
+        crate_path: need(f, "path")?.to_string(),
+        overlay: PathBuf::from(need(f, "overlay")?),
+        build: opt("build", "cargo test --no-run"),
+        test: need(f, "test")?.to_string(),
+        repeats: opt("repeats", "3").parse().map_err(|e| format!("--repeats: {e}"))?,
+        scratch: PathBuf::from(opt("scratch", &format!("{home}/.cache/bug-age"))),
+        logs: PathBuf::from(opt("logs", &format!("work/sweep-logs/{}", &fix[..fix.len().min(12)]))),
+    };
+    let mut runner: Box<dyn Runner> = match opt("runner", "docker").as_str() {
+        "local" => Box::new(Local::new(&spec)),
+        "docker" => {
+            let tt = opt("time-travel-script", "spike/timetravel.py");
+            Box::new(Docker::new(opt("image", "bug-age-spike:3"), (tt != "none").then(|| PathBuf::from(tt))))
+        }
+        other => return Err(format!("unknown runner '{other}'")),
+    };
+    let start = f.get("start").map(String::as_str);
+    let result = sweep::run(runner.as_mut(), &spec, &fix, start)?;
+    eprintln!("sweep: {} — {} ({} of {} commits tested)", result.verdict, result.reason, result.commits_tested, result.range_commits);
+    let report = serde_json::to_string_pretty(&json!(result)).map_err(|e| e.to_string())? + "\n";
+    let mut versions = json!({"bug-age": env!("CARGO_PKG_VERSION"), "git": tool_version("git", &["--version"])});
+    if result.runner == "docker" {
+        versions["docker"] = json!(tool_version("docker", &["version", "--format", "{{.Server.Version}} {{.Server.Arch}}"]));
+        versions["image"] = json!(tool_version("docker", &["image", "inspect", &opt("image", "bug-age-spike:3"), "--format", "{{.Id}}"]));
+    }
+    let receipt = json!({
+        "command": std::env::args().collect::<Vec<_>>().join(" "),
+        "inputs": {"repo_head": bug_age::git::git(&spec.repo, &["rev-parse", "HEAD"])?.trim(), "fix": result.fix,
+                   "start": result.start, "overlay_files": overlay_listing(&spec.overlay)},
+        "versions": versions,
+        "verdict": result.verdict,
+        "report_sha256": format!("{:x}", Sha256::digest(report.as_bytes())),
+    });
+    match f.get("out") {
+        Some(out) => {
+            std::fs::write(out, &report).map_err(|e| format!("{out}: {e}"))?;
+            emit(&receipt, Some(&format!("{out}.receipt.json")))
+        }
+        None => emit(&json!({"report": result, "receipt": receipt}), None),
+    }
+}
+
+fn overlay_listing(dir: &Path) -> Vec<String> {
+    let mut out = Vec::new();
+    let mut stack = vec![dir.to_path_buf()];
+    while let Some(d) = stack.pop() {
+        for e in std::fs::read_dir(&d).into_iter().flatten().flatten() {
+            if e.path().is_dir() {
+                stack.push(e.path());
+            } else if let Ok(bytes) = std::fs::read(e.path()) {
+                let rel = e.path().strip_prefix(dir).map(|p| p.display().to_string()).unwrap_or_default();
+                out.push(format!("{rel} sha256:{:x}", Sha256::digest(&bytes)));
+            }
+        }
+    }
+    out.sort();
+    out
+}
+
 fn main() -> ExitCode {
     let args: Vec<String> = std::env::args().skip(1).collect();
     let result = match args.first().map(String::as_str) {
@@ -85,6 +162,7 @@ fn main() -> ExitCode {
         }
         Some("catalog") => flags(&args[1..]).and_then(|f| cmd_catalog(&f)),
         Some("szz") => flags(&args[1..]).and_then(|f| cmd_szz(&f)),
+        Some("sweep") => flags(&args[1..]).and_then(|f| cmd_sweep(&f)),
         Some(other) => {
             eprintln!("bug-age: unknown argument '{other}'\n{USAGE}");
             return ExitCode::from(2);
