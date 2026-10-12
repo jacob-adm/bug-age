@@ -1,0 +1,31 @@
+{
+  "command": "python3 spike/feasibility.py --samples 2",
+  "generated_utc": "2026-10-12T17:41:34+00:00",
+  "inputs": {
+    "head": "fb49a29223724a96f26e061bec8ec7517aa14177",
+    "repo": "https://github.com/huggingface/tokenizers.git",
+    "sampled_shas": [
+      "2b72a5737f77aae947ef255abadf9fa423dc685d",
+      "ff8ae1baabca0707b7fa9f22854652e231a933de"
+    ]
+  },
+  "outputs": {
+    "spike/results/report.json": "d04cfd6b0b5560277df56f439aed650bc7390bac9ff294998be4470819c4bfd5"
+  },
+  "ticket": "BUGAGE-1",
+  "totals": {
+    "BUILD_FAILED": 1,
+    "BUILT_AND_TESTED": 1
+  },
+  "verdict": "NO-GO",
+  "versions": {
+    "git": "git version 2.50.1 (Apple Git-155)",
+    "host": "Darwin arm64",
+    "python": "3.14.8",
+    "rustup": "rustup 1.28.2 (e4f3ad6f8 2025-04-28)",
+    "toolchains": [
+      "1.38-x86_64-apple-darwin",
+      "1.98-aarch64-apple-darwin"
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "command": "python3 spike/feasibility.py --samples 20",
+  "generated_utc": "2026-10-12T19:55:59+00:00",
+  "inputs": {
+    "head": "fb49a29223724a96f26e061bec8ec7517aa14177",
+    "repo": "https://github.com/huggingface/tokenizers.git",
+    "sampled_shas": [
+      "2b72a5737f77aae947ef255abadf9fa423dc685d",
+      "4807894da6967bc2bcbb5adefe977f8334ba90c7",
+      "c0ed873c4d2b9f2ff5c8d3a5f255fedfff1a859e",
+      "805dc58949f443f17710708cfeb2342faa68c0d8",
+      "6524f09e991c3a52c839d8eb01bfa41e81fde1d1",
+      "6c232886b87dfa4911dd5b12fc2e943d012876c0",
+      "bb68ec3414092e7626d31f35b75eb6c00d8d478f",
+      "fcc68f27f6b0efab5b4cd0c61faa97ef2c7f3568",
+      "857948e5b8b2cf2c4b566c3d81bf6b9cc995bb3f",
+      "481f3bd97612edde7047e07512aa164e5b26ab98",
+      "98a30eead16881eb9e59f489a817fc6362c9f7e1",
+      "d3d9f2c76b5d43d064fe80007ce3323cf9d0f97d",
+      "2e2e7558f71bb4e5de8fff9f5f3aabaf11ef7de9",
+      "a4a68de98af65bd1d5e0fe4faee7a24cfc34a753",
+      "33a57e64183808eea106e956df97571aa768822a",
+      "aed491df8cae10a48d51fba5a6f55b1f16dc75b8",
+      "adc82cb49a24e52804f950bd95ff8f625755d85a",
+      "4383a25787cf366f5e8eaf12643b64f0ba548dc2",
+      "c58a47475cbd483a49d6ba3b1154cec3484ef613",
+      "ff8ae1baabca0707b7fa9f22854652e231a933de"
+    ]
+  },
+  "outputs": {
+    "spike/results/report.json": "47dc10dc1a51f1820211b001a88dac5aa7d9f1dee753d7c9ab265098820f7b2a"
+  },
+  "post_processing": "python3 spike/feasibility.py --reclassify",
+  "ticket": "BUGAGE-1",
+  "totals": {
+    "BUILD_FAILED": 2,
+    "BUILT_AND_TESTED": 4,
+    "NOT_TESTED": 14
+  },
+  "verdict": "NO-GO",
+  "versions": {
+    "docker": "28.3.3 arm64",
+    "git": "git version 2.50.1 (Apple Git-155)",
+    "host": "Darwin arm64",
+    "image": "sha256:76a5e56ed4bb3ea0d326f0249bd816cd0fe3b7a375264249d60745de369608d6",
+    "python": "3.14.8",
+    "toolchains": [
+      "1.38",
+      "1.39",
+      "1.40",
+      "1.41",
+      "1.43",
+      "1.45",
+      "1.46",
+      "1.47",
+      "1.51",
+      "1.58",
+      "1.66",
+      "1.72",
+      "1.79",
+      "1.85",
+      "1.93",
+      "1.98"
+    ]
+  }
+}
