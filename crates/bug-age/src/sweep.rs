@@ -17,7 +17,7 @@ pub struct Sweep {
     pub build: String,
     pub test: String,
     pub repeats: u32,
-    /// located | left-censored | repro-invalid | unresolved
+    /// located | interval | censored-by-testability | left-censored | repro-invalid
     pub verdict: String,
     pub reason: String,
     pub last_passing: Option<String>,
@@ -80,9 +80,11 @@ impl Probe<'_> {
         self.seen[&i].outcome
     }
 
-    /// Nearest testable index to `mid` strictly inside (lo, hi), probing outward.
+    /// Nearest testable index to `mid` strictly inside (lo, hi), probing at most SKIP_RADIUS commits
+    /// each way. Unbounded probing degenerated into a linear scan when the test cannot compile on a
+    /// long stretch of older history (130 builds for one bug on tokenizers).
     fn testable_near(&mut self, mid: i64, lo: i64, hi: i64) -> Option<(usize, Outcome)> {
-        for d in 0..(hi - lo) {
+        for d in 0..=SKIP_RADIUS {
             for i in [mid - d, mid + d] {
                 if i > lo && i < hi {
                     let o = self.outcome(i as usize);
@@ -110,6 +112,8 @@ pub fn range(spec: &Spec, fix: &str, start: Option<&str>) -> Result<Vec<String>,
     Ok(all[from..].to_vec())
 }
 
+const SKIP_RADIUS: i64 = 2;
+
 pub fn run(runner: &mut dyn Runner, spec: &Spec, fix: &str, start: Option<&str>) -> Result<Sweep, String> {
     let commits = range(spec, fix, start)?;
     if commits.len() < 2 {
@@ -131,12 +135,16 @@ pub fn run(runner: &mut dyn Runner, spec: &Spec, fix: &str, start: Option<&str>)
         sweep.reason = format!("expected FAIL on fix^ and PASS on fix, got {op:?} / {of:?}");
         return Ok(finish(sweep, probe));
     }
-    let (mut lo, mut hi) = (-1i64, p as i64);
-    while hi - lo > 1 {
-        match probe.testable_near((lo + hi) / 2, lo, hi) {
+    // lo: last known PASS; hi: first known FAIL; floor: everything at or below is assumed untestable
+    // (an untestable neighbourhood is taken to mean the test cannot compile yet on older history).
+    let (mut lo, mut hi, mut floor) = (-1i64, p as i64, -1i64);
+    while hi - lo.max(floor) > 1 {
+        let base = lo.max(floor);
+        let mid = (base + hi) / 2;
+        match probe.testable_near(mid, base, hi) {
             Some((i, Outcome::Pass)) => lo = i as i64,
             Some((i, _)) => hi = i as i64,
-            None => break,
+            None => floor = (mid + SKIP_RADIUS).min(hi - 1),
         }
     }
     let k = 2;
@@ -146,12 +154,19 @@ pub fn run(runner: &mut dyn Runner, spec: &Spec, fix: &str, start: Option<&str>)
     sweep.first_failing = Some(probe.commits[hi as usize].clone());
     sweep.last_passing = (lo >= 0).then(|| probe.commits[lo as usize].clone());
     sweep.untestable_between = (hi - lo - 1).max(0) as usize;
-    (sweep.verdict, sweep.reason) = if lo < 0 && sweep.untestable_between == 0 {
-        ("left-censored".into(), "test fails from the first commit of the range".into())
-    } else if lo < 0 {
-        ("unresolved".into(), "no testable PASS found before the first FAIL".into())
+    let assumed = (floor >= 0).then(|| format!(
+        "; commits up to {} assumed untestable after {SKIP_RADIUS}-commit neighbourhoods failed to build",
+        &probe.commits[floor as usize][..10]));
+    (sweep.verdict, sweep.reason) = if lo >= 0 && hi - lo == 1 {
+        ("located".into(), "adjacent last PASS and first FAIL".into())
+    } else if lo >= 0 {
+        ("interval".into(), format!("bug introduced within {} untestable commit(s) between last PASS and first FAIL{}",
+                                     sweep.untestable_between, assumed.unwrap_or_default()))
+    } else if floor >= 0 {
+        sweep.untestable_between = 0;
+        ("censored-by-testability".into(), format!("test already fails where it first compiles{}", assumed.unwrap_or_default()))
     } else {
-        ("located".into(), format!("{} untestable commit(s) between last PASS and first FAIL", sweep.untestable_between))
+        ("left-censored".into(), "test fails from the first commit of the range".into())
     };
     Ok(finish(sweep, probe))
 }

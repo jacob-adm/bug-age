@@ -1,0 +1,19 @@
+{
+  "command": "target/debug/bug-age sweep --repo work/tokenizers --path tokenizers --fix 9b77c054ef4297c7057fa8db875368c7c02f1bfc --start c1100ec542d11861a00a388ec4f5004c5d74b079 --overlay results/tokenizers/repros/9b77c054ef/overlay --runner docker --repeats 3 --build cargo test --test bugage_repro --no-run --test cargo test --test bugage_repro --logs work/sweep-logs/9b77c054ef --out results/tokenizers/repros/9b77c054ef/sweep.json",
+  "inputs": {
+    "fix": "9b77c054ef4297c7057fa8db875368c7c02f1bfc",
+    "overlay_files": [
+      "tests/bugage_repro.rs sha256:26d11810a49b17faff95ca6b9315f4a55eae5714fee4a1a72095d21a3000948c"
+    ],
+    "repo_head": "fb49a29223724a96f26e061bec8ec7517aa14177",
+    "start": "c1100ec542d11861a00a388ec4f5004c5d74b079"
+  },
+  "report_sha256": "0a7b14a58fe154523736a4bf215bbc3336b1ee18ba98f441aa07e99e5dfb1a02",
+  "verdict": "left-censored",
+  "versions": {
+    "bug-age": "0.1.0",
+    "docker": "28.3.3 arm64",
+    "git": "git version 2.50.1 (Apple Git-155)",
+    "image": "sha256:d34ec21902259db937a6314cbd5401794d44131e4f57033861c286fbe2497231"
+  }
+}

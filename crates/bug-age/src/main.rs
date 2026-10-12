@@ -3,6 +3,7 @@
 //!   bug-age catalog --repo DIR --path CRATE [--head REV] [--out FILE]
 //!   bug-age szz     --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--out FILE]
 //!   bug-age sweep   --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD [options]
+//!   bug-age probe   --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [options]
 
 use bug_age::runner::{Docker, Local, Runner, Spec};
 use bug_age::{catalog, sweep, szz};
@@ -17,7 +18,8 @@ const USAGE: &str = "usage: bug-age [--version | --help]
        bug-age szz --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--out FILE]
        bug-age sweep --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD
              [--build CMD] [--start SHA] [--runner docker|local] [--repeats N] [--image IMG]
-             [--time-travel-script FILE|none] [--scratch DIR] [--logs DIR] [--out FILE]";
+             [--time-travel-script FILE|none] [--scratch DIR] [--logs DIR] [--out FILE]
+       bug-age probe --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]";
 
 fn flags(args: &[String]) -> Result<HashMap<String, String>, String> {
     let mut map = HashMap::new();
@@ -84,9 +86,8 @@ fn tool_version(cmd: &str, args: &[&str]) -> String {
         .unwrap_or_else(|_| "unavailable".into())
 }
 
-fn cmd_sweep(f: &HashMap<String, String>) -> Result<(), String> {
+fn spec_and_runner(f: &HashMap<String, String>, tag: &str) -> Result<(Spec, Box<dyn Runner>), String> {
     let opt = |k: &str, d: &str| f.get(k).cloned().unwrap_or_else(|| d.to_string());
-    let fix = need(f, "fix")?.to_string();
     let home = std::env::var("HOME").unwrap_or_default();
     let spec = Spec {
         repo: PathBuf::from(need(f, "repo")?),
@@ -96,16 +97,38 @@ fn cmd_sweep(f: &HashMap<String, String>) -> Result<(), String> {
         test: need(f, "test")?.to_string(),
         repeats: opt("repeats", "3").parse().map_err(|e| format!("--repeats: {e}"))?,
         scratch: PathBuf::from(opt("scratch", &format!("{home}/.cache/bug-age"))),
-        logs: PathBuf::from(opt("logs", &format!("work/sweep-logs/{}", &fix[..fix.len().min(12)]))),
+        logs: PathBuf::from(opt("logs", &format!("work/sweep-logs/{tag}"))),
     };
-    let mut runner: Box<dyn Runner> = match opt("runner", "docker").as_str() {
+    let runner: Box<dyn Runner> = match opt("runner", "docker").as_str() {
         "local" => Box::new(Local::new(&spec)),
         "docker" => {
             let tt = opt("time-travel-script", "spike/timetravel.py");
-            Box::new(Docker::new(opt("image", "bug-age-spike:3"), (tt != "none").then(|| PathBuf::from(tt))))
+            Box::new(Docker::new(opt("image", "bug-age-spike:4"), (tt != "none").then(|| PathBuf::from(tt))))
         }
         other => return Err(format!("unknown runner '{other}'")),
     };
+    Ok((spec, runner))
+}
+
+/// Evaluate an explicit list of commits (e.g. Method A's nominee and its parent) with the same
+/// staging/build/test/repeat rules as `sweep`, without searching.
+fn cmd_probe(f: &HashMap<String, String>) -> Result<(), String> {
+    let commits: Vec<String> = need(f, "commits")?.split(',').map(|c| c.trim().to_string()).collect();
+    let (spec, mut runner) = spec_and_runner(f, &format!("probe-{}", &commits[0][..commits[0].len().min(12)]))?;
+    let mut results = Vec::new();
+    for c in &commits {
+        let sha = bug_age::git::git(&spec.repo, &["rev-parse", c])?.trim().to_string();
+        let r = sweep::evaluate(runner.as_mut(), &spec, &sha);
+        eprintln!("probe: {} {:?} ({})", &sha[..10], r.outcome, r.reason);
+        results.push(r);
+    }
+    emit(&json!({"runner": runner.name(), "test": spec.test, "repeats": spec.repeats, "results": results}), f.get("out"))
+}
+
+fn cmd_sweep(f: &HashMap<String, String>) -> Result<(), String> {
+    let opt = |k: &str, d: &str| f.get(k).cloned().unwrap_or_else(|| d.to_string());
+    let fix = need(f, "fix")?.to_string();
+    let (spec, mut runner) = spec_and_runner(f, &fix[..fix.len().min(12)])?;
     let start = f.get("start").map(String::as_str);
     let result = sweep::run(runner.as_mut(), &spec, &fix, start)?;
     eprintln!("sweep: {} — {} ({} of {} commits tested)", result.verdict, result.reason, result.commits_tested, result.range_commits);
@@ -113,7 +136,7 @@ fn cmd_sweep(f: &HashMap<String, String>) -> Result<(), String> {
     let mut versions = json!({"bug-age": env!("CARGO_PKG_VERSION"), "git": tool_version("git", &["--version"])});
     if result.runner == "docker" {
         versions["docker"] = json!(tool_version("docker", &["version", "--format", "{{.Server.Version}} {{.Server.Arch}}"]));
-        versions["image"] = json!(tool_version("docker", &["image", "inspect", &opt("image", "bug-age-spike:3"), "--format", "{{.Id}}"]));
+        versions["image"] = json!(tool_version("docker", &["image", "inspect", &opt("image", "bug-age-spike:4"), "--format", "{{.Id}}"]));
     }
     let receipt = json!({
         "command": std::env::args().collect::<Vec<_>>().join(" "),
@@ -163,6 +186,7 @@ fn main() -> ExitCode {
         Some("catalog") => flags(&args[1..]).and_then(|f| cmd_catalog(&f)),
         Some("szz") => flags(&args[1..]).and_then(|f| cmd_szz(&f)),
         Some("sweep") => flags(&args[1..]).and_then(|f| cmd_sweep(&f)),
+        Some("probe") => flags(&args[1..]).and_then(|f| cmd_probe(&f)),
         Some(other) => {
             eprintln!("bug-age: unknown argument '{other}'\n{USAGE}");
             return ExitCode::from(2);

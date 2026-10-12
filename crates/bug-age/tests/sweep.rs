@@ -84,15 +84,37 @@ fn left_censored_when_range_starts_inside_the_bug() {
 }
 
 #[test]
-fn skips_untestable_commits_and_reports_unresolved() {
+fn censored_by_testability_when_bug_predates_compilable_test() {
     // mul only exists from rev3 (already buggy): everything before the first FAIL is untestable.
-    let (dir, scratch, s) = repo("unresolved", &[NONE, NONE, NONE, BUG, BUG, OK]);
+    let (dir, scratch, s) = repo("testability", &[NONE, NONE, NONE, BUG, BUG, OK]);
     let r = sweep(&dir, &scratch, &s[5], None, 6);
-    assert_eq!(r["verdict"], "unresolved", "{r}");
+    assert_eq!(r["verdict"], "censored-by-testability", "{r}");
     assert_eq!(r["first_failing"], s[3].as_str());
-    assert_eq!(r["untestable_between"], 3);
     let untestable = r["results"].as_array().unwrap().iter().filter(|c| c["outcome"] == "UNTESTABLE").count();
-    assert!(untestable >= 2, "bisect must have probed and skipped untestable midpoints");
+    assert!(untestable >= 1, "bisect must have probed untestable commits");
+}
+
+#[test]
+fn long_untestable_history_costs_a_bounded_number_of_builds() {
+    // 40 commits where the test cannot compile, then the bug: probes must stay logarithmic-ish,
+    // not walk the untestable stretch commit by commit.
+    let mut bodies = vec![NONE; 40];
+    bodies.extend([OK, OK, BUG, BUG, OK]);
+    let (dir, scratch, s) = repo("bounded", &bodies);
+    let r = sweep(&dir, &scratch, &s[44], None, 6);
+    assert_eq!(r["verdict"], "located", "{r}");
+    assert_eq!(r["first_failing"], s[42].as_str());
+    assert!(r["commits_tested"].as_u64().unwrap() <= 25, "tested {} commits", r["commits_tested"]);
+}
+
+#[test]
+fn interval_when_bug_lands_inside_an_untestable_stretch() {
+    // rev1 passes; rev2-6 cannot compile the test (mul removed); rev7 has the bug; rev9 fixes it.
+    let (dir, scratch, s) = repo("interval", &[NONE, OK, NONE, NONE, NONE, NONE, NONE, BUG, BUG, OK]);
+    let r = sweep(&dir, &scratch, &s[9], None, 6);
+    assert!(matches!(r["verdict"].as_str(), Some("interval") | Some("located")), "{r}");
+    assert_eq!(r["first_failing"], s[7].as_str());
+    assert_eq!(r["last_passing"], s[1].as_str());
 }
 
 #[test]
@@ -103,7 +125,7 @@ fn rejects_a_repro_that_does_not_fail_before_the_fix() {
     assert_eq!(r["verdict"], "repro-invalid", "{r}");
 }
 
-/// Docker runner end-to-end (needs Docker + image bug-age-spike:3): `cargo test -- --ignored`.
+/// Docker runner end-to-end (needs Docker + image bug-age-spike:4): `cargo test -- --ignored`.
 /// Exercises git-archive staging, the time-travel index (the toy crate has no lockfile),
 /// the date-matched toolchain and --network none for build/test.
 #[test]
@@ -130,4 +152,21 @@ fn docker_runner_locates_exact_introducing_commit() {
         .filter(|st| st["name"].as_str().unwrap().starts_with("test_") || st["name"] == "build")
         .all(|st| st["network"] == false)), "build/test must run without network");
     assert!(v["receipt"]["versions"]["image"].as_str().unwrap().starts_with("sha256:"));
+}
+
+#[test]
+fn probe_evaluates_listed_commits_without_searching() {
+    let (dir, scratch, s) = repo("probe", &[OK, BUG, OK]);
+    let ov = overlay(scratch.parent().unwrap(), 6);
+    let commits = format!("{},{}", s[0], s[1]);
+    let out = Command::new(env!("CARGO_BIN_EXE_bug-age"))
+        .args(["probe", "--repo", dir.to_str().unwrap(), "--path", "toy", "--commits", &commits,
+               "--overlay", ov.to_str().unwrap(), "--runner", "local", "--repeats", "1",
+               "--build", "cargo test --test bugage_repro --no-run", "--test", "cargo test --test bugage_repro",
+               "--scratch", scratch.to_str().unwrap(), "--logs", scratch.join("logs").to_str().unwrap()])
+        .output().unwrap();
+    assert!(out.status.success(), "{}", String::from_utf8_lossy(&out.stderr));
+    let v: Value = serde_json::from_slice(&out.stdout).unwrap();
+    let outcomes: Vec<&str> = v["results"].as_array().unwrap().iter().map(|r| r["outcome"].as_str().unwrap()).collect();
+    assert_eq!(outcomes, vec!["PASS", "FAIL"]);
 }
