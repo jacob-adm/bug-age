@@ -9,7 +9,7 @@ Known approximation: yank state in the index is today's. Versions kept by the cu
 """
 from __future__ import annotations
 
-import json, subprocess, tomllib, urllib.error, urllib.request
+import datetime, json, subprocess, sys, tomllib, urllib.error, urllib.request
 from pathlib import Path
 
 SPARSE = "https://index.crates.io"
@@ -98,3 +98,10 @@ def build_index(tree: Path, crate_dir: str, cutoff: str, cache: Path, out: Path)
         subprocess.run(["git", "-C", str(out), *cmd], check=True, env=env, capture_output=True)
     return {"cutoff": cutoff, "root_crates": len(roots), "crates": crates,
             "versions": kept_versions, "unyanked": unyanked}
+
+
+if __name__ == "__main__":
+    # CLI used by `bug-age sweep --runner docker`: TREE CRATE_DIR CUTOFF_UNIX CACHE_DIR OUT_DIR
+    tree, crate_dir, cutoff_unix, cache, out = sys.argv[1:6]
+    cutoff = datetime.datetime.fromtimestamp(int(cutoff_unix), datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    print(json.dumps(build_index(Path(tree), crate_dir, cutoff, Path(cache), Path(out))))

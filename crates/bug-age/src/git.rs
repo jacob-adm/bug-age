@@ -4,8 +4,24 @@
 use std::path::Path;
 use std::process::Command;
 
+/// Variables git exports to hooks and subprocesses. `git -C <repo>` does not override them, so a
+/// bug-age run from inside a hook (or its tests during pre-commit) would otherwise read or write the
+/// *calling* repository. Every git invocation must start from this command.
+const GIT_ENV: &[&str] = &[
+    "GIT_DIR", "GIT_WORK_TREE", "GIT_INDEX_FILE", "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES",
+    "GIT_COMMON_DIR", "GIT_PREFIX", "GIT_NAMESPACE", "GIT_CEILING_DIRECTORIES",
+];
+
+pub fn command() -> Command {
+    let mut cmd = Command::new("git");
+    for var in GIT_ENV {
+        cmd.env_remove(var);
+    }
+    cmd
+}
+
 pub fn git(repo: &Path, args: &[&str]) -> Result<String, String> {
-    let out = Command::new("git")
+    let out = command()
         .arg("-C")
         .arg(repo)
         .args(args)
