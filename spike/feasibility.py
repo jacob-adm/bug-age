@@ -3,7 +3,7 @@
 
 Throwaway evidence script (stdlib only). Every number in the report is produced here; nothing is
 hand-entered. Usage:  python3 spike/feasibility.py [--samples 20]
-Needs: git, docker (image built from spike/Dockerfile as bug-age-spike:2), network for clone/fetch.
+Needs: git, docker (image built from spike/Dockerfile as bug-age-spike:3), network for clone/fetch.
 Build and test steps run in a Linux container with --network none. A native macOS run was abandoned:
 the current Xcode linker rejects rlibs from old toolchains (see results/smoke-native-macos.*).
 """
@@ -18,6 +18,10 @@ REPO = WORK / "tokenizers"
 REPO_URL = "https://github.com/huggingface/tokenizers.git"
 CRATE = "tokenizers"                       # path of the Rust core crate inside the repo
 OUT = ROOT / "spike" / "results"
+LOGS = WORK / "logs"
+TICKET = "BUGAGE-1"
+TIME_TRAVEL = False                         # BUGAGE-5: resolve lockfile-less commits as of their date
+INDEX_VOLUME = "bugage-index"
 # Worktree and target dir must live outside this repo: an old commit without [workspace] would
 # otherwise be absorbed into bug-age's own Cargo workspace (found by the first smoke run).
 SCRATCH = Path(os.environ.get("BUG_AGE_SCRATCH", Path.home() / ".cache" / "bug-age"))
@@ -25,7 +29,7 @@ SCRATCH = Path(os.environ.get("BUG_AGE_SCRATCH", Path.home() / ".cache" / "bug-a
 # and no commit is FLAKY.
 GO_MIN_SHARE = 0.70
 TEST_REPEATS = 2
-IMAGE = "bug-age-spike:2"
+IMAGE = "bug-age-spike:3"
 TARGET_VOLUME = "bugage-target"               # wiped before every commit
 SRC_VOLUME = "bugage-src"                     # commit tree, copied in with git archive; wiped per commit
 RUST_1_0 = dt.date(2015, 5, 15)            # stable cadence: one minor release every 42 days
@@ -116,8 +120,32 @@ def stage_source(sha: str) -> None:
         raise HarnessError(f"staged tree for {sha} has no {CRATE}/Cargo.toml")
 
 
+def stage_time_travel_index(sha: str, wt: Path) -> dict:
+    """Build the as-of-commit index on the host, copy it into the index volume and point the staged
+    tree's cargo at it. Index paths are per commit so cargo's index cache never mixes cutoffs."""
+    import timetravel
+    cutoff = dt.datetime.fromtimestamp(int(git("show", "-s", "--format=%ct", sha)), dt.timezone.utc)
+    cutoff_s = cutoff.strftime("%Y-%m-%dT%H:%M:%SZ")
+    out = SCRATCH / "tt-index" / sha[:12]
+    if out.exists():
+        subprocess.run(["rm", "-rf", str(out)], check=True)
+    stats = timetravel.build_index(wt, CRATE, cutoff_s, SCRATCH / "index-cache", out)
+    tar = subprocess.Popen(["tar", "--no-xattrs", "-C", str(out), "-cf", "-", "."], stdout=subprocess.PIPE,
+                           env={**os.environ, "COPYFILE_DISABLE": "1"})
+    untar = subprocess.run(["docker", "run", "-i", "--rm", "-v", f"{INDEX_VOLUME}:/index", IMAGE, "sh", "-c",
+                            f"rm -rf /index/{sha[:12]} && mkdir -p /index/{sha[:12]} && tar -x -C /index/{sha[:12]}"],
+                           stdin=tar.stdout, capture_output=True, text=True)
+    tar.stdout.close()
+    cfg = f'[source.crates-io]\nreplace-with = "tt"\n[source.tt]\nregistry = "file:///index/{sha[:12]}"\n'
+    wrote = subprocess.run(["docker", "run", "--rm", "-v", f"{SRC_VOLUME}:/src", IMAGE, "sh", "-c",
+                            f"mkdir -p /src/.cargo && printf '{cfg}' > /src/.cargo/config"], capture_output=True, text=True)
+    if tar.wait() != 0 or untar.returncode != 0 or wrote.returncode != 0:
+        raise HarnessError(f"time-travel staging for {sha} failed: {untar.stderr[-300:]}{wrote.stderr[-300:]}")
+    return stats
+
+
 def probe(sha: str, idx: int) -> dict:
-    wt, logs = SCRATCH / "wt", WORK / "logs" / sha[:12]
+    wt, logs = SCRATCH / "wt", LOGS / sha[:12]
     run(["git", "-C", str(REPO), "worktree", "remove", "--force", str(wt)])
     git("worktree", "add", "--force", "--detach", str(wt), sha)
     run(["docker", "volume", "rm", "-f", TARGET_VOLUME, SRC_VOLUME])
@@ -141,9 +169,11 @@ def probe(sha: str, idx: int) -> dict:
         ) if (crate / "tests").is_dir() else 0,
         "fixture_urls": fixture_urls(wt), "steps": {},
     }
+    if TIME_TRAVEL and not rec["lockfile_committed"]:
+        rec["time_travel"] = stage_time_travel_index(sha, wt)
     def step(name, cmd, offline, timeout=1800):
         docker = ["docker", "run", "--rm", *(["--network", "none"] if offline else []),
-                  "-v", f"{SRC_VOLUME}:/src", "-v", "bugage-rustup:/rustup", "-v", "bugage-cargo:/cargo",
+                  "-v", f"{SRC_VOLUME}:/src", "-v", f"{INDEX_VOLUME}:/index", "-v", "bugage-rustup:/rustup", "-v", "bugage-cargo:/cargo",
                   "-v", f"{TARGET_VOLUME}:/target", "-e", "CARGO_TARGET_DIR=/target",
                   "-e", "CARGO_TERM_COLOR=never", "-w", f"/src/{CRATE}", IMAGE]
         code, out, secs = run(docker + cmd, timeout=timeout, log=logs / f"{name}.log")
@@ -177,9 +207,14 @@ def probe(sha: str, idx: int) -> dict:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--samples", type=int, default=20)
+    ap.add_argument("--time-travel", action="store_true",
+                    help="BUGAGE-5: resolve lockfile-less commits against a crates.io index as of the commit date")
     ap.add_argument("--reclassify", action="store_true",
                     help="recompute failure hints from saved logs with the current HINTS table and rewrite outputs")
     args = ap.parse_args()
+    global OUT, LOGS, TICKET, TIME_TRAVEL
+    if args.time_travel:
+        OUT, LOGS, TICKET, TIME_TRAVEL = ROOT / "spike" / "results-timetravel", WORK / "logs-tt", "BUGAGE-5", True
     if args.reclassify:
         return reclassify()
     if not REPO.is_dir():
@@ -210,12 +245,12 @@ def reclassify() -> int:
     for r in rep["results"]:
         for name, st in r["steps"].items():
             if st["exit"] != 0:
-                log = (WORK / "logs" / r["sha"][:12] / f"{name}.log").read_text(errors="replace")
+                log = (LOGS / r["sha"][:12] / f"{name}.log").read_text(errors="replace")
                 st["hint"] = hint(log.split("\n", 1)[1])  # line 1 is the "$ docker run ..." header
         step, prefix = REASON_PREFIX.get(r["status"], (None, ""))
         if step and r["steps"].get(step, {}).get("exit", 0) != 0:
             r["reason"] = prefix + r["steps"][step]["hint"]
-    n = int(json.loads((OUT / "receipt.json").read_text())["command"].split("--samples ")[1])
+    n = int(json.loads((OUT / "receipt.json").read_text())["command"].split("--samples ")[1].split()[0])
     return write_outputs(rep["results"], rep["subject"]["head"],
                          rep["subject"]["first_parent_commits_touching_crate"], n, reclassified=True)
 
@@ -239,13 +274,16 @@ def write_outputs(results, head, history_len, n, reclassified=False) -> int:
     share = ok / len(results)
     verdict = "GO" if share >= GO_MIN_SHARE and not counts.get("FLAKY") else "NO-GO"
     report = {
-        "ticket": "BUGAGE-1",
+        "ticket": TICKET,
         "subject": {"repo": REPO_URL, "crate_path": CRATE, "head": head,
                     "first_parent_commits_touching_crate": history_len,
                     "history_window": [results[0]["date"], results[-1]["date"]]},
         "method": {"sampling": f"{len(picks)} evenly spaced first-parent commits touching {CRATE}/",
                    "toolchain_rule": "latest stable released >=14 days before commit date, raised to rust-version; "
                                      "aarch64-unknown-linux-gnu in " + IMAGE,
+                   "dependency_resolution": ("lockfile-less commits: crates.io index filtered to versions published by "
+                                             "the commit time (yank state reset); lockfile commits: committed lock")
+                                            if TIME_TRAVEL else "committed Cargo.lock if present, else today's crates.io",
                    "build": "cargo build --all --offline in docker --network none",
                    "test": f"cargo test --all --lib --offline (all workspace members' unit tests) in docker --network none, repeated {TEST_REPEATS}x",
                    "not_covered": "integration tests under tests/ (need downloaded fixtures), benches, bindings",
@@ -258,9 +296,10 @@ def write_outputs(results, head, history_len, n, reclassified=False) -> int:
     (OUT / "partial.json").unlink(missing_ok=True)
     tool = lambda *c: subprocess.run(c, capture_output=True, text=True).stdout.strip().splitlines()[0]
     receipt = {
-        "ticket": "BUGAGE-1", "generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-        "command": "python3 spike/feasibility.py --samples %d" % n,
-        **({"post_processing": "python3 spike/feasibility.py --reclassify"} if reclassified else {}),
+        "ticket": TICKET, "generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+        "command": "python3 spike/feasibility.py --samples %d%s" % (n, " --time-travel" if TIME_TRAVEL else ""),
+        **({"post_processing": "python3 spike/feasibility.py --reclassify%s" % (" --time-travel" if TIME_TRAVEL else "")}
+           if reclassified else {}),
         "inputs": {"repo": REPO_URL, "head": head, "sampled_shas": [r["sha"] for r in results]},
         "versions": {"python": platform.python_version(), "git": tool("git", "--version"),
                      "docker": tool("docker", "version", "--format", "{{.Server.Version}} {{.Server.Arch}}"),
@@ -268,7 +307,7 @@ def write_outputs(results, head, history_len, n, reclassified=False) -> int:
                      "host": f"{platform.system()} {platform.machine()}",
                      "toolchains": sorted({r["toolchain"] for r in results})},
         "totals": counts, "verdict": verdict,
-        "outputs": {"spike/results/report.json": hashlib.sha256(body.encode()).hexdigest()},
+        "outputs": {str((OUT / "report.json").relative_to(ROOT)): hashlib.sha256(body.encode()).hexdigest()},
     }
     (OUT / "receipt.json").write_text(json.dumps(receipt, indent=2, sort_keys=True))
     print(json.dumps({"counts": counts, "share": round(share, 3), "verdict": verdict}))
