@@ -1,0 +1,1370 @@
+{
+  "excluded": [
+    {
+      "date": "2026-09-21",
+      "parents": [
+        "8bad46a1440745d305dc557910a64c517a3414e7"
+      ],
+      "rule": "exclude:release",
+      "sha": "fb11e5128f670c4e6e805ed8cf452a467e6def40",
+      "subject": "fix(release): max number of keywords is 5 (#2444)"
+    },
+    {
+      "date": "2026-01-05",
+      "parents": [
+        "a2fe1cc0a90a82bde39bf3b0de4ffe1505c138a5"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "b874abe7316b5559e8483fb8e66272715e3024bf",
+      "subject": "Fix warnings: remove a print and remove some deprecation warnings (#1924)"
+    },
+    {
+      "date": "2025-08-27",
+      "parents": [
+        "ed2cda51e66546ad1c6c816ea3d412d9d50e2327"
+      ],
+      "rule": "exclude:build-only",
+      "sha": "95b882a3f5a61f95adc03b96e4c46e0b79b10d06",
+      "subject": "fix: use AHashMap to fix compile error (#1840)"
+    },
+    {
+      "date": "2025-06-19",
+      "parents": [
+        "76abe0f77d409aec1687ead442cedaa0a8c058e8"
+      ],
+      "rule": "exclude:feature-name",
+      "sha": "f81b262342e083a7e27c003e75fa18f7afef7c3c",
+      "subject": "Fixed Length Pre-Tokenizer (#1713)"
+    },
+    {
+      "date": "2025-05-27",
+      "parents": [
+        "67db0cd1dd8467ab67f952ddf4b8c8f564dd614f"
+      ],
+      "rule": "exclude:typo",
+      "sha": "f1faec1756981f3c99919bbb7aed704e7779f261",
+      "subject": "Fix typos in strings and comments (#1770)"
+    },
+    {
+      "date": "2025-05-27",
+      "parents": [
+        "759d7aa77a8cbec14837e8d389d54b18f155eae6"
+      ],
+      "rule": "exclude:build-only",
+      "sha": "67db0cd1dd8467ab67f952ddf4b8c8f564dd614f",
+      "subject": "Fix no-onig no-wasm builds (#1772)"
+    },
+    {
+      "date": "2025-01-09",
+      "parents": [
+        "6945933829145c0cbaa297daa76594800f2067ce"
+      ],
+      "rule": "exclude:typo",
+      "sha": "bdfc38b78dff24827554f1525730615ff6e3eb9b",
+      "subject": "Fix typos (#1715)"
+    },
+    {
+      "date": "2025-01-08",
+      "parents": [
+        "3a6504d2740ef3892350ef074beffe4a1ac87a64"
+      ],
+      "rule": "exclude:docs",
+      "sha": "166edd87c8d9d2d1b4bec320c7688c61a7a4c066",
+      "subject": "Fixing the README. (#1714)"
+    },
+    {
+      "date": "2024-12-30",
+      "parents": [
+        "24d29f498d890638279b0d51e899b6020571719d"
+      ],
+      "rule": "exclude:docs",
+      "sha": "555d44c47a6ebca921a6bd6192ff95674f15c6a5",
+      "subject": "Add feature flag hint to README.md, fixes #1633 (#1709)"
+    },
+    {
+      "date": "2024-07-26",
+      "parents": [
+        "4ea2f235b0430f5db09f867b65306d6c0a5ec7ed"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "a3ad85b3e83a32e5cf81b1be38eab19b2663aa74",
+      "subject": "Fix clippy + feature test management. (#1580)"
+    },
+    {
+      "date": "2024-06-20",
+      "parents": [
+        "1ff56c0c70b045f0cd82da1af9ac08cd4c7a6f9f"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "3e736bbccb05ca2502240de191a8b3ac27165895",
+      "subject": "Fix clippy"
+    },
+    {
+      "date": "2024-06-06",
+      "parents": [
+        "bfefcf676d8b07fd4106f7526585fe7502db3451"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "8d28dbefd1a04b3bbb7dea537243321a0f430aac",
+      "subject": "Fixing for clippy 1.78 (#1548)"
+    },
+    {
+      "date": "2023-10-10",
+      "parents": [
+        "4322056e6e434e4b49dc1d02dac3a51ccf6bcf21"
+      ],
+      "rule": "exclude:docs",
+      "sha": "0d8c57da48319a91fe9cd3e31a36b9bd29a8292c",
+      "subject": "fix a clerical error  in the comment (#1356)"
+    },
+    {
+      "date": "2023-07-16",
+      "parents": [
+        "4811f769a1477f99283ffe95837a0fc2c3aeeb3c"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "291b2e23ae81cf94738835852213ce120152d121",
+      "subject": "Fixing clippy warnings on 1.71. (#1296)"
+    },
+    {
+      "date": "2022-01-04",
+      "parents": [
+        "1054e243e21bed251b0f5dd5164a8031ec47902f"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "6972e49f1d3e5928105fa4c626c7cdcca8d8deae",
+      "subject": "Fix the clippy warnings. (#869)"
+    },
+    {
+      "date": "2021-12-15",
+      "parents": [
+        "1dc19e0dd4ba73af938ff4dc80b4b1cd40edf4bf"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "c1100ec542d11861a00a388ec4f5004c5d74b079",
+      "subject": "Clippy fixes. (#846)"
+    },
+    {
+      "date": "2021-07-21",
+      "parents": [
+        "755e5f5c1e5b955fd41b72635701ffb60cb0d726"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "d83772d62c1fd09cb2acf74983d04c3134f0bfb0",
+      "subject": "Fixing tokenizers with 1.53 (updated some dependencies + clippy) (#764)"
+    },
+    {
+      "date": "2021-04-05",
+      "parents": [
+        "659a835d04a81731c4c0865c3e5a8877b2a54e0e"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "e1627654b4d0c2e009269ab6f5641f8228c79a10",
+      "subject": "Fix Clippy warnings for Rust 1.51"
+    },
+    {
+      "date": "2021-03-16",
+      "parents": [
+        "ee95e7f0cd0defac6f055d02abd103c40d6c7194"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "56a919603031964efb4fe91f360febb8b8d97266",
+      "subject": "Fix clippy warnings"
+    },
+    {
+      "date": "2021-01-06",
+      "parents": [
+        "5938a12b3fcdb4e58f2c6c94bf1e3f92896bac48"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "817c5ad317f617341861438571a2e73bd51e3bdb",
+      "subject": "Fix clippy warnings for rust 1.49"
+    },
+    {
+      "date": "2020-11-28",
+      "parents": [
+        "06f6ba3fcee5d700a474d5f1e1976def68f33b58"
+      ],
+      "rule": "exclude:docs",
+      "sha": "3a8627ce4d7f1ecc32b9068d67915c8154a7f17b",
+      "subject": "Improve docs and fix tests around training"
+    },
+    {
+      "date": "2020-11-20",
+      "parents": [
+        "5059be1a8da4fb8d464a9d992221bfa526eca819"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "387b8a1033e2affd4b7f5d61dc6909caf8224168",
+      "subject": "Generate pyi, fix tests and clippy warnings"
+    },
+    {
+      "date": "2020-11-02",
+      "parents": [
+        "324aa2930aa56351bf56f4abcfaad98facc7350f"
+      ],
+      "rule": "exclude:docs",
+      "sha": "d788a950acb2765848d4f3b972d9f4c882f431a0",
+      "subject": "Doc - Fixes some CI fails"
+    },
+    {
+      "date": "2020-11-02",
+      "parents": [
+        "44e8f4be8ff83d77c1f538900ecd7eb68fb46887"
+      ],
+      "rule": "exclude:docs",
+      "sha": "128197b59a7ef1ba4cb1cb2b64b7e2a4ac979433",
+      "subject": "Fixing node doc location and rust README."
+    },
+    {
+      "date": "2020-10-13",
+      "parents": [
+        "88556790e790a532b8bfb959872f127809804fd5"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "9e6a9923101a06c96e852674131552b5fbcda743",
+      "subject": "Proper fixing of new clippy lints. (#454)"
+    },
+    {
+      "date": "2020-10-09",
+      "parents": [
+        "dd9fda5d0529a230e4e4c114368b2c5f238d2cf4"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "35feff0042401690f9f50c59e6b14f730b202cd4",
+      "subject": "Fixing 1.47 complaints from clippy."
+    },
+    {
+      "date": "2020-09-02",
+      "parents": [
+        "c0798acacf6a80fb742cfb2d7403b47b18e3153b"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "f6ffbc317a244c01940c00f6a461b9a9d33ddcc9",
+      "subject": "Fixing clippy."
+    },
+    {
+      "date": "2020-09-02",
+      "parents": [
+        "7007e450dc68ad921a51f239eae3440a4c387ceb"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "481f3bd97612edde7047e07512aa164e5b26ab98",
+      "subject": "Fixing clippy. Some fixes for trainer (not yet correct)."
+    },
+    {
+      "date": "2020-09-02",
+      "parents": [
+        "f3a78e051939129744bcc50f74b312769918f97f"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "f20c810eee439690ed05c172f4ecee19566ad2ab",
+      "subject": "Fixing clippy"
+    },
+    {
+      "date": "2020-09-02",
+      "parents": [
+        "41bf866d8b4e11c753fdd85d1c2f39226e72b8b9"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "3e46ab77e8e2c67b7ed7c839cf5b677f42ca66b8",
+      "subject": "Fixing clippy"
+    },
+    {
+      "date": "2020-08-03",
+      "parents": [
+        "403c85a6d4bda0e3b3e8487ab988738d4f6f5798"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "261a0c6dd8341e0295b2bf91c08e69d51b52ba8e",
+      "subject": "Fix some warnings"
+    },
+    {
+      "date": "2020-07-17",
+      "parents": [
+        "1f2cc6ee73f706cc9a1c0079cdb514aa3f82fe04"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "4b5d90024f985dd00a1a50e859edea29b8a2c3c6",
+      "subject": "Fix clippy for rust 1.45"
+    },
+    {
+      "date": "2020-02-10",
+      "parents": [
+        "583c741f1573c9c6c1072e153f06109372bdd08c"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "7d4fb6faf7cd666e345e308100ef565d9881b05e",
+      "subject": "Fix clippy & rustfmt warnings"
+    },
+    {
+      "date": "2020-02-05",
+      "parents": [
+        "32e6856c6ce93cc5cb5db03eb5a2418392ddd712"
+      ],
+      "rule": "exclude:docs",
+      "sha": "3b2414c20074a2c997149e8b7e4ca09c8e318457",
+      "subject": "Fix indentation in README for consistency"
+    },
+    {
+      "date": "2020-02-01",
+      "parents": [
+        "661cc185a47323d73478dae6d6c1251706fecbbf"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "e9ecd5aeec05e85d55468350f18b904087a6faf2",
+      "subject": "Fix some more warnings"
+    },
+    {
+      "date": "2020-02-01",
+      "parents": [
+        "c98eb04998749ed2e09b01a11a08854e6be61f2f"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "661cc185a47323d73478dae6d6c1251706fecbbf",
+      "subject": "Fix new clippy warnings"
+    },
+    {
+      "date": "2020-01-12",
+      "parents": [
+        "32d3955cd44a73c2319f7acd257a72e6802aac73"
+      ],
+      "rule": "exclude:release",
+      "sha": "fc9e81d4ab50f62d72d0db381465600105940743",
+      "subject": "Fix split on special tokens & bump version"
+    },
+    {
+      "date": "2020-01-07",
+      "parents": [
+        "4e026b57a86c66e7b86ab737d3be5b191fdb1961"
+      ],
+      "rule": "exclude:build-only",
+      "sha": "43acdcfacf867ff7e125d429bd63b712f866801b",
+      "subject": "Oops, fix BpeBuilder::build()"
+    },
+    {
+      "date": "2019-12-13",
+      "parents": [
+        "24139d7324b3653ad2b7946b1be947ac175e4f31"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "6b1028d5509bcac32ad1a52c2a80b230e649f04f",
+      "subject": "Add clippy warnings + fix all of them"
+    },
+    {
+      "date": "2019-12-13",
+      "parents": [
+        "03406d0b54f6a585af8904269fa2de5271b817be"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "7e6fd92018a7aa30084558698b86fc14ccaf7cd2",
+      "subject": "fix formatting"
+    },
+    {
+      "date": "2019-12-13",
+      "parents": [
+        "1c4593cad4594990b4ada22b2ae3b47019fd11b8"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "dc48cc3680eaa0cf41abc1a0e386f5163166c11f",
+      "subject": "fix a couple linting warnings"
+    }
+  ],
+  "fixes": [
+    {
+      "date": "2026-10-07",
+      "parents": [
+        "8b57265a6935f6a192583fe73b2795cd59434bfd"
+      ],
+      "rule": "include",
+      "sha": "bfa7f7ba421cc7b2ec310421766b4107961ad2e0",
+      "subject": "fix(byte-level): Support sparse byte atoms (#2466)"
+    },
+    {
+      "date": "2026-10-07",
+      "parents": [
+        "4c13417e6b2b717f906bdf803f90889e3e3a6662"
+      ],
+      "rule": "include",
+      "sha": "cbe82257599f78349ed58978cfc4222156eedbde",
+      "subject": "fix(BucketVocabStore): Explicit duplicate handling (#2467)"
+    },
+    {
+      "date": "2026-04-10",
+      "parents": [
+        "51a6e8201a72b20ae06aa6fd1d06a100d2a210d7"
+      ],
+      "rule": "include",
+      "sha": "d863e6e514b1cb022d89e340da4499ae6a7407f5",
+      "subject": "🚨 Refactor a bit add_tokens logic: fix bytelevel decode of added tokens + less memory deserializatio"
+    },
+    {
+      "date": "2025-07-04",
+      "parents": [
+        "ee2c5708bdce9d6610fa74faeb22cf6297c6390a"
+      ],
+      "rule": "include",
+      "sha": "f339867263539c5b65b1ed920d3bff647beb6ca9",
+      "subject": "Fixing the public API of the Rust trainer."
+    },
+    {
+      "date": "2025-06-24",
+      "parents": [
+        "be25814c9e07693eb69861c0a597f740409ae113"
+      ],
+      "rule": "include",
+      "sha": "5c475db339e4f676ff676b0430dcc1678584456b",
+      "subject": "🚨 breaking: Fix training with special tokens (#1617)"
+    },
+    {
+      "date": "2025-06-16",
+      "parents": [
+        "cba3eb703504dc78b693d82cb2103e11d79dceac"
+      ],
+      "rule": "include",
+      "sha": "dd460019785418a9ebe4e7ca2712f360be493510",
+      "subject": "Fix features blending into a paragraph (#1798)"
+    },
+    {
+      "date": "2025-01-09",
+      "parents": [
+        "0ff2ab0f643ca5e45d27ec0e1dcccc62dd0526fa"
+      ],
+      "rule": "include",
+      "sha": "e7ed39de3c197492971d3b9076139d43a8ecdacb",
+      "subject": "Fixing NormalizedString append when normalized is empty. (#1717)"
+    },
+    {
+      "date": "2025-01-09",
+      "parents": [
+        "862d1a346a99183017b1eb5ad1aa3133b466784f"
+      ],
+      "rule": "include",
+      "sha": "0ff2ab0f643ca5e45d27ec0e1dcccc62dd0526fa",
+      "subject": "Fixing the stream by removing the read_index altogether. (#1716)"
+    },
+    {
+      "date": "2025-01-09",
+      "parents": [
+        "c04b97aab134430d28ca5f46ccc768fd05061c84"
+      ],
+      "rule": "include",
+      "sha": "862d1a346a99183017b1eb5ad1aa3133b466784f",
+      "subject": "Fix panic in DecodeStream::step due to incorrect index usage (#1699)"
+    },
+    {
+      "date": "2024-10-14",
+      "parents": [
+        "bce68a60cb7b8bd3ecd252f1a24b30e66cbce037"
+      ],
+      "rule": "include",
+      "sha": "9b77c054ef4297c7057fa8db875368c7c02f1bfc",
+      "subject": "Fix off-by-one error in tokenizer::normalizer::Range::len (#1638)"
+    },
+    {
+      "date": "2024-10-01",
+      "parents": [
+        "b4a38c4f6388255a5113887095eddf91d7b179be"
+      ],
+      "rule": "include",
+      "sha": "3fb1371c1c846adf2e1a8f2bbd3a0db46816960b",
+      "subject": "[`ignore_merges`] Fix offsets (#1640)"
+    },
+    {
+      "date": "2024-07-15",
+      "parents": [
+        "f2a44dc5d1d77ef358820e2ccf822428efc67e30"
+      ],
+      "rule": "include",
+      "sha": "4ea2f235b0430f5db09f867b65306d6c0a5ec7ed",
+      "subject": "Add bytelevel normalizer to fix decode when adding tokens to BPE (#1555)"
+    },
+    {
+      "date": "2024-01-08",
+      "parents": [
+        "f1c23b868006ee27acdd31796677f82fa10d6bd7"
+      ],
+      "rule": "include",
+      "sha": "43b31a83c7701cafaafb5431482f6dacf7846dd2",
+      "subject": "Fix make bench. (#1428)"
+    },
+    {
+      "date": "2023-11-14",
+      "parents": [
+        "ee2af9e99a00aaa552a41be3f547e69018bf948f"
+      ],
+      "rule": "include",
+      "sha": "f55822baeafbb70e616c0fb47e78b9414ac64ed4",
+      "subject": "[`pre_tokenizers`] Fix sentencepiece based Metaspace (#1357)"
+    },
+    {
+      "date": "2023-10-05",
+      "parents": [
+        "7e8e69a22c62c3e748391f82b2cc56687aa5142e"
+      ],
+      "rule": "include",
+      "sha": "aed491df8cae10a48d51fba5a6f55b1f16dc75b8",
+      "subject": "Fixing the progressbar. (#1353)"
+    },
+    {
+      "date": "2023-08-14",
+      "parents": [
+        "b35d33f9814d5be14a8f02a477816e9655a41e9e"
+      ],
+      "rule": "include",
+      "sha": "9a93c50c25c1e0b73a85584f327113bcbef5ac80",
+      "subject": "Fix stride condition. (#1321)"
+    },
+    {
+      "date": "2023-05-10",
+      "parents": [
+        "87230bb59b2a70b6c361943d1394f42218b0040b"
+      ],
+      "rule": "include",
+      "sha": "4518b0f7f2031ff78fd604d37d07f3cb1cd1b73b",
+      "subject": "fix unigram.rs test_sample() (#1244)"
+    },
+    {
+      "date": "2023-05-04",
+      "parents": [
+        "ef5f50605ddf9f8caef1598c0e4853862b9707a7"
+      ],
+      "rule": "include",
+      "sha": "15085ef90582743b2ea1ca0ed1c864e5b946e9f4",
+      "subject": "Fixing padding_left sequence_ids. (#1233)"
+    },
+    {
+      "date": "2023-03-24",
+      "parents": [
+        "e4aea890d58d1298fffffd627b139eda8e317375"
+      ],
+      "rule": "include",
+      "sha": "8a6a8dc9d571f251c4db2c2272aeddfb8a183de9",
+      "subject": "Fixing decoder strip because of char boundaries. (#1197)"
+    },
+    {
+      "date": "2023-03-15",
+      "parents": [
+        "9c0e700212e45e6c14772be6f66bcf6f238c5f84"
+      ],
+      "rule": "include",
+      "sha": "5ecd329503a4ac137bf00442ede4d31140276eb1",
+      "subject": "Fixing infinite loop in UnigramTrainer. (#1182)"
+    },
+    {
+      "date": "2022-09-26",
+      "parents": [
+        "6e5569a540ea6b0ee4bac27604e02b6fe26d14dd"
+      ],
+      "rule": "include",
+      "sha": "5f6e9784526a4cd5e4f6dcdcc045cdceba5463e1",
+      "subject": "Fixing roberta type id (everything is zero). (#1072)"
+    },
+    {
+      "date": "2022-03-21",
+      "parents": [
+        "1bb9884f459376508059b11b2ac6dc1585f44050"
+      ],
+      "rule": "include",
+      "sha": "cd730594e9d6b6349e4b95bc522525d7e5a178a6",
+      "subject": "Fixing issue with ConvBert not being able to save because of of holes in (#954)"
+    },
+    {
+      "date": "2022-03-18",
+      "parents": [
+        "daa4dd228889d77bac35f0455ba6079fb88c5ced"
+      ],
+      "rule": "include",
+      "sha": "1bb9884f459376508059b11b2ac6dc1585f44050",
+      "subject": "Fixing the vocab size of the trained Unigram model (#952)"
+    },
+    {
+      "date": "2022-02-25",
+      "parents": [
+        "b4c3844ffb4bd492fba6a5207dbdc90fa205fe00"
+      ],
+      "rule": "include",
+      "sha": "f24092ac62ffff05ce7fd954eea843943192371b",
+      "subject": "Trying to fix loading order of added_tokens. (#924)"
+    },
+    {
+      "date": "2022-02-25",
+      "parents": [
+        "48a921d39923616481538bfc30696da3813b9d6a"
+      ],
+      "rule": "include",
+      "sha": "d98abc50ba3da6825eafcd9a1cf89124474b25ce",
+      "subject": "Fixing `single_word` AddedToken. (#919)"
+    },
+    {
+      "date": "2022-01-17",
+      "parents": [
+        "c2fd7650872406c78fbfecf8a454a7d26b625aa5"
+      ],
+      "rule": "include",
+      "sha": "1a84958cc83f0a5ac1be53207ffec160fdd1774b",
+      "subject": "Fixing bad deserialization following inclusion of a default for `Punctuation`. (#884)"
+    },
+    {
+      "date": "2022-01-17",
+      "parents": [
+        "b18b572ed272439735395c292ebf034044e389d0"
+      ],
+      "rule": "include",
+      "sha": "4a750f1a57e230758d68e5d03f17d8f6ef38cbd5",
+      "subject": "Fixing `Punctuation` deserialize without argument. (#882)"
+    },
+    {
+      "date": "2022-01-06",
+      "parents": [
+        "8e0d66a25421ffff20a384c65a95fe99a7b5582c"
+      ],
+      "rule": "include",
+      "sha": "fb837b4adb130dfc89104aa09b1ae223da120278",
+      "subject": "Fix wordlevel encode `<unk>` (#870)"
+    },
+    {
+      "date": "2022-01-04",
+      "parents": [
+        "4122a33f095e7da48217e19bf9184fefd0506a8e"
+      ],
+      "rule": "include",
+      "sha": "1054e243e21bed251b0f5dd5164a8031ec47902f",
+      "subject": "Fix invalid continuing subwrd prefix. (#864)"
+    },
+    {
+      "date": "2022-01-04",
+      "parents": [
+        "7069988ffeb376ff3deb36800b4da3d4aa4e5cb4"
+      ],
+      "rule": "include",
+      "sha": "4122a33f095e7da48217e19bf9184fefd0506a8e",
+      "subject": "Fixing missing `direction` in TruncationParams. (#868)"
+    },
+    {
+      "date": "2021-12-20",
+      "parents": [
+        "31dd4364f0a1cdd1c274aefa4b335c01a1b423d6"
+      ],
+      "rule": "include",
+      "sha": "4759700da82deb127f25994527f2e7fb0fc9ba5c",
+      "subject": "Fixing interaction between `is_pretokenized` and `trim_offsets`. (#844)"
+    },
+    {
+      "date": "2021-08-13",
+      "parents": [
+        "59824981951b6b30b45007a664c66bf06668c0a4"
+      ],
+      "rule": "include",
+      "sha": "e7dd6436dd4a4ffd9e8a4f110ca68e6a38677cb6",
+      "subject": "Fix word level tokenizer determinism (#718)"
+    },
+    {
+      "date": "2021-05-24",
+      "parents": [
+        "4b7f8c2d7c8d41803b5a4ea0fa35505360b378ec"
+      ],
+      "rule": "include",
+      "sha": "c046da7679d188c9013069450b25ebab837de19a",
+      "subject": "Fix stripping strings containing Unicode characters (#707)"
+    },
+    {
+      "date": "2021-03-18",
+      "parents": [
+        "f5e9bb89b7386be88cd28019f32be2d7e528123d"
+      ],
+      "rule": "include",
+      "sha": "0fe9214f44f4e117a85e3880c20631cc70298d86",
+      "subject": "Fix BPE continuing_subword_prefix"
+    },
+    {
+      "date": "2021-03-16",
+      "parents": [
+        "f12be3030f7851c1ef42707a551cb6f4e749297c"
+      ],
+      "rule": "include",
+      "sha": "f5e9bb89b7386be88cd28019f32be2d7e528123d",
+      "subject": "Fix offsets for Precompiled corner case"
+    },
+    {
+      "date": "2021-02-03",
+      "parents": [
+        "2c711d45ce20c08d9ef67167797c80b767a758e6"
+      ],
+      "rule": "include",
+      "sha": "355315e8d31f8599920bad877db116e092a1e441",
+      "subject": "Rust - Fix offsets produced by Precompiled Normalizer"
+    },
+    {
+      "date": "2021-02-03",
+      "parents": [
+        "96b99728420a2e199f2acb50acb737a84e575e71"
+      ],
+      "rule": "include",
+      "sha": "a350ec3e72c9006ee00526566595625589c1756d",
+      "subject": "Rust - Fix a bug in the Metaspace PreTokenizer"
+    },
+    {
+      "date": "2021-01-11",
+      "parents": [
+        "1990f51b9f93ec4e73d55f68ea6c367df70000ed"
+      ],
+      "rule": "include",
+      "sha": "65b91966f7040c4acd14b23c71cc476a09432e8e",
+      "subject": "Fix import Formatter with new serde"
+    },
+    {
+      "date": "2020-12-08",
+      "parents": [
+        "d71e66e53c8107be2b0c767a897a94b7bb221791"
+      ],
+      "rule": "include",
+      "sha": "a3a9561f9fe7ba62ff5d7dd3915c7d51cce417bb",
+      "subject": "Rust - Fix WordLevelTrainer default values"
+    },
+    {
+      "date": "2020-11-11",
+      "parents": [
+        "b122737ec60403bbd99e1c07e9488f911243ab8f"
+      ],
+      "rule": "include",
+      "sha": "fff856cff76c1cb86d3f1ec392b5313f93b76ce0",
+      "subject": "New PR to fix #270 (not #157). (#516)"
+    },
+    {
+      "date": "2020-10-30",
+      "parents": [
+        "816d6ecc9d039876fc9ed24d1ab8cf747a8b5d50"
+      ],
+      "rule": "include",
+      "sha": "991128f9e1b7d1c2b705af1c8615a5dbd9c442ac",
+      "subject": "Node - Fix models init methods & add WordLevel"
+    },
+    {
+      "date": "2020-10-26",
+      "parents": [
+        "73b5da917f152c77a9a6d7e99799e6624f6c88c9"
+      ],
+      "rule": "include",
+      "sha": "466f5303eb6eaeb9b2da26da41912c8781d0b9da",
+      "subject": "Fix UnigramTrainer"
+    },
+    {
+      "date": "2020-10-15",
+      "parents": [
+        "f94a2747029c564bbc2b07c6bbddb9dded0eec28"
+      ],
+      "rule": "include",
+      "sha": "2fc0edda01b6318c7faaf38cdf46f5adb7c681d0",
+      "subject": "Fix RobertaProcessing deserialization in PostProcessorWrapper"
+    },
+    {
+      "date": "2020-10-13",
+      "parents": [
+        "b3c016cf9c104d65c3f826d9ea7bc1d114098232"
+      ],
+      "rule": "include",
+      "sha": "88556790e790a532b8bfb959872f127809804fd5",
+      "subject": "Fixing a bug where long tokenizer files would be incorrectly deserialized (#459)"
+    },
+    {
+      "date": "2020-10-13",
+      "parents": [
+        "3bb794681cc9308bbde47421d124c9265588b21c"
+      ],
+      "rule": "include",
+      "sha": "b3c016cf9c104d65c3f826d9ea7bc1d114098232",
+      "subject": "Fixing sampling test heuristics to fail less often."
+    },
+    {
+      "date": "2020-10-09",
+      "parents": [
+        "35feff0042401690f9f50c59e6b14f730b202cd4"
+      ],
+      "rule": "include",
+      "sha": "fbca797b3dca241762448b10f00c88f56f9c4e6f",
+      "subject": "Fixing Trainer with u8 instead of chars. (#452)"
+    },
+    {
+      "date": "2020-10-05",
+      "parents": [
+        "aebf510c5a4257edf60232c80c2fe06052b82965"
+      ],
+      "rule": "include",
+      "sha": "04163f4ffd05b2dfa77f958e0980e9f79f5a318e",
+      "subject": "Rust - Fix TemplateProcessing overflowings handling"
+    },
+    {
+      "date": "2020-09-28",
+      "parents": [
+        "7f8b357b92a96e5130ad5a3729218f15e0171b65"
+      ],
+      "rule": "include",
+      "sha": "faaef548791447db9a55b4e403da92aa59159fab",
+      "subject": "There was a bug with the new merge type vs continuing subword prefix."
+    },
+    {
+      "date": "2020-09-22",
+      "parents": [
+        "bcf35a2f6e0aa95917105f0b0de4b79a921d060a"
+      ],
+      "rule": "include",
+      "sha": "c0b9229833cfb3e67e2d42379f59228e24bcfe10",
+      "subject": "Fixed vietnamese bug, now we have a thai bug."
+    },
+    {
+      "date": "2020-09-02",
+      "parents": [
+        "ee3860c029670a03af97de1a6fcf946fb93944b3"
+      ],
+      "rule": "include",
+      "sha": "7b5c2b92c6aa7b87ad92105a0f34db6ba71de6d8",
+      "subject": "Fixing test dependency."
+    },
+    {
+      "date": "2020-09-02",
+      "parents": [
+        "d12439be6167cf3348a5f22d341c8339eb21e062"
+      ],
+      "rule": "include",
+      "sha": "c7a84c7cc677433764b3a40a97582f5bc613354c",
+      "subject": "Fixing deserialization/serialization."
+    },
+    {
+      "date": "2020-09-02",
+      "parents": [
+        "27c0866f490f47bce062e4ed5e396f09c876eb70"
+      ],
+      "rule": "include",
+      "sha": "1093677972c8885dec25cb0864a921f68c2cacbb",
+      "subject": "Fixing visibility issue."
+    },
+    {
+      "date": "2020-09-02",
+      "parents": [
+        "3e46ab77e8e2c67b7ed7c839cf5b677f42ca66b8"
+      ],
+      "rule": "include",
+      "sha": "f3a78e051939129744bcc50f74b312769918f97f",
+      "subject": "Big fix on the trainer + moved to progress bar instead of spm style logs"
+    },
+    {
+      "date": "2020-09-02",
+      "parents": [
+        "7e084fb4d97588058c240d15b2ca1fd5500a1500"
+      ],
+      "rule": "include",
+      "sha": "091ac14d19a903fa14daea059d45c0acab5a952e",
+      "subject": "Fixing the trainer:"
+    },
+    {
+      "date": "2020-09-02",
+      "parents": [
+        "0f7e0bafbb89496015ae3a47d47b97289c369968"
+      ],
+      "rule": "include",
+      "sha": "c3e78800559b7e1ea6f5875cd8bf44a06dd4d192",
+      "subject": "Fixing loading functions + workaround trie-rs bug."
+    },
+    {
+      "date": "2020-09-01",
+      "parents": [
+        "6156554777edebba48da8a715247694131c28704"
+      ],
+      "rule": "include",
+      "sha": "427d358a5f8599efe92e2578c3311cea5008900e",
+      "subject": "Fix deserialize for Whitespace Pretok"
+    },
+    {
+      "date": "2020-09-01",
+      "parents": [
+        "bd8dac202c8ad207cd0c46f76a4cd3208e9aab90"
+      ],
+      "rule": "include",
+      "sha": "6156554777edebba48da8a715247694131c28704",
+      "subject": "Fix deserialization from readers for unit structs."
+    },
+    {
+      "date": "2020-08-19",
+      "parents": [
+        "f92c9955e7aa8aa2b3d1c26cec551c1be21e05d9"
+      ],
+      "rule": "include",
+      "sha": "18e3799b1d1b5298cd293b6042efba8dc03df059",
+      "subject": "Fix a few things on NormalizedString"
+    },
+    {
+      "date": "2020-08-19",
+      "parents": [
+        "0cfc14b875ccf75fe83eed7da098d521fbbb8278"
+      ],
+      "rule": "include",
+      "sha": "be817da43854c15c03a699e156d4ce1bf0e00e8f",
+      "subject": "Fix integration tests"
+    },
+    {
+      "date": "2020-08-04",
+      "parents": [
+        "f6adcf0e7c13e8f79050ac9a986ac741c0546bb7"
+      ],
+      "rule": "include",
+      "sha": "363adedb4cc193c108d40e5380e3636c1a64c69c",
+      "subject": "Fixes and cleanup, suggestions by ."
+    },
+    {
+      "date": "2020-08-03",
+      "parents": [
+        "fcc68f27f6b0efab5b4cd0c61faa97ef2c7f3568"
+      ],
+      "rule": "include",
+      "sha": "eb19faded20af003baeb2d5dc9920d17b47e049f",
+      "subject": "Fix AddedVocabulary split on empty strings"
+    },
+    {
+      "date": "2020-08-03",
+      "parents": [
+        "dad70e8e8505476bd8e14a1a897948c1af17394e"
+      ],
+      "rule": "include",
+      "sha": "953f4c06f0375c2a3b58886bd665d147f75187e3",
+      "subject": "Various fixes and tests"
+    },
+    {
+      "date": "2020-08-03",
+      "parents": [
+        "c98d82560443fcf5b8e6dbcd5470f6b37a6b95f3"
+      ],
+      "rule": "include",
+      "sha": "403c85a6d4bda0e3b3e8487ab988738d4f6f5798",
+      "subject": "Fix words tracking and tests"
+    },
+    {
+      "date": "2020-08-03",
+      "parents": [
+        "b6d7c8368f7c04ec510edfbfcadaa9998d5331f4"
+      ],
+      "rule": "include",
+      "sha": "c98d82560443fcf5b8e6dbcd5470f6b37a6b95f3",
+      "subject": "Hotfix added vocabulary"
+    },
+    {
+      "date": "2020-08-03",
+      "parents": [
+        "39278b622443e1c60a02310382ea5b4bf0f97b95"
+      ],
+      "rule": "include",
+      "sha": "b6d7c8368f7c04ec510edfbfcadaa9998d5331f4",
+      "subject": "Fix offsets in Tokenizer::do_tokenize"
+    },
+    {
+      "date": "2020-08-03",
+      "parents": [
+        "1f370ea3c4cdb5f676a625b9537231d8f44802a8"
+      ],
+      "rule": "include",
+      "sha": "39278b622443e1c60a02310382ea5b4bf0f97b95",
+      "subject": "Fix offsets in PreTokenizedString::split"
+    },
+    {
+      "date": "2020-08-03",
+      "parents": [
+        "b78a9ffca6de2771d798a6609f0685fd87119938"
+      ],
+      "rule": "include",
+      "sha": "1f370ea3c4cdb5f676a625b9537231d8f44802a8",
+      "subject": "Fix and test Split behavior"
+    },
+    {
+      "date": "2020-08-03",
+      "parents": [
+        "28bbd3b0bff8693c7ab312f6abe622a92df84c9c"
+      ],
+      "rule": "include",
+      "sha": "1b8ec780fe848d707ccecaf7c1c3dd696790d08c",
+      "subject": "Fix NormalizedString::convert_offsets for empty normalized string"
+    },
+    {
+      "date": "2020-08-03",
+      "parents": [
+        "0c1699872cf9874fb2043ce48f8086f4192e8c25"
+      ],
+      "rule": "include",
+      "sha": "b68aaade43bf9baac5b0e88ddf1c5ef72375004c",
+      "subject": "Fix converting offsets and slicing on NormalizedString"
+    },
+    {
+      "date": "2020-08-03",
+      "parents": [
+        "91d97ffd905b08d03924eb9c28aeba08c4a17f69"
+      ],
+      "rule": "include",
+      "sha": "0c1699872cf9874fb2043ce48f8086f4192e8c25",
+      "subject": "Fix NormalizedString::merge_with"
+    },
+    {
+      "date": "2020-08-03",
+      "parents": [
+        "1f64761480a365d028d14855a6609652bd43a354"
+      ],
+      "rule": "include",
+      "sha": "88e6eb5db66c4983372d0d99a64714c6634969f7",
+      "subject": "Fix training panic."
+    },
+    {
+      "date": "2020-06-22",
+      "parents": [
+        "5b5fbed088960be72bcf1065ef8da0de9cce334e",
+        "f84d20835ac79c9f3122e9514898759c7d8f61c5"
+      ],
+      "rule": "include",
+      "sha": "42983ccb8ece6bf97dd0d9bfbaf6dfbba86cf0ee",
+      "subject": "Merge pull request #315"
+    },
+    {
+      "date": "2020-06-11",
+      "parents": [
+        "67b458b1341e41de21fc38ea912ea66dee9481e3"
+      ],
+      "rule": "include",
+      "sha": "bb68ec3414092e7626d31f35b75eb6c00d8d478f",
+      "subject": "Fix number of added tokens"
+    },
+    {
+      "date": "2020-06-11",
+      "parents": [
+        "847651445e965616ba1b50942e29b29fb09da745"
+      ],
+      "rule": "include",
+      "sha": "67b458b1341e41de21fc38ea912ea66dee9481e3",
+      "subject": "Fix `get_vocab_size` returning the wrong number"
+    },
+    {
+      "date": "2020-05-29",
+      "parents": [
+        "617834e24ef8086c2105fb8a0fb0448042adc2bb",
+        "33e6dc4a11209ed455ecd324a8285e3563fafe25"
+      ],
+      "rule": "include",
+      "sha": "5cb38b699851043516b89d71444278a48c33cd11",
+      "subject": "Merge pull request #286"
+    },
+    {
+      "date": "2020-05-28",
+      "parents": [
+        "171c6500ecfc25b0ba545bab58974c7be84f728b"
+      ],
+      "rule": "include",
+      "sha": "617834e24ef8086c2105fb8a0fb0448042adc2bb",
+      "subject": "Rust - Fix deserialization when ownership is needed"
+    },
+    {
+      "date": "2020-04-16",
+      "parents": [
+        "873ac2d9a85370ca7f7f46cf880aa3a253718e49",
+        "0524efa8a4bb07fb471fe6fe23c1d5b8ba844834"
+      ],
+      "rule": "include",
+      "sha": "0756480b834c6d610a7677bd9e1e56de3bd25814",
+      "subject": "Fix offsets (#238)"
+    },
+    {
+      "date": "2020-04-16",
+      "parents": [
+        "c164baf539a33226ec903b466dfb5a496c1d859d",
+        "c96c4d95bd5e1c6c5c495c0f4dd9ab5935244426"
+      ],
+      "rule": "include",
+      "sha": "0de276d2a9ee8cf18ff6c6509d83d1fa9c69c9d2",
+      "subject": "Fix offsets (#236)"
+    },
+    {
+      "date": "2020-04-08",
+      "parents": [
+        "39999fba1402ce9f2994ceb3db45829fe06f866b"
+      ],
+      "rule": "include",
+      "sha": "f8d9f03a9e2e2d766579d4311157c3d5a7fb7462",
+      "subject": "Hotfix CHANGELOG"
+    },
+    {
+      "date": "2020-04-08",
+      "parents": [
+        "695ab8388f5f1a7d63d8aaab9b3762312e0d5ac3"
+      ],
+      "rule": "include",
+      "sha": "c4ecc6f7ce7af40c558401a3ec9500732a17f9da",
+      "subject": "Fix roberta overflowings"
+    },
+    {
+      "date": "2020-04-08",
+      "parents": [
+        "2a4e5f81de507d0d32e7c44786743a4c939e1b51"
+      ],
+      "rule": "include",
+      "sha": "695ab8388f5f1a7d63d8aaab9b3762312e0d5ac3",
+      "subject": "Fix overflowings offsets"
+    },
+    {
+      "date": "2020-04-01",
+      "parents": [
+        "93a83127ae1423b56fe6c0d35b60100c7850c002"
+      ],
+      "rule": "include",
+      "sha": "b770f364280af33efeffea8f0003102cda8cf1b7",
+      "subject": "Rust - Hotfix special tokens with wrong id"
+    },
+    {
+      "date": "2020-03-26",
+      "parents": [
+        "6c232886b87dfa4911dd5b12fc2e943d012876c0"
+      ],
+      "rule": "include",
+      "sha": "73ad9a52af513fedb99177fa94df7394914e162b",
+      "subject": "hotfix CHANGELOG - missing from previous commit"
+    },
+    {
+      "date": "2020-03-26",
+      "parents": [
+        "2aeae555e22ac58b11b4956aa3f601bb168e8c3f",
+        "05d2ab0b62a21c821721f748d6f2ccc474e34f4e"
+      ],
+      "rule": "include",
+      "sha": "04fb9e4ebe785a6b2fd428766853eb27ee894645",
+      "subject": "Merge pull request #202"
+    },
+    {
+      "date": "2020-03-10",
+      "parents": [
+        "4510ea5ce37d84754bb782a99353ac5627aa6c13",
+        "7764d3d770cdc075cdbfd1881fbfa627c8a53b18"
+      ],
+      "rule": "include",
+      "sha": "523e173ddf5850f4b0b122565f80eaad45f2294b",
+      "subject": "Merge pull request #188"
+    },
+    {
+      "date": "2020-02-29",
+      "parents": [
+        "2f85ba21e6f1c548b22ef6ae893782b83bad6c1b"
+      ],
+      "rule": "include",
+      "sha": "f8f0702d980be8977be3a19a5d05beae4d683b68",
+      "subject": "Fix LongestFirst truncation strategy"
+    },
+    {
+      "date": "2020-02-26",
+      "parents": [
+        "3b10d640d557249fc7fb721ccf500b1ec1dc1741",
+        "657f8b6c15564568b3378e59830ddbd1adf9a084"
+      ],
+      "rule": "include",
+      "sha": "b5f36d9ceb59c218b29efdbde64e33625a91929a",
+      "subject": "Merge pull request #171"
+    },
+    {
+      "date": "2020-02-03",
+      "parents": [
+        "7051480c333f88bef80aa6846b66032a2d47383c",
+        "bd0f52f3d19b1b304eee9e136390ce3b1479a2c8"
+      ],
+      "rule": "include",
+      "sha": "3adb220973cb7e0b6a404dd47e95303c7898b336",
+      "subject": "Merge pull request #124"
+    },
+    {
+      "date": "2020-01-30",
+      "parents": [
+        "3f6de4d33fdff3cd02a9587709de87f72aa0ff6f",
+        "c396cff9523ca62b6b060fe913d61c99f144544f"
+      ],
+      "rule": "include",
+      "sha": "6d532fedb1d3626328828304a5c39807733d2fa1",
+      "subject": "rust: fix `OnlyFirst` and `OnlySecond` truncation strategies (#112)"
+    },
+    {
+      "date": "2020-01-20",
+      "parents": [
+        "3895d14bf9a2bf6a0ed1a0966ae32524826ed4fb",
+        "395f605fd2c9e483cc6fd5c2f304d4e97d6bf6ec"
+      ],
+      "rule": "include",
+      "sha": "c3cfc16b631a6b3709a1ce71f829640955af92b6",
+      "subject": "Merge pull request #92"
+    },
+    {
+      "date": "2020-01-10",
+      "parents": [
+        "46e0ad5c9a5d1024493a14fa8588e0a6cee2111b"
+      ],
+      "rule": "include",
+      "sha": "aa0b644c1102d230be2e7eca66d61ced2604d9c1",
+      "subject": "Cargo.toml fix number of keywords"
+    },
+    {
+      "date": "2020-01-08",
+      "parents": [
+        "7ac45472b6e2e4c9d6b64280b1cedb4586acbacd"
+      ],
+      "rule": "include",
+      "sha": "f86b8d412bd48a9756b7dc7b442790adf135832a",
+      "subject": "Fix NormalizedString split_off bis2"
+    },
+    {
+      "date": "2020-01-08",
+      "parents": [
+        "3b2e19f52c8e85c2b09e7a2ba9c772688cf2421c"
+      ],
+      "rule": "include",
+      "sha": "7ac45472b6e2e4c9d6b64280b1cedb4586acbacd",
+      "subject": "Fix NormalizedString split_off bis"
+    },
+    {
+      "date": "2020-01-08",
+      "parents": [
+        "313d674dc065eac2e50d2585532eced52d9ab8cc"
+      ],
+      "rule": "include",
+      "sha": "3b2e19f52c8e85c2b09e7a2ba9c772688cf2421c",
+      "subject": "Fix NormalizedString split_off"
+    },
+    {
+      "date": "2020-01-06",
+      "parents": [
+        "772d0680b614c4ae6154f1c2e12ba3854925d52a"
+      ],
+      "rule": "include",
+      "sha": "742974f0c998790024b73cf7a4f1ec6e82744aee",
+      "subject": "Fix default for WordPieceTrainerBuilder"
+    },
+    {
+      "date": "2020-01-02",
+      "parents": [
+        "408490e6b4b22734206135ade62cc1f697f4f787"
+      ],
+      "rule": "include",
+      "sha": "c5359ddd47ceb55faf48584bfca32df63f2f3ea0",
+      "subject": "Fix benchmarks"
+    },
+    {
+      "date": "2020-01-02",
+      "parents": [
+        "66b6211705f65947d62ea313b938302d97b2928a"
+      ],
+      "rule": "include",
+      "sha": "c8a5d2e32aeac9f2d4dfc6abda6530ac1313cba2",
+      "subject": "NormalizedString - Fix removal around edges"
+    },
+    {
+      "date": "2020-01-02",
+      "parents": [
+        "894ea1f8f05e27faa40d356650c4193158885831"
+      ],
+      "rule": "include",
+      "sha": "66b6211705f65947d62ea313b938302d97b2928a",
+      "subject": "NormalizedString - Fix added chars at beginning"
+    },
+    {
+      "date": "2020-01-01",
+      "parents": [
+        "a7a5f9a67f4e6df0607aee2b55dc7e48da99f1f8"
+      ],
+      "rule": "include",
+      "sha": "a5c5e5840f89571d3717d38eab4d8fa0ba4ddccd",
+      "subject": "Oops - Fix trainer"
+    },
+    {
+      "date": "2019-12-31",
+      "parents": [
+        "90dfdc715d0606debeb16f2f4b3f880aa0a00132"
+      ],
+      "rule": "include",
+      "sha": "f3aef0e4e6f56ebfd834b5eeef5fe9f689e1fefb",
+      "subject": "Fix BPE saving (u32 => String)"
+    },
+    {
+      "date": "2019-12-31",
+      "parents": [
+        "f28ca58fd9e5baa1c1edaf2190fe0bc04147a9a6"
+      ],
+      "rule": "include",
+      "sha": "90df08805407e1c1f5a3b68350b2c9e642ebf69a",
+      "subject": "Fix ByteLevel PreTokenizer"
+    },
+    {
+      "date": "2019-12-31",
+      "parents": [
+        "2125e4d422ce58b722610d89beb0ff3e443fc405"
+      ],
+      "rule": "include",
+      "sha": "f28ca58fd9e5baa1c1edaf2190fe0bc04147a9a6",
+      "subject": "[Fix #17] BPE & WordPiece models saving"
+    },
+    {
+      "date": "2019-12-26",
+      "parents": [
+        "d93d4fc3cddb58ce5718a81b0bada23427a66015"
+      ],
+      "rule": "include",
+      "sha": "d1e59e09bf6c72956f1f76d19a2cbf7839cb1137",
+      "subject": "Fix a bug when adding special tokens"
+    },
+    {
+      "date": "2019-12-24",
+      "parents": [
+        "9f1421a04b5b3d706cfffeaf2c75796ce54e1dec"
+      ],
+      "rule": "include",
+      "sha": "cf0e8917cd83f645d844620b59507db25b531bbb",
+      "subject": "Fix whitespace handling in ByteLevel"
+    },
+    {
+      "date": "2019-12-23",
+      "parents": [
+        "8fb94be3d0edb7c94183c5fac0dd073d7219a529"
+      ],
+      "rule": "include",
+      "sha": "2159123d7c6f4ea51955e4472b704388337fed4f",
+      "subject": "Fix truncate"
+    },
+    {
+      "date": "2019-12-16",
+      "parents": [
+        "93a74aa53a5633bde6d0071882e4e75e68b0fb55"
+      ],
+      "rule": "include",
+      "sha": "e4ce050b73fef42edd655f8c6236f64d95bb56a9",
+      "subject": "Fix BertProcessing overflowing usize"
+    },
+    {
+      "date": "2019-12-12",
+      "parents": [
+        "3bdb849bb37e07ecc0851253e0d03111e94134ea"
+      ],
+      "rule": "include",
+      "sha": "13df36ca55db05df3fd63357027db80b787f947d",
+      "subject": "fix error display"
+    },
+    {
+      "date": "2019-12-11",
+      "parents": [
+        "4807894da6967bc2bcbb5adefe977f8334ba90c7"
+      ],
+      "rule": "include",
+      "sha": "3bdb849bb37e07ecc0851253e0d03111e94134ea",
+      "subject": "Fix cli + whitespace"
+    },
+    {
+      "date": "2019-11-21",
+      "parents": [
+        "634415c0984504c8932711ac8a6928f449b34178"
+      ],
+      "rule": "include",
+      "sha": "663644e041b259efcf01ae92cae9caee4c70a621",
+      "subject": "Fix ByteLevel Decoder"
+    }
+  ],
+  "head": "fb49a29223724a96f26e061bec8ec7517aa14177",
+  "include_rule": "(?i)\\b(fix(e[sd]|ing)?|bugs?|hotfix)\\b",
+  "path": "tokenizers",
+  "scanned": 717
+}

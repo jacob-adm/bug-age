@@ -1,0 +1,4480 @@
+{
+  "bugs": [
+    {
+      "blamed_files": [
+        "tokenizers/tk-encode/src/models/bpe/mod.rs",
+        "tokenizers/tk-encode/src/models/bpe/serialization.rs",
+        "tokenizers/tk-serialize/src/from_json/tests.rs"
+      ],
+      "fix": "bfa7f7ba421cc7b2ec310421766b4107961ad2e0",
+      "fix_date": "2026-10-07",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": true,
+      "lifetime": {
+        "calendar_days": 44.4,
+        "calendar_days_author": 44.4,
+        "churn_deletions": 30985,
+        "churn_files": 213,
+        "churn_insertions": 16402,
+        "commits_elapsed": 75,
+        "commits_elapsed_first_parent": 34,
+        "releases_spanned": [
+          "v1.0.0-rc.0",
+          "v1.0.0-rc.1",
+          "v1.0.0-rc.2"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 6,
+          "date": "2026-08-24",
+          "sha": "acf6eec708874f23cdd35a8432e49cbce08692dd"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2026-07-09",
+          "sha": "0a34eaf906172d345d640f72473d2701c3fa0873"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2026-08-24",
+          "sha": "a08a0bf971509c65fec04d89d9606c00189059af"
+        }
+      ],
+      "subject": "fix(byte-level): Support sparse byte atoms (#2466)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/tk-encode/src/models/bpe/serialization.rs",
+        "tokenizers/tk-encode/src/models/unigram/model.rs",
+        "tokenizers/tk-encode/src/utils/byte_level.rs",
+        "tokenizers/tk-encode/src/vocab/bucket_added_vocabulary.rs",
+        "tokenizers/tk-encode/src/vocab/bucket_vocab_store.rs",
+        "tokenizers/tk-encode/src/vocab/buckets.rs",
+        "tokenizers/tk-train/src/trainers/bpe/parity_trainer.rs"
+      ],
+      "fix": "cbe82257599f78349ed58978cfc4222156eedbde",
+      "fix_date": "2026-10-07",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": true,
+      "lifetime": {
+        "calendar_days": 97.0,
+        "calendar_days_author": 97.0,
+        "churn_deletions": 25429,
+        "churn_files": 224,
+        "churn_insertions": 29333,
+        "commits_elapsed": 156,
+        "commits_elapsed_first_parent": 39,
+        "releases_spanned": [
+          "v1.0.0-rc.0",
+          "v1.0.0-rc.1",
+          "v1.0.0-rc.2"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 31,
+          "date": "2026-07-02",
+          "sha": "60d6007f3d39a3fe5e4023a65183e94304ce1ed3"
+        },
+        {
+          "blamed_lines": 9,
+          "date": "2026-07-03",
+          "sha": "0208bc983e40a86eb7571719af462850677ec54a"
+        },
+        {
+          "blamed_lines": 4,
+          "date": "2026-08-24",
+          "sha": "acf6eec708874f23cdd35a8432e49cbce08692dd"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2026-07-22",
+          "sha": "4040e0fac7e686145cf4d406346dd2b43b983a04"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2026-07-15",
+          "sha": "3b4dda7ba49bf5a8acd720849463ea369c92b233"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2026-08-07",
+          "sha": "89c9377f43ea2fe40e1d8ed54448391ee5a5021d"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2026-07-20",
+          "sha": "fb6eed1df4590ebe7a7fdf6ef34920fc2eeaeaaf"
+        }
+      ],
+      "subject": "fix(BucketVocabStore): Explicit duplicate handling (#2467)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/examples/serialization.rs",
+        "tokenizers/src/tokenizer/added_vocabulary.rs",
+        "tokenizers/src/tokenizer/mod.rs",
+        "tokenizers/src/tokenizer/serialization.rs"
+      ],
+      "fix": "d863e6e514b1cb022d89e340da4499ae6a7407f5",
+      "fix_date": "2026-04-10",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": true,
+      "lifetime": {
+        "calendar_days": 2.9,
+        "calendar_days_author": 2.9,
+        "churn_deletions": 326,
+        "churn_files": 19,
+        "churn_insertions": 858,
+        "commits_elapsed": 9,
+        "commits_elapsed_first_parent": 9,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 44,
+          "date": "2026-04-07",
+          "sha": "fd1df3300adfe0e6f62a0fe84895e0721b6ff0a5"
+        },
+        {
+          "blamed_lines": 21,
+          "date": "2020-06-16",
+          "sha": "397cc539daa407c53d5d808362a1a90baa1eaf24"
+        },
+        {
+          "blamed_lines": 19,
+          "date": "2020-06-18",
+          "sha": "fc63d56eab00da4f698e43031a32ae2ded20e8b7"
+        },
+        {
+          "blamed_lines": 14,
+          "date": "2022-02-25",
+          "sha": "f24092ac62ffff05ce7fd954eea843943192371b"
+        },
+        {
+          "blamed_lines": 12,
+          "date": "2022-01-06",
+          "sha": "076319d542f87e9f72db379d7e47b29b1ce7bd87"
+        },
+        {
+          "blamed_lines": 9,
+          "date": "2022-02-25",
+          "sha": "d98abc50ba3da6825eafcd9a1cf89124474b25ce"
+        },
+        {
+          "blamed_lines": 8,
+          "date": "2020-08-04",
+          "sha": "83a52c8080fc89441ae7a385d33613f9f77544be"
+        },
+        {
+          "blamed_lines": 8,
+          "date": "2020-06-16",
+          "sha": "c6f633eb1cb8902d1e2e1df3b6cc2a052ed8f472"
+        },
+        {
+          "blamed_lines": 7,
+          "date": "2023-09-01",
+          "sha": "399c6fe85288622a91bffed890368000ec0f4e02"
+        },
+        {
+          "blamed_lines": 7,
+          "date": "2025-11-27",
+          "sha": "d6a4acc0d2c3e1fbb65ebfd6244fb51dc4c793d0"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-08-04",
+          "sha": "16f75d9efcbd0e2f634e9756e84f8e6d88b78686"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2024-07-15",
+          "sha": "4ea2f235b0430f5db09f867b65306d6c0a5ec7ed"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2024-01-19",
+          "sha": "6a77d4859b84e4868070e4d6d2520dc885c8350c"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2023-09-05",
+          "sha": "e5fc051ad2776199896e17ca9eaf7bb885f7e182"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2025-05-27",
+          "sha": "01f8bc834cf20d8b5125169a1daa2a6c7d4284fd"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-06-16",
+          "sha": "66be62b6e637586bb0facbfb36e8c6453ea8eb8f"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2024-06-20",
+          "sha": "9441f7e8f7f5788aa56a00373a346d0bea71e282"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-04",
+          "sha": "10a39ba6b48bc942078f04a64710f89cdce1e360"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2024-05-06",
+          "sha": "25aee8b88c8de3c5a52e2f9cb6281d6df00ad516"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-19",
+          "sha": "2865297bec0adfe9d24ec2a26812bc4306a7da36"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2022-02-25",
+          "sha": "48a921d39923616481538bfc30696da3813b9d6a"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-17",
+          "sha": "5729d3656a61e5a764e0bbe62829b51c3927f623"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-05-27",
+          "sha": "5d4dfc2340a71be68c2e82ef74d23b473fde4177"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2025-06-18",
+          "sha": "76abe0f77d409aec1687ead442cedaa0a8c058e8"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-11-16",
+          "sha": "7b8b765269229a7c8f8e312944502080dcfd0cd4"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2024-08-07",
+          "sha": "bded212356c06e686391a81c6f28098bb20d817c"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-11-28",
+          "sha": "c36ac0bfdf1a24c61afab1c9c44f0a013fed0a7d"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2023-09-01",
+          "sha": "d1566a9ecc4e6f3d67ca5bcb71155f704a694fbc"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2023-09-01",
+          "sha": "fdef4a118bcdaaed8b5e55be1f453a42a7d9e709"
+        }
+      ],
+      "subject": "🚨 Refactor a bit add_tokens logic: fix bytelevel decode of added tokens + less memory deserializatio"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/bpe/trainer.rs",
+        "tokenizers/src/models/wordpiece/trainer.rs"
+      ],
+      "fix": "f339867263539c5b65b1ed920d3bff647beb6ca9",
+      "fix_date": "2025-07-04",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": true,
+      "lifetime": {
+        "calendar_days": 15.0,
+        "calendar_days_author": 15.0,
+        "churn_deletions": 8,
+        "churn_files": 4,
+        "churn_insertions": 20,
+        "commits_elapsed": 3,
+        "commits_elapsed_first_parent": 3,
+        "releases_spanned": [
+          "v0.21.2",
+          "v0.21.2rc0"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2025-06-19",
+          "sha": "be25814c9e07693eb69861c0a597f740409ae113"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-11-27",
+          "sha": "a351d1c604d9386593607eabdc0271dd247d2505"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-08",
+          "sha": "d2d5b1eae7eda63931a9ec80d5fe11a334087e19"
+        }
+      ],
+      "subject": "Fixing the public API of the Rust trainer."
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "5c475db339e4f676ff676b0430dcc1678584456b",
+      "fix_date": "2025-06-24",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 1668.6,
+        "calendar_days_author": 1671.5,
+        "churn_deletions": 2260,
+        "churn_files": 110,
+        "churn_insertions": 15189,
+        "commits_elapsed": 479,
+        "commits_elapsed_first_parent": 422,
+        "releases_spanned": [
+          "v0.11.1",
+          "v0.11.2",
+          "v0.12.0",
+          "v0.13.0",
+          "v0.13.1",
+          "v0.13.2",
+          "v0.13.3",
+          "v0.13.4-rc1",
+          "v0.13.4-rc2",
+          "v0.13.4.rc1",
+          "v0.13.4.rc2",
+          "v0.13.4.rc3",
+          "v0.14.0",
+          "v0.14.0.rc1",
+          "v0.14.1",
+          "v0.14.1rc1",
+          "v0.15.0",
+          "v0.15.0.rc1",
+          "v0.15.1",
+          "v0.15.1.rc0",
+          "v0.15.1.rc1",
+          "v0.15.1rc0",
+          "v0.15.2",
+          "v0.15.2rc1",
+          "v0.16.0rc1",
+          "v0.19.0",
+          "v0.19.0rc0",
+          "v0.19.1",
+          "v0.19.1rc0",
+          "v0.20.0",
+          "v0.20.0rc1",
+          "v0.20.1",
+          "v0.20.1rc1",
+          "v0.20.2",
+          "v0.20.2rc1",
+          "v0.20.3",
+          "v0.20.3rc1",
+          "v0.20.4",
+          "v0.20.4-rc0",
+          "v0.20.4rc0",
+          "v0.21.0",
+          "v0.21.0rc0",
+          "v0.21.1",
+          "v0.21.1rc0"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-11-28",
+          "sha": "c36ac0bfdf1a24c61afab1c9c44f0a013fed0a7d"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-11-28",
+          "sha": "e0a70f1fb29b47a4b0816f023e329e18c3862379"
+        }
+      ],
+      "subject": "🚨 breaking: Fix training with special tokens (#1617)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/lib.rs"
+      ],
+      "fix": "dd460019785418a9ebe4e7ca2712f360be493510",
+      "fix_date": "2025-06-16",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 158.1,
+        "calendar_days_author": 158.1,
+        "churn_deletions": 1119,
+        "churn_files": 40,
+        "churn_insertions": 1447,
+        "commits_elapsed": 21,
+        "commits_elapsed_first_parent": 21,
+        "releases_spanned": [
+          "v0.21.1",
+          "v0.21.1rc0"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2025-01-09",
+          "sha": "c04b97aab134430d28ca5f46ccc768fd05061c84"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-11-11",
+          "sha": "fff856cff76c1cb86d3f1ec392b5313f93b76ce0"
+        }
+      ],
+      "subject": "Fix features blending into a paragraph (#1798)"
+    },
+    {
+      "blamed_files": [],
+      "fix": "e7ed39de3c197492971d3b9076139d43a8ecdacb",
+      "fix_date": "2025-01-09",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixing NormalizedString append when normalized is empty. (#1717)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/bpe/word.rs",
+        "tokenizers/src/processors/template.rs",
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "0ff2ab0f643ca5e45d27ec0e1dcccc62dd0526fa",
+      "fix_date": "2025-01-09",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.2,
+        "calendar_days_author": 0.2,
+        "churn_deletions": 122,
+        "churn_files": 5,
+        "churn_insertions": 86,
+        "commits_elapsed": 1,
+        "commits_elapsed_first_parent": 1,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 55,
+          "date": "2025-01-09",
+          "sha": "862d1a346a99183017b1eb5ad1aa3133b466784f"
+        },
+        {
+          "blamed_lines": 53,
+          "date": "2024-07-15",
+          "sha": "4ea2f235b0430f5db09f867b65306d6c0a5ec7ed"
+        },
+        {
+          "blamed_lines": 6,
+          "date": "2024-11-15",
+          "sha": "500db282a816a2c4f3cb1710c5169db2fda2cff7"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2024-11-15",
+          "sha": "cc5fb01a2f0dba33a450dc76c6536b8406947cb1"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-02-26",
+          "sha": "be07915eb55dd3ebc92531d8cf8ef52875dceab7"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2024-07-26",
+          "sha": "a3ad85b3e83a32e5cf81b1be38eab19b2663aa74"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-09-10",
+          "sha": "c156ae3a838405544d99a225c650880c027c0d2e"
+        }
+      ],
+      "subject": "Fixing the stream by removing the read_index altogether. (#1716)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "862d1a346a99183017b1eb5ad1aa3133b466784f",
+      "fix_date": "2025-01-09",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 55.1,
+        "calendar_days_author": 55.1,
+        "churn_deletions": 24,
+        "churn_files": 15,
+        "churn_insertions": 85,
+        "commits_elapsed": 12,
+        "commits_elapsed_first_parent": 12,
+        "releases_spanned": [
+          "v0.20.4",
+          "v0.20.4-rc0",
+          "v0.20.4rc0",
+          "v0.21.0",
+          "v0.21.0rc0"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2024-11-15",
+          "sha": "cc5fb01a2f0dba33a450dc76c6536b8406947cb1"
+        }
+      ],
+      "subject": "Fix panic in DecodeStream::step due to incorrect index usage (#1699)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/normalizer.rs"
+      ],
+      "fix": "9b77c054ef4297c7057fa8db875368c7c02f1bfc",
+      "fix_date": "2024-10-14",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 1516.6,
+        "calendar_days_author": 1529.3,
+        "churn_deletions": 2703,
+        "churn_files": 112,
+        "churn_insertions": 23772,
+        "commits_elapsed": 751,
+        "commits_elapsed_first_parent": 692,
+        "releases_spanned": [
+          "v0.11.1",
+          "v0.11.2",
+          "v0.12.0",
+          "v0.13.0",
+          "v0.13.1",
+          "v0.13.2",
+          "v0.13.3",
+          "v0.13.4-rc1",
+          "v0.13.4-rc2",
+          "v0.13.4.rc1",
+          "v0.13.4.rc2",
+          "v0.13.4.rc3",
+          "v0.14.0",
+          "v0.14.0.rc1",
+          "v0.14.1",
+          "v0.14.1rc1",
+          "v0.15.0",
+          "v0.15.0.rc1",
+          "v0.15.1",
+          "v0.15.1.rc0",
+          "v0.15.1.rc1",
+          "v0.15.1rc0",
+          "v0.15.2",
+          "v0.15.2rc1",
+          "v0.16.0rc1",
+          "v0.19.0",
+          "v0.19.0rc0",
+          "v0.19.1",
+          "v0.19.1rc0",
+          "v0.20.0",
+          "v0.20.0rc1",
+          "v0.20.1",
+          "v0.20.1rc1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2020-08-19",
+          "sha": "66fef2b9072e3b40e2f7171813b348f77df6c8e2"
+        }
+      ],
+      "subject": "Fix off-by-one error in tokenizer::normalizer::Range::len (#1638)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/bpe/model.rs",
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "3fb1371c1c846adf2e1a8f2bbd3a0db46816960b",
+      "fix_date": "2024-10-01",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 168.7,
+        "calendar_days_author": 168.7,
+        "churn_deletions": 118,
+        "churn_files": 30,
+        "churn_insertions": 1378,
+        "commits_elapsed": 50,
+        "commits_elapsed_first_parent": 50,
+        "releases_spanned": [
+          "v0.19.0",
+          "v0.19.0rc0",
+          "v0.19.1",
+          "v0.19.1rc0",
+          "v0.20.0",
+          "v0.20.0rc1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2024-04-15",
+          "sha": "914576f7edcba7116b3d22fd0f2b8f727d652c3a"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-11-28",
+          "sha": "c36ac0bfdf1a24c61afab1c9c44f0a013fed0a7d"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-11-28",
+          "sha": "e0a70f1fb29b47a4b0816f023e329e18c3862379"
+        }
+      ],
+      "subject": "[`ignore_merges`] Fix offsets (#1640)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/normalizers/mod.rs",
+        "tokenizers/src/pre_tokenizers/byte_level.rs"
+      ],
+      "fix": "4ea2f235b0430f5db09f867b65306d6c0a5ec7ed",
+      "fix_date": "2024-07-15",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 1440.6,
+        "calendar_days_author": 1451.4,
+        "churn_deletions": 2828,
+        "churn_files": 110,
+        "churn_insertions": 23841,
+        "commits_elapsed": 741,
+        "commits_elapsed_first_parent": 682,
+        "releases_spanned": [
+          "v0.11.1",
+          "v0.11.2",
+          "v0.12.0",
+          "v0.13.0",
+          "v0.13.1",
+          "v0.13.2",
+          "v0.13.3",
+          "v0.13.4-rc1",
+          "v0.13.4-rc2",
+          "v0.13.4.rc1",
+          "v0.13.4.rc2",
+          "v0.13.4.rc3",
+          "v0.14.0",
+          "v0.14.0.rc1",
+          "v0.14.1",
+          "v0.14.1rc1",
+          "v0.15.0",
+          "v0.15.0.rc1",
+          "v0.15.1",
+          "v0.15.1.rc0",
+          "v0.15.1.rc1",
+          "v0.15.1rc0",
+          "v0.15.2",
+          "v0.15.2rc1",
+          "v0.16.0rc1",
+          "v0.19.0",
+          "v0.19.0rc0",
+          "v0.19.1",
+          "v0.19.1rc0"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-04",
+          "sha": "10ae711258c2354b18cb57b205be20b0d100cf67"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-04",
+          "sha": "16f75d9efcbd0e2f634e9756e84f8e6d88b78686"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-02",
+          "sha": "f0f9aefd07f37ca23ea4698ede85b7e2bbf954a1"
+        }
+      ],
+      "subject": "Add bytelevel normalizer to fix decode when adding tokens to BPE (#1555)"
+    },
+    {
+      "blamed_files": [],
+      "fix": "43b31a83c7701cafaafb5431482f6dacf7846dd2",
+      "fix_date": "2024-01-08",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix make bench. (#1428)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/decoders/mod.rs",
+        "tokenizers/src/pre_tokenizers/metaspace.rs"
+      ],
+      "fix": "f55822baeafbb70e616c0fb47e78b9414ac64ed4",
+      "fix_date": "2023-11-14",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 235.7,
+        "calendar_days_author": 235.7,
+        "churn_deletions": 351,
+        "churn_files": 35,
+        "churn_insertions": 1052,
+        "commits_elapsed": 99,
+        "commits_elapsed_first_parent": 60,
+        "releases_spanned": [
+          "v0.13.3",
+          "v0.13.4-rc1",
+          "v0.13.4-rc2",
+          "v0.13.4.rc1",
+          "v0.13.4.rc2",
+          "v0.13.4.rc3",
+          "v0.14.0",
+          "v0.14.0.rc1",
+          "v0.14.1",
+          "v0.14.1rc1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2023-03-24",
+          "sha": "e4aea890d58d1298fffffd627b139eda8e317375"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2021-04-05",
+          "sha": "c3b3b290398be14ffcfc65450bf094b9b4ed849a"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2023-03-23",
+          "sha": "73637a0004cdd0cd86461298699c7c2d26a8f693"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2022-02-28",
+          "sha": "9e14648b7f5731412bca38c164687438e7d90d7d"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2021-04-05",
+          "sha": "a891e29c02e23735627abe21cba5358e7539824f"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-03",
+          "sha": "eb58f3ee0db1b6ff1f9bed2ceadcb878754d118b"
+        }
+      ],
+      "subject": "[`pre_tokenizers`] Fix sentencepiece based Metaspace (#1357)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/bpe/trainer.rs",
+        "tokenizers/src/models/unigram/trainer.rs",
+        "tokenizers/src/tokenizer/added_vocabulary.rs",
+        "tokenizers/src/tokenizer/mod.rs",
+        "tokenizers/src/utils/progress.rs"
+      ],
+      "fix": "aed491df8cae10a48d51fba5a6f55b1f16dc75b8",
+      "fix_date": "2023-10-05",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 1040.8,
+        "calendar_days_author": 1043.7,
+        "churn_deletions": 1645,
+        "churn_files": 102,
+        "churn_insertions": 11794,
+        "commits_elapsed": 333,
+        "commits_elapsed_first_parent": 276,
+        "releases_spanned": [
+          "v0.11.1",
+          "v0.11.2",
+          "v0.12.0",
+          "v0.13.0",
+          "v0.13.1",
+          "v0.13.2",
+          "v0.13.3",
+          "v0.13.4-rc1",
+          "v0.13.4-rc2",
+          "v0.13.4.rc1",
+          "v0.13.4.rc2",
+          "v0.13.4.rc3",
+          "v0.14.0",
+          "v0.14.0.rc1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 8,
+          "date": "2020-11-28",
+          "sha": "c36ac0bfdf1a24c61afab1c9c44f0a013fed0a7d"
+        },
+        {
+          "blamed_lines": 4,
+          "date": "2020-11-11",
+          "sha": "fff856cff76c1cb86d3f1ec392b5313f93b76ce0"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2022-01-06",
+          "sha": "076319d542f87e9f72db379d7e47b29b1ce7bd87"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2022-11-07",
+          "sha": "11bb2e00f204e69cd4b499b5eb068c9f6734084b"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-05-24",
+          "sha": "513a6364bd63270b62a4ec272a85f8015c7de5a3"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-09-02",
+          "sha": "95e5e1c12f89af326eac8780b8c31d79edecc95b"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-10",
+          "sha": "1f16fcbe77cf12bef5f5502fea1ff7b52b9a5abf"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-01",
+          "sha": "a7a5f9a67f4e6df0607aee2b55dc7e48da99f1f8"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-11-28",
+          "sha": "e0a70f1fb29b47a4b0816f023e329e18c3862379"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-09-02",
+          "sha": "f3a78e051939129744bcc50f74b312769918f97f"
+        }
+      ],
+      "subject": "Fixing the progressbar. (#1353)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "9a93c50c25c1e0b73a85584f327113bcbef5ac80",
+      "fix_date": "2023-08-14",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 17.3,
+        "calendar_days_author": 17.3,
+        "churn_deletions": 4,
+        "churn_files": 4,
+        "churn_insertions": 4,
+        "commits_elapsed": 6,
+        "commits_elapsed_first_parent": 6,
+        "releases_spanned": [
+          "v0.13.4.rc1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2023-07-28",
+          "sha": "c2664ae13fe9ffc6491245a63f1ba1ae3d498c07"
+        }
+      ],
+      "subject": "Fix stride condition. (#1321)"
+    },
+    {
+      "blamed_files": [],
+      "fix": "4518b0f7f2031ff78fd604d37d07f3cb1cd1b73b",
+      "fix_date": "2023-05-10",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "fix unigram.rs test_sample() (#1244)"
+    },
+    {
+      "blamed_files": [],
+      "fix": "15085ef90582743b2ea1ca0ed1c864e5b946e9f4",
+      "fix_date": "2023-05-04",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixing padding_left sequence_ids. (#1233)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/decoders/strip.rs"
+      ],
+      "fix": "8a6a8dc9d571f251c4db2c2272aeddfb8a183de9",
+      "fix_date": "2023-03-24",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 0.0,
+        "churn_deletions": 1,
+        "churn_files": 1,
+        "churn_insertions": 7,
+        "commits_elapsed": 1,
+        "commits_elapsed_first_parent": 1,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2023-03-24",
+          "sha": "e4aea890d58d1298fffffd627b139eda8e317375"
+        }
+      ],
+      "subject": "Fixing decoder strip because of char boundaries. (#1197)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/utils/truncation.rs"
+      ],
+      "fix": "5ecd329503a4ac137bf00442ede4d31140276eb1",
+      "fix_date": "2023-03-15",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 435.0,
+        "calendar_days_author": 435.0,
+        "churn_deletions": 1154,
+        "churn_files": 85,
+        "churn_insertions": 9614,
+        "commits_elapsed": 131,
+        "commits_elapsed_first_parent": 114,
+        "releases_spanned": [
+          "v0.11.1",
+          "v0.11.2",
+          "v0.12.0",
+          "v0.13.0",
+          "v0.13.1",
+          "v0.13.2"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 5,
+          "date": "2022-01-04",
+          "sha": "4122a33f095e7da48217e19bf9184fefd0506a8e"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2022-08-24",
+          "sha": "b1c9bc68b5dc59c5dc2f70eaa52f20bca419e2e9"
+        }
+      ],
+      "subject": "Fixing infinite loop in UnigramTrainer. (#1182)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/processors/roberta.rs"
+      ],
+      "fix": "5f6e9784526a4cd5e4f6dcdcc045cdceba5463e1",
+      "fix_date": "2022-09-26",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 14.1,
+        "calendar_days_author": 14.1,
+        "churn_deletions": 10,
+        "churn_files": 3,
+        "churn_insertions": 41,
+        "commits_elapsed": 5,
+        "commits_elapsed_first_parent": 5,
+        "releases_spanned": [
+          "v0.13.0"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 4,
+          "date": "2022-09-12",
+          "sha": "7bfab489798b53f60805cf56fc2e2438f53a864e"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2021-04-05",
+          "sha": "e1627654b4d0c2e009269ab6f5641f8228c79a10"
+        }
+      ],
+      "subject": "Fixing roberta type id (everything is zero). (#1072)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/mod.rs",
+        "tokenizers/src/models/wordlevel/serialization.rs"
+      ],
+      "fix": "cd730594e9d6b6349e4b95bc522525d7e5a178a6",
+      "fix_date": "2022-03-21",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 756.0,
+        "calendar_days_author": 756.0,
+        "churn_deletions": 2182,
+        "churn_files": 82,
+        "churn_insertions": 18109,
+        "commits_elapsed": 977,
+        "commits_elapsed_first_parent": 687,
+        "releases_spanned": [
+          "v0.11.1",
+          "v0.11.2"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-02-24",
+          "sha": "98485e75760940ffb3acd888b3dde32820869547"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2021-02-04",
+          "sha": "a8f756494ebaa04a5c44c42249e569ff5855c6ad"
+        }
+      ],
+      "subject": "Fixing issue with ConvBert not being able to save because of of holes in (#954)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/unigram/trainer.rs"
+      ],
+      "fix": "1bb9884f459376508059b11b2ac6dc1585f44050",
+      "fix_date": "2022-03-18",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 508.1,
+        "calendar_days_author": 511.8,
+        "churn_deletions": 1392,
+        "churn_files": 69,
+        "churn_insertions": 4247,
+        "commits_elapsed": 286,
+        "commits_elapsed_first_parent": 280,
+        "releases_spanned": [
+          "v0.11.1",
+          "v0.11.2"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 6,
+          "date": "2020-10-26",
+          "sha": "390ef2f9f339a2f3085ef806a1ee1b9109aa0840"
+        },
+        {
+          "blamed_lines": 5,
+          "date": "2020-09-02",
+          "sha": "091ac14d19a903fa14daea059d45c0acab5a952e"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-10-26",
+          "sha": "73b5da917f152c77a9a6d7e99799e6624f6c88c9"
+        }
+      ],
+      "subject": "Fixing the vocab size of the trained Unigram model (#952)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/examples/serialization.rs",
+        "tokenizers/src/tokenizer/added_vocabulary.rs",
+        "tokenizers/src/tokenizer/serialization.rs"
+      ],
+      "fix": "f24092ac62ffff05ce7fd954eea843943192371b",
+      "fix_date": "2022-02-25",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 618.9,
+        "calendar_days_author": 619.5,
+        "churn_deletions": 2338,
+        "churn_files": 83,
+        "churn_insertions": 15301,
+        "commits_elapsed": 579,
+        "commits_elapsed_first_parent": 546,
+        "releases_spanned": [
+          "v0.11.1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 9,
+          "date": "2020-06-16",
+          "sha": "397cc539daa407c53d5d808362a1a90baa1eaf24"
+        },
+        {
+          "blamed_lines": 8,
+          "date": "2022-02-25",
+          "sha": "48a921d39923616481538bfc30696da3813b9d6a"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2022-01-06",
+          "sha": "076319d542f87e9f72db379d7e47b29b1ce7bd87"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-05-27",
+          "sha": "5d4dfc2340a71be68c2e82ef74d23b473fde4177"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-06-19",
+          "sha": "c02d4e2202314cfc4e23bce16f7991261f4b2c93"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-06-16",
+          "sha": "c6f633eb1cb8902d1e2e1df3b6cc2a052ed8f472"
+        }
+      ],
+      "subject": "Trying to fix loading order of added_tokens. (#924)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/added_vocabulary.rs"
+      ],
+      "fix": "d98abc50ba3da6825eafcd9a1cf89124474b25ce",
+      "fix_date": "2022-02-25",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 49.8,
+        "calendar_days_author": 49.8,
+        "churn_deletions": 129,
+        "churn_files": 24,
+        "churn_insertions": 709,
+        "commits_elapsed": 23,
+        "commits_elapsed_first_parent": 17,
+        "releases_spanned": [
+          "v0.11.1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 12,
+          "date": "2022-01-06",
+          "sha": "076319d542f87e9f72db379d7e47b29b1ce7bd87"
+        },
+        {
+          "blamed_lines": 7,
+          "date": "2020-08-19",
+          "sha": "2865297bec0adfe9d24ec2a26812bc4306a7da36"
+        },
+        {
+          "blamed_lines": 5,
+          "date": "2020-06-16",
+          "sha": "397cc539daa407c53d5d808362a1a90baa1eaf24"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-08-03",
+          "sha": "d45b69e84c157d4f384505c01fea50495d0cf7e0"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-09-23",
+          "sha": "0a930ef1d870af4654c267ce2da4a9923ef747dd"
+        }
+      ],
+      "subject": "Fixing `single_word` AddedToken. (#919)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/pre_tokenizers/bert.rs",
+        "tokenizers/src/pre_tokenizers/byte_level.rs",
+        "tokenizers/src/pre_tokenizers/delimiter.rs",
+        "tokenizers/src/pre_tokenizers/digits.rs",
+        "tokenizers/src/pre_tokenizers/metaspace.rs",
+        "tokenizers/src/pre_tokenizers/mod.rs",
+        "tokenizers/src/pre_tokenizers/punctuation.rs",
+        "tokenizers/src/pre_tokenizers/sequence.rs",
+        "tokenizers/src/pre_tokenizers/split.rs",
+        "tokenizers/src/pre_tokenizers/unicode_scripts/pre_tokenizer.rs",
+        "tokenizers/src/pre_tokenizers/whitespace.rs",
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "1a84958cc83f0a5ac1be53207ffec160fdd1774b",
+      "fix_date": "2022-01-17",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 416.0,
+        "calendar_days_author": 416.0,
+        "churn_deletions": 789,
+        "churn_files": 60,
+        "churn_insertions": 2051,
+        "commits_elapsed": 131,
+        "commits_elapsed_first_parent": 131,
+        "releases_spanned": [
+          "v0.11.1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 16,
+          "date": "2020-11-27",
+          "sha": "dd399d2ad036f59154028f935891e188df59ab6a"
+        },
+        {
+          "blamed_lines": 9,
+          "date": "2021-04-05",
+          "sha": "a891e29c02e23735627abe21cba5358e7539824f"
+        },
+        {
+          "blamed_lines": 4,
+          "date": "2020-08-04",
+          "sha": "363adedb4cc193c108d40e5380e3636c1a64c69c"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-08-04",
+          "sha": "16f75d9efcbd0e2f634e9756e84f8e6d88b78686"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-09-03",
+          "sha": "7b2caca7646b9f39b98a0f7bba62485dd2c2aa44"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-08-31",
+          "sha": "7ed7f0f26aa5fb31553133c5dad942535d9d187c"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-10-13",
+          "sha": "88556790e790a532b8bfb959872f127809804fd5"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2021-08-13",
+          "sha": "e2bf8daa3a56cac1162fc22b47c657146a97f049"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2021-01-11",
+          "sha": "1990f51b9f93ec4e73d55f68ea6c367df70000ed"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-10-15",
+          "sha": "2fc0edda01b6318c7faaf38cdf46f5adb7c681d0"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-09-15",
+          "sha": "330876ae02de8f7daec7e284c31c232cf26952f1"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2022-01-17",
+          "sha": "4a750f1a57e230758d68e5d03f17d8f6ef38cbd5"
+        }
+      ],
+      "subject": "Fixing bad deserialization following inclusion of a default for `Punctuation`. (#884)"
+    },
+    {
+      "blamed_files": [],
+      "fix": "4a750f1a57e230758d68e5d03f17d8f6ef38cbd5",
+      "fix_date": "2022-01-17",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixing `Punctuation` deserialize without argument. (#882)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/wordlevel/mod.rs"
+      ],
+      "fix": "fb837b4adb130dfc89104aa09b1ae223da120278",
+      "fix_date": "2022-01-06",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 700.9,
+        "calendar_days_author": 700.9,
+        "churn_deletions": 2085,
+        "churn_files": 82,
+        "churn_insertions": 17770,
+        "commits_elapsed": 1014,
+        "commits_elapsed_first_parent": 691,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 5,
+          "date": "2020-02-05",
+          "sha": "8200112e9b4c977a90cedf87fd3cfac385793db7"
+        }
+      ],
+      "subject": "Fix wordlevel encode `<unk>` (#870)"
+    },
+    {
+      "blamed_files": [],
+      "fix": "1054e243e21bed251b0f5dd5164a8031ec47902f",
+      "fix_date": "2022-01-04",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix invalid continuing subwrd prefix. (#864)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/utils/truncation.rs"
+      ],
+      "fix": "4122a33f095e7da48217e19bf9184fefd0506a8e",
+      "fix_date": "2022-01-04",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 573.7,
+        "calendar_days_author": 573.7,
+        "churn_deletions": 2245,
+        "churn_files": 79,
+        "churn_insertions": 14886,
+        "commits_elapsed": 579,
+        "commits_elapsed_first_parent": 530,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-06-09",
+          "sha": "082db57c49e62ed798877943c21be56f14b2b7bb"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2021-12-28",
+          "sha": "152880ab3e5281003bdeee7d1406149e2af97951"
+        }
+      ],
+      "subject": "Fixing missing `direction` in TruncationParams. (#868)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/pre_tokenizers/byte_level.rs"
+      ],
+      "fix": "4759700da82deb127f25994527f2e7fb0fc9ba5c",
+      "fix_date": "2021-12-20",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 432.6,
+        "calendar_days_author": 432.6,
+        "churn_deletions": 837,
+        "churn_files": 63,
+        "churn_insertions": 3136,
+        "commits_elapsed": 242,
+        "commits_elapsed_first_parent": 242,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-10-13",
+          "sha": "9e6a9923101a06c96e852674131552b5fbcda743"
+        }
+      ],
+      "subject": "Fixing interaction between `is_pretokenized` and `trim_offsets`. (#844)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/wordlevel/trainer.rs"
+      ],
+      "fix": "e7dd6436dd4a4ffd9e8a4f110ca68e6a38677cb6",
+      "fix_date": "2021-08-13",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 265.8,
+        "calendar_days_author": 309.8,
+        "churn_deletions": 597,
+        "churn_files": 53,
+        "churn_insertions": 1541,
+        "commits_elapsed": 106,
+        "commits_elapsed_first_parent": 106,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-11-20",
+          "sha": "059d43b265ba9217c7f48e39ffebc551ba1a3106"
+        }
+      ],
+      "subject": "Fix word level tokenizer determinism (#718)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/normalizer.rs"
+      ],
+      "fix": "c046da7679d188c9013069450b25ebab837de19a",
+      "fix_date": "2021-05-24",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 462.4,
+        "calendar_days_author": 462.4,
+        "churn_deletions": 2037,
+        "churn_files": 79,
+        "churn_insertions": 17001,
+        "commits_elapsed": 915,
+        "commits_elapsed_first_parent": 613,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-02-17",
+          "sha": "bb8321ac0d9cbce2e159243bf753cd1d196a2d07"
+        }
+      ],
+      "subject": "Fix stripping strings containing Unicode characters (#707)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/bpe/model.rs"
+      ],
+      "fix": "0fe9214f44f4e117a85e3880c20631cc70298d86",
+      "fix_date": "2021-03-18",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 211.1,
+        "calendar_days_author": 215.0,
+        "churn_deletions": 1369,
+        "churn_files": 74,
+        "churn_insertions": 9767,
+        "commits_elapsed": 365,
+        "commits_elapsed_first_parent": 363,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 10,
+          "date": "2020-08-19",
+          "sha": "cd176e376c1038ad123f721b2810e78d8ea71001"
+        },
+        {
+          "blamed_lines": 5,
+          "date": "2020-07-20",
+          "sha": "33f6694c18191d34b97db81b78143c63ae939cac"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-09-28",
+          "sha": "faaef548791447db9a55b4e403da92aa59159fab"
+        }
+      ],
+      "subject": "Fix BPE continuing_subword_prefix"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/normalizers/precompiled.rs"
+      ],
+      "fix": "f5e9bb89b7386be88cd28019f32be2d7e528123d",
+      "fix_date": "2021-03-16",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 40.9,
+        "calendar_days_author": 35.4,
+        "churn_deletions": 17,
+        "churn_files": 7,
+        "churn_insertions": 191,
+        "commits_elapsed": 14,
+        "commits_elapsed_first_parent": 14,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2021-02-03",
+          "sha": "355315e8d31f8599920bad877db116e092a1e441"
+        }
+      ],
+      "subject": "Fix offsets for Precompiled corner case"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/normalizers/precompiled.rs"
+      ],
+      "fix": "355315e8d31f8599920bad877db116e092a1e441",
+      "fix_date": "2021-02-03",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 141.0,
+        "calendar_days_author": 140.8,
+        "churn_deletions": 1620,
+        "churn_files": 64,
+        "churn_insertions": 4101,
+        "commits_elapsed": 252,
+        "commits_elapsed_first_parent": 252,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 18,
+          "date": "2020-09-15",
+          "sha": "330876ae02de8f7daec7e284c31c232cf26952f1"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-09-22",
+          "sha": "2fd1d9cf06b2bde4b0a567d78f2193293d276de7"
+        }
+      ],
+      "subject": "Rust - Fix offsets produced by Precompiled Normalizer"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/pre_tokenizers/metaspace.rs"
+      ],
+      "fix": "a350ec3e72c9006ee00526566595625589c1756d",
+      "fix_date": "2021-02-03",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 183.9,
+        "calendar_days_author": 186.8,
+        "churn_deletions": 1806,
+        "churn_files": 74,
+        "churn_insertions": 12159,
+        "commits_elapsed": 392,
+        "commits_elapsed_first_parent": 390,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-03",
+          "sha": "dad70e8e8505476bd8e14a1a897948c1af17394e"
+        }
+      ],
+      "subject": "Rust - Fix a bug in the Metaspace PreTokenizer"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "65b91966f7040c4acd14b23c71cc476a09432e8e",
+      "fix_date": "2021-01-11",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 160.0,
+        "calendar_days_author": 170.8,
+        "churn_deletions": 1836,
+        "churn_files": 74,
+        "churn_insertions": 11678,
+        "commits_elapsed": 376,
+        "commits_elapsed_first_parent": 374,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2020-08-04",
+          "sha": "cdef780aa8fb82a5bd885be6f14c87b75f679b99"
+        }
+      ],
+      "subject": "Fix import Formatter with new serde"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/wordlevel/trainer.rs"
+      ],
+      "fix": "a3a9561f9fe7ba62ff5d7dd3915c7d51cce417bb",
+      "fix_date": "2020-12-08",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 18.0,
+        "calendar_days_author": 61.9,
+        "churn_deletions": 357,
+        "churn_files": 32,
+        "churn_insertions": 942,
+        "commits_elapsed": 41,
+        "commits_elapsed_first_parent": 41,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 6,
+          "date": "2020-11-20",
+          "sha": "059d43b265ba9217c7f48e39ffebc551ba1a3106"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-11-20",
+          "sha": "13e07da2c8de7a5e18409d9a19b585ef53bc0f70"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-11-28",
+          "sha": "e0a70f1fb29b47a4b0816f023e329e18c3862379"
+        }
+      ],
+      "subject": "Rust - Fix WordLevelTrainer default values"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/bpe/trainer.rs",
+        "tokenizers/src/models/unigram/trainer.rs",
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "fff856cff76c1cb86d3f1ec392b5313f93b76ce0",
+      "fix_date": "2020-11-11",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 315.1,
+        "calendar_days_author": 315.1,
+        "churn_deletions": 1667,
+        "churn_files": 76,
+        "churn_insertions": 17733,
+        "commits_elapsed": 1160,
+        "commits_elapsed_first_parent": 694,
+        "releases_spanned": [
+          "v0.0.12",
+          "v0.0.13",
+          "v0.1.0",
+          "v0.1.1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-01",
+          "sha": "47e4b00e0525be9216e006c2811004dad14d02d5"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-04",
+          "sha": "83a52c8080fc89441ae7a385d33613f9f77544be"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-09-02",
+          "sha": "95e5e1c12f89af326eac8780b8c31d79edecc95b"
+        }
+      ],
+      "subject": "New PR to fix #270 (not #157). (#516)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/wordlevel/mod.rs",
+        "tokenizers/src/models/wordlevel/serialization.rs"
+      ],
+      "fix": "991128f9e1b7d1c2b705af1c8615a5dbd9c442ac",
+      "fix_date": "2020-10-30",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 268.0,
+        "calendar_days_author": 267.2,
+        "churn_deletions": 1915,
+        "churn_files": 74,
+        "churn_insertions": 15271,
+        "commits_elapsed": 778,
+        "commits_elapsed_first_parent": 455,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 4,
+          "date": "2020-02-05",
+          "sha": "8200112e9b4c977a90cedf87fd3cfac385793db7"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-05-27",
+          "sha": "015bb9e6d9e296863776b8a92c483cad80b57d35"
+        }
+      ],
+      "subject": "Node - Fix models init methods & add WordLevel"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/unigram/model.rs",
+        "tokenizers/src/models/unigram/trainer.rs"
+      ],
+      "fix": "466f5303eb6eaeb9b2da26da41912c8781d0b9da",
+      "fix_date": "2020-10-26",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.2,
+        "calendar_days_author": 4.0,
+        "churn_deletions": 118,
+        "churn_files": 5,
+        "churn_insertions": 219,
+        "commits_elapsed": 2,
+        "commits_elapsed_first_parent": 2,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 6,
+          "date": "2020-10-26",
+          "sha": "390ef2f9f339a2f3085ef806a1ee1b9109aa0840"
+        },
+        {
+          "blamed_lines": 4,
+          "date": "2020-10-26",
+          "sha": "73b5da917f152c77a9a6d7e99799e6624f6c88c9"
+        }
+      ],
+      "subject": "Fix UnigramTrainer"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/pre_tokenizers/byte_level.rs",
+        "tokenizers/src/processors/bert.rs",
+        "tokenizers/src/processors/mod.rs",
+        "tokenizers/src/processors/roberta.rs"
+      ],
+      "fix": "2fc0edda01b6318c7faaf38cdf46f5adb7c681d0",
+      "fix_date": "2020-10-15",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 71.7,
+        "calendar_days_author": 74.2,
+        "churn_deletions": 1463,
+        "churn_files": 64,
+        "churn_insertions": 9208,
+        "commits_elapsed": 202,
+        "commits_elapsed_first_parent": 200,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 29,
+          "date": "2020-08-04",
+          "sha": "16f75d9efcbd0e2f634e9756e84f8e6d88b78686"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-04",
+          "sha": "10ae711258c2354b18cb57b205be20b0d100cf67"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-04",
+          "sha": "363adedb4cc193c108d40e5380e3636c1a64c69c"
+        }
+      ],
+      "subject": "Fix RobertaProcessing deserialization in PostProcessorWrapper"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/unigram/model.rs",
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "88556790e790a532b8bfb959872f127809804fd5",
+      "fix_date": "2020-10-13",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 41.1,
+        "calendar_days_author": 111.8,
+        "churn_deletions": 1529,
+        "churn_files": 54,
+        "churn_insertions": 6091,
+        "commits_elapsed": 135,
+        "commits_elapsed_first_parent": 133,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 4,
+          "date": "2020-09-02",
+          "sha": "0f7e0bafbb89496015ae3a47d47b97289c369968"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-08-04",
+          "sha": "cdef780aa8fb82a5bd885be6f14c87b75f679b99"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-09-02",
+          "sha": "439305eea028b80dabcccdae9437809840968280"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-03",
+          "sha": "466555badea554d65e1d191f044a31a6dfafd50e"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-09-02",
+          "sha": "c0798acacf6a80fb742cfb2d7403b47b18e3153b"
+        }
+      ],
+      "subject": "Fixing a bug where long tokenizer files would be incorrectly deserialized (#459)"
+    },
+    {
+      "blamed_files": [],
+      "fix": "b3c016cf9c104d65c3f826d9ea7bc1d114098232",
+      "fix_date": "2020-10-13",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixing sampling test heuristics to fail less often."
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/unigram/lattice.rs",
+        "tokenizers/src/models/unigram/model.rs"
+      ],
+      "fix": "fbca797b3dca241762448b10f00c88f56f9c4e6f",
+      "fix_date": "2020-10-09",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 37.1,
+        "calendar_days_author": 117.0,
+        "churn_deletions": 1147,
+        "churn_files": 52,
+        "churn_insertions": 6616,
+        "commits_elapsed": 138,
+        "commits_elapsed_first_parent": 136,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 19,
+          "date": "2020-09-02",
+          "sha": "ce4b5b61e419e4fcc6c4a4799ea52eb730ef4ce3"
+        },
+        {
+          "blamed_lines": 6,
+          "date": "2020-09-02",
+          "sha": "8b18538ca65e8ac7f9e4cb45e7cf414080dd915a"
+        },
+        {
+          "blamed_lines": 5,
+          "date": "2020-09-02",
+          "sha": "091ac14d19a903fa14daea059d45c0acab5a952e"
+        },
+        {
+          "blamed_lines": 5,
+          "date": "2020-09-02",
+          "sha": "35a3967fcea5a9c8572f6f326b1e581e91762e1f"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-09-15",
+          "sha": "330876ae02de8f7daec7e284c31c232cf26952f1"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-09-02",
+          "sha": "7acbb1122ee301326b70ba296ea2f7f78f647e50"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-09-02",
+          "sha": "c04b6208a122575dc2ef55ffd0de0d22efe3d5b2"
+        }
+      ],
+      "subject": "Fixing Trainer with u8 instead of chars. (#452)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/processors/template.rs"
+      ],
+      "fix": "04163f4ffd05b2dfa77f958e0980e9f79f5a318e",
+      "fix_date": "2020-10-05",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 24.8,
+        "calendar_days_author": 30.7,
+        "churn_deletions": 1043,
+        "churn_files": 42,
+        "churn_insertions": 2170,
+        "commits_elapsed": 73,
+        "commits_elapsed_first_parent": 73,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-09-10",
+          "sha": "c156ae3a838405544d99a225c650880c027c0d2e"
+        }
+      ],
+      "subject": "Rust - Fix TemplateProcessing overflowings handling"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/bpe/model.rs"
+      ],
+      "fix": "faaef548791447db9a55b4e403da92aa59159fab",
+      "fix_date": "2020-09-28",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 4.1,
+        "calendar_days_author": 4.6,
+        "churn_deletions": 9,
+        "churn_files": 3,
+        "churn_insertions": 121,
+        "commits_elapsed": 10,
+        "commits_elapsed_first_parent": 10,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-09-24",
+          "sha": "95cc8c47ad2fc1af13be406e3bdcdbd2f09fe71e"
+        }
+      ],
+      "subject": "There was a bug with the new merge type vs continuing subword prefix."
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/normalizers/strip.rs",
+        "tokenizers/src/normalizers/utils.rs",
+        "tokenizers/src/tokenizer/normalizer.rs"
+      ],
+      "fix": "c0b9229833cfb3e67e2d42379f59228e24bcfe10",
+      "fix_date": "2020-09-22",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 0.3,
+        "churn_deletions": 5,
+        "churn_files": 4,
+        "churn_insertions": 36,
+        "commits_elapsed": 1,
+        "commits_elapsed_first_parent": 1,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 5,
+          "date": "2020-09-22",
+          "sha": "bcf35a2f6e0aa95917105f0b0de4b79a921d060a"
+        }
+      ],
+      "subject": "Fixed vietnamese bug, now we have a thai bug."
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/unigram/trainer.rs"
+      ],
+      "fix": "7b5c2b92c6aa7b87ad92105a0f34db6ba71de6d8",
+      "fix_date": "2020-09-02",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.1,
+        "calendar_days_author": 0.9,
+        "churn_deletions": 143,
+        "churn_files": 8,
+        "churn_insertions": 113,
+        "commits_elapsed": 9,
+        "commits_elapsed_first_parent": 9,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 13,
+          "date": "2020-09-02",
+          "sha": "481f3bd97612edde7047e07512aa164e5b26ab98"
+        }
+      ],
+      "subject": "Fixing test dependency."
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/unigram/model.rs",
+        "tokenizers/src/models/unigram/serialization.rs"
+      ],
+      "fix": "c7a84c7cc677433764b3a40a97582f5bc613354c",
+      "fix_date": "2020-09-02",
+      "flags": [
+        "multiple-candidates",
+        "committer-dates-compressed(use-author-days)"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 42.8,
+        "churn_deletions": 317,
+        "churn_files": 10,
+        "churn_insertions": 706,
+        "commits_elapsed": 9,
+        "commits_elapsed_first_parent": 9,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 8,
+          "date": "2020-09-02",
+          "sha": "83ab59c838b413249d72d0a4a99c3da977b5d336"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-09-02",
+          "sha": "f805eb3c0d099c24e691fd8b5fe8ffd7fbc79da4"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-09-02",
+          "sha": "091ac14d19a903fa14daea059d45c0acab5a952e"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-09-02",
+          "sha": "0f7e0bafbb89496015ae3a47d47b97289c369968"
+        }
+      ],
+      "subject": "Fixing deserialization/serialization."
+    },
+    {
+      "blamed_files": [],
+      "fix": "1093677972c8885dec25cb0864a921f68c2cacbb",
+      "fix_date": "2020-09-02",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixing visibility issue."
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/lib.rs",
+        "tokenizers/src/models/unigram/lattice.rs",
+        "tokenizers/src/models/unigram/model.rs",
+        "tokenizers/src/models/unigram/trainer.rs"
+      ],
+      "fix": "f3a78e051939129744bcc50f74b312769918f97f",
+      "fix_date": "2020-09-02",
+      "flags": [
+        "multiple-candidates",
+        "committer-dates-compressed(use-author-days)"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 15.5,
+        "churn_deletions": 603,
+        "churn_files": 10,
+        "churn_insertions": 3126,
+        "commits_elapsed": 9,
+        "commits_elapsed_first_parent": 9,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 45,
+          "date": "2020-09-02",
+          "sha": "0f7e0bafbb89496015ae3a47d47b97289c369968"
+        },
+        {
+          "blamed_lines": 43,
+          "date": "2020-09-02",
+          "sha": "091ac14d19a903fa14daea059d45c0acab5a952e"
+        },
+        {
+          "blamed_lines": 27,
+          "date": "2020-09-02",
+          "sha": "95e5e1c12f89af326eac8780b8c31d79edecc95b"
+        },
+        {
+          "blamed_lines": 24,
+          "date": "2020-09-02",
+          "sha": "ce4b5b61e419e4fcc6c4a4799ea52eb730ef4ce3"
+        },
+        {
+          "blamed_lines": 17,
+          "date": "2020-09-02",
+          "sha": "c04b6208a122575dc2ef55ffd0de0d22efe3d5b2"
+        },
+        {
+          "blamed_lines": 15,
+          "date": "2020-09-02",
+          "sha": "f805eb3c0d099c24e691fd8b5fe8ffd7fbc79da4"
+        },
+        {
+          "blamed_lines": 10,
+          "date": "2020-09-02",
+          "sha": "f7905ce149082b2cfbdb282c5c2edd813d6bb04b"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-09-02",
+          "sha": "8b18538ca65e8ac7f9e4cb45e7cf414080dd915a"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-09-02",
+          "sha": "258adc638336908f25d105cc71c2808bf06ae2bf"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-09-02",
+          "sha": "dce7e87195ab3f60ce9a4fe36aa74a650de8b38b"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-04",
+          "sha": "10ae711258c2354b18cb57b205be20b0d100cf67"
+        }
+      ],
+      "subject": "Big fix on the trainer + moved to progress bar instead of spm style logs"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/unigram/lattice.rs",
+        "tokenizers/src/models/unigram/model.rs",
+        "tokenizers/src/models/unigram/trainer.rs"
+      ],
+      "fix": "091ac14d19a903fa14daea059d45c0acab5a952e",
+      "fix_date": "2020-09-02",
+      "flags": [
+        "multiple-candidates",
+        "committer-dates-compressed(use-author-days)"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 2.0,
+        "churn_deletions": 393,
+        "churn_files": 7,
+        "churn_insertions": 520,
+        "commits_elapsed": 5,
+        "commits_elapsed_first_parent": 5,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 91,
+          "date": "2020-09-02",
+          "sha": "c3e78800559b7e1ea6f5875cd8bf44a06dd4d192"
+        },
+        {
+          "blamed_lines": 57,
+          "date": "2020-09-02",
+          "sha": "0f7e0bafbb89496015ae3a47d47b97289c369968"
+        },
+        {
+          "blamed_lines": 50,
+          "date": "2020-09-02",
+          "sha": "f805eb3c0d099c24e691fd8b5fe8ffd7fbc79da4"
+        },
+        {
+          "blamed_lines": 29,
+          "date": "2020-09-02",
+          "sha": "c04b6208a122575dc2ef55ffd0de0d22efe3d5b2"
+        },
+        {
+          "blamed_lines": 20,
+          "date": "2020-09-02",
+          "sha": "8b18538ca65e8ac7f9e4cb45e7cf414080dd915a"
+        },
+        {
+          "blamed_lines": 11,
+          "date": "2020-09-02",
+          "sha": "f7905ce149082b2cfbdb282c5c2edd813d6bb04b"
+        },
+        {
+          "blamed_lines": 10,
+          "date": "2020-09-02",
+          "sha": "ce4b5b61e419e4fcc6c4a4799ea52eb730ef4ce3"
+        },
+        {
+          "blamed_lines": 8,
+          "date": "2020-09-02",
+          "sha": "95e5e1c12f89af326eac8780b8c31d79edecc95b"
+        },
+        {
+          "blamed_lines": 5,
+          "date": "2020-09-02",
+          "sha": "258adc638336908f25d105cc71c2808bf06ae2bf"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-09-02",
+          "sha": "24c79974dd419d3f60412b7762adcdb1e89921bb"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-09-02",
+          "sha": "23dbec8e5e3328017bd2c97eb1405948a61e43d9"
+        }
+      ],
+      "subject": "Fixing the trainer:"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/unigram/lattice.rs",
+        "tokenizers/src/models/unigram/model.rs",
+        "tokenizers/src/models/unigram/trainer.rs"
+      ],
+      "fix": "c3e78800559b7e1ea6f5875cd8bf44a06dd4d192",
+      "fix_date": "2020-09-02",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 0.8,
+        "churn_deletions": 148,
+        "churn_files": 3,
+        "churn_insertions": 195,
+        "commits_elapsed": 1,
+        "commits_elapsed_first_parent": 1,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 87,
+          "date": "2020-09-02",
+          "sha": "0f7e0bafbb89496015ae3a47d47b97289c369968"
+        },
+        {
+          "blamed_lines": 20,
+          "date": "2020-09-02",
+          "sha": "f805eb3c0d099c24e691fd8b5fe8ffd7fbc79da4"
+        },
+        {
+          "blamed_lines": 8,
+          "date": "2020-09-02",
+          "sha": "ce4b5b61e419e4fcc6c4a4799ea52eb730ef4ce3"
+        },
+        {
+          "blamed_lines": 7,
+          "date": "2020-09-02",
+          "sha": "8b18538ca65e8ac7f9e4cb45e7cf414080dd915a"
+        },
+        {
+          "blamed_lines": 5,
+          "date": "2020-09-02",
+          "sha": "f7905ce149082b2cfbdb282c5c2edd813d6bb04b"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-09-02",
+          "sha": "c04b6208a122575dc2ef55ffd0de0d22efe3d5b2"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-09-02",
+          "sha": "95e5e1c12f89af326eac8780b8c31d79edecc95b"
+        }
+      ],
+      "subject": "Fixing loading functions + workaround trie-rs bug."
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/pre_tokenizers/whitespace.rs"
+      ],
+      "fix": "427d358a5f8599efe92e2578c3311cea5008900e",
+      "fix_date": "2020-09-01",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 27.8,
+        "calendar_days_author": 31.1,
+        "churn_deletions": 1246,
+        "churn_files": 38,
+        "churn_insertions": 2715,
+        "commits_elapsed": 53,
+        "commits_elapsed_first_parent": 53,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-04",
+          "sha": "16f75d9efcbd0e2f634e9756e84f8e6d88b78686"
+        }
+      ],
+      "subject": "Fix deserialize for Whitespace Pretok"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/utils/mod.rs"
+      ],
+      "fix": "6156554777edebba48da8a715247694131c28704",
+      "fix_date": "2020-09-01",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 27.7,
+        "calendar_days_author": 31.0,
+        "churn_deletions": 1245,
+        "churn_files": 38,
+        "churn_insertions": 2712,
+        "commits_elapsed": 52,
+        "commits_elapsed_first_parent": 52,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-04",
+          "sha": "16f75d9efcbd0e2f634e9756e84f8e6d88b78686"
+        }
+      ],
+      "subject": "Fix deserialization from readers for unit structs."
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/normalizer.rs"
+      ],
+      "fix": "18e3799b1d1b5298cd293b6042efba8dc03df059",
+      "fix_date": "2020-08-19",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 15.8,
+        "calendar_days_author": 21.2,
+        "churn_deletions": 1352,
+        "churn_files": 45,
+        "churn_insertions": 3818,
+        "commits_elapsed": 67,
+        "commits_elapsed_first_parent": 67,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 28,
+          "date": "2020-08-03",
+          "sha": "213a8dc3f3083c01d58f1749a94936f282f9b7c1"
+        },
+        {
+          "blamed_lines": 6,
+          "date": "2020-03-06",
+          "sha": "402a6871e43288b4bd4abe46c4139bcde4bd09d3"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-03-06",
+          "sha": "8f1a8f273466689e2ec52a985bfa1df2a500e4dc"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-08-03",
+          "sha": "e67790c8573a357b0a4cc06912876b5ea54f8e41"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2019-12-28",
+          "sha": "162829b7a99083900dab1f1efa87a81622bb6ef9"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-08-03",
+          "sha": "dad70e8e8505476bd8e14a1a897948c1af17394e"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-03-17",
+          "sha": "28ea29ef4621364fb862b91832c98b877ad2624e"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-19",
+          "sha": "51478ae9b1784e60cbdc203a335ed9c6fde4ed29"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-19",
+          "sha": "66fef2b9072e3b40e2f7171813b348f77df6c8e2"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-19",
+          "sha": "e58f69a3695f79a59e3e249b1b5c469a30a97515"
+        }
+      ],
+      "subject": "Fix a few things on NormalizedString"
+    },
+    {
+      "blamed_files": [],
+      "fix": "be817da43854c15c03a699e156d4ce1bf0e00e8f",
+      "fix_date": "2020-08-19",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix integration tests"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/decoders/bpe.rs",
+        "tokenizers/src/decoders/wordpiece.rs",
+        "tokenizers/src/normalizers/bert.rs",
+        "tokenizers/src/normalizers/strip.rs",
+        "tokenizers/src/normalizers/utils.rs",
+        "tokenizers/src/pre_tokenizers/byte_level.rs",
+        "tokenizers/src/pre_tokenizers/delimiter.rs",
+        "tokenizers/src/pre_tokenizers/metaspace.rs",
+        "tokenizers/src/pre_tokenizers/whitespace.rs",
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "363adedb4cc193c108d40e5380e3636c1a64c69c",
+      "fix_date": "2020-08-04",
+      "flags": [
+        "multiple-candidates",
+        "committer-dates-compressed(use-author-days)"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 2.8,
+        "churn_deletions": 151,
+        "churn_files": 12,
+        "churn_insertions": 48,
+        "commits_elapsed": 2,
+        "commits_elapsed_first_parent": 2,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 142,
+          "date": "2020-08-04",
+          "sha": "16f75d9efcbd0e2f634e9756e84f8e6d88b78686"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-01-06",
+          "sha": "185b6f0b8bc9df0f515c0fdb44a012e9d14db2eb"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-04",
+          "sha": "0f819973510e86d3b0b0325875fef528f29f0e1a"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-04",
+          "sha": "83a52c8080fc89441ae7a385d33613f9f77544be"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-04",
+          "sha": "bcc54a2ea1c9a63fd2bfdb4010a33d8d772206d0"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-05-27",
+          "sha": "dde08b046157902d075edd49ef8395507e28fe57"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-04",
+          "sha": "ece6ad91494d348bfa67d11769752df54d57a943"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-02",
+          "sha": "f0f9aefd07f37ca23ea4698ede85b7e2bbf954a1"
+        }
+      ],
+      "subject": "Fixes and cleanup, suggestions by ."
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/added_vocabulary.rs"
+      ],
+      "fix": "eb19faded20af003baeb2d5dc9920d17b47e049f",
+      "fix_date": "2020-08-03",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.1,
+        "calendar_days_author": 3.1,
+        "churn_deletions": 7,
+        "churn_files": 2,
+        "churn_insertions": 22,
+        "commits_elapsed": 2,
+        "commits_elapsed_first_parent": 2,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-03",
+          "sha": "953f4c06f0375c2a3b58886bd665d147f75187e3"
+        }
+      ],
+      "subject": "Fix AddedVocabulary split on empty strings"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/added_vocabulary.rs",
+        "tokenizers/src/tokenizer/normalizer.rs",
+        "tokenizers/src/tokenizer/pattern.rs"
+      ],
+      "fix": "953f4c06f0375c2a3b58886bd665d147f75187e3",
+      "fix_date": "2020-08-03",
+      "flags": [
+        "multiple-candidates",
+        "committer-dates-compressed(use-author-days)"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 7.0,
+        "churn_deletions": 645,
+        "churn_files": 17,
+        "churn_insertions": 1226,
+        "commits_elapsed": 25,
+        "commits_elapsed_first_parent": 25,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 9,
+          "date": "2020-08-03",
+          "sha": "904ff243828b18aee25725189d843c6180511d9a"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-06-16",
+          "sha": "397cc539daa407c53d5d808362a1a90baa1eaf24"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-08-03",
+          "sha": "dad70e8e8505476bd8e14a1a897948c1af17394e"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-08-03",
+          "sha": "c98d82560443fcf5b8e6dbcd5470f6b37a6b95f3"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-06-16",
+          "sha": "7dff86b704a7e6aebdf15163fc16b38dadb07b59"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-03",
+          "sha": "eb58f3ee0db1b6ff1f9bed2ceadcb878754d118b"
+        }
+      ],
+      "subject": "Various fixes and tests"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/encoding.rs",
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "403c85a6d4bda0e3b3e8487ab988738d4f6f5798",
+      "fix_date": "2020-08-03",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 116.3,
+        "calendar_days_author": 111.2,
+        "churn_deletions": 1721,
+        "churn_files": 46,
+        "churn_insertions": 4239,
+        "commits_elapsed": 226,
+        "commits_elapsed_first_parent": 97,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 7,
+          "date": "2020-04-09",
+          "sha": "3ad136021004ac09251c7bb27e055515d9655992"
+        },
+        {
+          "blamed_lines": 5,
+          "date": "2020-03-26",
+          "sha": "b699fe4eb11af480799eef2dc34bb75de34ff2f1"
+        },
+        {
+          "blamed_lines": 4,
+          "date": "2020-08-03",
+          "sha": "904ff243828b18aee25725189d843c6180511d9a"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-07-20",
+          "sha": "21549fb4eb9c2899361c12c273337dc2e6875b9f"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-03",
+          "sha": "d45b69e84c157d4f384505c01fea50495d0cf7e0"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-12",
+          "sha": "da45a1d6d0a2465c1170fa7da41fdc8e342e2a10"
+        }
+      ],
+      "subject": "Fix words tracking and tests"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/added_vocabulary.rs"
+      ],
+      "fix": "c98d82560443fcf5b8e6dbcd5470f6b37a6b95f3",
+      "fix_date": "2020-08-03",
+      "flags": [
+        "committer-dates-compressed(use-author-days)"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 4.9,
+        "churn_deletions": 562,
+        "churn_files": 15,
+        "churn_insertions": 1096,
+        "commits_elapsed": 18,
+        "commits_elapsed_first_parent": 18,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-03",
+          "sha": "904ff243828b18aee25725189d843c6180511d9a"
+        }
+      ],
+      "subject": "Hotfix added vocabulary"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "b6d7c8368f7c04ec510edfbfcadaa9998d5331f4",
+      "fix_date": "2020-08-03",
+      "flags": [
+        "committer-dates-compressed(use-author-days)"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 4.8,
+        "churn_deletions": 561,
+        "churn_files": 15,
+        "churn_insertions": 1092,
+        "commits_elapsed": 17,
+        "commits_elapsed_first_parent": 17,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 7,
+          "date": "2020-08-03",
+          "sha": "904ff243828b18aee25725189d843c6180511d9a"
+        }
+      ],
+      "subject": "Fix offsets in Tokenizer::do_tokenize"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/pre_tokenizer.rs"
+      ],
+      "fix": "39278b622443e1c60a02310382ea5b4bf0f97b95",
+      "fix_date": "2020-08-03",
+      "flags": [
+        "committer-dates-compressed(use-author-days)"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 1.8,
+        "churn_deletions": 162,
+        "churn_files": 10,
+        "churn_insertions": 685,
+        "commits_elapsed": 14,
+        "commits_elapsed_first_parent": 14,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-03",
+          "sha": "91d97ffd905b08d03924eb9c28aeba08c4a17f69"
+        }
+      ],
+      "subject": "Fix offsets in PreTokenizedString::split"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/pre_tokenizers/bert.rs",
+        "tokenizers/src/pre_tokenizers/byte_level.rs",
+        "tokenizers/src/pre_tokenizers/metaspace.rs",
+        "tokenizers/src/pre_tokenizers/whitespace.rs",
+        "tokenizers/src/tokenizer/normalizer.rs",
+        "tokenizers/src/tokenizer/pre_tokenizer.rs"
+      ],
+      "fix": "1f370ea3c4cdb5f676a625b9537231d8f44802a8",
+      "fix_date": "2020-08-03",
+      "flags": [
+        "multiple-candidates",
+        "committer-dates-compressed(use-author-days)"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 1.8,
+        "churn_deletions": 161,
+        "churn_files": 10,
+        "churn_insertions": 680,
+        "commits_elapsed": 13,
+        "commits_elapsed_first_parent": 13,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 22,
+          "date": "2020-08-03",
+          "sha": "91d97ffd905b08d03924eb9c28aeba08c4a17f69"
+        },
+        {
+          "blamed_lines": 6,
+          "date": "2020-08-03",
+          "sha": "eb58f3ee0db1b6ff1f9bed2ceadcb878754d118b"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-08-03",
+          "sha": "e67790c8573a357b0a4cc06912876b5ea54f8e41"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-03",
+          "sha": "4077d3714e73c010037551f5f98e347404be6957"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-03",
+          "sha": "b78a9ffca6de2771d798a6609f0685fd87119938"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-07",
+          "sha": "eaa23ac8e64326eacf08566f7e7871b499a70358"
+        }
+      ],
+      "subject": "Fix and test Split behavior"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/normalizer.rs"
+      ],
+      "fix": "1b8ec780fe848d707ccecaf7c1c3dd696790d08c",
+      "fix_date": "2020-08-03",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 139.2,
+        "calendar_days_author": 133.2,
+        "churn_deletions": 1632,
+        "churn_files": 47,
+        "churn_insertions": 4603,
+        "commits_elapsed": 333,
+        "commits_elapsed_first_parent": 136,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2020-03-17",
+          "sha": "28ea29ef4621364fb862b91832c98b877ad2624e"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-08-03",
+          "sha": "b68aaade43bf9baac5b0e88ddf1c5ef72375004c"
+        }
+      ],
+      "subject": "Fix NormalizedString::convert_offsets for empty normalized string"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/normalizer.rs"
+      ],
+      "fix": "b68aaade43bf9baac5b0e88ddf1c5ef72375004c",
+      "fix_date": "2020-08-03",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 139.2,
+        "calendar_days_author": 132.2,
+        "churn_deletions": 1611,
+        "churn_files": 46,
+        "churn_insertions": 4265,
+        "commits_elapsed": 325,
+        "commits_elapsed_first_parent": 128,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 9,
+          "date": "2020-03-17",
+          "sha": "28ea29ef4621364fb862b91832c98b877ad2624e"
+        },
+        {
+          "blamed_lines": 5,
+          "date": "2020-08-03",
+          "sha": "91d97ffd905b08d03924eb9c28aeba08c4a17f69"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-06-16",
+          "sha": "7dff86b704a7e6aebdf15163fc16b38dadb07b59"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-07-17",
+          "sha": "4b5d90024f985dd00a1a50e859edea29b8a2c3c6"
+        }
+      ],
+      "subject": "Fix converting offsets and slicing on NormalizedString"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/normalizer.rs"
+      ],
+      "fix": "0c1699872cf9874fb2043ce48f8086f4192e8c25",
+      "fix_date": "2020-08-03",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 219.0,
+        "calendar_days_author": 212.0,
+        "churn_deletions": 1574,
+        "churn_files": 53,
+        "churn_insertions": 7742,
+        "commits_elapsed": 849,
+        "commits_elapsed_first_parent": 361,
+        "releases_spanned": [
+          "v0.0.12",
+          "v0.0.13",
+          "v0.1.0",
+          "v0.1.1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2019-12-28",
+          "sha": "162829b7a99083900dab1f1efa87a81622bb6ef9"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-04-15",
+          "sha": "26d4aa3c79c97514430ddadbe33bdc878781877e"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-06-18",
+          "sha": "fc63d56eab00da4f698e43031a32ae2ded20e8b7"
+        }
+      ],
+      "subject": "Fix NormalizedString::merge_with"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "88e6eb5db66c4983372d0d99a64714c6634969f7",
+      "fix_date": "2020-08-03",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 73.0,
+        "calendar_days_author": 72.8,
+        "churn_deletions": 1018,
+        "churn_files": 44,
+        "churn_insertions": 2669,
+        "commits_elapsed": 159,
+        "commits_elapsed_first_parent": 55,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 4,
+          "date": "2020-05-22",
+          "sha": "1f3c8b4e8d607ef3a12a10fe102e12c87ba99545"
+        }
+      ],
+      "subject": "Fix training panic."
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/added_vocabulary.rs"
+      ],
+      "fix": "42983ccb8ece6bf97dd0d9bfbaf6dfbba86cf0ee",
+      "fix_date": "2020-06-22",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 5.9,
+        "calendar_days_author": 6.6,
+        "churn_deletions": 105,
+        "churn_files": 9,
+        "churn_insertions": 320,
+        "commits_elapsed": 12,
+        "commits_elapsed_first_parent": 4,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2020-06-16",
+          "sha": "397cc539daa407c53d5d808362a1a90baa1eaf24"
+        }
+      ],
+      "subject": "Merge pull request #315"
+    },
+    {
+      "blamed_files": [],
+      "fix": "bb68ec3414092e7626d31f35b75eb6c00d8d478f",
+      "fix_date": "2020-06-11",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix number of added tokens"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "67b458b1341e41de21fc38ea912ea66dee9481e3",
+      "fix_date": "2020-06-11",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 174.7,
+        "calendar_days_author": 174.7,
+        "churn_deletions": 1651,
+        "churn_files": 51,
+        "churn_insertions": 6959,
+        "commits_elapsed": 795,
+        "commits_elapsed_first_parent": 341,
+        "releases_spanned": [
+          "v0.0.10",
+          "v0.0.11",
+          "v0.0.12",
+          "v0.0.13",
+          "v0.0.8",
+          "v0.0.9",
+          "v0.1.0",
+          "v0.1.1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-19",
+          "sha": "f2b9c30ad91cadde599fa855946b099b843e896d"
+        }
+      ],
+      "subject": "Fix `get_vocab_size` returning the wrong number"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/bpe/trainer.rs"
+      ],
+      "fix": "5cb38b699851043516b89d71444278a48c33cd11",
+      "fix_date": "2020-05-29",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 93.2,
+        "calendar_days_author": 96.3,
+        "churn_deletions": 904,
+        "churn_files": 45,
+        "churn_insertions": 3176,
+        "commits_elapsed": 324,
+        "commits_elapsed_first_parent": 106,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 31,
+          "date": "2020-02-26",
+          "sha": "dd4b4e3ebfd6c5788f563e5281c5f8373bf43a9b"
+        },
+        {
+          "blamed_lines": 5,
+          "date": "2020-02-26",
+          "sha": "a291dda6ab03a1a42733bd0046f539db995595d6"
+        },
+        {
+          "blamed_lines": 5,
+          "date": "2020-03-02",
+          "sha": "ac4754e95eff5ea61f21e836acaaac5ff09d4f79"
+        },
+        {
+          "blamed_lines": 5,
+          "date": "2020-02-26",
+          "sha": "e51965e3f8e01712bebd374d05aa7c151fc29476"
+        },
+        {
+          "blamed_lines": 4,
+          "date": "2019-11-17",
+          "sha": "a55dccafb589c3975225e19de87941d8fbd08bd3"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-01",
+          "sha": "47e4b00e0525be9216e006c2811004dad14d02d5"
+        }
+      ],
+      "subject": "Merge pull request #286"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/bpe/serialization.rs",
+        "tokenizers/src/models/wordlevel/serialization.rs",
+        "tokenizers/src/models/wordpiece/serialization.rs",
+        "tokenizers/src/tokenizer/serialization.rs"
+      ],
+      "fix": "617834e24ef8086c2105fb8a0fb0448042adc2bb",
+      "fix_date": "2020-05-28",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.9,
+        "calendar_days_author": 12.6,
+        "churn_deletions": 127,
+        "churn_files": 15,
+        "churn_insertions": 348,
+        "commits_elapsed": 24,
+        "commits_elapsed_first_parent": 7,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 6,
+          "date": "2020-05-27",
+          "sha": "015bb9e6d9e296863776b8a92c483cad80b57d35"
+        },
+        {
+          "blamed_lines": 4,
+          "date": "2020-05-27",
+          "sha": "5d4dfc2340a71be68c2e82ef74d23b473fde4177"
+        }
+      ],
+      "subject": "Rust - Fix deserialization when ownership is needed"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/pre_tokenizers/byte_level.rs"
+      ],
+      "fix": "0756480b834c6d610a7677bd9e1e56de3bd25814",
+      "fix_date": "2020-04-16",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 37.3,
+        "calendar_days_author": 37.9,
+        "churn_deletions": 569,
+        "churn_files": 28,
+        "churn_insertions": 1672,
+        "commits_elapsed": 170,
+        "commits_elapsed_first_parent": 62,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2020-03-10",
+          "sha": "efbbfea5581b88db25702159eef17913b7b1eb1f"
+        }
+      ],
+      "subject": "Fix offsets (#238)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/pre_tokenizers/byte_level.rs",
+        "tokenizers/src/processors/roberta.rs",
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "0de276d2a9ee8cf18ff6c6509d83d1fa9c69c9d2",
+      "fix_date": "2020-04-16",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 32.2,
+        "calendar_days_author": 32.2,
+        "churn_deletions": 561,
+        "churn_files": 27,
+        "churn_insertions": 1577,
+        "commits_elapsed": 140,
+        "commits_elapsed_first_parent": 54,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 30,
+          "date": "2020-03-15",
+          "sha": "9fa11bf28baef8905e8e83e7562016a1077d12ed"
+        },
+        {
+          "blamed_lines": 14,
+          "date": "2020-03-06",
+          "sha": "8dcbc8377e96e5f25a4d16923460160d9702e0e6"
+        },
+        {
+          "blamed_lines": 9,
+          "date": "2020-04-08",
+          "sha": "695ab8388f5f1a7d63d8aaab9b3762312e0d5ac3"
+        },
+        {
+          "blamed_lines": 9,
+          "date": "2020-03-19",
+          "sha": "d953d58cee2b3b0d7946c79cd8cd83ad61350c0f"
+        },
+        {
+          "blamed_lines": 8,
+          "date": "2020-03-24",
+          "sha": "e72ca278a66182e83ae66a71177370687b494202"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2019-12-16",
+          "sha": "4c7f6e1f04dd804facd7c2a03e2225e69d0f3c58"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-03-10",
+          "sha": "d761d406cfe1366162d4bf450b5b51de052d9539"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-03-10",
+          "sha": "efbbfea5581b88db25702159eef17913b7b1eb1f"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-03-17",
+          "sha": "28ea29ef4621364fb862b91832c98b877ad2624e"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-02-03",
+          "sha": "6524f09e991c3a52c839d8eb01bfa41e81fde1d1"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-03-16",
+          "sha": "e0779c50b5b0fecaf636624c7d2af7b00d9aee46"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-12",
+          "sha": "fc9e81d4ab50f62d72d0db381465600105940743"
+        }
+      ],
+      "subject": "Fix offsets (#236)"
+    },
+    {
+      "blamed_files": [],
+      "fix": "f8d9f03a9e2e2d766579d4311157c3d5a7fb7462",
+      "fix_date": "2020-04-08",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Hotfix CHANGELOG"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/processors/roberta.rs"
+      ],
+      "fix": "c4ecc6f7ce7af40c558401a3ec9500732a17f9da",
+      "fix_date": "2020-04-08",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 65.2,
+        "calendar_days_author": 63.2,
+        "churn_deletions": 962,
+        "churn_files": 40,
+        "churn_insertions": 3216,
+        "commits_elapsed": 323,
+        "commits_elapsed_first_parent": 123,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2020-02-03",
+          "sha": "6524f09e991c3a52c839d8eb01bfa41e81fde1d1"
+        }
+      ],
+      "subject": "Fix roberta overflowings"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "695ab8388f5f1a7d63d8aaab9b3762312e0d5ac3",
+      "fix_date": "2020-04-08",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 24.0,
+        "calendar_days_author": 23.2,
+        "churn_deletions": 452,
+        "churn_files": 26,
+        "churn_insertions": 1339,
+        "commits_elapsed": 100,
+        "commits_elapsed_first_parent": 34,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-03-15",
+          "sha": "9fa11bf28baef8905e8e83e7562016a1077d12ed"
+        }
+      ],
+      "subject": "Fix overflowings offsets"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "b770f364280af33efeffea8f0003102cda8cf1b7",
+      "fix_date": "2020-04-01",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 71.2,
+        "calendar_days_author": 71.2,
+        "churn_deletions": 1023,
+        "churn_files": 41,
+        "churn_insertions": 3320,
+        "commits_elapsed": 340,
+        "commits_elapsed_first_parent": 134,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-21",
+          "sha": "048ab46089cc3342c18b71b919ca8509f6c398d3"
+        }
+      ],
+      "subject": "Rust - Hotfix special tokens with wrong id"
+    },
+    {
+      "blamed_files": [],
+      "fix": "73ad9a52af513fedb99177fa94df7394914e162b",
+      "fix_date": "2020-03-26",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "hotfix CHANGELOG - missing from previous commit"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/cli.rs",
+        "tokenizers/src/models/bpe/trainer.rs",
+        "tokenizers/src/models/wordpiece/trainer.rs",
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "04fb9e4ebe785a6b2fd428766853eb27ee894645",
+      "fix_date": "2020-03-26",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 100.7,
+        "calendar_days_author": 100.7,
+        "churn_deletions": 1386,
+        "churn_files": 47,
+        "churn_insertions": 5651,
+        "commits_elapsed": 605,
+        "commits_elapsed_first_parent": 282,
+        "releases_spanned": [
+          "v0.0.10",
+          "v0.0.11",
+          "v0.0.12",
+          "v0.0.13",
+          "v0.0.6",
+          "v0.0.7",
+          "v0.0.8",
+          "v0.0.9",
+          "v0.1.0",
+          "v0.1.1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 45,
+          "date": "2019-12-16",
+          "sha": "45c2d25a9f15cf284946cf0ac43f44b5f1634e85"
+        },
+        {
+          "blamed_lines": 22,
+          "date": "2019-12-16",
+          "sha": "4c7f6e1f04dd804facd7c2a03e2225e69d0f3c58"
+        },
+        {
+          "blamed_lines": 12,
+          "date": "2020-01-12",
+          "sha": "fc9e81d4ab50f62d72d0db381465600105940743"
+        },
+        {
+          "blamed_lines": 10,
+          "date": "2020-01-17",
+          "sha": "3895d14bf9a2bf6a0ed1a0966ae32524826ed4fb"
+        },
+        {
+          "blamed_lines": 8,
+          "date": "2020-03-15",
+          "sha": "9fa11bf28baef8905e8e83e7562016a1077d12ed"
+        },
+        {
+          "blamed_lines": 8,
+          "date": "2019-12-16",
+          "sha": "cc9f9107fa3a1b74cb0fd314a5b565f34d65d179"
+        },
+        {
+          "blamed_lines": 7,
+          "date": "2019-12-19",
+          "sha": "a8d68d516d2b38ae2325c0b4bfbfe38404ce0ef0"
+        },
+        {
+          "blamed_lines": 5,
+          "date": "2020-03-16",
+          "sha": "e0cfad510268fb56688d3601879384539e0cdc71"
+        },
+        {
+          "blamed_lines": 4,
+          "date": "2019-12-26",
+          "sha": "d1e59e09bf6c72956f1f76d19a2cbf7839cb1137"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2019-12-19",
+          "sha": "7f032b62df895e66ed84a57244897f91000dfabc"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-01-01",
+          "sha": "a7a5f9a67f4e6df0607aee2b55dc7e48da99f1f8"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-01-03",
+          "sha": "1bfe9fd0a7688e2a87b39b553b69c4a931e41c4f"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-01-03",
+          "sha": "1dda76659fae324f0f946f43da9b31a03292a24f"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-02-01",
+          "sha": "661cc185a47323d73478dae6d6c1251706fecbbf"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2019-12-19",
+          "sha": "b7040e04126acfebcdd76a14fb96fcae70396167"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2019-12-28",
+          "sha": "f4df7f5e2acc56d337083ef1839b3bba3da795f4"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-19",
+          "sha": "076ba297fb623a4ddeb494e17e80f35566ab702c"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-02-05",
+          "sha": "42bc3cb21f083594f6f2f741dc7d9279468d04a4"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-03",
+          "sha": "466555badea554d65e1d191f044a31a6dfafd50e"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-11",
+          "sha": "4807894da6967bc2bcbb5adefe977f8334ba90c7"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-08",
+          "sha": "d2d5b1eae7eda63931a9ec80d5fe11a334087e19"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-02-26",
+          "sha": "dd4b4e3ebfd6c5788f563e5281c5f8373bf43a9b"
+        }
+      ],
+      "subject": "Merge pull request #202"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/cli.rs",
+        "tokenizers/src/pre_tokenizers/bert.rs",
+        "tokenizers/src/pre_tokenizers/byte_level.rs",
+        "tokenizers/src/pre_tokenizers/delimiter.rs",
+        "tokenizers/src/pre_tokenizers/metaspace.rs",
+        "tokenizers/src/pre_tokenizers/whitespace.rs",
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "523e173ddf5850f4b0b122565f80eaad45f2294b",
+      "fix_date": "2020-03-10",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 13.1,
+        "calendar_days_author": 13.1,
+        "churn_deletions": 355,
+        "churn_files": 19,
+        "churn_insertions": 922,
+        "commits_elapsed": 82,
+        "commits_elapsed_first_parent": 23,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 18,
+          "date": "2020-02-26",
+          "sha": "2667ec124ee43e77376a50c089c0ea0539c17b50"
+        },
+        {
+          "blamed_lines": 17,
+          "date": "2019-12-17",
+          "sha": "4d14b08afef2a2fa4709b86f46c92812d4454577"
+        },
+        {
+          "blamed_lines": 9,
+          "date": "2020-01-07",
+          "sha": "eaa23ac8e64326eacf08566f7e7871b499a70358"
+        },
+        {
+          "blamed_lines": 7,
+          "date": "2019-12-11",
+          "sha": "4807894da6967bc2bcbb5adefe977f8334ba90c7"
+        },
+        {
+          "blamed_lines": 6,
+          "date": "2019-12-29",
+          "sha": "22ffa716a1d9038bc1bd13bcabc8fe73e81edaf8"
+        },
+        {
+          "blamed_lines": 6,
+          "date": "2019-12-24",
+          "sha": "cf0e8917cd83f645d844620b59507db25b531bbb"
+        },
+        {
+          "blamed_lines": 5,
+          "date": "2019-12-28",
+          "sha": "f4df7f5e2acc56d337083ef1839b3bba3da795f4"
+        },
+        {
+          "blamed_lines": 4,
+          "date": "2019-12-31",
+          "sha": "90df08805407e1c1f5a3b68350b2c9e642ebf69a"
+        },
+        {
+          "blamed_lines": 4,
+          "date": "2019-12-29",
+          "sha": "ad9cc52d831768694cf0cdda149e5b1391d77dc2"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2019-12-28",
+          "sha": "35a8dfdd5571e3e2b93e3589077b5b000c335238"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-02-04",
+          "sha": "6165910ca66b6bfd9fd996aa38c4c0b2b6505953"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-01-17",
+          "sha": "8369b02312a2a68e793ca196715ac6f917cca369"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2019-12-11",
+          "sha": "3bdb849bb37e07ecc0851253e0d03111e94134ea"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2019-11-21",
+          "sha": "663644e041b259efcf01ae92cae9caee4c70a621"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2019-11-24",
+          "sha": "bafdc5e15744693d6eadd20a7ce9c2d9f31139b1"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-11-21",
+          "sha": "2419c14e42844e0b51a80ca0be4c346e1128b32c"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-11-29",
+          "sha": "27ac65c466e348119e6a5f71e370dc9a56066df0"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-03",
+          "sha": "466555badea554d65e1d191f044a31a6dfafd50e"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-28",
+          "sha": "4afcb1ef96910672af5a2f2397a648e7ff1edb1e"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-03",
+          "sha": "805dc58949f443f17710708cfeb2342faa68c0d8"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-07",
+          "sha": "cbdd2cf423dabcea2a43b3a6c52af5c1b5024e37"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-30",
+          "sha": "d163bbadaefbce6768f4e2210a09bcdaae8b8392"
+        }
+      ],
+      "subject": "Merge pull request #188"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/encoding.rs",
+        "tokenizers/src/utils.rs"
+      ],
+      "fix": "f8f0702d980be8977be3a19a5d05beae4d683b68",
+      "fix_date": "2020-02-29",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 78.9,
+        "calendar_days_author": 79.0,
+        "churn_deletions": 1432,
+        "churn_files": 42,
+        "churn_insertions": 5039,
+        "commits_elapsed": 519,
+        "commits_elapsed_first_parent": 282,
+        "releases_spanned": [
+          "v0.0.10",
+          "v0.0.11",
+          "v0.0.12",
+          "v0.0.13",
+          "v0.0.5",
+          "v0.0.6",
+          "v0.0.7",
+          "v0.0.8",
+          "v0.0.9",
+          "v0.1.0",
+          "v0.1.1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 7,
+          "date": "2019-12-12",
+          "sha": "f4cd78e98a8d4436dd4b357157511c27db4a8b76"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2019-12-17",
+          "sha": "5729d3656a61e5a764e0bbe62829b51c3927f623"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-02-03",
+          "sha": "68f99bb8220cf73f4977cd67eff6f63f5e24eecf"
+        }
+      ],
+      "subject": "Fix LongestFirst truncation strategy"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/pre_tokenizers/byte_level.rs"
+      ],
+      "fix": "b5f36d9ceb59c218b29efdbde64e33625a91929a",
+      "fix_date": "2020-02-26",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 59.5,
+        "calendar_days_author": 59.5,
+        "churn_deletions": 621,
+        "churn_files": 39,
+        "churn_insertions": 3225,
+        "commits_elapsed": 418,
+        "commits_elapsed_first_parent": 210,
+        "releases_spanned": [
+          "v0.0.12",
+          "v0.0.13",
+          "v0.1.0",
+          "v0.1.1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 4,
+          "date": "2019-12-29",
+          "sha": "ad9cc52d831768694cf0cdda149e5b1391d77dc2"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-31",
+          "sha": "90df08805407e1c1f5a3b68350b2c9e642ebf69a"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-02",
+          "sha": "f0f9aefd07f37ca23ea4698ede85b7e2bbf954a1"
+        }
+      ],
+      "subject": "Merge pull request #171"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/encoding.rs"
+      ],
+      "fix": "3adb220973cb7e0b6a404dd47e95303c7898b336",
+      "fix_date": "2020-02-03",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 48.2,
+        "calendar_days_author": 48.2,
+        "churn_deletions": 1126,
+        "churn_files": 36,
+        "churn_insertions": 3479,
+        "commits_elapsed": 369,
+        "commits_elapsed_first_parent": 191,
+        "releases_spanned": [
+          "v0.0.10",
+          "v0.0.11",
+          "v0.0.12",
+          "v0.0.13",
+          "v0.0.7",
+          "v0.0.8",
+          "v0.0.9",
+          "v0.1.0",
+          "v0.1.1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2019-12-17",
+          "sha": "4c51399b00cb9e5fbb2094d825e1ebb7106fa343"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-02-03",
+          "sha": "4a5d2b105354d5b2a7e227498e7b05a323ab2ae8"
+        }
+      ],
+      "subject": "Merge pull request #124"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/utils.rs"
+      ],
+      "fix": "6d532fedb1d3626328828304a5c39807733d2fa1",
+      "fix_date": "2020-01-30",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 43.8,
+        "calendar_days_author": 43.8,
+        "churn_deletions": 1001,
+        "churn_files": 34,
+        "churn_insertions": 3057,
+        "commits_elapsed": 332,
+        "commits_elapsed_first_parent": 173,
+        "releases_spanned": [
+          "v0.0.10",
+          "v0.0.11",
+          "v0.0.12",
+          "v0.0.13",
+          "v0.0.7",
+          "v0.0.8",
+          "v0.0.9",
+          "v0.1.0",
+          "v0.1.1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 4,
+          "date": "2019-12-17",
+          "sha": "5729d3656a61e5a764e0bbe62829b51c3927f623"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-12",
+          "sha": "f4cd78e98a8d4436dd4b357157511c27db4a8b76"
+        }
+      ],
+      "subject": "rust: fix `OnlyFirst` and `OnlySecond` truncation strategies (#112)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/pre_tokenizers/whitespace.rs"
+      ],
+      "fix": "c3cfc16b631a6b3709a1ce71f829640955af92b6",
+      "fix_date": "2020-01-20",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 61.6,
+        "calendar_days_author": 61.6,
+        "churn_deletions": 1013,
+        "churn_files": 35,
+        "churn_insertions": 4299,
+        "commits_elapsed": 395,
+        "commits_elapsed_first_parent": 255,
+        "releases_spanned": [
+          "v0.0.10",
+          "v0.0.11",
+          "v0.0.12",
+          "v0.0.13",
+          "v0.0.3",
+          "v0.0.4",
+          "v0.0.5",
+          "v0.0.6",
+          "v0.0.7",
+          "v0.0.8",
+          "v0.0.9",
+          "v0.1.0",
+          "v0.1.1"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2019-11-19",
+          "sha": "39afc64e13cbdc7b659aa05fa8d521a24261b8d0"
+        }
+      ],
+      "subject": "Merge pull request #92"
+    },
+    {
+      "blamed_files": [],
+      "fix": "aa0b644c1102d230be2e7eca66d61ced2604d9c1",
+      "fix_date": "2020-01-10",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Cargo.toml fix number of keywords"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/normalizer.rs"
+      ],
+      "fix": "f86b8d412bd48a9756b7dc7b442790adf135832a",
+      "fix_date": "2020-01-08",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 11.1,
+        "calendar_days_author": 11.1,
+        "churn_deletions": 583,
+        "churn_files": 30,
+        "churn_insertions": 2186,
+        "commits_elapsed": 146,
+        "commits_elapsed_first_parent": 83,
+        "releases_spanned": [
+          "v0.0.12",
+          "v0.0.13"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2019-12-28",
+          "sha": "162829b7a99083900dab1f1efa87a81622bb6ef9"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-08",
+          "sha": "7ac45472b6e2e4c9d6b64280b1cedb4586acbacd"
+        }
+      ],
+      "subject": "Fix NormalizedString split_off bis2"
+    },
+    {
+      "blamed_files": [],
+      "fix": "7ac45472b6e2e4c9d6b64280b1cedb4586acbacd",
+      "fix_date": "2020-01-08",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix NormalizedString split_off bis"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/normalizer.rs"
+      ],
+      "fix": "3b2e19f52c8e85c2b09e7a2ba9c772688cf2421c",
+      "fix_date": "2020-01-08",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 11.1,
+        "calendar_days_author": 11.1,
+        "churn_deletions": 581,
+        "churn_files": 30,
+        "churn_insertions": 2182,
+        "commits_elapsed": 144,
+        "commits_elapsed_first_parent": 81,
+        "releases_spanned": [
+          "v0.0.12",
+          "v0.0.13"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2019-12-28",
+          "sha": "162829b7a99083900dab1f1efa87a81622bb6ef9"
+        }
+      ],
+      "subject": "Fix NormalizedString split_off"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/wordpiece/trainer.rs"
+      ],
+      "fix": "742974f0c998790024b73cf7a4f1ec6e82744aee",
+      "fix_date": "2020-01-06",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 3.0,
+        "calendar_days_author": 3.2,
+        "churn_deletions": 13,
+        "churn_files": 5,
+        "churn_insertions": 63,
+        "commits_elapsed": 23,
+        "commits_elapsed_first_parent": 19,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2020-01-03",
+          "sha": "1dda76659fae324f0f946f43da9b31a03292a24f"
+        }
+      ],
+      "subject": "Fix default for WordPieceTrainerBuilder"
+    },
+    {
+      "blamed_files": [],
+      "fix": "c5359ddd47ceb55faf48584bfca32df63f2f3ea0",
+      "fix_date": "2020-01-02",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix benchmarks"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/normalizers/bert.rs",
+        "tokenizers/src/tokenizer/normalizer.rs"
+      ],
+      "fix": "c8a5d2e32aeac9f2d4dfc6abda6530ac1313cba2",
+      "fix_date": "2020-01-02",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 5.0,
+        "calendar_days_author": 5.0,
+        "churn_deletions": 507,
+        "churn_files": 18,
+        "churn_insertions": 1290,
+        "commits_elapsed": 50,
+        "commits_elapsed_first_parent": 24,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 12,
+          "date": "2019-12-28",
+          "sha": "162829b7a99083900dab1f1efa87a81622bb6ef9"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2019-12-29",
+          "sha": "79b96dccd0dd6945ab4e505eac5bb2ad9f35e13f"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-29",
+          "sha": "cda9fae992ff4c11f32de08b262d76ed6e2cc75a"
+        }
+      ],
+      "subject": "NormalizedString - Fix removal around edges"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/normalizer.rs"
+      ],
+      "fix": "66b6211705f65947d62ea313b938302d97b2928a",
+      "fix_date": "2020-01-02",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 5.0,
+        "calendar_days_author": 5.0,
+        "churn_deletions": 495,
+        "churn_files": 18,
+        "churn_insertions": 1229,
+        "commits_elapsed": 49,
+        "commits_elapsed_first_parent": 23,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-28",
+          "sha": "162829b7a99083900dab1f1efa87a81622bb6ef9"
+        }
+      ],
+      "subject": "NormalizedString - Fix added chars at beginning"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/bpe/trainer.rs"
+      ],
+      "fix": "a5c5e5840f89571d3717d38eab4d8fa0ba4ddccd",
+      "fix_date": "2020-01-01",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 0.0,
+        "churn_deletions": 9,
+        "churn_files": 1,
+        "churn_insertions": 12,
+        "commits_elapsed": 1,
+        "commits_elapsed_first_parent": 1,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2020-01-01",
+          "sha": "a7a5f9a67f4e6df0607aee2b55dc7e48da99f1f8"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2020-01-01",
+          "sha": "ebf22198f3e054a5da5ac53ede5f8d91d31b1557"
+        }
+      ],
+      "subject": "Oops - Fix trainer"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/bpe/model.rs"
+      ],
+      "fix": "f3aef0e4e6f56ebfd834b5eeef5fe9f689e1fefb",
+      "fix_date": "2019-12-31",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.4,
+        "calendar_days_author": 0.4,
+        "churn_deletions": 8,
+        "churn_files": 3,
+        "churn_insertions": 44,
+        "commits_elapsed": 3,
+        "commits_elapsed_first_parent": 3,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 4,
+          "date": "2019-12-31",
+          "sha": "f28ca58fd9e5baa1c1edaf2190fe0bc04147a9a6"
+        }
+      ],
+      "subject": "Fix BPE saving (u32 => String)"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/pre_tokenizers/byte_level.rs"
+      ],
+      "fix": "90df08805407e1c1f5a3b68350b2c9e642ebf69a",
+      "fix_date": "2019-12-31",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 2.6,
+        "calendar_days_author": 2.6,
+        "churn_deletions": 291,
+        "churn_files": 12,
+        "churn_insertions": 554,
+        "commits_elapsed": 25,
+        "commits_elapsed_first_parent": 8,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2019-12-29",
+          "sha": "ad9cc52d831768694cf0cdda149e5b1391d77dc2"
+        }
+      ],
+      "subject": "Fix ByteLevel PreTokenizer"
+    },
+    {
+      "blamed_files": [],
+      "fix": "f28ca58fd9e5baa1c1edaf2190fe0bc04147a9a6",
+      "fix_date": "2019-12-31",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "[Fix #17] BPE & WordPiece models saving"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/mod.rs"
+      ],
+      "fix": "d1e59e09bf6c72956f1f76d19a2cbf7839cb1137",
+      "fix_date": "2019-12-26",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 9.8,
+        "calendar_days_author": 9.8,
+        "churn_deletions": 562,
+        "churn_files": 15,
+        "churn_insertions": 740,
+        "commits_elapsed": 45,
+        "commits_elapsed_first_parent": 39,
+        "releases_spanned": [
+          "v0.0.6",
+          "v0.0.7",
+          "v0.0.8",
+          "v0.0.9"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-16",
+          "sha": "45c2d25a9f15cf284946cf0ac43f44b5f1634e85"
+        }
+      ],
+      "subject": "Fix a bug when adding special tokens"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/pre_tokenizers/byte_level.rs"
+      ],
+      "fix": "cf0e8917cd83f645d844620b59507db25b531bbb",
+      "fix_date": "2019-12-24",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 24.6,
+        "calendar_days_author": 24.6,
+        "churn_deletions": 689,
+        "churn_files": 24,
+        "churn_insertions": 1913,
+        "commits_elapsed": 95,
+        "commits_elapsed_first_parent": 89,
+        "releases_spanned": [
+          "v0.0.3",
+          "v0.0.4",
+          "v0.0.5",
+          "v0.0.6",
+          "v0.0.7",
+          "v0.0.8",
+          "v0.0.9"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 8,
+          "date": "2019-11-29",
+          "sha": "27ac65c466e348119e6a5f71e370dc9a56066df0"
+        }
+      ],
+      "subject": "Fix whitespace handling in ByteLevel"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/tokenizer/encoding.rs"
+      ],
+      "fix": "2159123d7c6f4ea51955e4472b704388337fed4f",
+      "fix_date": "2019-12-23",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 11.0,
+        "calendar_days_author": 11.0,
+        "churn_deletions": 201,
+        "churn_files": 19,
+        "churn_insertions": 1035,
+        "commits_elapsed": 50,
+        "commits_elapsed_first_parent": 44,
+        "releases_spanned": [
+          "v0.0.5",
+          "v0.0.6",
+          "v0.0.7",
+          "v0.0.8"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-12",
+          "sha": "da45a1d6d0a2465c1170fa7da41fdc8e342e2a10"
+        }
+      ],
+      "subject": "Fix truncate"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/processors/bert.rs"
+      ],
+      "fix": "e4ce050b73fef42edd655f8c6236f64d95bb56a9",
+      "fix_date": "2019-12-16",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 4.0,
+        "calendar_days_author": 4.1,
+        "churn_deletions": 521,
+        "churn_files": 15,
+        "churn_insertions": 830,
+        "commits_elapsed": 25,
+        "commits_elapsed_first_parent": 25,
+        "releases_spanned": [
+          "v0.0.5"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2019-12-12",
+          "sha": "34ffe6dc1a40ac62c4eaaf12f54fe20b67e1f5a7"
+        }
+      ],
+      "subject": "Fix BertProcessing overflowing usize"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/models/wordpiece/mod.rs"
+      ],
+      "fix": "13df36ca55db05df3fd63357027db80b787f947d",
+      "fix_date": "2019-12-12",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 1.1,
+        "calendar_days_author": 1.1,
+        "churn_deletions": 44,
+        "churn_files": 6,
+        "churn_insertions": 58,
+        "commits_elapsed": 3,
+        "commits_elapsed_first_parent": 3,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2019-12-11",
+          "sha": "fbebbec585511d9523af53dcde77da73d4ceed0c"
+        }
+      ],
+      "subject": "fix error display"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/cli.rs",
+        "tokenizers/src/pre_tokenizers/whitespace.rs"
+      ],
+      "fix": "3bdb849bb37e07ecc0851253e0d03111e94134ea",
+      "fix_date": "2019-12-11",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 21.5,
+        "calendar_days_author": 21.6,
+        "churn_deletions": 459,
+        "churn_files": 18,
+        "churn_insertions": 984,
+        "commits_elapsed": 66,
+        "commits_elapsed_first_parent": 66,
+        "releases_spanned": [
+          "v0.0.3",
+          "v0.0.4"
+        ]
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2019-11-19",
+          "sha": "39afc64e13cbdc7b659aa05fa8d521a24261b8d0"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2019-11-18",
+          "sha": "872aa86b71a361941f820be94e9e299c21465a86"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2019-12-10",
+          "sha": "132a0fc4b46b645c6b679f5d02f9ac8756ca025e"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-11-29",
+          "sha": "27ac65c466e348119e6a5f71e370dc9a56066df0"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-11-01",
+          "sha": "9fd10ca1c5cf13790ca3c8e2430da83ad2db1d60"
+        }
+      ],
+      "subject": "Fix cli + whitespace"
+    },
+    {
+      "blamed_files": [
+        "tokenizers/src/pre_tokenizers/byte_level.rs"
+      ],
+      "fix": "663644e041b259efcf01ae92cae9caee4c70a621",
+      "fix_date": "2019-11-21",
+      "flags": [],
+      "in_window": false,
+      "lifetime": {
+        "calendar_days": 0.2,
+        "calendar_days_author": 0.2,
+        "churn_deletions": 46,
+        "churn_files": 6,
+        "churn_insertions": 165,
+        "commits_elapsed": 5,
+        "commits_elapsed_first_parent": 5,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 9,
+          "date": "2019-11-21",
+          "sha": "2419c14e42844e0b51a80ca0be4c346e1128b32c"
+        }
+      ],
+      "subject": "Fix ByteLevel Decoder"
+    }
+  ],
+  "head": "fb49a29223724a96f26e061bec8ec7517aa14177",
+  "method": "A (SZZ-style, git blame -w on first parent)",
+  "path": "tokenizers",
+  "summary": {
+    "fixes": 109,
+    "in_window": 4,
+    "window_start": "2025-03-13",
+    "with_introducer": 93
+  }
+}
