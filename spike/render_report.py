@@ -4,17 +4,21 @@ import hashlib, json
 from pathlib import Path
 
 RES = Path(__file__).resolve().parent / "results"
+ROOT = Path(__file__).resolve().parent.parent
 
 
-def main() -> None:
+def main(res: Path = RES) -> None:
+    global RES
+    RES = res
     body = (RES / "report.json").read_text()
     rep, rec = json.loads(body), json.loads((RES / "receipt.json").read_text())
-    smoke = json.loads((RES / "smoke-native-macos.report.json").read_text())
-    assert rec["outputs"]["spike/results/report.json"] == hashlib.sha256(body.encode()).hexdigest(), \
+    smoke_f = Path(__file__).resolve().parent / "results" / "smoke-native-macos.report.json"
+    smoke = json.loads(smoke_f.read_text())
+    assert rec["outputs"][str((RES / "report.json").relative_to(ROOT))] == hashlib.sha256(body.encode()).hexdigest(), \
         "receipt hash does not match report.json"
     s, m, rows = rep["subject"], rep["method"], rep["results"]
     lines = [
-        f"# BUGAGE-1 feasibility spike — verdict: **{rep['verdict']}**", "",
+        f"# {rep['ticket']} feasibility spike — verdict: **{rep['verdict']}**", "",
         f"Subject: `{s['repo']}` crate path `{s['crate_path']}/` at HEAD `{s['head']}` "
         f"({s['first_parent_commits_touching_crate']} first-parent commits touch the crate; "
         f"sampled window {s['history_window'][0]} → {s['history_window'][1]}).", "",
@@ -79,7 +83,7 @@ def main() -> None:
         + (f", then `{rec['post_processing']}`" if rec.get("post_processing") else ""),
         f"- Generated: {rec['generated_utc']}",
         f"- Versions: {json.dumps(rec['versions'])}",
-        f"- `report.json` sha256: `{rec['outputs']['spike/results/report.json']}`",
+        f"- `report.json` sha256: `{rec['outputs'][str((RES / 'report.json').relative_to(ROOT))]}`",
         "", "## What this does and does not prove", "",
         "- COVERED: build + workspace unit tests at the sampled commits, offline, repeated for flakiness.",
         "- PARTIAL: dependency versions for lockfile-less commits are today's, not historical.",
@@ -91,4 +95,5 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    main(Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else RES)

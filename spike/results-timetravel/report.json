@@ -1,0 +1,1698 @@
+{
+  "built_and_tested_share": 0.9,
+  "counts": {
+    "BUILD_FAILED": 1,
+    "BUILT_AND_TESTED": 18,
+    "NOT_TESTED": 1
+  },
+  "method": {
+    "build": "cargo build --all --offline in docker --network none",
+    "decision_rule": "GO iff BUILT_AND_TESTED share >= 70% and no FLAKY",
+    "dependency_resolution": "lockfile-less commits: crates.io index filtered to versions published by the commit time (yank state reset); lockfile commits: committed lock",
+    "not_covered": "integration tests under tests/ (need downloaded fixtures), benches, bindings",
+    "sampling": "20 evenly spaced first-parent commits touching tokenizers/",
+    "test": "cargo test --all --lib --offline (all workspace members' unit tests) in docker --network none, repeated 2x",
+    "toolchain_rule": "latest stable released >=14 days before commit date, raised to rust-version; aarch64-unknown-linux-gnu in bug-age-spike:3"
+  },
+  "results": [
+    {
+      "date": "2019-11-01",
+      "edition": "2018",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 0,
+      "license": null,
+      "lockfile_committed": true,
+      "pinned_toolchain_file": null,
+      "reason": "build ok but zero unit tests executed",
+      "rust_version_field": null,
+      "sha": "2b72a5737f77aae947ef255abadf9fa423dc685d",
+      "status": "NOT_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.38 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "fetch": {
+          "cmd": "cargo +1.38 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.2
+        },
+        "test_1": {
+          "cmd": "cargo +1.38 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "test_2": {
+          "cmd": "cargo +1.38 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.1
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.38 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 0
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 0
+        }
+      ],
+      "toolchain": "1.38"
+    },
+    {
+      "date": "2019-12-11",
+      "edition": "2018",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 38,
+      "license": null,
+      "lockfile_committed": true,
+      "pinned_toolchain_file": null,
+      "reason": "compile error",
+      "rust_version_field": null,
+      "sha": "4807894da6967bc2bcbb5adefe977f8334ba90c7",
+      "status": "BUILD_FAILED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.39 build --all --offline",
+          "exit": 101,
+          "hint": "compile error",
+          "network_none": true,
+          "seconds": 5.0,
+          "tail": [
+            "32 |     fn pre_tokenize(&self, s: &str) -> Result<Vec<String>>;",
+            "   |                                        ------------------- type in trait",
+            "   |",
+            "   = note: expected type `fn(&pre_tokenizers::whitespace::Whitespace, &str) -> std::result::Result<std::vec::Vec<std::string::String>, std::boxed::Box<(dyn std::error::Error + std::marker::Send + std::marker::Sync + 'static)>>`",
+            "              found type `fn(&pre_tokenizers::whitespace::Whitespace, &str) -> std::vec::Vec<std::string::String>`",
+            "",
+            "error: aborting due to previous error",
+            "",
+            "For more information about this error, try `rustc --explain E0053`.",
+            "error: could not compile `tokenizers-lib`.",
+            "warning: build failed, waiting for other jobs to finish...",
+            "error: build failed"
+          ]
+        },
+        "fetch": {
+          "cmd": "cargo +1.39 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.39 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "toolchain": "1.39"
+    },
+    {
+      "date": "2019-12-23",
+      "edition": "2018",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 75,
+      "license": null,
+      "lockfile_committed": true,
+      "pinned_toolchain_file": null,
+      "reason": "13 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "c0ed873c4d2b9f2ff5c8d3a5f255fedfff1a859e",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.39 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 6.7
+        },
+        "fetch": {
+          "cmd": "cargo +1.39 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.2
+        },
+        "test_1": {
+          "cmd": "cargo +1.39 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 2.3
+        },
+        "test_2": {
+          "cmd": "cargo +1.39 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.39 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 13
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 13
+        }
+      ],
+      "toolchain": "1.39"
+    },
+    {
+      "date": "2020-01-03",
+      "edition": "2018",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-merges.txt"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-vocab.json"
+        }
+      ],
+      "index": 113,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "26 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "805dc58949f443f17710708cfeb2342faa68c0d8",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.40 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 6.7
+        },
+        "fetch": {
+          "cmd": "cargo +1.40 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.7
+        },
+        "test_1": {
+          "cmd": "cargo +1.40 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 8.1
+        },
+        "test_2": {
+          "cmd": "cargo +1.40 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.40 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 26
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 26
+        }
+      ],
+      "time_travel": {
+        "crates": 1206,
+        "cutoff": "2020-01-04T01:23:58Z",
+        "root_crates": 12,
+        "unyanked": 1310,
+        "versions": 21764
+      },
+      "toolchain": "1.40"
+    },
+    {
+      "date": "2020-02-03",
+      "edition": "2018",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-$*"
+        }
+      ],
+      "index": 151,
+      "license": "Apache-2.0",
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "31 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "6524f09e991c3a52c839d8eb01bfa41e81fde1d1",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.40 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 7.6
+        },
+        "fetch": {
+          "cmd": "cargo +1.40 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.8
+        },
+        "test_1": {
+          "cmd": "cargo +1.40 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 10.6
+        },
+        "test_2": {
+          "cmd": "cargo +1.40 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.40 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 31
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 31
+        }
+      ],
+      "time_travel": {
+        "crates": 1267,
+        "cutoff": "2020-02-03T10:39:48Z",
+        "root_crates": 13,
+        "unyanked": 1348,
+        "versions": 23116
+      },
+      "toolchain": "1.40"
+    },
+    {
+      "date": "2020-03-26",
+      "edition": "2018",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-$*"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-$*"
+        }
+      ],
+      "index": 188,
+      "license": "Apache-2.0",
+      "lockfile_committed": false,
+      "pinned_toolchain_file": "stable",
+      "reason": "42 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "6c232886b87dfa4911dd5b12fc2e943d012876c0",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.41 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 11.7
+        },
+        "fetch": {
+          "cmd": "cargo +1.41 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.8
+        },
+        "test_1": {
+          "cmd": "cargo +1.41 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 12.7
+        },
+        "test_2": {
+          "cmd": "cargo +1.41 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.41 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 42
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 42
+        }
+      ],
+      "time_travel": {
+        "crates": 1321,
+        "cutoff": "2020-03-26T21:08:42Z",
+        "root_crates": 13,
+        "unyanked": 1396,
+        "versions": 24319
+      },
+      "toolchain": "1.41"
+    },
+    {
+      "date": "2020-06-11",
+      "edition": "2018",
+      "fixture_dependent_test_files": 1,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-$*"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-$*"
+        }
+      ],
+      "index": 226,
+      "license": "Apache-2.0",
+      "lockfile_committed": false,
+      "pinned_toolchain_file": "stable",
+      "reason": "43 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "bb68ec3414092e7626d31f35b75eb6c00d8d478f",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.43 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 15.1
+        },
+        "fetch": {
+          "cmd": "cargo +1.43 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.9
+        },
+        "test_1": {
+          "cmd": "cargo +1.43 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 8.3
+        },
+        "test_2": {
+          "cmd": "cargo +1.43 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.1
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.43 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 43
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 43
+        }
+      ],
+      "time_travel": {
+        "crates": 1518,
+        "cutoff": "2020-06-11T18:22:58Z",
+        "root_crates": 15,
+        "unyanked": 1621,
+        "versions": 27466
+      },
+      "toolchain": "1.43"
+    },
+    {
+      "date": "2020-08-03",
+      "edition": "2018",
+      "fixture_dependent_test_files": 1,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-$*"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-$*"
+        }
+      ],
+      "index": 264,
+      "license": "Apache-2.0",
+      "lockfile_committed": false,
+      "pinned_toolchain_file": "stable",
+      "reason": "59 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "fcc68f27f6b0efab5b4cd0c61faa97ef2c7f3568",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.45 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 14.2
+        },
+        "fetch": {
+          "cmd": "cargo +1.45 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.8
+        },
+        "test_1": {
+          "cmd": "cargo +1.45 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 10.5
+        },
+        "test_2": {
+          "cmd": "cargo +1.45 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.45 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 59
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 59
+        }
+      ],
+      "time_travel": {
+        "crates": 1568,
+        "cutoff": "2020-08-03T20:27:11Z",
+        "root_crates": 16,
+        "unyanked": 1684,
+        "versions": 28515
+      },
+      "toolchain": "1.45"
+    },
+    {
+      "date": "2020-08-31",
+      "edition": "2018",
+      "fixture_dependent_test_files": 1,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-$*"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-$*"
+        }
+      ],
+      "index": 301,
+      "license": "Apache-2.0",
+      "lockfile_committed": false,
+      "pinned_toolchain_file": "stable",
+      "reason": "63 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "857948e5b8b2cf2c4b566c3d81bf6b9cc995bb3f",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.45 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 11.2
+        },
+        "fetch": {
+          "cmd": "cargo +1.45 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.2
+        },
+        "test_1": {
+          "cmd": "cargo +1.45 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 7.3
+        },
+        "test_2": {
+          "cmd": "cargo +1.45 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.45 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 63
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 63
+        }
+      ],
+      "time_travel": {
+        "crates": 1603,
+        "cutoff": "2020-08-31T18:05:39Z",
+        "root_crates": 16,
+        "unyanked": 1704,
+        "versions": 29038
+      },
+      "toolchain": "1.45"
+    },
+    {
+      "date": "2020-09-02",
+      "edition": "2018",
+      "fixture_dependent_test_files": 2,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-$*"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-$*"
+        },
+        {
+          "http": "403",
+          "url": "https://storage.googleapis.com/tokenizers/unigram$*"
+        }
+      ],
+      "index": 339,
+      "license": "Apache-2.0",
+      "lockfile_committed": false,
+      "pinned_toolchain_file": "stable",
+      "reason": "78 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "481f3bd97612edde7047e07512aa164e5b26ab98",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.45 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 12.9
+        },
+        "fetch": {
+          "cmd": "cargo +1.45 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.2
+        },
+        "test_1": {
+          "cmd": "cargo +1.45 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 8.4
+        },
+        "test_2": {
+          "cmd": "cargo +1.45 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.45 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 78
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 78
+        }
+      ],
+      "time_travel": {
+        "crates": 1605,
+        "cutoff": "2020-09-02T14:32:50Z",
+        "root_crates": 21,
+        "unyanked": 1705,
+        "versions": 29075
+      },
+      "toolchain": "1.45"
+    },
+    {
+      "date": "2020-09-24",
+      "edition": "2018",
+      "fixture_dependent_test_files": 2,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-$*"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-$*"
+        },
+        {
+          "http": "403",
+          "url": "https://storage.googleapis.com/tokenizers/unigram$*"
+        }
+      ],
+      "index": 377,
+      "license": "Apache-2.0",
+      "lockfile_committed": false,
+      "pinned_toolchain_file": "stable",
+      "reason": "99 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "98a30eead16881eb9e59f489a817fc6362c9f7e1",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.46 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 12.9
+        },
+        "fetch": {
+          "cmd": "cargo +1.46 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.3
+        },
+        "test_1": {
+          "cmd": "cargo +1.46 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 8.0
+        },
+        "test_2": {
+          "cmd": "cargo +1.46 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.46 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.4
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 99
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 99
+        }
+      ],
+      "time_travel": {
+        "crates": 1617,
+        "cutoff": "2020-09-24T06:57:02Z",
+        "root_crates": 21,
+        "unyanked": 1717,
+        "versions": 29412
+      },
+      "toolchain": "1.46"
+    },
+    {
+      "date": "2020-11-09",
+      "edition": "2018",
+      "fixture_dependent_test_files": 3,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v1-tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-pipeline/tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-quicktour/tokenizer.json"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-$*"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-$*"
+        },
+        {
+          "http": "403",
+          "url": "https://storage.googleapis.com/tokenizers/roberta.json"
+        },
+        {
+          "http": "403",
+          "url": "https://storage.googleapis.com/tokenizers/unigram$*"
+        }
+      ],
+      "index": 415,
+      "license": "Apache-2.0",
+      "lockfile_committed": false,
+      "pinned_toolchain_file": "stable",
+      "reason": "115 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "d3d9f2c76b5d43d064fe80007ce3323cf9d0f97d",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.47 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 14.3
+        },
+        "fetch": {
+          "cmd": "cargo +1.47 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.7
+        },
+        "test_1": {
+          "cmd": "cargo +1.47 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 9.2
+        },
+        "test_2": {
+          "cmd": "cargo +1.47 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.47 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 115
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 115
+        }
+      ],
+      "time_travel": {
+        "crates": 1708,
+        "cutoff": "2020-11-09T21:02:07Z",
+        "root_crates": 21,
+        "unyanked": 1879,
+        "versions": 30981
+      },
+      "toolchain": "1.47"
+    },
+    {
+      "date": "2021-05-20",
+      "edition": "2018",
+      "fixture_dependent_test_files": 4,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://huggingface.co/Narsil/small/raw/main/roberta.json"
+        },
+        {
+          "http": "404",
+          "url": "https://huggingface.co/Narsil/small/raw/main/unigram$*"
+        },
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v1-tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-pipeline/tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-quicktour/tokenizer.json"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-$*"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-$*"
+        }
+      ],
+      "index": 452,
+      "license": "Apache-2.0",
+      "lockfile_committed": false,
+      "pinned_toolchain_file": "stable",
+      "reason": "131 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "2e2e7558f71bb4e5de8fff9f5f3aabaf11ef7de9",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.51 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 13.6
+        },
+        "fetch": {
+          "cmd": "cargo +1.51 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.7
+        },
+        "test_1": {
+          "cmd": "cargo +1.51 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 10.1
+        },
+        "test_2": {
+          "cmd": "cargo +1.51 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.51 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 131
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 131
+        }
+      ],
+      "time_travel": {
+        "crates": 2169,
+        "cutoff": "2021-05-20T13:30:09Z",
+        "root_crates": 21,
+        "unyanked": 2303,
+        "versions": 39224
+      },
+      "toolchain": "1.51"
+    },
+    {
+      "date": "2022-02-28",
+      "edition": "2018",
+      "fixture_dependent_test_files": 4,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://huggingface.co/Narsil/small/raw/main/roberta.json"
+        },
+        {
+          "http": "404",
+          "url": "https://huggingface.co/Narsil/small/raw/main/unigram$*"
+        },
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v1-tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-pipeline/tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-quicktour/tokenizer.json"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-$*"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-$*"
+        }
+      ],
+      "index": 490,
+      "license": "Apache-2.0",
+      "lockfile_committed": false,
+      "pinned_toolchain_file": "stable",
+      "reason": "146 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "a4a68de98af65bd1d5e0fe4faee7a24cfc34a753",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.58 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 19.4
+        },
+        "fetch": {
+          "cmd": "cargo +1.58 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.8
+        },
+        "test_1": {
+          "cmd": "cargo +1.58 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 10.5
+        },
+        "test_2": {
+          "cmd": "cargo +1.58 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.3
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.58 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.4
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 146
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 146
+        }
+      ],
+      "time_travel": {
+        "crates": 2734,
+        "cutoff": "2022-02-28T10:16:46Z",
+        "root_crates": 28,
+        "unyanked": 3065,
+        "versions": 57819
+      },
+      "toolchain": "1.58"
+    },
+    {
+      "date": "2023-01-18",
+      "edition": "2018",
+      "fixture_dependent_test_files": 4,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://huggingface.co/Narsil/small/raw/main/roberta.json"
+        },
+        {
+          "http": "404",
+          "url": "https://huggingface.co/Narsil/small/raw/main/unigram$*"
+        },
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v1-tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-pipeline/tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-quicktour/tokenizer.json"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-$*"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-$*"
+        }
+      ],
+      "index": 528,
+      "license": "Apache-2.0",
+      "lockfile_committed": false,
+      "pinned_toolchain_file": "stable",
+      "reason": "157 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "33a57e64183808eea106e956df97571aa768822a",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.66 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 18.0
+        },
+        "fetch": {
+          "cmd": "cargo +1.66 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 2.1
+        },
+        "test_1": {
+          "cmd": "cargo +1.66 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 10.2
+        },
+        "test_2": {
+          "cmd": "cargo +1.66 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.3
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.66 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 157
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 157
+        }
+      ],
+      "time_travel": {
+        "crates": 3053,
+        "cutoff": "2023-01-18T08:29:15Z",
+        "root_crates": 31,
+        "unyanked": 3494,
+        "versions": 67153
+      },
+      "toolchain": "1.66"
+    },
+    {
+      "date": "2023-10-05",
+      "edition": "2018",
+      "fixture_dependent_test_files": 4,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://huggingface.co/Narsil/small/raw/main/roberta.json"
+        },
+        {
+          "http": "404",
+          "url": "https://huggingface.co/Narsil/small/raw/main/unigram$*"
+        },
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v1-tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-pipeline/tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-quicktour/tokenizer.json"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-$*"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-$*"
+        }
+      ],
+      "index": 565,
+      "license": "Apache-2.0",
+      "lockfile_committed": false,
+      "pinned_toolchain_file": "stable",
+      "reason": "173 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "aed491df8cae10a48d51fba5a6f55b1f16dc75b8",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.72 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 11.8
+        },
+        "fetch": {
+          "cmd": "cargo +1.72 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 3.0
+        },
+        "test_1": {
+          "cmd": "cargo +1.72 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 11.2
+        },
+        "test_2": {
+          "cmd": "cargo +1.72 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.3
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.72 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.4
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 173
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 173
+        }
+      ],
+      "time_travel": {
+        "crates": 3932,
+        "cutoff": "2023-10-05T13:33:58Z",
+        "root_crates": 30,
+        "unyanked": 4474,
+        "versions": 88059
+      },
+      "toolchain": "1.72"
+    },
+    {
+      "date": "2024-08-06",
+      "edition": "2018",
+      "fixture_dependent_test_files": 4,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://huggingface.co/Narsil/small/raw/main/roberta.json"
+        },
+        {
+          "http": "404",
+          "url": "https://huggingface.co/Narsil/small/raw/main/unigram$*"
+        },
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v1-tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-pipeline/tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-quicktour/tokenizer.json"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-$*"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-$*"
+        }
+      ],
+      "index": 603,
+      "license": "Apache-2.0",
+      "lockfile_committed": false,
+      "pinned_toolchain_file": "stable",
+      "reason": "184 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "adc82cb49a24e52804f950bd95ff8f625755d85a",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.79 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 9.5
+        },
+        "fetch": {
+          "cmd": "cargo +1.79 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 3.8
+        },
+        "test_1": {
+          "cmd": "cargo +1.79 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 8.5
+        },
+        "test_2": {
+          "cmd": "cargo +1.79 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.79 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 184
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 184
+        }
+      ],
+      "time_travel": {
+        "crates": 4681,
+        "cutoff": "2024-08-06T11:08:12Z",
+        "root_crates": 31,
+        "unyanked": 5479,
+        "versions": 110629
+      },
+      "toolchain": "1.79"
+    },
+    {
+      "date": "2025-03-13",
+      "edition": "2018",
+      "fixture_dependent_test_files": 5,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://huggingface.co/Narsil/small/raw/main/roberta.json"
+        },
+        {
+          "http": "404",
+          "url": "https://huggingface.co/Narsil/small/raw/main/unigram$*"
+        },
+        {
+          "http": "200",
+          "url": "https://huggingface.co/hf-internal-testing/llama3-tokenizer/resolve/main/tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v1-tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-pipeline/tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-quicktour/tokenizer.json"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-$*"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-$*"
+        }
+      ],
+      "index": 641,
+      "license": "Apache-2.0",
+      "lockfile_committed": false,
+      "pinned_toolchain_file": "stable",
+      "reason": "189 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "4383a25787cf366f5e8eaf12643b64f0ba548dc2",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.85 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 9.3
+        },
+        "fetch": {
+          "cmd": "cargo +1.85 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 4.3
+        },
+        "test_1": {
+          "cmd": "cargo +1.85 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 9.1
+        },
+        "test_2": {
+          "cmd": "cargo +1.85 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.85 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 189
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 189
+        }
+      ],
+      "time_travel": {
+        "crates": 5215,
+        "cutoff": "2025-03-13T12:01:41Z",
+        "root_crates": 31,
+        "unyanked": 5952,
+        "versions": 125731
+      },
+      "toolchain": "1.85"
+    },
+    {
+      "date": "2026-02-24",
+      "edition": "2018",
+      "fixture_dependent_test_files": 5,
+      "fixture_urls": [
+        {
+          "http": "200",
+          "url": "https://huggingface.co/Narsil/llama-tokenizer/resolve/main/tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://huggingface.co/Narsil/small/raw/main/roberta.json"
+        },
+        {
+          "http": "404",
+          "url": "https://huggingface.co/Narsil/small/raw/main/unigram$*"
+        },
+        {
+          "http": "200",
+          "url": "https://huggingface.co/hf-internal-testing/llama3-tokenizer/resolve/main/tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://norvig.com/big.txt"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/albert-base-v1-tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-pipeline/tokenizer.json"
+        },
+        {
+          "http": "200",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/anthony/doc-quicktour/tokenizer.json"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/bert-$*"
+        },
+        {
+          "http": "404",
+          "url": "https://s3.amazonaws.com/models.huggingface.co/bert/gpt2-$*"
+        }
+      ],
+      "index": 678,
+      "license": "Apache-2.0",
+      "lockfile_committed": false,
+      "pinned_toolchain_file": "stable",
+      "reason": "192 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "c58a47475cbd483a49d6ba3b1154cec3484ef613",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.93 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 7.2
+        },
+        "fetch": {
+          "cmd": "cargo +1.93 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 7.1
+        },
+        "test_1": {
+          "cmd": "cargo +1.93 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 6.8
+        },
+        "test_2": {
+          "cmd": "cargo +1.93 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.4
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.93 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 192
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 192
+        }
+      ],
+      "time_travel": {
+        "crates": 6488,
+        "cutoff": "2026-02-24T09:55:05Z",
+        "root_crates": 33,
+        "unyanked": 7026,
+        "versions": 184735
+      },
+      "toolchain": "1.93"
+    },
+    {
+      "date": "2026-10-07",
+      "edition": "2024",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 716,
+      "license": "Apache-2.0",
+      "lockfile_committed": true,
+      "pinned_toolchain_file": "stable",
+      "reason": "281 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "ff8ae1baabca0707b7fa9f22854652e231a933de",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.98 build --all --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 5.5
+        },
+        "fetch": {
+          "cmd": "cargo +1.98 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        },
+        "test_1": {
+          "cmd": "cargo +1.98 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 9.4
+        },
+        "test_2": {
+          "cmd": "cargo +1.98 test --all --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 1.0
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.98 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 281
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 281
+        }
+      ],
+      "toolchain": "1.98"
+    }
+  ],
+  "subject": {
+    "crate_path": "tokenizers",
+    "first_parent_commits_touching_crate": 717,
+    "head": "fb49a29223724a96f26e061bec8ec7517aa14177",
+    "history_window": [
+      "2019-11-01",
+      "2026-10-07"
+    ],
+    "repo": "https://github.com/huggingface/tokenizers.git"
+  },
+  "ticket": "BUGAGE-5",
+  "verdict": "GO"
+}
