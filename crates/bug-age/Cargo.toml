@@ -1,0 +1,9 @@
+[package]
+name = "bug-age"
+version = "0.1.0"
+description = "Measure how long bugs lived in a git repository"
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
