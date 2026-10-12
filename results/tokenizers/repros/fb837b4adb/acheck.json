@@ -1,0 +1,51 @@
+{
+  "repeats": 3,
+  "results": [
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "9770be566175dc9c44dd7dcaa00a57d0e4ca632b",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 1.0
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 10.6
+        }
+      ],
+      "toolchain": "1.40"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "8200112e9b4c977a90cedf87fd3cfac385793db7",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 0.8
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 3.4
+        }
+      ],
+      "toolchain": "1.40"
+    }
+  ],
+  "runner": "docker",
+  "test": "cargo test --test bugage_repro"
+}

@@ -3,7 +3,7 @@
 
 Throwaway evidence script (stdlib only). Every number in the report is produced here; nothing is
 hand-entered. Usage:  python3 spike/feasibility.py [--samples 20]
-Needs: git, docker (image built from spike/Dockerfile as bug-age-spike:3), network for clone/fetch.
+Needs: git, docker (image built from spike/Dockerfile as bug-age-spike:4), network for clone/fetch.
 Build and test steps run in a Linux container with --network none. A native macOS run was abandoned:
 the current Xcode linker rejects rlibs from old toolchains (see results/smoke-native-macos.*).
 """
@@ -29,7 +29,7 @@ SCRATCH = Path(os.environ.get("BUG_AGE_SCRATCH", Path.home() / ".cache" / "bug-a
 # and no commit is FLAKY.
 GO_MIN_SHARE = 0.70
 TEST_REPEATS = 2
-IMAGE = "bug-age-spike:3"
+IMAGE = "bug-age-spike:4"
 TARGET_VOLUME = "bugage-target"               # wiped before every commit
 SRC_VOLUME = "bugage-src"                     # commit tree, copied in with git archive; wiped per commit
 RUST_1_0 = dt.date(2015, 5, 15)            # stable cadence: one minor release every 42 days

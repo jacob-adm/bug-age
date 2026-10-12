@@ -1,0 +1,893 @@
+{
+  "build": "cargo test --test bugage_repro --no-run",
+  "commits_tested": 35,
+  "first_failing": "c2664ae13fe9ffc6491245a63f1ba1ae3d498c07",
+  "fix": "9a93c50c25c1e0b73a85584f327113bcbef5ac80",
+  "last_passing": null,
+  "non_monotonic": false,
+  "range_commits": 593,
+  "reason": "test already fails where it first compiles; commits up to bb38f390a6 assumed untestable after 2-commit neighbourhoods failed to build",
+  "repeats": 3,
+  "results": [
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "cb471d13801095683469f4da8e03e1771018184f",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 1.1
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 1.8
+        }
+      ],
+      "toolchain": "1.47"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "2a37ba3c25bcb8c1df27de64822eab740cb1d8d5",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 1.7
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 7.4
+        }
+      ],
+      "toolchain": "1.47"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "a745321acad0ac31470717786510237c38d5668f",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.1
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 14.9
+        }
+      ],
+      "toolchain": "1.47"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "059d43b265ba9217c7f48e39ffebc551ba1a3106",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 1.1
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 0.7
+        }
+      ],
+      "toolchain": "1.47"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "c230183cf62350401ae47f1c3201a5c317365fd0",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 1.1
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 0.8
+        }
+      ],
+      "toolchain": "1.47"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "2c9d039ed02d8c37d587c36183832b19eea12196",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 1.7
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 3.1
+        }
+      ],
+      "toolchain": "1.57"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "c2fd7650872406c78fbfecf8a454a7d26b625aa5",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 6.6
+        }
+      ],
+      "toolchain": "1.57"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "1a84958cc83f0a5ac1be53207ffec160fdd1774b",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.8
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 18.9
+        }
+      ],
+      "toolchain": "1.57"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "9b854245206793109e17aec6a973e959428f3445",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 1.8
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 6.0
+        }
+      ],
+      "toolchain": "1.57"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "a8e07d734fd7b18a5d5e7ffc8315a971898cd234",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 1.8
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 3.2
+        }
+      ],
+      "toolchain": "1.57"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "e9529cb02fdb2c0e216dc5b56244615cf5180d2d",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.3
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 3.6
+        }
+      ],
+      "toolchain": "1.64"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "c74e9e62f6c465ce9eb5e9ff540753c8d3f2a16b",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.8
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 21.1
+        }
+      ],
+      "toolchain": "1.64"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "67080e163add50e278dce1407538e5cd03ef9d6d",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 3.1
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 19.1
+        }
+      ],
+      "toolchain": "1.65"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "102dfe87a3bf590dcb888f4f4644ad32def8c464",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 3.0
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 16.6
+        }
+      ],
+      "toolchain": "1.65"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "9a25b2cb8ee0c64dc33b34ee6ea92b2a214341f8",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.8
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 16.1
+        }
+      ],
+      "toolchain": "1.65"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "3aaf4946b3c82e7a04db6ecde7c8bb4e474e54af",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.5
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 17.6
+        }
+      ],
+      "toolchain": "1.68"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "a05be6b8d1a4c353e66d49c6a1a91227e0be58de",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.3
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 10.6
+        }
+      ],
+      "toolchain": "1.68"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "37372b67fac56fa5e2b7697d7d4c2966280ddbfd",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 3.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 22.2
+        }
+      ],
+      "toolchain": "1.68"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "42b110587cdbfb82c5f11cc6d395832e823309bc",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.8
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 9.3
+        }
+      ],
+      "toolchain": "1.68"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "d19bc63c6770a8ef5e59c816b653b68cca329cde",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.4
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 3.8
+        }
+      ],
+      "toolchain": "1.68"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "cb8d4de5994d825ea4260613888410ce17f605bf",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 4.1
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 14.8
+        }
+      ],
+      "toolchain": "1.69"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "f85e8467e47020beaf8b28f789b135df9fc32b71",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 3.1
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 12.6
+        }
+      ],
+      "toolchain": "1.69"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "5d70f15bfb7c09bd363ff051fd1e9c8d2fb6fe7b",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 3.5
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 19.9
+        }
+      ],
+      "toolchain": "1.69"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "348ed70e588b40e0e14ed91c3563a5eca33a76c2",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.4
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 3.4
+        }
+      ],
+      "toolchain": "1.69"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "8c9cfb0b689bce00b615b9557a9a767f286d7a33",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 3.5
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 10.1
+        }
+      ],
+      "toolchain": "1.69"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "4811f769a1477f99283ffe95837a0fc2c3aeeb3c",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 3.1
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 13.5
+        }
+      ],
+      "toolchain": "1.70"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "291b2e23ae81cf94738835852213ce120152d121",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 3.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 12.5
+        }
+      ],
+      "toolchain": "1.70"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "ea4d3f634c20a58142fd36d9e89360dbb02c61f4",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 3.3
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 20.0
+        }
+      ],
+      "toolchain": "1.70"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "d6326b2b88fa7a9d7da71c37a118207ad6143065",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.8
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 12.3
+        }
+      ],
+      "toolchain": "1.70"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "bb38f390a61883fc2f29d659af696f428d1cda6b",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.6
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 3.8
+        }
+      ],
+      "toolchain": "1.70"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 3x",
+      "sha": "c2664ae13fe9ffc6491245a63f1ba1ae3d498c07",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 3.6
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 13.8
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.3
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_2",
+          "network": false,
+          "seconds": 0.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_3",
+          "network": false,
+          "seconds": 0.2
+        }
+      ],
+      "toolchain": "1.71"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 3x",
+      "sha": "efea6c72464428cabbf6332a16243e55963ba175",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 3.4
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 11.4
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.3
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_2",
+          "network": false,
+          "seconds": 0.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_3",
+          "network": false,
+          "seconds": 0.2
+        }
+      ],
+      "toolchain": "1.71"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 3x",
+      "sha": "d47d3e377cb619f81d78ab54a5ef52a84e94aae1",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 3.5
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 23.6
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_2",
+          "network": false,
+          "seconds": 0.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_3",
+          "network": false,
+          "seconds": 0.2
+        }
+      ],
+      "toolchain": "1.71"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 3x",
+      "sha": "b35d33f9814d5be14a8f02a477816e9655a41e9e",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.6
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 3.3
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_2",
+          "network": false,
+          "seconds": 0.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_3",
+          "network": false,
+          "seconds": 0.2
+        }
+      ],
+      "toolchain": "1.71"
+    },
+    {
+      "outcome": "PASS",
+      "reason": "passed 3x",
+      "sha": "9a93c50c25c1e0b73a85584f327113bcbef5ac80",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 4.6
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 20.6
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 0,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.3
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 0,
+          "name": "test_2",
+          "network": false,
+          "seconds": 0.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 0,
+          "name": "test_3",
+          "network": false,
+          "seconds": 0.2
+        }
+      ],
+      "toolchain": "1.71"
+    }
+  ],
+  "runner": "docker",
+  "start": "5d8728a26b654784572612ae119edc451205c2ff",
+  "test": "cargo test --test bugage_repro",
+  "untestable_between": 0,
+  "verdict": "censored-by-testability"
+}

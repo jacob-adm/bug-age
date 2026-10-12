@@ -162,15 +162,23 @@ pub struct Docker {
     pub image: String,
     pub time_travel_script: Option<PathBuf>,
     toolchain: String,
+    /// Most recently used toolchains whose build caches are kept (oldest first).
+    recent: Vec<String>,
 }
 
+/// Build caches kept at once. Each holds 1.5-3 GB of compiled dependencies for tokenizers, and a
+/// date-matched sweep touches many toolchains (an uncapped run consumed 17 GB in 10 minutes).
+const KEEP_TARGETS: usize = 2;
+
 const SRC: &str = "bugage-src";
-const TARGET: &str = "bugage-target";
+/// Build cache: one volume per toolchain, reused across commits so registry dependencies are not
+/// recompiled. Workspace crates always rebuild because staged files get fresh mtimes (see untar_into).
+const TARGET_PREFIX: &str = "bugage-target-";
 const INDEX: &str = "bugage-index";
 
 impl Docker {
     pub fn new(image: String, time_travel_script: Option<PathBuf>) -> Self {
-        Docker { image, time_travel_script, toolchain: String::new() }
+        Docker { image, time_travel_script, toolchain: String::new(), recent: Vec::new() }
     }
 
     fn docker(&self, args: &[&str], stdin: Option<&[u8]>, log: &Path) -> Result<(i32, f64), String> {
@@ -179,10 +187,34 @@ impl Docker {
 
     fn untar_into(&self, volume: &str, dir: &str, tar: &[u8], log: &Path) -> Result<(), String> {
         let mount = format!("{volume}:/{volume}");
-        let script = format!("mkdir -p {dir} && tar -x -C {dir}");
+        // -m: stamp files with extraction time. git archive stamps them with the commit time, and
+        // bisecting moves to *older* commits, so cargo's mtime fingerprint would reuse a stale
+        // build from the per-toolchain target cache (caught by the Docker end-to-end test).
+        // --no-same-owner: files from the host keep uid 501 otherwise, and older cargo's libgit2
+        // rejects a root-run clone of a repo owned by another user ("safe.directory" error).
+        let script = format!("mkdir -p {dir} && tar -x -m --no-same-owner -C {dir}");
         let (code, _) = self.docker(&["run", "-i", "--rm", "-v", &mount, &self.image, "sh", "-c", &script], Some(tar), log)?;
         if code != 0 {
             return Err(format!("harness: untar into {volume}:{dir} failed (see {})", log.display()));
+        }
+        Ok(())
+    }
+
+    fn evict_build_caches(&mut self, logs: &Path) -> Result<(), String> {
+        self.recent.retain(|t| *t != self.toolchain);
+        self.recent.push(self.toolchain.clone());
+        if self.recent.len() > KEEP_TARGETS {
+            self.recent.remove(0);
+        }
+        let keep: Vec<String> = self.recent.iter().map(|t| format!("{TARGET_PREFIX}{t}")).collect();
+        let listed = Command::new("docker").args(["volume", "ls", "-q", "--filter", &format!("name={TARGET_PREFIX}")])
+            .output().map_err(|e| e.to_string())?;
+        let stale: Vec<String> = String::from_utf8_lossy(&listed.stdout).lines()
+            .filter(|v| v.starts_with(TARGET_PREFIX) && !keep.iter().any(|k| k == v)).map(String::from).collect();
+        if !stale.is_empty() {
+            let mut args = vec!["volume", "rm", "-f"];
+            args.extend(stale.iter().map(String::as_str));
+            self.docker(&args, None, &logs.join("stage-evict.log"))?;
         }
         Ok(())
     }
@@ -211,8 +243,18 @@ impl Docker {
         }
         let packed = Command::new("tar").args(["--no-xattrs", "-C"]).arg(&out).args(["-cf", "-", "."])
             .env("COPYFILE_DISABLE", "1").output().map_err(|e| e.to_string())?;
-        self.untar_into(INDEX, &format!("/{INDEX}/{short}"), &packed.stdout, &spec.logs.join(short).join("stage-index.log"))?;
-        let cfg = format!("[source.crates-io]\\nreplace-with = \\\"tt\\\"\\n[source.tt]\\nregistry = \\\"file:///{INDEX}/{short}\\\"\\n");
+        let _ = std::fs::remove_dir_all(&tree);
+        let _ = std::fs::remove_dir_all(&out);
+        // One fixed index location, replaced per commit, and cargo's clone of it dropped first: per-commit
+        // URLs made cargo keep a separate index clone and .crate cache per commit (20 GB on tokenizers).
+        // Crate files stay shared across cutoffs; they are immutable once published.
+        let reset = format!("rm -rf /{INDEX}/current && mkdir -p /cargo/registry/index && find /cargo/registry/index -mindepth 1 -maxdepth 1 \
+                             ! -name 'github.com-*' ! -name 'index.crates.io-*' -exec rm -rf {{}} +");
+        let mounts = [format!("{INDEX}:/{INDEX}"), "bugage-cargo:/cargo".to_string()];
+        self.docker(&["run", "--rm", "-v", &mounts[0], "-v", &mounts[1], &self.image, "sh", "-c", &reset], None,
+                    &spec.logs.join(short).join("stage-index-reset.log"))?;
+        self.untar_into(INDEX, &format!("/{INDEX}/current"), &packed.stdout, &spec.logs.join(short).join("stage-index.log"))?;
+        let cfg = format!("[source.crates-io]\\nreplace-with = \\\"tt\\\"\\n[source.tt]\\nregistry = \\\"file:///{INDEX}/current\\\"\\n");
         let write = format!("mkdir -p /{SRC}/.cargo && printf \"{cfg}\" > /{SRC}/.cargo/config");
         let mount = format!("{SRC}:/{SRC}");
         let (code, _) = self.docker(&["run", "--rm", "-v", &mount, &self.image, "sh", "-c", &write], None,
@@ -231,7 +273,7 @@ impl Runner for Docker {
 
     fn stage(&mut self, spec: &Spec, sha: &str) -> Result<String, String> {
         let logs = spec.logs.join(&sha[..12]);
-        self.docker(&["volume", "rm", "-f", SRC, TARGET], None, &logs.join("stage-reset.log"))?;
+        self.docker(&["volume", "rm", "-f", SRC], None, &logs.join("stage-reset.log"))?;
         let archive = crate::git::command().arg("-C").arg(&spec.repo).args(["archive", "--format=tar", sha])
             .output().map_err(|e| e.to_string())?;
         if !archive.status.success() {
@@ -248,6 +290,7 @@ impl Runner for Docker {
         }
         let ct: i64 = git(&spec.repo, &["show", "-s", "--format=%ct", sha])?.trim().parse().map_err(|e| format!("{e}"))?;
         self.toolchain = toolchain_for(ct, rust_version(&spec.repo, sha, &spec.crate_path).as_deref());
+        self.evict_build_caches(&logs)?;
         let install = format!("rustup toolchain install {} --profile minimal --no-self-update", self.toolchain);
         let (code, _) = self.exec(spec, &install, true, &logs.join("toolchain.log"))?;
         if code != 0 {
@@ -258,7 +301,8 @@ impl Runner for Docker {
 
     fn exec(&mut self, spec: &Spec, cmd: &str, network: bool, log: &Path) -> Result<(i32, f64), String> {
         let workdir = format!("/{SRC}/{}", spec.crate_path);
-        let (src, idx, tgt) = (format!("{SRC}:/{SRC}"), format!("{INDEX}:/{INDEX}"), format!("{TARGET}:/target"));
+        let (src, idx) = (format!("{SRC}:/{SRC}"), format!("{INDEX}:/{INDEX}"));
+        let tgt = format!("{TARGET_PREFIX}{}:/target", self.toolchain);
         let tc = format!("RUSTUP_TOOLCHAIN={}", self.toolchain);
         let mut args = vec!["run", "--rm"];
         if !network {

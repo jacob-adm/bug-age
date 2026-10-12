@@ -1,0 +1,72 @@
+{
+  "repeats": 3,
+  "results": [
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "bb38f390a61883fc2f29d659af696f428d1cda6b",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.6
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 101,
+          "name": "build",
+          "network": false,
+          "seconds": 19.6
+        }
+      ],
+      "toolchain": "1.70"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 3x",
+      "sha": "c2664ae13fe9ffc6491245a63f1ba1ae3d498c07",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.6
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 19.9
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_2",
+          "network": false,
+          "seconds": 0.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_3",
+          "network": false,
+          "seconds": 0.2
+        }
+      ],
+      "toolchain": "1.71"
+    }
+  ],
+  "runner": "docker",
+  "test": "cargo test --test bugage_repro"
+}
