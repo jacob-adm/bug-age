@@ -1,0 +1,140 @@
+{
+  "built_and_tested_share": 0.5,
+  "counts": {
+    "BUILD_FAILED": 1,
+    "BUILT_AND_TESTED": 1
+  },
+  "method": {
+    "build": "cargo build --all --offline under sandbox-exec (network denied)",
+    "decision_rule": "GO iff BUILT_AND_TESTED share >= 70% and no FLAKY",
+    "not_covered": "integration tests under tests/ (need downloaded fixtures), benches, bindings",
+    "sampling": "2 evenly spaced first-parent commits touching tokenizers/",
+    "test": "cargo test --all --lib --offline (all workspace members' unit tests) under sandbox-exec, repeated 2x",
+    "toolchain_rule": "latest stable released >=14 days before commit date, raised to rust-version; x86_64 via Rosetta below 1.49"
+  },
+  "results": [
+    {
+      "date": "2019-11-01",
+      "edition": "2018",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 0,
+      "license": null,
+      "lockfile_committed": true,
+      "pinned_toolchain_file": null,
+      "reason": "unclassified",
+      "rosetta": true,
+      "rust_version_field": null,
+      "sha": "2b72a5737f77aae947ef255abadf9fa423dc685d",
+      "status": "BUILD_FAILED",
+      "steps": {
+        "build": {
+          "cmd": "cargo build --all --offline",
+          "exit": 101,
+          "hint": "unclassified",
+          "sandboxed_no_network": true,
+          "seconds": 22.0,
+          "tail": [
+            "error: linking with `cc` failed: exit code: 1",
+            "  |",
+            "  = note: \"cc\" \"-m64\" \"-L\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib\" \"~/.cache/bug-age/target/debug/deps/cli-c5dd08536ba3de0a.1tk4ac4hlyamvvz4.rcgu.o\" \"~/.cache/bug-age/target/debug/deps/cli-c5dd08536ba3de0a.1znqvpexd6ij0k6f.rcgu.o\" \"~/.cache/bug-age/target/debug/deps/cli-c5dd08536ba3de0a.2prcyxpqd76klegd.rcgu.o\" \"~/.cache/bug-age/target/debug/deps/cli-c5dd08536ba3de0a.3feilhf1pzmbu7qi.rcgu.o\" \"~/.cache/bug-age/target/debug/deps/cli-c5dd08536ba3de0a.4dduoq9w7llu7rcm.rcgu.o\" \"~/.cache/bug-age/target/debug/deps/cli-c5dd08536ba3de0a.sotx8wog7udj7uu.rcgu.o\" \"-o\" \"~/.cache/bug-age/target/debug/deps/cli-c5dd08536ba3de0a\" \"~/.cache/bug-age/target/debug/deps/cli-c5dd08536ba3de0a.2dzl0mhlrebzov64.rcgu.o\" \"-Wl,-dead_strip\" \"-nodefaultlibs\" \"-L\" \"~/.cache/bug-age/target/debug/deps\" \"-L\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib\" \"~/.cache/bug-age/target/debug/deps/libtokenizers-06a49ef8d563c8de.rlib\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libstd-c912eb7850fbecec.rlib\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libpanic_unwind-1b3312d8fefaf74e.rlib\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libbacktrace-fd4028660702ce49.rlib\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libbacktrace_sys-ae9cc847e15164de.rlib\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/librustc_demangle-e76733b3a72b0f17.rlib\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libhashbrown-f805efcb06ec7300.rlib\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/librustc_std_workspace_alloc-5b52b7d5eaabfff6.rlib\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libunwind-4ed6dd6cb0feb09f.rlib\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libcfg_if-dded45c4727acb1f.rlib\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/liblibc-3b8415dad7bbd863.rlib\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/liballoc-86bfd3683a35bfec.rlib\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/librustc_std_workspace_core-af5aff04ef816462.rlib\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libcore-62d44948c379a9ba.rlib\" \"~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libcompiler_builtins-4c0e14a54ecf951d.rlib\" \"-lSystem\" \"-lresolv\" \"-lc\" \"-lm\"",
+            "  = note: ld: multiple errors: archive member 'rust.metadata.bin' not a mach-o file in '~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libstd-c912eb7850fbecec.rlib'; archive member 'rust.metadata.bin' not a mach-o file in '~/.cache/bug-age/target/debug/deps/libtokenizers-06a49ef8d563c8de.rlib'; archive member 'rust.metadata.bin' not a mach-o file in '~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libbacktrace-fd4028660702ce49.rlib'; archive member 'rust.metadata.bin' not a mach-o file in '~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libpanic_unwind-1b3312d8fefaf74e.rlib'; archive member 'rust.metadata.bin' not a mach-o file in '~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libhashbrown-f805efcb06ec7300.rlib'; archive member 'rust.metadata.bin' not a mach-o file in '~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/librustc_demangle-e76733b3a72b0f17.rlib'; archive member 'rust.metadata.bin' not a mach-o file in '~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libbacktrace_sys-ae9cc847e15164de.rlib'; archive member 'rust.metadata.bin' not a mach-o file in '~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/librustc_std_workspace_alloc-5b52b7d5eaabfff6.rlib'; archive member 'rust.metadata.bin' not a mach-o file in '~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libunwind-4ed6dd6cb0feb09f.rlib'; archive member 'rust.metadata.bin' not a mach-o file in '~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/librustc_std_workspace_core-af5aff04ef816462.rlib'; archive member 'rust.metadata.bin' not a mach-o file in '~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/liballoc-86bfd3683a35bfec.rlib'; archive member 'rust.metadata.bin' not a mach-o file in '~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libcore-62d44948c379a9ba.rlib'; archive member 'rust.metadata.bin' not a mach-o file in '~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libcfg_if-dded45c4727acb1f.rlib'; archive member 'rust.metadata.bin' not a mach-o file in '~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/libcompiler_builtins-4c0e14a54ecf951d.rlib'; archive member 'rust.metadata.bin' not a mach-o file in '~/.rustup/toolchains/1.38-x86_64-apple-darwin/lib/rustlib/x86_64-apple-darwin/lib/liblibc-3b8415dad7bbd863.rlib'",
+            "          clang: error: linker command failed with exit code 1 (use -v to see invocation)",
+            "          ",
+            "",
+            "error: aborting due to previous error",
+            "",
+            "error: Could not compile `tokenizers`.",
+            "",
+            "To learn more, run the command again with --verbose."
+          ]
+        },
+        "fetch": {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "sandboxed_no_network": false,
+          "seconds": 2.6
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.38-x86_64-apple-darwin --profile minimal --no-self-update --force-non-host",
+          "exit": 0,
+          "sandboxed_no_network": false,
+          "seconds": 0.3
+        }
+      },
+      "toolchain": "1.38-x86_64-apple-darwin"
+    },
+    {
+      "date": "2026-10-07",
+      "edition": "2024",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 716,
+      "license": "Apache-2.0",
+      "lockfile_committed": true,
+      "pinned_toolchain_file": "stable",
+      "reason": "281 unit tests passed x2",
+      "rosetta": false,
+      "rust_version_field": null,
+      "sha": "ff8ae1baabca0707b7fa9f22854652e231a933de",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo build --all --offline",
+          "exit": 0,
+          "sandboxed_no_network": true,
+          "seconds": 5.9
+        },
+        "fetch": {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "sandboxed_no_network": false,
+          "seconds": 0.2
+        },
+        "test_1": {
+          "cmd": "cargo test --all --lib --offline",
+          "exit": 0,
+          "sandboxed_no_network": true,
+          "seconds": 9.2
+        },
+        "test_2": {
+          "cmd": "cargo test --all --lib --offline",
+          "exit": 0,
+          "sandboxed_no_network": true,
+          "seconds": 0.5
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.98-aarch64-apple-darwin --profile minimal --no-self-update",
+          "exit": 0,
+          "sandboxed_no_network": false,
+          "seconds": 0.2
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 281
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 281
+        }
+      ],
+      "toolchain": "1.98-aarch64-apple-darwin"
+    }
+  ],
+  "subject": {
+    "crate_path": "tokenizers",
+    "first_parent_commits_touching_crate": 717,
+    "head": "fb49a29223724a96f26e061bec8ec7517aa14177",
+    "history_window": [
+      "2019-11-01",
+      "2026-10-07"
+    ],
+    "repo": "https://github.com/huggingface/tokenizers.git"
+  },
+  "ticket": "BUGAGE-1",
+  "verdict": "NO-GO"
+}
