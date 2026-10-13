@@ -57,6 +57,11 @@ pub trait Runner {
     fn stage(&mut self, spec: &Spec, sha: &str) -> Result<String, String>;
     /// Run a shell command in the crate directory of the staged tree.
     fn exec(&mut self, spec: &Spec, cmd: &str, network: bool, log: &Path) -> Result<(i32, f64), String>;
+    /// Switch to the exact date-matched toolchain after a non-overlay build failure under a bucketed
+    /// one; returns the new toolchain label, or None if there is nothing to fall back to.
+    fn fallback_toolchain(&mut self, _spec: &Spec, _log: &Path) -> Option<String> {
+        None
+    }
 }
 
 /// Date-matched stable toolchain: latest release >= 14 days before the commit (one minor every 42
@@ -68,6 +73,14 @@ pub fn toolchain_for(commit_unix: i64, rust_version: Option<&str>) -> String {
         minor = minor.max(m);
     }
     format!("1.{minor}")
+}
+
+/// Round "1.N" up to the next multiple of `bucket` (0 or 1 = unchanged).
+pub fn bucketed(toolchain: &str, bucket: i64) -> String {
+    match (bucket, toolchain.strip_prefix("1.").and_then(|m| m.parse::<i64>().ok())) {
+        (b, Some(m)) if b > 1 => format!("1.{}", (m + b - 1) / b * b),
+        _ => toolchain.to_string(),
+    }
 }
 
 fn rust_version(repo: &Path, sha: &str, crate_path: &str) -> Option<String> {
@@ -164,6 +177,14 @@ pub struct Docker {
     toolchain: String,
     /// Most recently used toolchains whose build caches are kept (oldest first).
     recent: Vec<String>,
+    /// Volume-name suffix for parallel workers ("" or e.g. "-w1"); rustup is shared (installs locked).
+    pub namespace: String,
+    /// Round date-matched toolchains up to multiples of this minor (0 = exact). Fewer toolchains
+    /// means more build-cache reuse; a non-overlay build failure retries with the exact toolchain.
+    pub bucket: i64,
+    exact_toolchain: String,
+    /// Bucket toolchains that failed to install (e.g. not released yet); not retried.
+    unavailable: Vec<String>,
 }
 
 /// Build caches kept at once. Each holds 1.5-3 GB of compiled dependencies for tokenizers, and a
@@ -173,12 +194,31 @@ const KEEP_TARGETS: usize = 2;
 const SRC: &str = "bugage-src";
 /// Build cache: one volume per toolchain, reused across commits so registry dependencies are not
 /// recompiled. Workspace crates always rebuild because staged files get fresh mtimes (see untar_into).
-const TARGET_PREFIX: &str = "bugage-target-";
 const INDEX: &str = "bugage-index";
 
 impl Docker {
     pub fn new(image: String, time_travel_script: Option<PathBuf>) -> Self {
-        Docker { image, time_travel_script, toolchain: String::new(), recent: Vec::new() }
+        Docker { image, time_travel_script, toolchain: String::new(), recent: Vec::new(), namespace: String::new(),
+                 bucket: 0, exact_toolchain: String::new(), unavailable: Vec::new() }
+    }
+
+    fn v(&self, base: &str) -> String {
+        format!("{base}{}", self.namespace)
+    }
+
+    fn target_volume(&self, toolchain: &str) -> String {
+        format!("bugage-target{}-{toolchain}", self.namespace)
+    }
+
+    fn install(&mut self, spec: &Spec, log: &Path) -> Result<(), String> {
+        // flock: parallel workers share the rustup volume; concurrent installs can corrupt it.
+        let install = format!("flock /rustup/.bug-age-install.lock rustup toolchain install {} --profile minimal --no-self-update",
+                              self.toolchain);
+        let (code, _) = self.exec(spec, &install, true, log)?;
+        if code != 0 {
+            return Err(format!("toolchain {} could not be installed", self.toolchain));
+        }
+        Ok(())
     }
 
     fn docker(&self, args: &[&str], stdin: Option<&[u8]>, log: &Path) -> Result<(i32, f64), String> {
@@ -186,7 +226,7 @@ impl Docker {
     }
 
     fn untar_into(&self, volume: &str, dir: &str, tar: &[u8], log: &Path) -> Result<(), String> {
-        let mount = format!("{volume}:/{volume}");
+        let mount = format!("{}:/{volume}", self.v(volume));
         // -m: stamp files with extraction time. git archive stamps them with the commit time, and
         // bisecting moves to *older* commits, so cargo's mtime fingerprint would reuse a stale
         // build from the per-toolchain target cache (caught by the Docker end-to-end test).
@@ -206,11 +246,13 @@ impl Docker {
         if self.recent.len() > KEEP_TARGETS {
             self.recent.remove(0);
         }
-        let keep: Vec<String> = self.recent.iter().map(|t| format!("{TARGET_PREFIX}{t}")).collect();
-        let listed = Command::new("docker").args(["volume", "ls", "-q", "--filter", &format!("name={TARGET_PREFIX}")])
+        let prefix = format!("bugage-target{}-", self.namespace);
+        let keep: Vec<String> = self.recent.iter().map(|t| self.target_volume(t)).collect();
+        let listed = Command::new("docker").args(["volume", "ls", "-q", "--filter", &format!("name={prefix}")])
             .output().map_err(|e| e.to_string())?;
         let stale: Vec<String> = String::from_utf8_lossy(&listed.stdout).lines()
-            .filter(|v| v.starts_with(TARGET_PREFIX) && !keep.iter().any(|k| k == v)).map(String::from).collect();
+            .filter(|v| v.starts_with(&prefix) && v[prefix.len()..].starts_with("1.") && !keep.iter().any(|k| k == v))
+            .map(String::from).collect();
         if !stale.is_empty() {
             let mut args = vec!["volume", "rm", "-f"];
             args.extend(stale.iter().map(String::as_str));
@@ -250,13 +292,13 @@ impl Docker {
         // Crate files stay shared across cutoffs; they are immutable once published.
         let reset = format!("rm -rf /{INDEX}/current && mkdir -p /cargo/registry/index && find /cargo/registry/index -mindepth 1 -maxdepth 1 \
                              ! -name 'github.com-*' ! -name 'index.crates.io-*' -exec rm -rf {{}} +");
-        let mounts = [format!("{INDEX}:/{INDEX}"), "bugage-cargo:/cargo".to_string()];
+        let mounts = [format!("{}:/{INDEX}", self.v(INDEX)), format!("{}:/cargo", self.v("bugage-cargo"))];
         self.docker(&["run", "--rm", "-v", &mounts[0], "-v", &mounts[1], &self.image, "sh", "-c", &reset], None,
                     &spec.logs.join(short).join("stage-index-reset.log"))?;
         self.untar_into(INDEX, &format!("/{INDEX}/current"), &packed.stdout, &spec.logs.join(short).join("stage-index.log"))?;
         let cfg = format!("[source.crates-io]\\nreplace-with = \\\"tt\\\"\\n[source.tt]\\nregistry = \\\"file:///{INDEX}/current\\\"\\n");
         let write = format!("mkdir -p /{SRC}/.cargo && printf \"{cfg}\" > /{SRC}/.cargo/config");
-        let mount = format!("{SRC}:/{SRC}");
+        let mount = format!("{}:/{SRC}", self.v(SRC));
         let (code, _) = self.docker(&["run", "--rm", "-v", &mount, &self.image, "sh", "-c", &write], None,
                                     &spec.logs.join(short).join("stage-config.log"))?;
         if code != 0 {
@@ -271,9 +313,19 @@ impl Runner for Docker {
         "docker"
     }
 
+    fn fallback_toolchain(&mut self, spec: &Spec, log: &Path) -> Option<String> {
+        if self.toolchain == self.exact_toolchain {
+            return None;
+        }
+        self.toolchain = self.exact_toolchain.clone();
+        self.evict_build_caches(log.parent()?).ok()?;
+        self.install(spec, log).ok()?;
+        Some(self.toolchain.clone())
+    }
+
     fn stage(&mut self, spec: &Spec, sha: &str) -> Result<String, String> {
         let logs = spec.logs.join(&sha[..12]);
-        self.docker(&["volume", "rm", "-f", SRC], None, &logs.join("stage-reset.log"))?;
+        self.docker(&["volume", "rm", "-f", &self.v(SRC)], None, &logs.join("stage-reset.log"))?;
         let archive = crate::git::command().arg("-C").arg(&spec.repo).args(["archive", "--format=tar", sha])
             .output().map_err(|e| e.to_string())?;
         if !archive.status.success() {
@@ -289,26 +341,36 @@ impl Runner for Docker {
             }
         }
         let ct: i64 = git(&spec.repo, &["show", "-s", "--format=%ct", sha])?.trim().parse().map_err(|e| format!("{e}"))?;
-        self.toolchain = toolchain_for(ct, rust_version(&spec.repo, sha, &spec.crate_path).as_deref());
+        self.exact_toolchain = toolchain_for(ct, rust_version(&spec.repo, sha, &spec.crate_path).as_deref());
+        self.toolchain = bucketed(&self.exact_toolchain, self.bucket);
+        if self.unavailable.contains(&self.toolchain) {
+            self.toolchain = self.exact_toolchain.clone();
+        }
         self.evict_build_caches(&logs)?;
-        let install = format!("rustup toolchain install {} --profile minimal --no-self-update", self.toolchain);
-        let (code, _) = self.exec(spec, &install, true, &logs.join("toolchain.log"))?;
-        if code != 0 {
+        if self.install(spec, &logs.join("toolchain.log")).is_ok() {
+            return Ok(self.toolchain.clone());
+        }
+        if self.toolchain == self.exact_toolchain {
             return Err(format!("toolchain {} could not be installed", self.toolchain));
         }
+        self.unavailable.push(self.toolchain.clone());
+        self.toolchain = self.exact_toolchain.clone(); // bucket toolchain not released yet
+        self.evict_build_caches(&logs)?;
+        self.install(spec, &logs.join("toolchain-exact.log"))?;
         Ok(self.toolchain.clone())
     }
 
     fn exec(&mut self, spec: &Spec, cmd: &str, network: bool, log: &Path) -> Result<(i32, f64), String> {
         let workdir = format!("/{SRC}/{}", spec.crate_path);
-        let (src, idx) = (format!("{SRC}:/{SRC}"), format!("{INDEX}:/{INDEX}"));
-        let tgt = format!("{TARGET_PREFIX}{}:/target", self.toolchain);
+        let (src, idx) = (format!("{}:/{SRC}", self.v(SRC)), format!("{}:/{INDEX}", self.v(INDEX)));
+        let tgt = format!("{}:/target", self.target_volume(&self.toolchain));
+        let cargo = format!("{}:/cargo", self.v("bugage-cargo"));
         let tc = format!("RUSTUP_TOOLCHAIN={}", self.toolchain);
         let mut args = vec!["run", "--rm"];
         if !network {
             args.extend(["--network", "none", "-e", "CARGO_NET_OFFLINE=true"]);
         }
-        args.extend(["-v", &src, "-v", &idx, "-v", &tgt, "-v", "bugage-rustup:/rustup", "-v", "bugage-cargo:/cargo",
+        args.extend(["-v", &src, "-v", &idx, "-v", &tgt, "-v", "bugage-rustup:/rustup", "-v", &cargo,
                      "-e", "CARGO_TARGET_DIR=/target", "-e", "CARGO_TERM_COLOR=never", "-e", &tc, "-w", &workdir,
                      &self.image, "sh", "-c", cmd]);
         self.docker(&args, None, log)

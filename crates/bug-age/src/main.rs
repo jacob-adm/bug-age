@@ -19,6 +19,7 @@ const USAGE: &str = "usage: bug-age [--version | --help]
        bug-age sweep --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD
              [--build CMD] [--start SHA] [--runner docker|local] [--repeats N] [--image IMG]
              [--time-travel-script FILE|none] [--scratch DIR] [--logs DIR] [--out FILE]
+             [--namespace NAME] [--bucket N (toolchain minor rounding, default 4; 0 = exact)]
        bug-age probe --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]";
 
 fn flags(args: &[String]) -> Result<HashMap<String, String>, String> {
@@ -103,7 +104,10 @@ fn spec_and_runner(f: &HashMap<String, String>, tag: &str) -> Result<(Spec, Box<
         "local" => Box::new(Local::new(&spec)),
         "docker" => {
             let tt = opt("time-travel-script", "spike/timetravel.py");
-            Box::new(Docker::new(opt("image", "bug-age-spike:4"), (tt != "none").then(|| PathBuf::from(tt))))
+            let mut d = Docker::new(opt("image", "bug-age-spike:4"), (tt != "none").then(|| PathBuf::from(tt)));
+            d.namespace = f.get("namespace").map(|n| format!("-{n}")).unwrap_or_default();
+            d.bucket = opt("bucket", "4").parse().map_err(|e| format!("--bucket: {e}"))?;
+            Box::new(d)
         }
         other => return Err(format!("unknown runner '{other}'")),
     };

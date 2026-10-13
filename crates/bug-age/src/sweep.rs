@@ -52,8 +52,19 @@ pub fn evaluate(runner: &mut dyn Runner, spec: &Spec, sha: &str, repeats: u32) -
     if runner.name() == "docker" && step(runner, "fetch", "cargo fetch", true, &mut steps) != 0 {
         return result(Outcome::Untestable, "dependency fetch failed".into(), toolchain, steps);
     }
+    let mut toolchain = toolchain;
     if step(runner, "build", &spec.build, false, &mut steps) != 0 {
-        return result(Outcome::Untestable, "test build failed (overlay does not compile here)".into(), toolchain, steps);
+        // An error in the overlay test means the tested API is absent: genuinely untestable. Any other
+        // build error under a bucketed toolchain gets one retry with the exact date-matched toolchain.
+        let log = std::fs::read_to_string(logs.join("build.log")).unwrap_or_default();
+        let overlay_error = log.lines().any(|l| l.contains("bugage_repro.rs"));
+        let retried = !overlay_error && runner.fallback_toolchain(spec, &logs.join("toolchain-fallback.log")).map(|t| {
+            toolchain = t;
+            runner.name() != "docker" || step(runner, "fetch_exact", "cargo fetch", true, &mut steps) == 0
+        }) == Some(true) && step(runner, "build_exact", &spec.build, false, &mut steps) == 0;
+        if !retried {
+            return result(Outcome::Untestable, "test build failed (overlay does not compile here)".into(), toolchain, steps);
+        }
     }
     let exits: Vec<i32> = (1..=repeats)
         .map(|i| step(runner, &format!("test_{i}"), &spec.test, false, &mut steps))
