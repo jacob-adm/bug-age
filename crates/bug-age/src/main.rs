@@ -118,7 +118,7 @@ fn cmd_probe(f: &HashMap<String, String>) -> Result<(), String> {
     let mut results = Vec::new();
     for c in &commits {
         let sha = bug_age::git::git(&spec.repo, &["rev-parse", c])?.trim().to_string();
-        let r = sweep::evaluate(runner.as_mut(), &spec, &sha);
+        let r = sweep::evaluate(runner.as_mut(), &spec, &sha, spec.repeats);
         eprintln!("probe: {} {:?} ({})", &sha[..10], r.outcome, r.reason);
         results.push(r);
     }

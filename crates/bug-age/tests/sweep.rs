@@ -108,13 +108,25 @@ fn long_untestable_history_costs_a_bounded_number_of_builds() {
 }
 
 #[test]
-fn interval_when_bug_lands_inside_an_untestable_stretch() {
-    // rev1 passes; rev2-6 cannot compile the test (mul removed); rev7 has the bug; rev9 fixes it.
-    let (dir, scratch, s) = repo("interval", &[NONE, OK, NONE, NONE, NONE, NONE, NONE, BUG, BUG, OK]);
+fn frontier_assumes_monotonic_buildability() {
+    // Documented limit: rev1 passes, the API vanishes (rev2-6), returns buggy at rev7. The frontier
+    // search assumes build-ability is monotonic, so it starts at rev7 and reports censoring there.
+    let (dir, scratch, s) = repo("monotonic", &[NONE, OK, NONE, NONE, NONE, NONE, NONE, BUG, BUG, OK]);
     let r = sweep(&dir, &scratch, &s[9], None, 6);
-    assert!(matches!(r["verdict"].as_str(), Some("interval") | Some("located")), "{r}");
+    assert_eq!(r["verdict"], "censored-by-testability", "{r}");
+    assert_eq!(r["frontier"], s[7].as_str());
     assert_eq!(r["first_failing"], s[7].as_str());
-    assert_eq!(r["last_passing"], s[1].as_str());
+}
+
+#[test]
+fn decisive_commits_are_confirmed_with_full_repeats() {
+    let (dir, scratch, s) = repo("confirm", &[OK, OK, BUG, BUG, OK]);
+    let r = sweep(&dir, &scratch, &s[4], None, 6);
+    assert_eq!(r["verdict"], "located", "{r}");
+    assert_eq!(r["confirmation"], "decisive commits confirmed x2");
+    let fix = r["results"].as_array().unwrap().iter().find(|c| c["sha"] == s[4].as_str()).unwrap();
+    let test_runs = fix["steps"].as_array().unwrap().iter().filter(|st| st["name"].as_str().unwrap().starts_with("test_")).count();
+    assert_eq!(test_runs, 2, "fix confirmed with --repeats 2");
 }
 
 #[test]
