@@ -4,9 +4,10 @@
 //!   bug-age szz     --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--out FILE]
 //!   bug-age sweep   --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD [options]
 //!   bug-age probe   --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [options]
+//!   bug-age bundle  --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR]
 
 use bug_age::runner::{Docker, Local, Runner, Spec};
-use bug_age::{catalog, sweep, szz};
+use bug_age::{bundle, catalog, sweep, szz};
 use sha2::{Digest, Sha256};
 use serde_json::{json, Value};
 use std::collections::HashMap;
@@ -19,7 +20,8 @@ const USAGE: &str = "usage: bug-age [--version | --help]
        bug-age sweep --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD
              [--build CMD] [--start SHA] [--runner docker|local] [--repeats N] [--image IMG]
              [--time-travel-script FILE|none] [--scratch DIR] [--logs DIR] [--out FILE]
-       bug-age probe --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]";
+       bug-age probe --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]
+       bug-age bundle --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR]";
 
 fn flags(args: &[String]) -> Result<HashMap<String, String>, String> {
     let mut map = HashMap::new();
@@ -155,6 +157,37 @@ fn cmd_sweep(f: &HashMap<String, String>) -> Result<(), String> {
     }
 }
 
+/// Size gate for the published page's data (the artifact limit is 16 MB; target 8 MB).
+const WARN_BYTES: usize = 8 * 1024 * 1024;
+const MAX_BYTES: usize = 16 * 1024 * 1024;
+
+fn cmd_bundle(f: &HashMap<String, String>) -> Result<(), String> {
+    let repo = Path::new(need(f, "repo")?);
+    let out = Path::new(need(f, "out")?);
+    let spike = Path::new(f.get("spike").map_or("spike", String::as_str));
+    let built = bundle::build(repo, Path::new(need(f, "results")?), spike, need(f, "repo-url")?)?;
+    let json = serde_json::to_string(&built.bundle).map_err(|e| e.to_string())?;
+    let js = format!("window.BUG_AGE_BUNDLE = {json};\n");
+    if js.len() > MAX_BYTES {
+        return Err(format!("size gate failed: bundle.js is {} bytes (> {MAX_BYTES})", js.len()));
+    }
+    std::fs::create_dir_all(out).map_err(|e| e.to_string())?;
+    std::fs::write(out.join("bundle.json"), &json).map_err(|e| e.to_string())?;
+    std::fs::write(out.join("bundle.js"), &js).map_err(|e| e.to_string())?;
+    let sha = |b: &[u8]| format!("{:x}", Sha256::digest(b));
+    let receipt = json!({
+        "command": std::env::args().collect::<Vec<_>>().join(" ").replace(&std::env::var("HOME").unwrap_or_default(), "~"),
+        "schema_version": bundle::SCHEMA_VERSION,
+        "blameless_gate": "PASS",
+        "size": {"bundle_json_bytes": json.len(), "bundle_js_bytes": js.len(), "warn_over_8mb": js.len() > WARN_BYTES},
+        "outputs": {"bundle.json": sha(json.as_bytes()), "bundle.js": sha(js.as_bytes())},
+        "versions": {"bug-age": env!("CARGO_PKG_VERSION"), "git": tool_version("git", &["--version"])},
+        "warnings": built.warnings,
+    });
+    eprintln!("bundle: {} bytes, sha256 {}, blameless gate PASS", json.len(), sha(json.as_bytes()));
+    emit(&receipt, Some(&out.join("receipt.json").to_string_lossy().to_string()))
+}
+
 fn overlay_listing(dir: &Path) -> Vec<String> {
     let mut out = Vec::new();
     let mut stack = vec![dir.to_path_buf()];
@@ -187,6 +220,7 @@ fn main() -> ExitCode {
         Some("szz") => flags(&args[1..]).and_then(|f| cmd_szz(&f)),
         Some("sweep") => flags(&args[1..]).and_then(|f| cmd_sweep(&f)),
         Some("probe") => flags(&args[1..]).and_then(|f| cmd_probe(&f)),
+        Some("bundle") => flags(&args[1..]).and_then(|f| cmd_bundle(&f)),
         Some(other) => {
             eprintln!("bug-age: unknown argument '{other}'\n{USAGE}");
             return ExitCode::from(2);
