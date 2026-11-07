@@ -31,6 +31,57 @@ The pipeline writes a bundle (one JSON file, every number computed by a script) 
 
 ![Commit-by-test results for tokenizers feasibility runs and regression sweeps](article/figures/heatmap-tokenizers.png)
 
+## Run it on your repository
+
+bug-age currently supports Rust crates. A first run with Method A only needs git and Rust; Docker is needed only for the feasibility check and Method B.
+
+**1. Install the requirements and build.**
+
+```sh
+git clone https://github.com/jacob-adm/bug-age && cd bug-age
+cargo build                                          # Rust 1.86 or later
+docker build -t bug-age-spike:4 -f spike/Dockerfile spike   # only for feasibility and Method B
+```
+
+You also need git and Python 3.11 or later.
+
+**2. Describe your repository in a config file.** Copy an existing one and edit it:
+
+```sh
+cp targets/rust-sdk.toml targets/myrepo.toml
+```
+
+| Key | Required | What to set |
+|---|---|---|
+| `name` | yes | Short name: lowercase letters, digits and `-`. Used in file names and the explorer. |
+| `repo_url` | yes | Clone URL of the repository. |
+| `head` | yes | Full SHA of the commit to analyse up to. Pinning it makes the run reproducible. |
+| `crate_path` | yes | Directory of the crate inside the repository (`.` for the root). Only history under this path is analysed. |
+| `work_dir`, `results_dir`, `spike_dir`, `dist_dir` | yes | Where the clone, results, feasibility reports and bundle go, relative to this repository. Follow the pattern `work/<name>`, `results/<name>`, `results/<name>/spike`, `dist/<name>`. |
+| `release_tag_glob` | no | Pattern matching your release tags, for release counts. Default `v[0-9]*`. Set it if your tags look different, e.g. `mycrate-v[0-9]*`, or every release count will be 0. |
+| `package` | no | Cargo package to build and test in a workspace. Default: the whole workspace. |
+| `samples` | no | Commits sampled by the feasibility check. Default 20. |
+| `szz_window_start` | no | `YYYY-MM-DD`. Flags fixes whose introducer falls on or after this date. |
+| `out_of_scope` | no | `STAGE\|EVIDENCE\|DOES_NOT_PROVE`: a part of the repository you deliberately leave out, listed as NOT TESTED. |
+
+**3. Run the pipeline.**
+
+```sh
+make pipeline TARGET=targets/myrepo.toml ARGS=--skip-feasibility   # Method A only, no Docker
+make pipeline TARGET=targets/myrepo.toml                           # adds the Docker feasibility check
+```
+
+**4. Read the results.** `results/myrepo/PIPELINE.md` lists every stage with its status (OK, REUSED, FAILED or NOT TESTED), the reason, and the time taken. The bundle is `dist/myrepo/bundle.json`, with its sha256 in `dist/myrepo/receipt.json`.
+
+**5. Open your own explorer.**
+
+```sh
+target/debug/bug-age explorer --page explorer/index.html --targets myrepo=dist/myrepo --out dist/explorer-myrepo
+open dist/explorer-myrepo/index.html        # or open the file in any browser
+```
+
+**6. Optional: date selected bugs by testing (Method B).** Pick a fix from `results/myrepo/catalog.json` and add a regression test at `results/myrepo/repros/<first 10 chars of the fix SHA>/overlay/tests/bugage_repro.rs`. The overlay is copied into the crate at every commit tested, so the test can only use the crate's public API. It must fail at the commit just before the fix and pass at the fix; otherwise the sweep rejects it as `repro-invalid`. Run step 3 again: Method B runs whenever a regression test has no sweep yet. See `results/tokenizers/repros/` for six examples.
+
 ## How bugs are found
 
 bug-age does not discover new bugs. It works from bugs the project has already fixed, and uses testing only to date some of them.
@@ -103,7 +154,7 @@ Verdicts are honest about what could not be tested:
 ## Requirements
 
 - Rust 1.86 or later
-- Python 3 for the driver scripts
+- Python 3.11 or later for the driver scripts
 - Docker for Method B sweeps. Build the per-commit image from `spike/Dockerfile` and tag it `bug-age-spike:4`, the name the CLI uses by default; override it with `--image`.
 
 ## CLI
@@ -188,6 +239,16 @@ python3 results/compare_runs.py results/tokenizers results/bench   # prints IDEN
 cargo test                 # unit and CLI tests
 cargo test -- --ignored    # adds the end-to-end Docker runner test (needs the image)
 ```
+
+## Contributing
+
+Changes reach `main` only through pull requests.
+
+1. Fork the repository and create a branch.
+2. Make the change, then run `cargo test`. If you changed bundles, results or the article, also run `make article timings`.
+3. Open a pull request against `main`. CI runs the tests and the article and timing checks on Linux and macOS; all must pass before merging. Pull requests are merged with a merge commit.
+
+Keep the rules in [Rigor rules](#rigor-rules): numbers come from scripts, unrun stages are NOT TESTED, and bundles stay blameless.
 
 ## License
 
