@@ -9,7 +9,13 @@ It uses two independent methods and compares them:
 
 Every number comes from scripts. AI helped write the code, the Method B regression tests and the article prose, but no model produces or changes a number. See [What is deterministic and what uses AI](#what-is-deterministic-and-what-uses-ai). bug-age supports Rust crates today.
 
-To see the output first, [open the live explorer](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb) for the two [example runs](#example-runs-tokenizers-and-rust-sdk).
+What you get, and the three names this README uses for it:
+
+- **Report.** What a run produces: the result files in `results/<name>/` and one bundle, `dist/<name>/bundle.json`, which holds every number. Each repository you run gets its own report.
+- **Explorer.** A viewer. It is a static HTML page you build from one or more bundles to browse their reports. It holds no results of its own and runs no analysis.
+- **Live example.** One explorer, built from the reports of the two [example runs](#example-runs-tokenizers-and-rust-sdk) and published online. It is a snapshot: running bug-age on other repositories does not change it.
+
+To see the output first, [open the live example](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb).
 
 ## Get started
 
@@ -51,9 +57,9 @@ make pipeline TARGET=targets/myrepo.toml ARGS=--skip-feasibility   # Method A on
 make pipeline TARGET=targets/myrepo.toml                           # adds the Docker feasibility check
 ```
 
-**4. Read the results.** `results/myrepo/PIPELINE.md` lists every stage with its status (OK, REUSED, FAILED or NOT TESTED), the reason, and the time taken. The bundle is `dist/myrepo/bundle.json`, with its sha256 in `dist/myrepo/receipt.json`.
+**4. Read the report.** `results/myrepo/PIPELINE.md` lists every stage with its status (OK, REUSED, FAILED or NOT TESTED), the reason, and the time taken. The bundle, `dist/myrepo/bundle.json`, is the report of record: every number for this repository is in it. Its sha256 and the exact command that built it are in `dist/myrepo/receipt.json`.
 
-**5. Open your own explorer.**
+**5. Browse the report in your own explorer.** This builds a viewer for your bundle on your machine. The published live example is not affected and keeps showing only the two example runs. To browse several of your repositories together, list them all: `--targets a=dist/a,b=dist/b`.
 
 ```sh
 target/debug/bug-age explorer --page explorer/index.html --targets myrepo=dist/myrepo --out dist/explorer-myrepo
@@ -66,7 +72,7 @@ open dist/explorer-myrepo/index.html        # or open the file in any browser
 
 The same pipeline was run on two Rust codebases. The first, the core crate of [huggingface/tokenizers](https://github.com/huggingface/tokenizers), got every stage, including Method B sweeps for six bugs. The second, the `rmcp` crate of [modelcontextprotocol/rust-sdk](https://github.com/modelcontextprotocol/rust-sdk), was added with a config file alone, to show the pipeline carries over unchanged.
 
-**[▶ Open the live explorer](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)** to browse both. Switch between the two repositories at the top. Each number opens to its evidence: the SHAs, the test runs, the receipt hash and the command that reproduces it. The page also recomputes its headline numbers in your browser and flags any mismatch.
+**[▶ Open the live example](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)**: an explorer built from these two reports and published online. Switch between the two repositories at the top. It is a snapshot of the committed bundles and changes only when it is rebuilt and republished. Each number opens to its evidence: the SHAs, the test runs, the receipt hash and the command that reproduces it. The page also recomputes its headline numbers in your browser and flags any mismatch.
 
 [![The bug-age explorer: headline bug ages, self-check and stage coverage for tokenizers. Click to open.](article/figures/overview-tokenizers.png)](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)
 
@@ -76,11 +82,11 @@ The same pipeline was run on two Rust codebases. The first, the core crate of [h
 | Method A (every catalogued fix) | [`results/tokenizers/METHOD_A.md`](results/tokenizers/METHOD_A.md) | [`results/rust-sdk/szz.json`](results/rust-sdk/szz.json) |
 | Method B (behavioural sweeps) | Six bugs: [`results/tokenizers/AB.md`](results/tokenizers/AB.md) | NOT TESTED: no regression tests written yet |
 | Stage report | [`results/tokenizers/PIPELINE.md`](results/tokenizers/PIPELINE.md) | [`results/rust-sdk/PIPELINE.md`](results/rust-sdk/PIPELINE.md) |
-| Bundle | [`dist/tokenizers/bundle.json`](dist/tokenizers/bundle.json) | [`dist/rust-sdk/bundle.json`](dist/rust-sdk/bundle.json) |
+| Report of record (bundle) | [`dist/tokenizers/bundle.json`](dist/tokenizers/bundle.json) | [`dist/rust-sdk/bundle.json`](dist/rust-sdk/bundle.json) |
 
 ### What the explorer shows
 
-These screenshots are captured from the built page by `make article`, so they always match the committed data.
+These screenshots are captured by `make article` from the explorer built for the two example runs, so they always match the committed bundles.
 
 **Lifespans.** Each bar runs from the nominated introducing commit to the fix. A date scrubber shows which bugs were alive on any day.
 
@@ -145,7 +151,7 @@ Method B dominates: each bug needs a regression test, and the current search bui
 | Method A | `git blame` on the lines each fix changed; days, commits, releases and churn computed from git. |
 | Buildability and Method B sweeps | Each commit built and tested in Docker with no network and a date-matched toolchain. PASS or FAIL comes from the test's exit status, and decisive commits are re-run. |
 | Bundle and summary | Medians, 90th percentiles, counts and coverage computed by the CLI; the blameless gate rejects names and emails. |
-| Explorer | Renders the bundle as it is, recomputes the headline numbers in the browser, and ranks search results with fixed rules. |
+| Explorer (viewer) | Displays the bundles it was built from as they are, recomputes the headline numbers in the browser, and ranks search results with fixed rules. |
 | MCP server | Returns values copied from the bundle; unknown input is an error, never a guess. |
 | Article numbers | Inserted from the bundle by `scripts/article.py`, which fails on any number typed into the prose. |
 | History scan | Fixed identity and email patterns over every committed file and message. |
@@ -181,7 +187,7 @@ bug-age mcp     --bundles NAME=FILE,...
 | `sweep` | Method B: binary-searches for the first commit where the test compiles, then bisects PASS/FAIL above it. Decisive commits are re-run `--repeats` times and flagged UNSTABLE if the result changes |
 | `probe` | Runs the same test at a fixed list of commits, with no search |
 | `bundle` | Builds `bundle.json` (validated against [`schema/bundle.schema.json`](schema/bundle.schema.json)), `bundle.js`, and `receipt.json` (sha256 hashes and sizes) |
-| `explorer` | Builds the static explorer page with one data file per repository; fails over 8 MB |
+| `explorer` | Builds an explorer: a static viewer page for the listed bundles, with one data file per repository; fails over 8 MB. It reads reports and adds no results. |
 | `mcp` | Read-only MCP server on stdio answering bundle queries; see [`dist/agent/AGENTS.md`](dist/agent/AGENTS.md) |
 
 ## Pipeline reference
