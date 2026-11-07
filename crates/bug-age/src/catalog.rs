@@ -1,4 +1,11 @@
-//! Fix-commit catalog: first-parent commits touching the crate path whose subject matches
+//! Fix-commit catalog.
+//!
+//! This is where bug-age decides which commits are bug fixes. It does not test anything: it reads
+//! commit subjects. A commit is a fix when it is on the first-parent history, touches the crate path,
+//! its subject matches [`INCLUDE`], and it matches none of the [`EXCLUDE`] rules. Bugs that were never
+//! fixed, or were fixed under a subject without these words, are not in the catalog.
+//!
+//! First-parent commits touching the crate path whose subject matches
 //! a deterministic include rule and none of the exclude rules. Every entry records the rule
 //! that admitted or rejected it, so the catalog can be audited and re-derived.
 
@@ -7,6 +14,7 @@ use regex::Regex;
 use serde::Serialize;
 use std::path::Path;
 
+/// Subject words that mark a commit as a bug fix: fix, fixes, fixed, fixing, bug, bugs, hotfix.
 pub const INCLUDE: &str = r"(?i)\b(fix(e[sd]|ing)?|bugs?|hotfix)\b";
 
 /// (rule name, pattern). The first matching rule excludes the commit.
@@ -21,26 +29,41 @@ pub const EXCLUDE: &[(&str, &str)] = &[
     ("feature-name", r"(?i)\bfixed[- ]length\b"),
 ];
 
+/// One commit that matched the include rule, with the rule that admitted or excluded it.
 #[derive(Debug, Serialize)]
 pub struct Entry {
+    /// Full commit SHA.
     pub sha: String,
+    /// Parent SHAs; more than one means the fix is a merge commit.
     pub parents: Vec<String>,
+    /// Committer date, YYYY-MM-DD.
     pub date: String,
     /// Subject with usernames removed ("from user/branch", "@handle").
     pub subject: String,
+    /// `include`, or `exclude:<rule name>`.
     pub rule: String,
 }
 
+/// The full catalog for one crate path at one head commit.
 #[derive(Debug, Serialize)]
 pub struct Catalog {
+    /// Resolved head SHA the catalog was built from.
     pub head: String,
+    /// Crate path the history was filtered to.
     pub path: String,
+    /// Number of first-parent commits touching the path.
     pub scanned: usize,
+    /// The include pattern, recorded so the catalog can be re-derived.
     pub include_rule: String,
+    /// Commits admitted as bug fixes.
     pub fixes: Vec<Entry>,
+    /// Commits that matched the include rule but were excluded, with the reason.
     pub excluded: Vec<Entry>,
 }
 
+/// Removes usernames from a commit subject and caps it at 100 characters.
+///
+/// Strips GitHub merge phrasing (`from user/branch`) and `@handles`, so the bundle stays blameless.
 pub fn sanitize_subject(s: &str) -> String {
     let from = Regex::new(r"\s+from\s+\S+/\S+").expect("valid regex");
     let handle = Regex::new(r"@[A-Za-z0-9][A-Za-z0-9_-]*").expect("valid regex");
@@ -61,6 +84,10 @@ pub fn classify(subject: &str) -> Option<String> {
     Some("include".to_string())
 }
 
+/// Builds the catalog from the first-parent history of `head`, limited to commits touching `path`.
+///
+/// # Errors
+/// Returns an error if a git command fails.
 pub fn build(repo: &Path, head: &str, path: &str) -> Result<Catalog, String> {
     let log = git(repo, &["log", "--first-parent", "--format=%H%x1f%P%x1f%cs%x1f%s%x1e", head, "--", path])?;
     let (mut fixes, mut excluded, mut scanned) = (Vec::new(), Vec::new(), 0);

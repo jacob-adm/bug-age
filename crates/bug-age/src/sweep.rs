@@ -1,4 +1,10 @@
-//! Method B: behavioural sweep. A regression test (overlay) must FAIL on the fix's first parent
+//! Method B: behavioural sweep.
+//!
+//! This is the only place bug-age runs tests to date a bug. It does not find bugs: it takes a
+//! regression test written for one already-fixed bug and asks where in history that test starts
+//! failing.
+//!
+//! A regression test (overlay) must FAIL on the fix's first parent
 //! and PASS on the fix. The first-parent range [start, fix^] is then bisected for the PASS->FAIL
 //! boundary, skipping UNTESTABLE/FLAKY commits the way `git bisect skip` does, and a bounded
 //! sweep around the boundary checks monotonicity. Nothing is smoothed over: a PASS after a FAIL
@@ -9,31 +15,51 @@ use crate::runner::{CommitResult, Outcome, Runner, Spec, Step};
 use serde::Serialize;
 use std::collections::BTreeMap;
 
+/// Result of one sweep: the verdict, the boundary commits, and every commit tested.
 #[derive(Debug, Serialize)]
 pub struct Sweep {
+    /// Fix commit SHA.
     pub fix: String,
+    /// Oldest commit of the swept range.
     pub start: String,
+    /// Runner used: `local` or `docker`.
     pub runner: String,
+    /// Build command run at each commit.
     pub build: String,
+    /// Test command run at each commit.
     pub test: String,
+    /// Repeats used to confirm decisive commits.
     pub repeats: u32,
     /// located | interval | censored-by-testability | left-censored | repro-invalid
     pub verdict: String,
+    /// Plain-language explanation of the verdict.
     pub reason: String,
+    /// Newest commit where the test passes, if one is testable.
     pub last_passing: Option<String>,
+    /// Oldest commit where the test fails: the bug's behavioural start.
     pub first_failing: Option<String>,
     /// First-parent commits strictly between last_passing and first_failing (all untestable).
     pub untestable_between: usize,
+    /// True when a PASS follows a FAIL inside the range (bug fixed and reintroduced, or flakiness).
     pub non_monotonic: bool,
     /// First commit where the regression test compiles.
     pub frontier: Option<String>,
+    /// Whether re-running the decisive commits reproduced their outcomes.
     pub confirmation: String,
+    /// Number of first-parent commits in the range.
     pub range_commits: usize,
+    /// Number of commits actually built and tested.
     pub commits_tested: usize,
     /// Tested commits in history order.
     pub results: Vec<CommitResult>,
 }
 
+/// Builds and tests one commit and classifies it as PASS, FAIL, FLAKY or UNTESTABLE.
+///
+/// Steps: stage the commit and pick a toolchain; fetch dependencies (Docker only, the one step with
+/// network); build without network, retrying once with the exact date-matched toolchain if the
+/// failure is not in the overlay test; run the test `repeats` times without network. Mixed
+/// pass/fail across repeats is FLAKY. Every step's exit code and duration is recorded.
 pub fn evaluate(runner: &mut dyn Runner, spec: &Spec, sha: &str, repeats: u32) -> CommitResult {
     let logs = spec.logs.join(&sha[..12]);
     let mut steps = Vec::new();
@@ -77,6 +103,7 @@ pub fn evaluate(runner: &mut dyn Runner, spec: &Spec, sha: &str, repeats: u32) -
     }
 }
 
+/// Search state: the commit list and a cache so no commit is built twice in one sweep.
 struct Probe<'a> {
     runner: &'a mut dyn Runner,
     spec: &'a Spec,
@@ -85,6 +112,7 @@ struct Probe<'a> {
 }
 
 impl Probe<'_> {
+    /// Outcome at index `i`, evaluating it once with `SEARCH_REPEATS` and caching the result.
     fn outcome(&mut self, i: usize) -> Outcome {
         if !self.seen.contains_key(&i) {
             let r = evaluate(self.runner, self.spec, &self.commits[i], SEARCH_REPEATS);
@@ -139,10 +167,20 @@ pub fn range(spec: &Spec, fix: &str, start: Option<&str>) -> Result<Vec<String>,
     Ok(all[from..].to_vec())
 }
 
+/// How far either side of a bisection midpoint to look for a testable commit.
 const SKIP_RADIUS: i64 = 2;
 /// Repeats while searching; decisive commits are confirmed with `Spec::repeats`.
 const SEARCH_REPEATS: u32 = 1;
 
+/// Runs the full sweep for one fix and returns the verdict with all evidence.
+///
+/// Verdicts: `located` (adjacent PASS then FAIL), `interval` (boundary hidden by untestable
+/// commits), `censored-by-testability` (fails where the test first compiles: age is a lower bound),
+/// `left-censored` (fails from the first commit of the range), `repro-invalid` (the test does not
+/// fail before the fix and pass after it, so it proves nothing).
+///
+/// # Errors
+/// Returns an error if the range cannot be resolved or holds fewer than two commits.
 pub fn run(runner: &mut dyn Runner, spec: &Spec, fix: &str, start: Option<&str>) -> Result<Sweep, String> {
     let commits = range(spec, fix, start)?;
     if commits.len() < 2 {
@@ -158,6 +196,7 @@ pub fn run(runner: &mut dyn Runner, spec: &Spec, fix: &str, start: Option<&str>)
         untestable_between: 0, non_monotonic: false, frontier: None, confirmation: String::new(), range_commits: probe.commits.len(), commits_tested: 0,
         results: vec![],
     };
+    // 0. Validate the regression test itself: it must FAIL just before the fix and PASS at the fix.
     let (of, op) = (probe.outcome(f), probe.outcome(p));
     if of != Outcome::Pass || op != Outcome::Fail {
         sweep.verdict = "repro-invalid".into();
@@ -226,6 +265,7 @@ pub fn run(runner: &mut dyn Runner, spec: &Spec, fix: &str, start: Option<&str>)
     Ok(finish(sweep, probe))
 }
 
+/// Records monotonicity and moves every tested commit into the result, in history order.
 fn finish(mut sweep: Sweep, probe: Probe) -> Sweep {
     let seq: Vec<Outcome> = probe.seen.values().map(|r| r.outcome)
         .filter(|o| matches!(o, Outcome::Pass | Outcome::Fail)).collect();
