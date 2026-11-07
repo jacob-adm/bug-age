@@ -4,6 +4,10 @@ Half of the bugs I traced in Hugging Face's tokenizers crate had been in the cod
 
 Those numbers come from a tool, not from me. I built bug-age to answer one question for any git repository: when a bug gets fixed, how long had it been there? Every figure in this post is read from a JSON bundle that the tool generates. A script checks this text against that bundle and fails the build if a number does not match.
 
+**See it yourself: [open the bug-age explorer](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb).** Every bug, lifespan and test run behind this post, each number one click from its evidence.
+
+[![The bug-age explorer](figures/overview-tokenizers.png)](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)
+
 ## Why bug age matters
 
 Most QA metrics count bugs. Few ask how long each one survived. Age tells you something counts cannot: whether your tests, reviews and releases catch problems in days or let them ride for years. A bug that lives through many releases is a bug your whole process missed, many times over.
