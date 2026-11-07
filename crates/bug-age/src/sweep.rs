@@ -25,13 +25,16 @@ pub struct Sweep {
     /// First-parent commits strictly between last_passing and first_failing (all untestable).
     pub untestable_between: usize,
     pub non_monotonic: bool,
+    /// First commit where the regression test compiles.
+    pub frontier: Option<String>,
+    pub confirmation: String,
     pub range_commits: usize,
     pub commits_tested: usize,
     /// Tested commits in history order.
     pub results: Vec<CommitResult>,
 }
 
-pub fn evaluate(runner: &mut dyn Runner, spec: &Spec, sha: &str) -> CommitResult {
+pub fn evaluate(runner: &mut dyn Runner, spec: &Spec, sha: &str, repeats: u32) -> CommitResult {
     let logs = spec.logs.join(&sha[..12]);
     let mut steps = Vec::new();
     let result = |outcome, reason: String, toolchain: String, steps: Vec<Step>| CommitResult {
@@ -49,10 +52,21 @@ pub fn evaluate(runner: &mut dyn Runner, spec: &Spec, sha: &str) -> CommitResult
     if runner.name() == "docker" && step(runner, "fetch", "cargo fetch", true, &mut steps) != 0 {
         return result(Outcome::Untestable, "dependency fetch failed".into(), toolchain, steps);
     }
+    let mut toolchain = toolchain;
     if step(runner, "build", &spec.build, false, &mut steps) != 0 {
-        return result(Outcome::Untestable, "test build failed (overlay does not compile here)".into(), toolchain, steps);
+        // An error in the overlay test means the tested API is absent: genuinely untestable. Any other
+        // build error under a bucketed toolchain gets one retry with the exact date-matched toolchain.
+        let log = std::fs::read_to_string(logs.join("build.log")).unwrap_or_default();
+        let overlay_error = log.lines().any(|l| l.contains("bugage_repro.rs"));
+        let retried = !overlay_error && runner.fallback_toolchain(spec, &logs.join("toolchain-fallback.log")).map(|t| {
+            toolchain = t;
+            runner.name() != "docker" || step(runner, "fetch_exact", "cargo fetch", true, &mut steps) == 0
+        }) == Some(true) && step(runner, "build_exact", &spec.build, false, &mut steps) == 0;
+        if !retried {
+            return result(Outcome::Untestable, "test build failed (overlay does not compile here)".into(), toolchain, steps);
+        }
     }
-    let exits: Vec<i32> = (1..=spec.repeats)
+    let exits: Vec<i32> = (1..=repeats)
         .map(|i| step(runner, &format!("test_{i}"), &spec.test, false, &mut steps))
         .collect();
     let (pass, fail) = (exits.iter().filter(|&&e| e == 0).count(), exits.iter().filter(|&&e| e != 0).count());
@@ -73,11 +87,24 @@ struct Probe<'a> {
 impl Probe<'_> {
     fn outcome(&mut self, i: usize) -> Outcome {
         if !self.seen.contains_key(&i) {
-            let r = evaluate(self.runner, self.spec, &self.commits[i]);
+            let r = evaluate(self.runner, self.spec, &self.commits[i], SEARCH_REPEATS);
             eprintln!("sweep: [{i}] {} {:?} ({})", &self.commits[i][..10], r.outcome, r.reason);
             self.seen.insert(i, r);
         }
         self.seen[&i].outcome
+    }
+
+    /// Re-run a commit with the full repeat count; returns a note if the outcome changed.
+    fn confirm(&mut self, i: usize) -> Option<String> {
+        let before = self.outcome(i);
+        if self.spec.repeats <= SEARCH_REPEATS || matches!(before, Outcome::Untestable) {
+            return None;
+        }
+        let r = evaluate(self.runner, self.spec, &self.commits[i], self.spec.repeats);
+        eprintln!("sweep: confirm [{i}] {} {:?} ({})", &self.commits[i][..10], r.outcome, r.reason);
+        let changed = (r.outcome != before).then(|| format!("{} {before:?} -> {:?}", &self.commits[i][..10], r.outcome));
+        self.seen.insert(i, r);
+        changed
     }
 
     /// Nearest testable index to `mid` strictly inside (lo, hi), probing at most SKIP_RADIUS commits
@@ -113,6 +140,8 @@ pub fn range(spec: &Spec, fix: &str, start: Option<&str>) -> Result<Vec<String>,
 }
 
 const SKIP_RADIUS: i64 = 2;
+/// Repeats while searching; decisive commits are confirmed with `Spec::repeats`.
+const SEARCH_REPEATS: u32 = 1;
 
 pub fn run(runner: &mut dyn Runner, spec: &Spec, fix: &str, start: Option<&str>) -> Result<Sweep, String> {
     let commits = range(spec, fix, start)?;
@@ -126,7 +155,7 @@ pub fn run(runner: &mut dyn Runner, spec: &Spec, fix: &str, start: Option<&str>)
         fix: probe.commits[f].clone(), start: probe.commits[0].clone(), runner: name,
         build: spec.build.clone(), test: spec.test.clone(), repeats: spec.repeats,
         verdict: String::new(), reason: String::new(), last_passing: None, first_failing: None,
-        untestable_between: 0, non_monotonic: false, range_commits: probe.commits.len(), commits_tested: 0,
+        untestable_between: 0, non_monotonic: false, frontier: None, confirmation: String::new(), range_commits: probe.commits.len(), commits_tested: 0,
         results: vec![],
     };
     let (of, op) = (probe.outcome(f), probe.outcome(p));
@@ -135,38 +164,64 @@ pub fn run(runner: &mut dyn Runner, spec: &Spec, fix: &str, start: Option<&str>)
         sweep.reason = format!("expected FAIL on fix^ and PASS on fix, got {op:?} / {of:?}");
         return Ok(finish(sweep, probe));
     }
-    // lo: last known PASS; hi: first known FAIL; floor: everything at or below is assumed untestable
-    // (an untestable neighbourhood is taken to mean the test cannot compile yet on older history).
-    let (mut lo, mut hi, mut floor) = (-1i64, p as i64, -1i64);
-    while hi - lo.max(floor) > 1 {
-        let base = lo.max(floor);
-        let mid = (base + hi) / 2;
-        match probe.testable_near(mid, base, hi) {
-            Some((i, Outcome::Pass)) => lo = i as i64,
-            Some((i, _)) => hi = i as i64,
-            None => floor = (mid + SKIP_RADIUS).min(hi - 1),
+    // 1. Compile frontier: first commit where the test builds (build-ability assumed monotonic:
+    //    once the tested API exists it keeps existing). Binary search instead of probing outward.
+    let frontier = if probe.outcome(0) != Outcome::Untestable {
+        0
+    } else {
+        let (mut untestable, mut testable) = (0usize, p);
+        while testable - untestable > 1 {
+            let mid = (untestable + testable) / 2;
+            if probe.outcome(mid) == Outcome::Untestable { untestable = mid } else { testable = mid }
         }
+        testable
+    };
+    sweep.frontier = Some(probe.commits[frontier].clone());
+    // 2. PASS->FAIL bisect inside [frontier, fix^]; rare untestable commits there (broken builds)
+    //    are skipped within SKIP_RADIUS.
+    let (mut lo, mut hi) = (frontier as i64 - 1, p as i64);
+    if probe.outcome(frontier) == Outcome::Pass {
+        lo = frontier as i64;
+        while hi - lo > 1 {
+            match probe.testable_near((lo + hi) / 2, lo, hi) {
+                Some((i, Outcome::Pass)) => lo = i as i64,
+                Some((i, _)) => hi = i as i64,
+                None => break,
+            }
+        }
+    } else {
+        hi = frontier as i64;
     }
-    let k = 2;
-    for i in (hi - k).max(0)..=(hi + k).min(p as i64) {
+    // 3. Bounded sweep around the boundary for monotonicity.
+    for i in (hi - 2).max(frontier as i64)..=(hi + 2).min(p as i64) {
         probe.outcome(i as usize);
     }
-    sweep.first_failing = Some(probe.commits[hi as usize].clone());
-    sweep.last_passing = (lo >= 0).then(|| probe.commits[lo as usize].clone());
-    sweep.untestable_between = (hi - lo - 1).max(0) as usize;
-    let assumed = (floor >= 0).then(|| format!(
-        "; commits up to {} assumed untestable after {SKIP_RADIUS}-commit neighbourhoods failed to build",
-        &probe.commits[floor as usize][..10]));
-    (sweep.verdict, sweep.reason) = if lo >= 0 && hi - lo == 1 {
-        ("located".into(), "adjacent last PASS and first FAIL".into())
-    } else if lo >= 0 {
-        ("interval".into(), format!("bug introduced within {} untestable commit(s) between last PASS and first FAIL{}",
-                                     sweep.untestable_between, assumed.unwrap_or_default()))
-    } else if floor >= 0 {
-        sweep.untestable_between = 0;
-        ("censored-by-testability".into(), format!("test already fails where it first compiles{}", assumed.unwrap_or_default()))
+    // 4. Confirm the decisive commits with the full repeat count.
+    let mut decisive = vec![f, p, hi as usize];
+    if lo >= frontier as i64 {
+        decisive.push(lo as usize);
+    }
+    let unstable: Vec<String> = decisive.into_iter().filter_map(|i| probe.confirm(i)).collect();
+    sweep.confirmation = if unstable.is_empty() {
+        format!("decisive commits confirmed x{}", spec.repeats)
     } else {
+        format!("UNSTABLE on confirmation: {}", unstable.join("; "))
+    };
+    let testable_lo = lo >= frontier as i64;
+    sweep.first_failing = Some(probe.commits[hi as usize].clone());
+    sweep.last_passing = testable_lo.then(|| probe.commits[lo as usize].clone());
+    sweep.untestable_between = if testable_lo { (hi - lo - 1) as usize } else { 0 };
+    (sweep.verdict, sweep.reason) = if testable_lo && hi - lo == 1 {
+        ("located".into(), "adjacent last PASS and first FAIL".into())
+    } else if testable_lo {
+        ("interval".into(), format!("bug introduced within {} untestable commit(s) between last PASS and first FAIL",
+                                     sweep.untestable_between))
+    } else if frontier == 0 {
         ("left-censored".into(), "test fails from the first commit of the range".into())
+    } else {
+        ("censored-by-testability".into(), format!(
+            "test already fails at {}, the first commit where it compiles (build-ability assumed monotonic)",
+            &probe.commits[frontier][..10]))
     };
     Ok(finish(sweep, probe))
 }

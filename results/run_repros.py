@@ -34,13 +34,13 @@ def range_start(repo, fix):
     raise SystemExit(f"no commits for {fix}")
 
 
-def sweep(res, repo, crate, rid):
+def sweep(res, repo, crate, rid, worker="w0"):
     fix = git(repo, "rev-parse", rid)
     out = res / "repros" / rid / "sweep.json"
     cmd = ["target/debug/bug-age", "sweep", "--repo", str(repo), "--path", crate, "--fix", fix,
            "--start", range_start(repo, fix), "--overlay", str(res / "repros" / rid / "overlay"),
            "--runner", "docker", "--repeats", "3", "--build", BUILD, "--test", TEST,
-           "--logs", f"work/sweep-logs/{rid}", "--out", str(out)]
+           "--logs", f"work/sweep-logs/{rid}", "--out", str(out), "--namespace", worker]
     print(f"== {rid}: {' '.join(cmd[2:])}", flush=True)
     p = subprocess.run(cmd, stderr=subprocess.PIPE, text=True)
     (res / "repros" / rid / "sweep.stderr.log").write_text(p.stderr.replace(str(Path.home()), "~"))
@@ -156,11 +156,13 @@ def render(res, repo):
 if __name__ == "__main__":
     res, repo, crate = Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3]
     only = [a for a in sys.argv[sys.argv.index("--only") + 1:] if not a.startswith("--")] if "--only" in sys.argv else None
-    for d in sorted((res / "repros").iterdir()):
-        if only is not None and d.name not in only:
-            continue
-        if "--render-only" not in sys.argv and "--acheck-only" not in sys.argv:
-            sweep(res, repo, crate, d.name)
-        if "--render-only" not in sys.argv:
-            acheck(res, repo, crate, d.name)
+    ids = [d.name for d in sorted((res / "repros").iterdir()) if only is None or d.name in only]
+    workers = int(sys.argv[sys.argv.index("--workers") + 1]) if "--workers" in sys.argv else 2
+    if "--render-only" not in sys.argv and "--acheck-only" not in sys.argv:
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(workers) as pool:  # each worker gets its own docker volume namespace
+            list(pool.map(lambda iw: sweep(res, repo, crate, iw[1], f"w{iw[0] % workers}"), enumerate(ids)))
+    if "--render-only" not in sys.argv and "--no-acheck" not in sys.argv:
+        for rid in ids:
+            acheck(res, repo, crate, rid)
     render(res, repo)
