@@ -1,0 +1,126 @@
+# Reviewed history-scan hits (BUGAGE-14, 2026-11-06). All are false positives:
+# - person git/code/look/info/mail: target-repo usernames that are ordinary words in code and docs
+# - person marco: typo for 'macro' in a rust-sdk commit subject; matches a tokenizers username
+# - email noreply@anthropic.com: Co-Authored-By trailer in commit messages
+# - email *@example.invalid / ada@example.org / *@users.noreply.github.com fixtures: planted test identities
+email	commit 000e564af7 message	noreply@anthropic.com
+email	commit 004abec3d9 message	noreply@anthropic.com
+email	commit 04e3027158 message	noreply@anthropic.com
+email	commit 091a21bc23 message	noreply@anthropic.com
+email	commit 23e544ca91 message	noreply@anthropic.com
+email	commit 35828b0ac7 message	noreply@anthropic.com
+email	commit 4b98b45f97 message	noreply@anthropic.com
+email	commit 50a6ff93db message	noreply@anthropic.com
+email	commit 57e88e49a0 message	noreply@anthropic.com
+email	commit 58e8ae1378 message	noreply@anthropic.com
+email	commit 5b0da93bc4 message	noreply@anthropic.com
+email	commit 5e8cddb71f message	noreply@anthropic.com
+email	commit 741166bb14 message	noreply@anthropic.com
+email	commit 76fc185368 message	noreply@anthropic.com
+email	commit 7c5a0c00bf message	noreply@anthropic.com
+email	commit 825e119c38 message	noreply@anthropic.com
+email	commit a3b09a1bb3 message	noreply@anthropic.com
+email	commit b8040ac382 message	noreply@anthropic.com
+email	commit c464f3d878 message	noreply@anthropic.com
+email	commit ceecf33eb7 message	noreply@anthropic.com
+email	commit e28c0f08fe message	noreply@anthropic.com
+email	commit fc866d2e0a message	noreply@anthropic.com
+email	crates/bug-age/src/bundle.rs	12345+name@users.noreply.github.com
+email	crates/bug-age/tests/bundle.rs	123+ghopper@users.noreply.github.com
+email	crates/bug-age/tests/bundle.rs	ada@example.org
+email	crates/bug-age/tests/method_a.rs	test@example.invalid
+email	crates/bug-age/tests/sweep.rs	t@example.invalid
+person	.gitignore	git
+person	README.md	git
+person	article/ARTICLE.md	code
+person	article/ARTICLE.md	git
+person	article/ARTICLE.md	look
+person	article/ARTICLE.tmpl.md	code
+person	article/ARTICLE.tmpl.md	git
+person	article/ARTICLE.tmpl.md	look
+person	commit 23e544ca91 message	git
+person	commit 50a6ff93db message	code
+person	commit 50a6ff93db message	git
+person	commit 76fc185368 message	git
+person	commit fc866d2e0a message	code
+person	commit fc866d2e0a message	git
+person	crates/bug-age/Cargo.toml	git
+person	crates/bug-age/src/bundle.rs	git
+person	crates/bug-age/src/catalog.rs	git
+person	crates/bug-age/src/git.rs	git
+person	crates/bug-age/src/lib.rs	git
+person	crates/bug-age/src/main.rs	git
+person	crates/bug-age/src/mcp.rs	code
+person	crates/bug-age/src/runner.rs	code
+person	crates/bug-age/src/runner.rs	git
+person	crates/bug-age/src/sweep.rs	git
+person	crates/bug-age/src/szz.rs	git
+person	crates/bug-age/tests/bundle.rs	git
+person	crates/bug-age/tests/bundle.rs	mail
+person	crates/bug-age/tests/cli.rs	code
+person	crates/bug-age/tests/fixtures/mcp/responses.jsonl	code
+person	crates/bug-age/tests/method_a.rs	git
+person	crates/bug-age/tests/sweep.rs	git
+person	dist/agent/AGENTS.md	git
+person	dist/agent/AGENTS.md	look
+person	dist/agent/SKILL.md	git
+person	dist/explorer/data/rust-sdk.js	code
+person	dist/explorer/data/rust-sdk.js	git
+person	dist/explorer/data/rust-sdk.js	marco
+person	dist/explorer/data/tokenizers.js	git
+person	dist/explorer/index.html	code
+person	dist/explorer/index.html	git
+person	dist/rust-sdk/bundle.js	code
+person	dist/rust-sdk/bundle.js	marco
+person	dist/rust-sdk/bundle.json	code
+person	dist/rust-sdk/bundle.json	marco
+person	dist/rust-sdk/receipt.json	git
+person	dist/tokenizers/receipt.json	git
+person	explorer/index.html	code
+person	explorer/index.html	git
+person	results/render_method_a.py	git
+person	results/run_repros.py	code
+person	results/run_repros.py	git
+person	results/rust-sdk/catalog.json	code
+person	results/rust-sdk/catalog.json	info
+person	results/rust-sdk/catalog.json	look
+person	results/rust-sdk/catalog.json	marco
+person	results/rust-sdk/spike/results-timetravel/receipt.json	git
+person	results/rust-sdk/spike/results-timetravel/report.json	git
+person	results/rust-sdk/spike/results/receipt.json	git
+person	results/rust-sdk/spike/results/report.json	git
+person	results/rust-sdk/szz.json	code
+person	results/rust-sdk/szz.json	git
+person	results/rust-sdk/szz.json	info
+person	results/rust-sdk/szz.json	look
+person	results/rust-sdk/szz.json	marco
+person	results/tokenizers/AB.md	code
+person	results/tokenizers/METHOD_A.md	git
+person	results/tokenizers/repros/8a6a8dc9d5/sweep.json.receipt.json	git
+person	results/tokenizers/repros/9a93c50c25/sweep.json.receipt.json	git
+person	results/tokenizers/repros/9b77c054ef/sweep.json.receipt.json	git
+person	results/tokenizers/repros/a350ec3e72/sweep.json.receipt.json	git
+person	results/tokenizers/repros/c046da7679/sweep.json.receipt.json	git
+person	results/tokenizers/repros/fb837b4adb/sweep.json.receipt.json	git
+person	results/tokenizers/szz.json	git
+person	scripts/article.py	code
+person	scripts/pipeline.py	git
+person	spike/Dockerfile	git
+person	spike/feasibility.py	code
+person	spike/feasibility.py	git
+person	spike/render_report.py	code
+person	spike/results-timetravel/REPORT.md	code
+person	spike/results-timetravel/REPORT.md	git
+person	spike/results-timetravel/receipt.json	git
+person	spike/results-timetravel/report.json	git
+person	spike/results-timetravel/run1-image2/receipt.json	git
+person	spike/results-timetravel/run1-image2/report.json	git
+person	spike/results/REPORT.md	code
+person	spike/results/REPORT.md	git
+person	spike/results/receipt.json	git
+person	spike/results/report.json	git
+person	spike/results/smoke-native-macos.receipt.json	git
+person	spike/results/smoke-native-macos.report.json	code
+person	spike/results/smoke-native-macos.report.json	git
+person	spike/timetravel.py	code
+person	spike/timetravel.py	git
