@@ -18,6 +18,7 @@ DEP_TABLES = ("dependencies", "dev-dependencies", "build-dependencies")
 
 
 def index_path(name: str) -> str:
+    """Path of a crate inside the crates.io index layout (1/, 2/, 3/a/, ab/cd/)."""
     n = name.lower()
     if len(n) <= 2:
         return f"{len(n)}/{n}"

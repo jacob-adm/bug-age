@@ -6,11 +6,13 @@ from pathlib import Path
 
 
 def pct(xs, q):
+    """Nearest-rank percentile: the value at index floor(q * n) of the sorted values."""
     xs = sorted(xs)
     return xs[min(len(xs) - 1, int(q * len(xs)))]
 
 
 def main(d: Path) -> None:
+    """Read catalog.json and szz.json for one target and write METHOD_A.md with hashes of both inputs."""
     cat_raw, szz_raw = (d / "catalog.json").read_bytes(), (d / "szz.json").read_bytes()
     cat, szz = json.loads(cat_raw), json.loads(szz_raw)
     bugs = szz["bugs"]

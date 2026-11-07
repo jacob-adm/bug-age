@@ -10,6 +10,7 @@ GO = 0.70  # the BUGAGE-1 GO rule, pre-registered for BUGAGE-5 in its Phase 1 co
 
 
 def main() -> None:
+    """Write a per-commit table comparing the baseline and time-travel feasibility runs."""
     base_raw, tt_raw = BASE.read_bytes(), TT.read_bytes()
     base = {r["sha"]: r for r in json.loads(base_raw)["results"]}
     tt_rep = json.loads(tt_raw)

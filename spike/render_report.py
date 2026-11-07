@@ -8,6 +8,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def main(res: Path = RES) -> None:
+    """Write REPORT.md for one feasibility run from its report.json and receipt.json."""
     global RES
     RES = res
     body = (RES / "report.json").read_text()
