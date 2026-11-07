@@ -27,7 +27,8 @@ def run(cmd, log):
 
 def tail(log, n=3):
     lines = [l for l in Path(log).read_text().splitlines() if l.strip()]
-    return " / ".join(lines[-n:])[:300]
+    text = " / ".join(lines[-n:]).replace(f"{ROOT}/", "").replace(str(ROOT), ".").replace(str(Path.home()), "~")
+    return text[:300]
 
 
 def main():
