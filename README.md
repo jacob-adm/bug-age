@@ -1,9 +1,5 @@
 # bug-age
 
-**[▶ Open the live explorer](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)**: every bug, lifespan and test run from huggingface/tokenizers and modelcontextprotocol/rust-sdk. Each number opens to its evidence (SHAs, test runs, receipt hash, and the command that reproduces it), and the page recomputes its headline numbers in your browser.
-
-[![The bug-age explorer: headline bug ages, self-check and stage coverage for tokenizers. Click to open.](article/figures/overview-tokenizers.png)](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)
-
 Measures how long bugs lived in a git repository, using real repository data. For each fixed bug it reports commits elapsed, calendar days, releases shipped, and churn between the commit that introduced it and the fix.
 
 It uses two independent methods and compares them:
@@ -11,29 +7,13 @@ It uses two independent methods and compares them:
 - **Method A, blame-based (SZZ-style).** Runs `git blame` on the lines a fix changed and names the commit that last touched them as the likely introducer. This is fast and needs only git, but it can be wrong. Known failure cases: ghost commits, formatting-only changes, and introducers that were not the latest toucher.
 - **Method B, behavioral sweep.** Takes a regression test that fails before the fix and passes after it, then replays that test across history in a hermetic per-commit Docker environment. The result is the first failing commit, the last passing commit, and every untestable commit with a reason.
 
-Every number comes from scripts. AI helped write the code, the Method B regression tests and the article prose, but no model produces or changes a number. See [What is deterministic and what uses AI](#what-is-deterministic-and-what-uses-ai).
+Every number comes from scripts. AI helped write the code, the Method B regression tests and the article prose, but no model produces or changes a number. See [What is deterministic and what uses AI](#what-is-deterministic-and-what-uses-ai). bug-age supports Rust crates today.
 
-Rust/Cargo is the first supported ecosystem. The first showcase target is the Rust core crate of [huggingface/tokenizers](https://github.com/huggingface/tokenizers); the second, run from a config file alone, is the `rmcp` crate of [modelcontextprotocol/rust-sdk](https://github.com/modelcontextprotocol/rust-sdk).
+To see the output first, [open the live explorer](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb) for the two [example runs](#example-runs-tokenizers-and-rust-sdk).
 
-## What it produces
+## Get started
 
-The pipeline writes a bundle (one JSON file, every number computed by a script) and a static explorer page built from it; the [live explorer](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb) is that page for the two showcase targets. These screenshots are captured from that page by `make article`, so they always match the committed data.
-
-**Overview.** Headline ages, how many old commits still build, and what each stage proves. The page recomputes these numbers from the raw rows in your browser and flags any mismatch.
-
-![Explorer overview for tokenizers: headline metrics, self-check and stage coverage](article/figures/overview-tokenizers.png)
-
-**Lifespans.** Each bar runs from the nominated introducing commit to the fix. A date scrubber shows which bugs were alive on any day.
-
-![Lifespan of every traced tokenizers bug](article/figures/timeline-tokenizers.png)
-
-**Commit × test results.** Every commit the pipeline built and tested in Docker without network: green passes, red fails, grey does not build there. Each square opens the run log.
-
-![Commit-by-test results for tokenizers feasibility runs and regression sweeps](article/figures/heatmap-tokenizers.png)
-
-## Run it on your repository
-
-bug-age currently supports Rust crates. A first run with Method A only needs git and Rust; Docker is needed only for the feasibility check and Method B.
+Point bug-age at your own repository in six steps. A first run with Method A only needs git and Rust; Docker is needed only for the feasibility check and Method B.
 
 **1. Install the requirements and build.**
 
@@ -43,7 +23,7 @@ cargo build                                          # Rust 1.86 or later
 docker build -t bug-age-spike:4 -f spike/Dockerfile spike   # only for feasibility and Method B
 ```
 
-You also need git and Python 3.11 or later.
+You also need git and Python 3.11 or later. The Docker image name `bug-age-spike:4` is the CLI default; pass `--image` to use another.
 
 **2. Describe your repository in a config file.** Copy an existing one and edit it:
 
@@ -81,6 +61,46 @@ open dist/explorer-myrepo/index.html        # or open the file in any browser
 ```
 
 **6. Optional: date selected bugs by testing (Method B).** Pick a fix from `results/myrepo/catalog.json` and add a regression test at `results/myrepo/repros/<first 10 chars of the fix SHA>/overlay/tests/bugage_repro.rs`. The overlay is copied into the crate at every commit tested, so the test can only use the crate's public API. It must fail at the commit just before the fix and pass at the fix; otherwise the sweep rejects it as `repro-invalid`. Run step 3 again: Method B runs whenever a regression test has no sweep yet. See `results/tokenizers/repros/` for six examples.
+
+## Example runs: tokenizers and rust-sdk
+
+The same pipeline was run on two Rust codebases. The first, the core crate of [huggingface/tokenizers](https://github.com/huggingface/tokenizers), got every stage, including Method B sweeps for six bugs. The second, the `rmcp` crate of [modelcontextprotocol/rust-sdk](https://github.com/modelcontextprotocol/rust-sdk), was added with a config file alone, to show the pipeline carries over unchanged.
+
+**[▶ Open the live explorer](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)** to browse both. Switch between the two repositories at the top. Each number opens to its evidence: the SHAs, the test runs, the receipt hash and the command that reproduces it. The page also recomputes its headline numbers in your browser and flags any mismatch.
+
+[![The bug-age explorer: headline bug ages, self-check and stage coverage for tokenizers. Click to open.](article/figures/overview-tokenizers.png)](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)
+
+| | tokenizers | rust-sdk |
+|---|---|---|
+| Config | [`targets/tokenizers.toml`](targets/tokenizers.toml) | [`targets/rust-sdk.toml`](targets/rust-sdk.toml) |
+| Method A (every catalogued fix) | [`results/tokenizers/METHOD_A.md`](results/tokenizers/METHOD_A.md) | [`results/rust-sdk/szz.json`](results/rust-sdk/szz.json) |
+| Method B (behavioural sweeps) | Six bugs: [`results/tokenizers/AB.md`](results/tokenizers/AB.md) | NOT TESTED: no regression tests written yet |
+| Stage report | [`results/tokenizers/PIPELINE.md`](results/tokenizers/PIPELINE.md) | [`results/rust-sdk/PIPELINE.md`](results/rust-sdk/PIPELINE.md) |
+| Bundle | [`dist/tokenizers/bundle.json`](dist/tokenizers/bundle.json) | [`dist/rust-sdk/bundle.json`](dist/rust-sdk/bundle.json) |
+
+### What the explorer shows
+
+These screenshots are captured from the built page by `make article`, so they always match the committed data.
+
+**Lifespans.** Each bar runs from the nominated introducing commit to the fix. A date scrubber shows which bugs were alive on any day.
+
+![Lifespan of every traced tokenizers bug](article/figures/timeline-tokenizers.png)
+
+**Commit × test results.** Every commit the pipeline built and tested in Docker without network: green passes, red fails, grey does not build there. Each square opens the run log.
+
+![Commit-by-test results for tokenizers feasibility runs and regression sweeps](article/figures/heatmap-tokenizers.png)
+
+### Reading Method B verdicts
+
+Verdicts are honest about what could not be tested:
+
+| Verdict | Meaning |
+|---|---|
+| `located` | The exact first failing commit was found |
+| `censored-by-testability` | The bug is present at the first commit where the test compiles, so its age is a lower bound (`≥`) |
+| `left-censored` | The bug is already present at the start of the sweep range (3 years before the fix), so its age is a lower bound |
+
+The feasibility check, which measures toolchain and dependency drift across history, is in `spike/results/` for tokenizers and `results/rust-sdk/spike/` for rust-sdk.
 
 ## How bugs are found
 
@@ -139,24 +159,6 @@ Method B dominates: each bug needs a regression test, and the current search bui
 | "Ask Claude" in the explorer (optional) | Claude answers a question on the viewer's own account, from the rows the search found | The answer is shown only if every cited SHA and every number appears in those rows. It runs only when the viewer clicks, and is hidden where unavailable. |
 | The code | Written with an AI coding agent (Claude Code) and reviewed by the maintainer | Each change merged through a pull request after `cargo test`; commits carry a `Co-Authored-By` line. |
 
-## Results so far (tokenizers)
-
-The six repros and their per-bug comparison are in [`results/tokenizers/AB.md`](results/tokenizers/AB.md). Method A's output alone is in [`results/tokenizers/METHOD_A.md`](results/tokenizers/METHOD_A.md). The feasibility spike, which covers toolchain and dependency drift across history, is in `spike/results/`.
-
-Verdicts are honest about what could not be tested:
-
-| Verdict | Meaning |
-|---|---|
-| `located` | The exact first failing commit was found |
-| `censored-by-testability` | The bug is present at the first commit where the test compiles, so its age is a lower bound (`≥`) |
-| `left-censored` | The bug is already present at the start of the sweep range (3 years before the fix), so its age is a lower bound |
-
-## Requirements
-
-- Rust 1.86 or later
-- Python 3.11 or later for the driver scripts
-- Docker for Method B sweeps. Build the per-commit image from `spike/Dockerfile` and tag it `bug-age-spike:4`, the name the CLI uses by default; override it with `--image`.
-
 ## CLI
 
 ```
@@ -182,7 +184,7 @@ bug-age mcp     --bundles NAME=FILE,...
 | `explorer` | Builds the static explorer page with one data file per repository; fails over 8 MB |
 | `mcp` | Read-only MCP server on stdio answering bundle queries; see [`dist/agent/AGENTS.md`](dist/agent/AGENTS.md) |
 
-## Running the pipeline
+## Pipeline reference
 
 Each target repository has one config file in [`targets/`](targets/), and nothing else is target-specific:
 
