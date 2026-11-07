@@ -6,18 +6,22 @@ use serde_json::{json, Value};
 use std::path::{Path, PathBuf};
 
 
+/// Repository root (two levels above the crate).
 fn root() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join("../..")
 }
 
+/// Parses a committed JSON file relative to the repository root.
 fn load(rel: &str) -> Value {
     serde_json::from_str(&std::fs::read_to_string(root().join(rel)).unwrap()).unwrap()
 }
 
+/// Compiles `schema/bundle.schema.json`.
 fn validator() -> jsonschema::Validator {
     jsonschema::validator_for(&load("schema/bundle.schema.json")).expect("schema compiles")
 }
 
+/// The committed tokenizers bundle validates against the published schema.
 #[test]
 fn committed_bundle_matches_schema() {
     let v = validator();
@@ -26,6 +30,7 @@ fn committed_bundle_matches_schema() {
     assert!(errors.is_empty(), "{errors:#?}");
 }
 
+/// The schema rejects bundles with a missing field, a malformed SHA or an author field.
 #[test]
 fn schema_rejects_broken_bundles() {
     let v = validator();
@@ -45,6 +50,7 @@ fn schema_rejects_broken_bundles() {
     }
 }
 
+/// The blameless gate flags planted names, emails and handles, and redaction removes them.
 #[test]
 fn gate_catches_planted_identities_and_redaction_removes_them() {
     let people = vec!["ada lovelace".to_string(), "adal".to_string()];
@@ -59,6 +65,7 @@ fn gate_catches_planted_identities_and_redaction_removes_them() {
     assert_eq!(redact("adalovelace-ish words stay", &people), "adalovelace-ish words stay", "whole words only");
 }
 
+/// `people()` collects names, emails and the username inside GitHub noreply addresses.
 #[test]
 fn people_include_names_emails_and_noreply_usernames() {
     let dir = std::env::temp_dir().join(format!("bug-age-people-{}", std::process::id()));
@@ -117,6 +124,7 @@ fn missing_stages_bundle_as_not_tested() {
     let _ = std::fs::remove_dir_all(&dir);
 }
 
+/// Recorded commands are repo-relative, use `~` for HOME, and quote arguments so they re-run as written.
 #[test]
 fn recorded_commands_carry_no_local_paths_and_rerun_as_written() {
     use bug_age::bundle::public_command;

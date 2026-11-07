@@ -8,14 +8,17 @@ use std::io::Write;
 use std::path::{Path, PathBuf};
 use std::process::{Command, Stdio};
 
+/// Repository root (two levels above the crate).
 fn root() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR")).join("../..")
 }
 
+/// The committed tokenizers bundle, parsed.
 fn bundle() -> Value {
     serde_json::from_slice(&std::fs::read(root().join("dist/tokenizers/bundle.json")).unwrap()).unwrap()
 }
 
+/// Runs the real binary as an MCP server, feeds it `requests`, and returns each reply.
 fn serve(requests: &str) -> Vec<Value> {
     let mut child = Command::new(env!("CARGO_BIN_EXE_bug-age"))
         .args(["mcp", "--bundles", &format!("tokenizers={}", root().join("dist/tokenizers/bundle.json").display())])
@@ -26,10 +29,12 @@ fn serve(requests: &str) -> Vec<Value> {
     String::from_utf8(out.stdout).unwrap().lines().map(|l| serde_json::from_str(l).unwrap()).collect()
 }
 
+/// Reads a file from the recorded-session fixture directory.
 fn fixture(name: &str) -> String {
     std::fs::read_to_string(root().join("crates/bug-age/tests/fixtures/mcp").join(name)).unwrap()
 }
 
+/// Replies match the recorded session exactly, including errors and the silent notification.
 #[test]
 fn replays_recorded_session_exactly() {
     let got = serve(&fixture("requests.jsonl"));
@@ -40,6 +45,7 @@ fn replays_recorded_session_exactly() {
     }
 }
 
+/// `get_fix` returns the bundle's Method A row, Method B row and commit entries unchanged.
 #[test]
 fn get_fix_returns_the_bundle_row_unchanged() {
     let b = bundle();
@@ -55,6 +61,7 @@ fn get_fix_returns_the_bundle_row_unchanged() {
     }
 }
 
+/// Every `search_fixes` row carries only bundle values, under a fixed set of keys.
 #[test]
 fn search_rows_only_carry_bundle_values() {
     let b = bundle();
@@ -73,6 +80,7 @@ fn search_rows_only_carry_bundle_values() {
     }
 }
 
+/// Unknown or ambiguous SHA prefixes return tool errors with no data.
 #[test]
 fn unknown_or_ambiguous_inputs_are_tool_errors_not_guesses() {
     let b = bundle();

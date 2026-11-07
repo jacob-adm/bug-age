@@ -5,10 +5,14 @@ use serde_json::Value;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
+/// Crate body with a correct `mul`.
 const OK: &str = "pub fn mul(a: i32, b: i32) -> i32 { a * b }\n";
+/// Crate body with the planted bug: `mul` adds.
 const BUG: &str = "pub fn mul(a: i32, b: i32) -> i32 { a + b }\n";
+/// Crate body before `mul` exists: the regression test cannot compile here.
 const NONE: &str = "pub fn add(a: i32, b: i32) -> i32 { a + b }\n";
 
+/// Runs git in `dir` with a fixed identity; panics on failure.
 fn git(dir: &Path, args: &[&str]) {
     let ok = bug_age::git::command().arg("-C").arg(dir)
         .args(["-c", "commit.gpgsign=false", "-c", "init.defaultBranch=main"]).args(args)
@@ -38,6 +42,7 @@ fn repo(name: &str, bodies: &[&str]) -> (PathBuf, PathBuf, Vec<String>) {
     (dir, root.join("scratch"), shas)
 }
 
+/// Writes a regression-test overlay that passes when `answer()` returns `expected`.
 fn overlay(root: &Path, expected: i32) -> PathBuf {
     let o = root.join("overlay");
     std::fs::create_dir_all(o.join("tests")).unwrap();
@@ -46,6 +51,7 @@ fn overlay(root: &Path, expected: i32) -> PathBuf {
     o
 }
 
+/// Runs `bug-age sweep` with the local runner and returns the parsed report.
 fn sweep(dir: &Path, scratch: &Path, fix: &str, start: Option<&str>, expected: i32) -> Value {
     let ov = overlay(scratch.parent().unwrap(), expected);
     let mut args = vec!["sweep", "--repo", dir.to_str().unwrap(), "--path", "toy", "--fix", fix,
@@ -62,6 +68,7 @@ fn sweep(dir: &Path, scratch: &Path, fix: &str, start: Option<&str>, expected: i
     serde_json::from_slice::<Value>(&out.stdout).unwrap()["report"].clone()
 }
 
+/// With every commit testable, the sweep reports the exact first failing commit (`located`).
 #[test]
 fn locates_exact_introducing_commit() {
     // rev0 lacks mul (overlay cannot compile), rev1-2 correct, rev3 plants the bug, rev6 fixes it.
@@ -74,6 +81,7 @@ fn locates_exact_introducing_commit() {
     assert_eq!(r["non_monotonic"], false);
 }
 
+/// A range that fails from its first commit is reported `left-censored`.
 #[test]
 fn left_censored_when_range_starts_inside_the_bug() {
     let (dir, scratch, s) = repo("censored", &[OK, BUG, BUG, BUG, OK]);
@@ -83,6 +91,7 @@ fn left_censored_when_range_starts_inside_the_bug() {
     assert!(r["last_passing"].is_null());
 }
 
+/// When the test fails where it first compiles, the verdict is `censored-by-testability`.
 #[test]
 fn censored_by_testability_when_bug_predates_compilable_test() {
     // mul only exists from rev3 (already buggy): everything before the first FAIL is untestable.
@@ -94,6 +103,7 @@ fn censored_by_testability_when_bug_predates_compilable_test() {
     assert!(untestable >= 1, "bisect must have probed untestable commits");
 }
 
+/// A long untestable prefix is crossed by binary search, not a linear scan.
 #[test]
 fn long_untestable_history_costs_a_bounded_number_of_builds() {
     // 40 commits where the test cannot compile, then the bug: probes must stay logarithmic-ish,
@@ -107,6 +117,7 @@ fn long_untestable_history_costs_a_bounded_number_of_builds() {
     assert!(r["commits_tested"].as_u64().unwrap() <= 25, "tested {} commits", r["commits_tested"]);
 }
 
+/// The compile frontier is found assuming build-ability does not regress.
 #[test]
 fn frontier_assumes_monotonic_buildability() {
     // Documented limit: rev1 passes, the API vanishes (rev2-6), returns buggy at rev7. The frontier
@@ -118,6 +129,7 @@ fn frontier_assumes_monotonic_buildability() {
     assert_eq!(r["first_failing"], s[7].as_str());
 }
 
+/// Boundary commits are re-run with the full repeat count.
 #[test]
 fn decisive_commits_are_confirmed_with_full_repeats() {
     let (dir, scratch, s) = repo("confirm", &[OK, OK, BUG, BUG, OK]);
@@ -129,6 +141,7 @@ fn decisive_commits_are_confirmed_with_full_repeats() {
     assert_eq!(test_runs, 2, "fix confirmed with --repeats 2");
 }
 
+/// A test that does not fail before the fix yields `repro-invalid`.
 #[test]
 fn rejects_a_repro_that_does_not_fail_before_the_fix() {
     let (dir, scratch, s) = repo("invalid", &[OK, BUG, OK]);
