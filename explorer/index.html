@@ -21,6 +21,8 @@
   --accent: #e58a4e; --accent-soft: #3a2619;
   --pass: #5bbd83; --fail: #ef6b62; --untestable: #66726e; --flaky: #e0b44a; --none: #252d2a; color-scheme: dark }
 * { box-sizing: border-box }
+[hidden] { display: none !important }
+body { margin: 0 }
 body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--body) }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--panel) }
 .gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
@@ -81,7 +83,7 @@ tbody tr:hover { background: var(--accent-soft) }
 .figure { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 10px; min-width: 0 }
 .figure svg { width: 100%; height: auto; display: block }
 .scrub { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; font-size: 14px }
-.scrub input { flex: 1 1 200px }
+.scrub input { flex: 1 1 200px; accent-color: var(--accent) }
 .legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 13px; color: var(--muted) }
 .legend span { display: inline-flex; gap: 6px; align-items: center }
 .sw { width: 12px; height: 12px; border-radius: 2px; display: inline-block }
@@ -173,7 +175,7 @@ dd { margin: 0; overflow-wrap: anywhere }
         <div class="scrub"><label for="scrub">Date</label><input id="scrub" type="range" min="0" max="1" value="1"><span class="mono" id="scrub-out"></span></div>
         <div id="tl-svg"></div>
       </div>
-      <h3>Commit × test results</h3>
+      <h3 id="heat" style="scroll-margin-top: 80px">Commit × test results</h3>
       <p class="lede">Each square is one commit run in Docker without network. Feasibility rows build the crate and run its unit tests; sweep rows run one bug's regression test.</p>
       <div class="legend" id="heat-legend"></div>
       <div class="figure" id="heatmap"></div>
@@ -487,11 +489,12 @@ function renderTimeline() {
 }
 function scrub() {
   if (!TL) return;
+  const at = $("scrub").value === $("scrub").max;   // resting at the end: show every bar, no cursor
   const t = TL.t0 + Number($("scrub").value) * DAY;
   let alive = 0;
-  TL.bars.forEach((b, i) => { const on = b.start <= t && t < b.end; if (on) alive++; TL.rects[i].setAttribute("opacity", on ? 1 : 0.28); });
-  TL.cursor.setAttribute("x1", TL.x(t)); TL.cursor.setAttribute("x2", TL.x(t));
-  $("scrub-out").textContent = `${new Date(t).toISOString().slice(0, 10)} · ${alive} alive`;
+  TL.bars.forEach((b, i) => { const on = b.start <= t && t < b.end; if (on) alive++; TL.rects[i].setAttribute("opacity", at || on ? 1 : 0.28); });
+  TL.cursor.setAttribute("x1", TL.x(t)); TL.cursor.setAttribute("x2", TL.x(t)); TL.cursor.setAttribute("opacity", at ? 0 : 1);
+  $("scrub-out").textContent = at ? `${TL.bars.length} bugs · drag to pick a date` : `${new Date(t).toISOString().slice(0, 10)} · ${alive} alive`;
 }
 $("scrub").addEventListener("input", scrub);
 
