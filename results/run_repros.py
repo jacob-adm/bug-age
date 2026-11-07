@@ -17,16 +17,18 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent  # repo root; stripped from recorded paths
 
-WINDOW_DAYS = 3 * 365
-BUILD = "cargo test --test bugage_repro --no-run"
-TEST = "cargo test --test bugage_repro"
+WINDOW_DAYS = 3 * 365                                # sweep range: at most three years before the fix
+BUILD = "cargo test --test bugage_repro --no-run"   # compile the regression test only
+TEST = "cargo test --test bugage_repro"             # run the regression test
 
 
 def git(repo, *args):
+    """Run git in `repo` and return stripped stdout; raises on failure."""
     return subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True, check=True).stdout.strip()
 
 
 def range_start(repo, fix):
+    """Return the first first-parent commit dated at most WINDOW_DAYS before the fix, or the root."""
     cutoff = int(git(repo, "show", "-s", "--format=%ct", fix)) - WINDOW_DAYS * 86400
     for line in git(repo, "rev-list", "--first-parent", "--reverse", "--format=%H %ct", fix).splitlines():
         if not line.startswith("commit "):
@@ -37,6 +39,7 @@ def range_start(repo, fix):
 
 
 def sweep(res, repo, crate, rid, worker="w0"):
+    """Run `bug-age sweep` (Docker) for one regression test and write its report, receipt and log."""
     fix = git(repo, "rev-parse", rid)
     out = res / "repros" / rid / "sweep.json"
     cmd = ["target/debug/bug-age", "sweep", "--repo", str(repo), "--path", crate, "--fix", fix,
@@ -55,6 +58,7 @@ def sweep(res, repo, crate, rid, worker="w0"):
 
 
 def acheck(res, repo, crate, rid):
+    """Probe Method A's nominee and its parent with the same test and write acheck.json."""
     fix = git(repo, "rev-parse", rid)
     szz = {b["fix"]: b for b in json.loads((res / "szz.json").read_text())["bugs"]}
     a = szz[fix]["nominees"][0]["sha"]
@@ -79,6 +83,7 @@ ACHECK = {("PASS", "FAIL"): "A confirmed (parent PASS, nominee FAIL)",
 
 
 def acheck_cell(d):
+    """Describe one A-check result for the AB.md table."""
     f = d / "acheck.json"
     if not f.is_file():
         return "not run"
@@ -87,10 +92,12 @@ def acheck_cell(d):
 
 
 def when(repo, sha):
+    """Return (committer unix time, committer date) of a commit."""
     return int(git(repo, "show", "-s", "--format=%ct", sha)), git(repo, "show", "-s", "--format=%cs", sha)
 
 
 def is_ancestor(repo, a, b):
+    """True if commit `a` is an ancestor of commit `b`."""
     return subprocess.run(["git", "-C", str(repo), "merge-base", "--is-ancestor", a, b]).returncode == 0
 
 
@@ -108,6 +115,7 @@ def relation(repo, a, b):
 
 
 def render(res, repo):
+    """Write AB.md: one row per regression test comparing Method B with Method A."""
     szz = {b["fix"]: b for b in json.loads((res / "szz.json").read_text())["bugs"]}
     rows, inputs = [], []
     for d in sorted((res / "repros").iterdir()):

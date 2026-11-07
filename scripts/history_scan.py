@@ -13,17 +13,21 @@ accepts that match everywhere (only for matches that cannot identify a person).
 import argparse, re, subprocess, sys
 from pathlib import Path
 
+# Any email address, matched on raw bytes
 EMAIL = re.compile(rb"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+# Tokens from git identities that are not people
 GENERIC = {"github", "noreply", "web-flow", "users.noreply.github.com"}
 # The scanner's own files list the reviewed matches; there a hit passes only if that match is reviewed elsewhere.
 SELF = {"scripts/history_scan.py", "scripts/history_scan.allow"}
 
 
 def git(repo, *args):
+    """Run git in `repo` and return stdout as bytes; raises on failure."""
     return subprocess.run(["git", "-C", str(repo), *args], check=True, capture_output=True).stdout
 
 
 def people(repo):
+    """Return every name, email and noreply username in a target repository's history (lower-cased)."""
     found = set()
     for line in git(repo, "log", "--all", "--format=%an%n%ae%n%cn%n%ce").decode("utf-8", "replace").splitlines():
         line = line.strip()
@@ -38,6 +42,7 @@ def people(repo):
 
 
 def main():
+    """Scan every reachable blob and commit message, apply the allowlist, print open hits, and return 1 if any."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--targets", required=True, help="comma-separated target clones")
     ap.add_argument("--repo", default=".")

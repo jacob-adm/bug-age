@@ -27,9 +27,9 @@ INDEX_VOLUME = "bugage-index"
 SCRATCH = Path(os.environ.get("BUG_AGE_SCRATCH", Path.home() / ".cache" / "bug-age"))
 # Decision rule, fixed before any run: GO if at least this share of sampled commits is BUILT+TESTED
 # and no commit is FLAKY.
-GO_MIN_SHARE = 0.70
-TEST_REPEATS = 2
-IMAGE = "bug-age-spike:4"
+GO_MIN_SHARE = 0.70                          # GO needs at least this share of samples built and tested
+TEST_REPEATS = 2                             # unit tests run twice; disagreement marks the commit FLAKY
+IMAGE = "bug-age-spike:4"                    # container image built from spike/Dockerfile
 SCOPE = ["--all"]                            # cargo package selection; a config `package` narrows it to one crate
 TARGET_VOLUME = "bugage-target"               # wiped before every commit
 SRC_VOLUME = "bugage-src"                     # commit tree, copied in with git archive; wiped per commit
@@ -37,6 +37,7 @@ RUST_1_0 = dt.date(2015, 5, 15)            # stable cadence: one minor release e
 
 
 def run(cmd, cwd=None, env=None, timeout=1800, log=None):
+    """Run a command with a timeout, optionally logging it; return (exit status, combined output, seconds)."""
     t0 = time.time()
     try:
         p = subprocess.run(cmd, cwd=cwd, env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
@@ -51,6 +52,7 @@ def run(cmd, cwd=None, env=None, timeout=1800, log=None):
 
 
 def git(*args):
+    """Run git in the target clone and return stripped stdout; raises on failure."""
     return subprocess.run(["git", "-C", str(REPO), *args], capture_output=True, text=True, check=True).stdout.strip()
 
 
@@ -65,6 +67,7 @@ def toolchain_for(day: dt.date, rust_version: str | None) -> tuple[str, int]:
 
 
 def test_totals(out: str) -> tuple[int, int]:
+    """Sum passed and failed test counts across all `cargo test` result lines in `out`."""
     passed = sum(int(x) for x in re.findall(r"test result: \w+\. (\d+) passed", out))
     failed = sum(int(x) for x in re.findall(r"(\d+) failed;", out))
     return passed, failed
@@ -83,6 +86,7 @@ HINTS = [
 
 
 def hint(out: str) -> str:
+    """Classify a failure log with the first matching HINTS pattern, or "unclassified"."""
     for pat, label in HINTS:
         if re.search(pat, out, re.I):
             return label
@@ -90,6 +94,7 @@ def hint(out: str) -> str:
 
 
 def fixture_urls(wt: Path) -> list[dict]:
+    """List the fixture URLs the crate Makefile downloads; tests needing them are out of scope."""
     mk = wt / CRATE / "Makefile"
     if not mk.is_file():
         return []
@@ -146,6 +151,7 @@ def stage_time_travel_index(sha: str, wt: Path) -> dict:
 
 
 def probe(sha: str, idx: int) -> dict:
+    """Build and unit-test one sampled commit in Docker and return its status, reason and step evidence."""
     wt, logs = SCRATCH / "wt", LOGS / sha[:12]
     run(["git", "-C", str(REPO), "worktree", "remove", "--force", str(wt)])
     git("worktree", "add", "--force", "--detach", str(wt), sha)
@@ -173,6 +179,7 @@ def probe(sha: str, idx: int) -> dict:
     if TIME_TRAVEL and not rec["lockfile_committed"]:
         rec["time_travel"] = stage_time_travel_index(sha, wt)
     def step(name, cmd, offline, timeout=1800):
+        """Run one build step in the container, record exit code, duration and a failure hint."""
         docker = ["docker", "run", "--rm", *(["--network", "none"] if offline else []),
                   "-v", f"{SRC_VOLUME}:/src", "-v", f"{INDEX_VOLUME}:/index", "-v", "bugage-rustup:/rustup", "-v", "bugage-cargo:/cargo",
                   "-v", f"{TARGET_VOLUME}:/target", "-e", "CARGO_TARGET_DIR=/target",
@@ -206,6 +213,7 @@ def probe(sha: str, idx: int) -> dict:
 
 
 def main() -> int:
+    """Sample commits across history, probe each, and write the GO/NO-GO report."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", help="target config (targets/NAME.toml); default: the tokenizers spike")
     ap.add_argument("--samples", type=int, default=20)
@@ -277,6 +285,7 @@ def sanitize(obj):
 
 
 def write_outputs(results, head, history_len, n, reclassified=False) -> int:
+    """Write report.json, REPORT.md and a receipt from the sanitized results; return the exit code."""
     results = sanitize(results)
     picks = results
     counts: dict[str, int] = {}
