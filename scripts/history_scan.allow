@@ -3,28 +3,7 @@
 # - person marco: typo for 'macro' in a rust-sdk commit subject; matches a tokenizers username
 # - email noreply@anthropic.com: Co-Authored-By trailer in commit messages
 # - email *@example.invalid / ada@example.org / *@users.noreply.github.com fixtures: planted test identities
-email	commit 000e564af7 message	noreply@anthropic.com
-email	commit 004abec3d9 message	noreply@anthropic.com
-email	commit 04e3027158 message	noreply@anthropic.com
-email	commit 091a21bc23 message	noreply@anthropic.com
-email	commit 23e544ca91 message	noreply@anthropic.com
-email	commit 35828b0ac7 message	noreply@anthropic.com
-email	commit 4b98b45f97 message	noreply@anthropic.com
-email	commit 50a6ff93db message	noreply@anthropic.com
-email	commit 57e88e49a0 message	noreply@anthropic.com
-email	commit 58e8ae1378 message	noreply@anthropic.com
-email	commit 5b0da93bc4 message	noreply@anthropic.com
-email	commit 5e8cddb71f message	noreply@anthropic.com
-email	commit 741166bb14 message	noreply@anthropic.com
-email	commit 76fc185368 message	noreply@anthropic.com
-email	commit 7c5a0c00bf message	noreply@anthropic.com
-email	commit 825e119c38 message	noreply@anthropic.com
-email	commit a3b09a1bb3 message	noreply@anthropic.com
-email	commit b8040ac382 message	noreply@anthropic.com
-email	commit c464f3d878 message	noreply@anthropic.com
-email	commit ceecf33eb7 message	noreply@anthropic.com
-email	commit e28c0f08fe message	noreply@anthropic.com
-email	commit fc866d2e0a message	noreply@anthropic.com
+email	commit message	noreply@anthropic.com
 email	crates/bug-age/src/bundle.rs	12345+name@users.noreply.github.com
 email	crates/bug-age/tests/bundle.rs	123+ghopper@users.noreply.github.com
 email	crates/bug-age/tests/bundle.rs	ada@example.org
@@ -38,12 +17,9 @@ person	article/ARTICLE.md	look
 person	article/ARTICLE.tmpl.md	code
 person	article/ARTICLE.tmpl.md	git
 person	article/ARTICLE.tmpl.md	look
-person	commit 23e544ca91 message	git
-person	commit 50a6ff93db message	code
-person	commit 50a6ff93db message	git
-person	commit 76fc185368 message	git
-person	commit fc866d2e0a message	code
-person	commit fc866d2e0a message	git
+person	commit message	code
+person	commit message	git
+person	commit message	marco
 person	crates/bug-age/Cargo.toml	git
 person	crates/bug-age/src/bundle.rs	git
 person	crates/bug-age/src/catalog.rs	git

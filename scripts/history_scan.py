@@ -14,6 +14,8 @@ from pathlib import Path
 
 EMAIL = re.compile(rb"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 GENERIC = {"github", "noreply", "web-flow", "users.noreply.github.com"}
+# The scanner's own files list the reviewed matches, so they always match themselves.
+SELF = {"scripts/history_scan.py", "scripts/history_scan.allow"}
 
 
 def git(repo, *args):
@@ -68,6 +70,8 @@ def main():
         if kind != b"blob" or b"\0" in body[:8000]:
             continue
         where = seen[sha.decode()]
+        if where in SELF:
+            continue
         for m in set(EMAIL.findall(body)):
             hits.append(("email", where, m.decode("utf-8", "replace")))
         for m in set(x.lower() for x in who.findall(body)):
@@ -77,9 +81,9 @@ def main():
             continue
         sha, msg = line.strip().split("\x00", 1)
         for m in set(EMAIL.findall(msg.encode())):
-            hits.append(("email", f"commit {sha[:10]} message", m.decode()))
+            hits.append(("email", "commit message", m.decode()))
         for m in set(x.lower() for x in who.findall(msg.encode())):
-            hits.append(("person", f"commit {sha[:10]} message", m.decode()))
+            hits.append(("person", "commit message", m.decode()))
 
     hits = sorted(set(hits))
     open_hits = [h for h in hits if "\t".join(h) not in allow]
