@@ -9,7 +9,23 @@ It uses two independent methods and compares them:
 
 Every number comes from scripts. An LLM may suggest fix commits or draft repro tests, but it never produces a metric.
 
-Rust/Cargo is the first supported ecosystem. The first showcase target is the Rust core crate of [huggingface/tokenizers](https://github.com/huggingface/tokenizers).
+Rust/Cargo is the first supported ecosystem. The first showcase target is the Rust core crate of [huggingface/tokenizers](https://github.com/huggingface/tokenizers); the second, run from a config file alone, is the `rmcp` crate of [modelcontextprotocol/rust-sdk](https://github.com/modelcontextprotocol/rust-sdk).
+
+## What it produces
+
+The pipeline writes a bundle (one JSON file, every number computed by a script) and a static explorer page built from it. These screenshots are captured from that page by `make article`, so they always match the committed data.
+
+**Overview.** Headline ages, how many old commits still build, and what each stage proves. The page recomputes these numbers from the raw rows in your browser and flags any mismatch.
+
+![Explorer overview for tokenizers: headline metrics, self-check and stage coverage](article/figures/overview-tokenizers.png)
+
+**Lifespans.** Each bar runs from the nominated introducing commit to the fix. A date scrubber shows which bugs were alive on any day.
+
+![Lifespan of every traced tokenizers bug](article/figures/timeline-tokenizers.png)
+
+**Commit × test results.** Every commit the pipeline built and tested in Docker without network: green passes, red fails, grey does not build there. Each square opens the run log.
+
+![Commit-by-test results for tokenizers feasibility runs and regression sweeps](article/figures/heatmap-tokenizers.png)
 
 ## Results so far (tokenizers)
 
