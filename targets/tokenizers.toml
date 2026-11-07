@@ -1,0 +1,13 @@
+# huggingface/tokenizers, Rust core crate only. Paths are relative to the bug-age repo root.
+name = "tokenizers"
+repo_url = "https://github.com/huggingface/tokenizers"
+head = "fb49a29223724a96f26e061bec8ec7517aa14177"
+crate_path = "tokenizers"
+work_dir = "work/tokenizers"
+results_dir = "results/tokenizers"
+spike_dir = "spike"
+dist_dir = "dist/tokenizers"
+samples = 20
+# First commit date of the window where today's toolchain/registry build (from the BUGAGE-1 spike).
+szz_window_start = "2025-03-13"
+out_of_scope = "Bindings (Python/Node), benches|out of scope for the Rust core crate|binding behaviour"

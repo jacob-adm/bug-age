@@ -1,0 +1,2395 @@
+{
+  "excluded": [
+    {
+      "date": "2026-10-11",
+      "parents": [
+        "07ff92d59780017467ccb5ef997e2e53d3a7b2d6"
+      ],
+      "rule": "exclude:release",
+      "sha": "808124bbd48d55de78ff6652649c1a85260aa9df",
+      "subject": "fix(streamable-http-server): release the session map lock before waiting on a session (#1323)"
+    },
+    {
+      "date": "2026-09-24",
+      "parents": [
+        "fbed44764834511fe2d3e0c5b05efc18d8beb8c6"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "6677eeedb6a2fd86a29193ad277283a9ca97a792",
+      "subject": "style: cargo fmt fixes on validate_standard_headers changes (#1275)"
+    },
+    {
+      "date": "2026-09-12",
+      "parents": [
+        "a5d1169e20810fff4cb5ceb90940dc3319f95f0f"
+      ],
+      "rule": "exclude:deprecation",
+      "sha": "3075dc9152d4678775f20634fcb467a7b995dbab",
+      "subject": "fix(model): deprecate ServerInfo and ClientInfo aliases (#1156)"
+    },
+    {
+      "date": "2026-09-08",
+      "parents": [
+        "f9a68bfa5cad065727bf847086010d5bf7f2028d"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "6fa40536deb44ceaedad28f783444c4700207270",
+      "subject": "fix: resolve clippy warnings across workspace (#1195)"
+    },
+    {
+      "date": "2026-08-09",
+      "parents": [
+        "22be2cc5ad2f42d9f83d670e4f97b125b695cd7f"
+      ],
+      "rule": "exclude:typo",
+      "sha": "b5cf34eee74cb3e8e4ce7b535798f0fe216eb3e2",
+      "subject": "Fix typo in to_authorized_http_client doc comment (#1158)"
+    },
+    {
+      "date": "2026-07-20",
+      "parents": [
+        "7abbf29e9364bad7462487f0a2d2ff2edb46eb87"
+      ],
+      "rule": "exclude:release",
+      "sha": "a5bb51c9d2c99a75adf30a8dfc7aa8231dce7e1a",
+      "subject": "fix(server): serve draft-version requests statelessly per SEP-2567 (#999)"
+    },
+    {
+      "date": "2026-07-10",
+      "parents": [
+        "dd30a70f848e50dc7766c8a4eb616936f88e9afe"
+      ],
+      "rule": "exclude:release",
+      "sha": "2d4c29fb02aea184f167e30bb7f7aa5a5e48610c",
+      "subject": "fix: specify compatible sse-stream version (#968)"
+    },
+    {
+      "date": "2026-06-29",
+      "parents": [
+        "67a30859443ab0fe79f2d50307c7d7bc9518f7e3"
+      ],
+      "rule": "exclude:release",
+      "sha": "80a74795e9d9d061197efc27d288a1ae4ffa27de",
+      "subject": "fix: negotiate protocol version in handler (#930)"
+    },
+    {
+      "date": "2026-05-18",
+      "parents": [
+        "d328751dc9cb2ddfe8ddb007c5a9f9d0a3ca919d"
+      ],
+      "rule": "exclude:release",
+      "sha": "c330fede90e4729c234f8e87fdbc5ea27a1dd10c",
+      "subject": "fix: reject init header/body version mismatch (#853)"
+    },
+    {
+      "date": "2026-05-18",
+      "parents": [
+        "cc66e3091e1584f48ee1e0058a2a1201a1d35c81"
+      ],
+      "rule": "exclude:release",
+      "sha": "d328751dc9cb2ddfe8ddb007c5a9f9d0a3ca919d",
+      "subject": "fix: align protocol version negotiation (#855)"
+    },
+    {
+      "date": "2026-04-01",
+      "parents": [
+        "52c93e9508e2a523ca61f81c55b4cd67c8664ccc"
+      ],
+      "rule": "exclude:docs",
+      "sha": "cf6988ac7c7c37e32f33017333537146370f8baf",
+      "subject": "fix: exclude local feature from docs.rs build (#782)"
+    },
+    {
+      "date": "2026-03-11",
+      "parents": [
+        "3bd75220708b2e9f8c74a3fe3277ac5d4f03f478"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "8700e5c9207f3daed31df82c1c3a7426353679a9",
+      "subject": "chore: fix all clippy warnings across workspace (#746)"
+    },
+    {
+      "date": "2026-02-17",
+      "parents": [
+        "5a6ff1f74c979584152cdb80c2da2aa2b74f3e0d"
+      ],
+      "rule": "exclude:docs",
+      "sha": "0b53bfd7b960cbc1e1c7cc41599ace4662d9c928",
+      "subject": "fix: remove unnecessary doc-cfg (#661)"
+    },
+    {
+      "date": "2026-02-03",
+      "parents": [
+        "df6c3f0665246bdd9a3b21ba9357bf9f7dd04319"
+      ],
+      "rule": "exclude:build-only",
+      "sha": "53b64a9f87c43251804476fe369a07a76fc4aa55",
+      "subject": "fix: compilation with --no-default-features (#593)"
+    },
+    {
+      "date": "2026-01-14",
+      "parents": [
+        "46e149ee8b54525b23681c5c415646caae9dceb3"
+      ],
+      "rule": "exclude:build-only",
+      "sha": "acb06ea81970cc3318440dc981900ac15cdd4d66",
+      "subject": "fix(build): fix build of the project when no features are selected (#606)"
+    },
+    {
+      "date": "2025-10-06",
+      "parents": [
+        "a4def1100de6a737c5f0f9922f846ce94a232619"
+      ],
+      "rule": "exclude:typo",
+      "sha": "34f482375c4548a630a480dd9f7c0de74681fab1",
+      "subject": "fix: fix spellcheck on intentional typo in CHANGELOG (#470)"
+    },
+    {
+      "date": "2025-09-17",
+      "parents": [
+        "4ee2add8996c637b92e4a5d380c0400d2ae8b6e1"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "ddef4ce529dda7a5bf261da08ae4d677f5cdf243",
+      "subject": "fix(clippy): add doc comment for generated tool attr fn (#439)"
+    },
+    {
+      "date": "2025-09-08",
+      "parents": [
+        "a2fc90af49ca62a9da265cafa8b34dd288383289"
+      ],
+      "rule": "exclude:build-only",
+      "sha": "926cb3384550221887e34f8729055c4e7da65a76",
+      "subject": "fix: build issue due to missing struct field (#427)"
+    },
+    {
+      "date": "2025-09-01",
+      "parents": [
+        "98e2b9df822f7cf51553f90a1034a3ad05cdb9c2"
+      ],
+      "rule": "exclude:typo",
+      "sha": "7bd45ec6a538fb6d1d003c356d325fc2f517c656",
+      "subject": "fix(typo): correct typo in error message for transport cancellation and field. (#404)"
+    },
+    {
+      "date": "2025-08-29",
+      "parents": [
+        "eb46b4ce3b2d85447d0a5ecbf3cbf7bd1679f751"
+      ],
+      "rule": "exclude:docs",
+      "sha": "357671cc5c81b27334f2cf3949541374c99f6777",
+      "subject": "fix(readme): missing use declarations, more accurate server instructions (#399)"
+    },
+    {
+      "date": "2025-07-08",
+      "parents": [
+        "69712e321a3946176058740ebfa0f92f641557fa"
+      ],
+      "rule": "exclude:docs",
+      "sha": "2d997e18b79c454c32ade38d001d88362e3d6fa4",
+      "subject": "docs: fix packages used for server example (#309)"
+    },
+    {
+      "date": "2025-06-25",
+      "parents": [
+        "8e1490bcd8d5e763a45f250a01cfb2bb5d61c702"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "55215b6170761603fbdfe63cb04d41dc321a494a",
+      "subject": "chore: cov settings, and fix serveral building warnings (#281)"
+    },
+    {
+      "date": "2025-06-07",
+      "parents": [
+        "a66f66ae345a0fafde1e2ee496ec137d77aef82a"
+      ],
+      "rule": "exclude:typo",
+      "sha": "97bb4796ddc82f659aea8fb67ef457519fa0ad49",
+      "subject": "doc: Fix typo (#249)"
+    },
+    {
+      "date": "2025-05-23",
+      "parents": [
+        "d0bbb22850cb7fb4d3fb3299f4e5bb6ed0ae7835"
+      ],
+      "rule": "exclude:docs",
+      "sha": "22134eb33e249a3b3ae6c0153b0176e4dd532220",
+      "subject": "fix: comment error (#215)"
+    },
+    {
+      "date": "2025-05-19",
+      "parents": [
+        "752b4388a35f56944e670226cae75a1095e6b58d"
+      ],
+      "rule": "exclude:build-only",
+      "sha": "a3b42c4a83c10144bfb854843d8fa34075bc3e38",
+      "subject": "fix: sse endpoint build follow js's `new URL(url, base)` (#197)"
+    },
+    {
+      "date": "2025-04-08",
+      "parents": [
+        "b9be9797d1cd8562229c93b098cf6b9289949f65"
+      ],
+      "rule": "exclude:build-only",
+      "sha": "938ecbe2fbe68f2d7797c9276a04e1d9bd136817",
+      "subject": "fix(server): schemars compilation errors (#104)"
+    },
+    {
+      "date": "2025-04-04",
+      "parents": [
+        "6a74451c156944f888b152a5242ed20742a30907"
+      ],
+      "rule": "exclude:typo",
+      "sha": "2744cde0d909e214eee0034a46cfe2bbb467891f",
+      "subject": "fix(typo): nit language corrections (#90)"
+    },
+    {
+      "date": "2025-04-02",
+      "parents": [
+        "4ca00c2052c55462d660b2c67241d3b050a4051a"
+      ],
+      "rule": "exclude:typo",
+      "sha": "6a648b8827f1437bfcc26059d8d9ef00cba30bef",
+      "subject": "chore: fix typos (#79)"
+    }
+  ],
+  "fixes": [
+    {
+      "date": "2026-11-05",
+      "parents": [
+        "e7d201ff836da34d6d8cc5c9328038fab5b3c8bc"
+      ],
+      "rule": "include",
+      "sha": "429524df5e9a7380426aa38fc2524d984a0c2db8",
+      "subject": "fix(model): don't treat _meta alone as a CallToolResult (#1405)"
+    },
+    {
+      "date": "2026-11-05",
+      "parents": [
+        "3e0156c1eaf1573a1b878e2a8998d2fa2d0b1439"
+      ],
+      "rule": "include",
+      "sha": "e7d201ff836da34d6d8cc5c9328038fab5b3c8bc",
+      "subject": "test(transport): fix spell-check failures in response-limit tests (#1432)"
+    },
+    {
+      "date": "2026-11-03",
+      "parents": [
+        "09d29d9060b5dbc65025db59eae5289946368635"
+      ],
+      "rule": "include",
+      "sha": "d66a74d7fb8bb07cdb665bb21e61a6acacf04332",
+      "subject": "fix(client): keep ProgressDispatcher lock off the await path (#1310)"
+    },
+    {
+      "date": "2026-11-03",
+      "parents": [
+        "8878a791df74746c2dffb7b8bba9d39c64cce8d2"
+      ],
+      "rule": "include",
+      "sha": "09d29d9060b5dbc65025db59eae5289946368635",
+      "subject": "fix(auth): refresh with only granted scopes (#1331)"
+    },
+    {
+      "date": "2026-11-03",
+      "parents": [
+        "3fc54d0aa133e1cd73e7c222264b39db090963a8"
+      ],
+      "rule": "include",
+      "sha": "8878a791df74746c2dffb7b8bba9d39c64cce8d2",
+      "subject": "fix: streamable-http server: stateful session workers ignore config.canc (#1427)"
+    },
+    {
+      "date": "2026-11-02",
+      "parents": [
+        "b166e815c57fc3f0f28d01e936f6bf6286d7d517"
+      ],
+      "rule": "include",
+      "sha": "3fc54d0aa133e1cd73e7c222264b39db090963a8",
+      "subject": "fix(skills): enforce manifest boundaries and capability negotiation (#1412)"
+    },
+    {
+      "date": "2026-11-02",
+      "parents": [
+        "df2af2344ac2917900d528287ac77e06bfc6c8c4"
+      ],
+      "rule": "include",
+      "sha": "b166e815c57fc3f0f28d01e936f6bf6286d7d517",
+      "subject": "fix(transport): send SIGTERM before killing a child process on graceful shutdown (#1379)"
+    },
+    {
+      "date": "2026-11-02",
+      "parents": [
+        "fe458714e77cbae67498ac9f4da8005a5648fd0d"
+      ],
+      "rule": "include",
+      "sha": "df2af2344ac2917900d528287ac77e06bfc6c8c4",
+      "subject": "fix(handler): generate a tool's outputSchema for the serialize contract (#1378)"
+    },
+    {
+      "date": "2026-10-30",
+      "parents": [
+        "c1646887c52d7329861b2637e1b28ad4eb983f70"
+      ],
+      "rule": "include",
+      "sha": "9f8c73b2ea2ecbbdfbd58fba4a6893711a2a80e4",
+      "subject": "fix(server): reject server-to-client requests on discover sessions (#1397)"
+    },
+    {
+      "date": "2026-10-30",
+      "parents": [
+        "0413771a963599ef6cfcece8e9ba55e069e39005"
+      ],
+      "rule": "include",
+      "sha": "c1646887c52d7329861b2637e1b28ad4eb983f70",
+      "subject": "fix(auth): accept ID-JAGs without a resource claim (#1406)"
+    },
+    {
+      "date": "2026-10-30",
+      "parents": [
+        "27ebfab05a3002fb7bc6e6a65aa012d6f0a1b985"
+      ],
+      "rule": "include",
+      "sha": "0413771a963599ef6cfcece8e9ba55e069e39005",
+      "subject": "fix(rmcp): reject Mcp-Param headers with invalid characters (#1414)"
+    },
+    {
+      "date": "2026-10-30",
+      "parents": [
+        "e5698cbb7750fc240a36eae15924e52758a3aeed"
+      ],
+      "rule": "include",
+      "sha": "c60e824dadb49dde6dc0993132e6b9a0f1dec71a",
+      "subject": "fix(transport): match explicit HTTP media types and Accept quality values (#1382)"
+    },
+    {
+      "date": "2026-10-29",
+      "parents": [
+        "9e0783d00e9f51f70fab2e7507dfecc55cb974fe"
+      ],
+      "rule": "include",
+      "sha": "38fe565f3c54dff31b75f0f412fcd005d0573f3e",
+      "subject": "fix(model): accept URL elicitation requests without elicitationId (#1383)"
+    },
+    {
+      "date": "2026-10-28",
+      "parents": [
+        "cd88056ffdc97756fbd98e5a12bbeb41758f0ce8"
+      ],
+      "rule": "include",
+      "sha": "9e0783d00e9f51f70fab2e7507dfecc55cb974fe",
+      "subject": "fix(transport): preserve protocol error replies across cancellation (#1370)"
+    },
+    {
+      "date": "2026-10-23",
+      "parents": [
+        "2a401c4ca3eb5880744d2e70fad8073a7fcfb2bc"
+      ],
+      "rule": "include",
+      "sha": "8aec3891dd07fc537b21c2eb2596235640de9025",
+      "subject": "fix(client): stop SSE reconnects on permanent GET errors (#1363)"
+    },
+    {
+      "date": "2026-10-22",
+      "parents": [
+        "ac808abcb40d3c90c743a097cd97c7dfc8f71b5d"
+      ],
+      "rule": "include",
+      "sha": "7bc5c0740d93bf8c708eedc896ddb4b044eb5b2b",
+      "subject": "fix(auth): allow cross-origin resource_metadata urls (#1302)"
+    },
+    {
+      "date": "2026-10-21",
+      "parents": [
+        "c960b4b841dddca570e00a6f583986dbf78621dc"
+      ],
+      "rule": "include",
+      "sha": "e0e7e50077738dc536bcfbe9a73d192b64a9ddc3",
+      "subject": "fix(transport): keep 401/403 status when the body is a JSON-RPC error (#1341)"
+    },
+    {
+      "date": "2026-10-19",
+      "parents": [
+        "c519c79e6ac58be5e9468e5c96b8927ec9b72f94"
+      ],
+      "rule": "include",
+      "sha": "ad2a66a4c2ebd9220d6994e1a9d3d66aade9c824",
+      "subject": "fix(server): reject requests to 2026-07-28 clients (#1326)"
+    },
+    {
+      "date": "2026-10-19",
+      "parents": [
+        "be386d5209ebc3c8949b0c01a17e843f675387e9"
+      ],
+      "rule": "include",
+      "sha": "c519c79e6ac58be5e9468e5c96b8927ec9b72f94",
+      "subject": "fix(streamable-http-server): look up tool schemas per request (#1349)"
+    },
+    {
+      "date": "2026-10-19",
+      "parents": [
+        "50fba5c2848d3ef9d0df0efacb8a7d001914f40e"
+      ],
+      "rule": "include",
+      "sha": "be386d5209ebc3c8949b0c01a17e843f675387e9",
+      "subject": "fix(transport): follow same-origin 307/308 redirects in the default Streamable HTTP client (#1367)"
+    },
+    {
+      "date": "2026-10-17",
+      "parents": [
+        "017e1c371d246feeb3da2ed67d3ad4734a9dbaf7"
+      ],
+      "rule": "include",
+      "sha": "50fba5c2848d3ef9d0df0efacb8a7d001914f40e",
+      "subject": "fix(streamable-http-server): answer a session-less non-initialize POST with 400 (#1377)"
+    },
+    {
+      "date": "2026-10-16",
+      "parents": [
+        "ad5a2849805f5d8b9a774565a7f0c54578474bd3"
+      ],
+      "rule": "include",
+      "sha": "017e1c371d246feeb3da2ed67d3ad4734a9dbaf7",
+      "subject": "fix(model): read a request id written in float form as that integer (#1346)"
+    },
+    {
+      "date": "2026-10-16",
+      "parents": [
+        "b7568b82d278872f590b0c2eb5fedb3767cee87c"
+      ],
+      "rule": "include",
+      "sha": "a156be8bf602a2d772640a53a3eec2a96dac0747",
+      "subject": "fix(client): answer a server ping during the initialize handshake (#1366)"
+    },
+    {
+      "date": "2026-10-16",
+      "parents": [
+        "ce3a57a9ab7f8bb6758abe5c1354656c5acaabdb"
+      ],
+      "rule": "include",
+      "sha": "b7568b82d278872f590b0c2eb5fedb3767cee87c",
+      "subject": "fix(transport): accept nested x-mcp-header annotations (#1359)"
+    },
+    {
+      "date": "2026-10-15",
+      "parents": [
+        "8d226f421cddbd470651f328f8bf3cea7fbda3b0"
+      ],
+      "rule": "include",
+      "sha": "5d9935d0fc61affcfc573d475ca0a20e125467be",
+      "subject": "fix(streamable-http-client): handle error responses to initialize (#1361)"
+    },
+    {
+      "date": "2026-10-14",
+      "parents": [
+        "84987c3997ad5576290e2841a21ae3eb51acd224"
+      ],
+      "rule": "include",
+      "sha": "8d226f421cddbd470651f328f8bf3cea7fbda3b0",
+      "subject": "fix(transport): bound the incoming line buffer in AsyncRwTransport (#1049)"
+    },
+    {
+      "date": "2026-10-14",
+      "parents": [
+        "718bc6027203288a8fa4e40175dc67e3f54b414c"
+      ],
+      "rule": "include",
+      "sha": "e3b4e32b0afbe3672db8d52e085ba337090f2e8a",
+      "subject": "fix(model): reject malformed JSON-RPC messages with conflicting result and error fields (#1283) (#12"
+    },
+    {
+      "date": "2026-10-13",
+      "parents": [
+        "8763a3c3ffb259254d6a16ec1eb4ae9173d5d57d"
+      ],
+      "rule": "include",
+      "sha": "e957a536a96461ac21480567687658420a369645",
+      "subject": "fix: ship LICENSE in rmcp and rmcp-macros crates (#1342)"
+    },
+    {
+      "date": "2026-10-11",
+      "parents": [
+        "c1a8eea312613519b93f53b89a1dc74dc993f5b0"
+      ],
+      "rule": "include",
+      "sha": "07ff92d59780017467ccb5ef997e2e53d3a7b2d6",
+      "subject": "fix(rmcp): gate client- and server-only helpers behind their features (#1329)"
+    },
+    {
+      "date": "2026-10-09",
+      "parents": [
+        "08e021153ef0530aeb0bb406ebb360a38cfb8ee4"
+      ],
+      "rule": "include",
+      "sha": "4048ac40e958fb1a7d614617a2ae8d26666ee2fa",
+      "subject": "fix: cancel pending request tokens after transport EOF (#1333)"
+    },
+    {
+      "date": "2026-10-06",
+      "parents": [
+        "79437f291b2c44053d00dcd5db969fd0cca7c887"
+      ],
+      "rule": "include",
+      "sha": "08e021153ef0530aeb0bb406ebb360a38cfb8ee4",
+      "subject": "fix(rmcp): import base64-only prompt content types under the feature (#1314)"
+    },
+    {
+      "date": "2026-10-05",
+      "parents": [
+        "931d47133adefd082599be494e3e77c1b9ade3e5"
+      ],
+      "rule": "include",
+      "sha": "4a226c7cb9816e9b82e7d638d76ec4d58ba342d1",
+      "subject": "fix(server): keep discover lifecycle bootstrap-neutral (#1248)"
+    },
+    {
+      "date": "2026-10-05",
+      "parents": [
+        "deef9bb8952ffc042bc8cce7ce70b5ea51ec4adf"
+      ],
+      "rule": "include",
+      "sha": "cf1e9aa74590f0556809099dc76465bd498fd916",
+      "subject": "fix: keep handler-generated invalid params errors in-band (#1322)"
+    },
+    {
+      "date": "2026-10-05",
+      "parents": [
+        "c0d667e003d7cce82c17bdb3cb776f1d6cda39eb"
+      ],
+      "rule": "include",
+      "sha": "deef9bb8952ffc042bc8cce7ce70b5ea51ec4adf",
+      "subject": "fix(model): export object! macro without macros feature (#1318)"
+    },
+    {
+      "date": "2026-10-05",
+      "parents": [
+        "94c5c039a6a15ea8853c3d9a711d40d771709be9"
+      ],
+      "rule": "include",
+      "sha": "c0d667e003d7cce82c17bdb3cb776f1d6cda39eb",
+      "subject": "fix(server): default missing cache hints for 2026-07-28 peers (#1308)"
+    },
+    {
+      "date": "2026-09-26",
+      "parents": [
+        "972af863f813ad97be8d9b7dc3207d3b5731adf9"
+      ],
+      "rule": "include",
+      "sha": "e02efbfc77825b003c5ca196fb06b3f1d262d938",
+      "subject": "fix(model): decode float fields through serde_json::Number (#1300)"
+    },
+    {
+      "date": "2026-09-25",
+      "parents": [
+        "26f3b2ed71096d92926be8865714ef2cb580e8ad"
+      ],
+      "rule": "include",
+      "sha": "22ef52a21ddafa3b97baf67180e4242e5df31d34",
+      "subject": "fix(rmcp): reject duplicate sep-2243 headers (#1274)"
+    },
+    {
+      "date": "2026-09-25",
+      "parents": [
+        "6677eeedb6a2fd86a29193ad277283a9ca97a792"
+      ],
+      "rule": "include",
+      "sha": "26f3b2ed71096d92926be8865714ef2cb580e8ad",
+      "subject": "fix(transport): match explicit default ports in Origin allowlist (#1270)"
+    },
+    {
+      "date": "2026-09-24",
+      "parents": [
+        "90516bf48d25eb96f54c5d374c79766775d7b920"
+      ],
+      "rule": "include",
+      "sha": "fbed44764834511fe2d3e0c5b05efc18d8beb8c6",
+      "subject": "fix(rmcp): tolerate empty cacheScope instead of silently dropping the whole result (#1281)"
+    },
+    {
+      "date": "2026-09-24",
+      "parents": [
+        "9427a929959e665e0d12e9395f674026baf4bd48"
+      ],
+      "rule": "include",
+      "sha": "90516bf48d25eb96f54c5d374c79766775d7b920",
+      "subject": "fix(model): preserve explicit null structuredContent in CallToolResult (#1295)"
+    },
+    {
+      "date": "2026-09-22",
+      "parents": [
+        "16d2186b36bd766d6691d4325be0efd597a18282"
+      ],
+      "rule": "include",
+      "sha": "71e308188d27d07a0ff2875254fd78aaf881f9dc",
+      "subject": "fix(transport): fall back after JSON discover rejections (#1288)"
+    },
+    {
+      "date": "2026-09-22",
+      "parents": [
+        "dbd238275534c3a8da4d91b7220655e878216988"
+      ],
+      "rule": "include",
+      "sha": "16d2186b36bd766d6691d4325be0efd597a18282",
+      "subject": "fix(macros): accept const paths and concat! in tool/prompt descriptions (#1243)"
+    },
+    {
+      "date": "2026-09-15",
+      "parents": [
+        "b037c0fa886158fd9b09b915df866458688967e4"
+      ],
+      "rule": "include",
+      "sha": "0550e13c1bbb704790f2c52482edb5752a8f1758",
+      "subject": "fix(rmcp): use ServerConfig in cancellation test (#1273)"
+    },
+    {
+      "date": "2026-09-14",
+      "parents": [
+        "d481cb0eec09a0302e553cb1517d5b8ba076999b"
+      ],
+      "rule": "include",
+      "sha": "b037c0fa886158fd9b09b915df866458688967e4",
+      "subject": "fix(rmcp): route peer cancellation by lifecycle (#1262)"
+    },
+    {
+      "date": "2026-09-14",
+      "parents": [
+        "47fcdf4b573180af3931a90e1a18483263a5eed4"
+      ],
+      "rule": "include",
+      "sha": "d481cb0eec09a0302e553cb1517d5b8ba076999b",
+      "subject": "fix: run first pre-init request in service loop (#1263)"
+    },
+    {
+      "date": "2026-09-14",
+      "parents": [
+        "165ff92df1db1d54f051f9369e99d5251daa6039"
+      ],
+      "rule": "include",
+      "sha": "47fcdf4b573180af3931a90e1a18483263a5eed4",
+      "subject": "fix(auth): let url origin decide prm discovery (#1264)"
+    },
+    {
+      "date": "2026-09-12",
+      "parents": [
+        "4fa84a51306f9b9dd87caa841b4ffd1a269ab6e1"
+      ],
+      "rule": "include",
+      "sha": "a5d1169e20810fff4cb5ceb90940dc3319f95f0f",
+      "subject": "fix(auth): ignore non-metadata JSON when probing for protected resource metadata (#1204)"
+    },
+    {
+      "date": "2026-09-12",
+      "parents": [
+        "b86995aebd346842665aa6f225166306c99c151b"
+      ],
+      "rule": "include",
+      "sha": "4fa84a51306f9b9dd87caa841b4ffd1a269ab6e1",
+      "subject": "fix: do not treat malformed JSON 200 as Accepted for requests (#1208)"
+    },
+    {
+      "date": "2026-09-11",
+      "parents": [
+        "e27c5d1c2484cf553e59a070b1c4ef619cf1a546"
+      ],
+      "rule": "include",
+      "sha": "b86995aebd346842665aa6f225166306c99c151b",
+      "subject": "fix(streamable-http-server): map handler-generated HeaderMismatch to HTTP 400 (#1259)"
+    },
+    {
+      "date": "2026-09-10",
+      "parents": [
+        "3e636cab26c013eca5131103c03d20237f12c4df"
+      ],
+      "rule": "include",
+      "sha": "e27c5d1c2484cf553e59a070b1c4ef619cf1a546",
+      "subject": "fix(http): enforce Origin validation semantics (#1192)"
+    },
+    {
+      "date": "2026-09-09",
+      "parents": [
+        "744b9f904c7f17d589326e61ddbe126cb9d58888"
+      ],
+      "rule": "include",
+      "sha": "46db531df975ba1bd44fceabf2b3ff9cc9a21514",
+      "subject": "fix(sse): saturate exponential reconnect backoff to avoid overflow panic (#1231)"
+    },
+    {
+      "date": "2026-09-08",
+      "parents": [
+        "add9cbeab56725547e7ea3bf3fb78f59de0806f1"
+      ],
+      "rule": "include",
+      "sha": "04c2f3fac90dbd2ec4ae0fbd9082fababd32dab9",
+      "subject": "fix(auth): unify refresh checks and error handling (#1236)"
+    },
+    {
+      "date": "2026-09-01",
+      "parents": [
+        "4e744997831819fd7662aa5ac8b27196780d10b9"
+      ],
+      "rule": "include",
+      "sha": "ad9832ec212baf526e1a69d73ee04cd8305ae331",
+      "subject": "fix: keep initialize on legacy protocol versions (#1228)"
+    },
+    {
+      "date": "2026-08-25",
+      "parents": [
+        "697c4977245573a319ec63ff2a9f64f7acb7f923"
+      ],
+      "rule": "include",
+      "sha": "02decfb682ed299f9f439bd7cface84f3488cf29",
+      "subject": "fix(transport): fall back after sessionless HTTP discover rejections (#1211)"
+    },
+    {
+      "date": "2026-08-24",
+      "parents": [
+        "4a738b9dd99eaca418b614afa433a0cbdaf8d056"
+      ],
+      "rule": "include",
+      "sha": "697c4977245573a319ec63ff2a9f64f7acb7f923",
+      "subject": "fix: allow concurrent streamable http requests (#1186)"
+    },
+    {
+      "date": "2026-08-19",
+      "parents": [
+        "d5c46b3fe0b020a69c130eb9a75674e760365b47"
+      ],
+      "rule": "include",
+      "sha": "6f8dcde04f88825983baee78311f25c2e20a585b",
+      "subject": "fix(rmcp): preserve elicitation requestedSchema $schema dialect (#1176)"
+    },
+    {
+      "date": "2026-08-18",
+      "parents": [
+        "38428f66bc679ad73ce3c4de729c90af64bc9aac"
+      ],
+      "rule": "include",
+      "sha": "d5c46b3fe0b020a69c130eb9a75674e760365b47",
+      "subject": "fix: harden signing key handling (#1166)"
+    },
+    {
+      "date": "2026-08-18",
+      "parents": [
+        "018ab24fac28d29f938bd2606d2863384d7a2483"
+      ],
+      "rule": "include",
+      "sha": "38428f66bc679ad73ce3c4de729c90af64bc9aac",
+      "subject": "fix: report pre-init metadata errors (#1160)"
+    },
+    {
+      "date": "2026-08-17",
+      "parents": [
+        "f713ebd1a6feab492fb730a8bc13026be114d82f"
+      ],
+      "rule": "include",
+      "sha": "248cbca688a04dc8c42be5c2d8d9c59f3a8ccf0f",
+      "subject": "fix(auth): ignore query parameters when matching resources (#1177)"
+    },
+    {
+      "date": "2026-08-12",
+      "parents": [
+        "d81bfa8854e58867ace1831b847fd6f89d3093d0"
+      ],
+      "rule": "include",
+      "sha": "a50a73fda2cd55f87633a280b430f539b1094234",
+      "subject": "fix(auth): retain state until issuer validation (#1167)"
+    },
+    {
+      "date": "2026-08-11",
+      "parents": [
+        "3f5a3f6a28b7d61cf4e91b70f2e00826ab714c20"
+      ],
+      "rule": "include",
+      "sha": "d81bfa8854e58867ace1831b847fd6f89d3093d0",
+      "subject": "fix(model): preserve elicitation property order metadata (#1150)"
+    },
+    {
+      "date": "2026-08-11",
+      "parents": [
+        "b5cf34eee74cb3e8e4ce7b535798f0fe216eb3e2"
+      ],
+      "rule": "include",
+      "sha": "a0e103c9701f5366328d41a72d512c59e66a6018",
+      "subject": "fix: time out auto discovery probe (#1149)"
+    },
+    {
+      "date": "2026-08-09",
+      "parents": [
+        "02c62aef2e331e5cf79c06c744eb1eb052cc8ebd"
+      ],
+      "rule": "include",
+      "sha": "22be2cc5ad2f42d9f83d670e4f97b125b695cd7f",
+      "subject": "fix(client): classify discover outcome at source, not at the error type (#1133)"
+    },
+    {
+      "date": "2026-08-07",
+      "parents": [
+        "f8e63824d3a5ae99d2e7282d1bfc817f96ceb412"
+      ],
+      "rule": "include",
+      "sha": "c3450788671d214f444ac668dd356ccc48f643b5",
+      "subject": "fix(auth): map 401/403 challenges on the SSE GET stream (#1152)"
+    },
+    {
+      "date": "2026-08-07",
+      "parents": [
+        "e150d4f3a6fc92672d3250dee788d75e2d16b420"
+      ],
+      "rule": "include",
+      "sha": "3c8fb2a7e431121797de238960d75395ff4a8b46",
+      "subject": "fix(sse): loop instead of recursing when skipping SSE events (#1146)"
+    },
+    {
+      "date": "2026-08-07",
+      "parents": [
+        "9a3168af8743fdb295fcd1bc274797ad2f999d3d"
+      ],
+      "rule": "include",
+      "sha": "e150d4f3a6fc92672d3250dee788d75e2d16b420",
+      "subject": "fix(auth): preserve issuer trailing slash during discovery (#1145)"
+    },
+    {
+      "date": "2026-08-05",
+      "parents": [
+        "f8f9607d0bf856629d379b9d63a905b52e7f5398"
+      ],
+      "rule": "include",
+      "sha": "07bcda2973887b1fed222f1151d153ba5d409141",
+      "subject": "fix: emit cache hints from handler macros (#1120)"
+    },
+    {
+      "date": "2026-08-05",
+      "parents": [
+        "7e14020cb8e31d2f11318455adf25b449b2e4f18"
+      ],
+      "rule": "include",
+      "sha": "c4def55422e47338c1bd961a772685beccbb2496",
+      "subject": "fix: expose MRTR state to tool handlers (#1104)"
+    },
+    {
+      "date": "2026-08-03",
+      "parents": [
+        "830e088d733c7964c806a2305760dd8deb30dff9"
+      ],
+      "rule": "include",
+      "sha": "684ff5a51e81f000f411dfb4606204d845120053",
+      "subject": "fix: disambiguate input-required results (#1103)"
+    },
+    {
+      "date": "2026-07-31",
+      "parents": [
+        "65f05e9924f2bf698c597b3c49c06aa83660b1b8"
+      ],
+      "rule": "include",
+      "sha": "00bcf13800afbd880a13bb207881139be7727d26",
+      "subject": "fix(model): decode metadata-bearing input-required results affecting mrtr (#1097)"
+    },
+    {
+      "date": "2026-07-30",
+      "parents": [
+        "d272389fd409b5f36d2abd44a21fa6badede6d78"
+      ],
+      "rule": "include",
+      "sha": "58b136f44fb671aed1154c12351b0daac910c312",
+      "subject": "fix: require metadata for modern HTTP requests (#1089)"
+    },
+    {
+      "date": "2026-07-30",
+      "parents": [
+        "51c8ee60e337d06777c6cd05f210a2943266597b"
+      ],
+      "rule": "include",
+      "sha": "d272389fd409b5f36d2abd44a21fa6badede6d78",
+      "subject": "fix: honor supported_protocol_versions when negotiating initialize (#1093)"
+    },
+    {
+      "date": "2026-07-29",
+      "parents": [
+        "f3c786706a04fbd2cbeac1b4dea8d80b37a1f900"
+      ],
+      "rule": "include",
+      "sha": "d82c94aa8ede23d7ee8c9caf539a92bd1c057e78",
+      "subject": "fix(auth): use discovered resource for token refresh (#1084)"
+    },
+    {
+      "date": "2026-07-29",
+      "parents": [
+        "596a7e1e0d3293f2d15e3918fe329261bc12b797"
+      ],
+      "rule": "include",
+      "sha": "f3c786706a04fbd2cbeac1b4dea8d80b37a1f900",
+      "subject": "fix: return header mismatch for missing protocol header (#1083)"
+    },
+    {
+      "date": "2026-07-29",
+      "parents": [
+        "cb50ae7890d8a5daacae1a4ad95f395f06733c07"
+      ],
+      "rule": "include",
+      "sha": "596a7e1e0d3293f2d15e3918fe329261bc12b797",
+      "subject": "fix: negotiate stateless initialize versions (#1080)"
+    },
+    {
+      "date": "2026-07-29",
+      "parents": [
+        "4e361b715fc70b8a09f0a8aeaedc160712a3472d"
+      ],
+      "rule": "include",
+      "sha": "cb50ae7890d8a5daacae1a4ad95f395f06733c07",
+      "subject": "fix: stamp server info on graceful subscription results (#1078)"
+    },
+    {
+      "date": "2026-07-28",
+      "parents": [
+        "29c068d22bb0032a26524384a7576a0aee17b6ba"
+      ],
+      "rule": "include",
+      "sha": "9334c97f0d6e177546fc33593148aa3f942cb1f8",
+      "subject": "fix: recognize 2026 MCP methods (#1076)"
+    },
+    {
+      "date": "2026-07-28",
+      "parents": [
+        "e54c2220af4e58ad845f1ecea5aa1f6f32c4e33b"
+      ],
+      "rule": "include",
+      "sha": "9a41811a66883c9652bd2293560710e3204f92f7",
+      "subject": "fix!: remove server_info from DiscoverResult (#1065)"
+    },
+    {
+      "date": "2026-07-28",
+      "parents": [
+        "ce28e6d32314d422b8df1f09ff3f0445816745c9"
+      ],
+      "rule": "include",
+      "sha": "82a6c48e92fae0887a3062845aa7b8faf2b9fc50",
+      "subject": "fix: preserve transient OAuth discovery HTTP errors (#1071)"
+    },
+    {
+      "date": "2026-07-28",
+      "parents": [
+        "e5403cf956ce20d1d1cbf986515ae22fe41453ec"
+      ],
+      "rule": "include",
+      "sha": "0dea39d10146b96fbba4c0fcb2db74af822fad4c",
+      "subject": "fix!: preserve OAuth discovery transport errors (#1069)"
+    },
+    {
+      "date": "2026-07-28",
+      "parents": [
+        "fff05d40fd05e7370803905ca02c3775978893bf"
+      ],
+      "rule": "include",
+      "sha": "e5403cf956ce20d1d1cbf986515ae22fe41453ec",
+      "subject": "fix: gate client handler bounds for local (#1068)"
+    },
+    {
+      "date": "2026-07-27",
+      "parents": [
+        "9528801f6e1dd1b0d2e7bb3f09344e870d1a5931"
+      ],
+      "rule": "include",
+      "sha": "2047ae42ec1e40f84ad08a53951fea236a37cd6f",
+      "subject": "fix: accept namespaced discovery server information (#1044)"
+    },
+    {
+      "date": "2026-07-27",
+      "parents": [
+        "c284607794a02a22fe78adc9c2cad8023ae62499"
+      ],
+      "rule": "include",
+      "sha": "125dbfd5af81fd3033b572f44e11c472969194a8",
+      "subject": "fix!: reject missing `issuer` in authorization server metadata by default (#1054)"
+    },
+    {
+      "date": "2026-07-27",
+      "parents": [
+        "14298b72e0b25473ea79d5465fe186e22eb86397"
+      ],
+      "rule": "include",
+      "sha": "92c0793247b7cca6d8be4279c6533cd36ce647f0",
+      "subject": "fix: default to allowing missing `issuer` (#1051)"
+    },
+    {
+      "date": "2026-07-24",
+      "parents": [
+        "76988023b2b4d7b6b1b0c3397801953cf44c451f"
+      ],
+      "rule": "include",
+      "sha": "6839cfd61314c2a3c2bc51bf5563c42b1eee2fd2",
+      "subject": "fix!: omit resultType for legacy protocol sessions (#1038)"
+    },
+    {
+      "date": "2026-07-23",
+      "parents": [
+        "e9033411366178196f8fe6023f1b852575d9fc79"
+      ],
+      "rule": "include",
+      "sha": "190ea4421853ce0912f580b5881f14a97172a69e",
+      "subject": "fix: use issuer for JWT client audience (#1031)"
+    },
+    {
+      "date": "2026-07-22",
+      "parents": [
+        "151970775cca27a9386a759d1c9bf3cd47b87338"
+      ],
+      "rule": "include",
+      "sha": "50dd8e2040c8d48b05bdb17bc28af388efbf5a50",
+      "subject": "fix: reap completed response send tasks (#1026)"
+    },
+    {
+      "date": "2026-07-21",
+      "parents": [
+        "99ee02449998c838e2aa78fbe0f21ab0c013ccaa"
+      ],
+      "rule": "include",
+      "sha": "8803d39034b6a7590151ab8fbf9b9cbe7c337bb4",
+      "subject": "fix: accept stringified numeric response IDs (#1021)"
+    },
+    {
+      "date": "2026-07-21",
+      "parents": [
+        "a8308dc9431a3a82d821bc6c012e2b23a96739b7"
+      ],
+      "rule": "include",
+      "sha": "4e36fd9531f20ab33cabd562ff19355db7426496",
+      "subject": "fix: re-register after auth server change (#1011)"
+    },
+    {
+      "date": "2026-07-20",
+      "parents": [
+        "5b053416b85de8da380fbc284d32cb773b2104d3"
+      ],
+      "rule": "include",
+      "sha": "c87b6422f730ba1b518a82ee31c8605bad469810",
+      "subject": "fix: .with_stateful_mode -> .with_legacy_session_mode (#1015)"
+    },
+    {
+      "date": "2026-07-20",
+      "parents": [
+        "a5bb51c9d2c99a75adf30a8dfc7aa8231dce7e1a"
+      ],
+      "rule": "include",
+      "sha": "5b053416b85de8da380fbc284d32cb773b2104d3",
+      "subject": "fix: preserve negotiated progress responses (#1005)"
+    },
+    {
+      "date": "2026-07-20",
+      "parents": [
+        "61b40afdcac2c17ae851c074dfba1350a3d2fb86"
+      ],
+      "rule": "include",
+      "sha": "7abbf29e9364bad7462487f0a2d2ff2edb46eb87",
+      "subject": "fix: pass client header conformance (#1012)"
+    },
+    {
+      "date": "2026-07-17",
+      "parents": [
+        "bc2c5f3c4a0bfdd91be6c3a49957dc4868a35321"
+      ],
+      "rule": "include",
+      "sha": "7d811c49d1b9bc6b0819784e89f08c79830786bf",
+      "subject": "fix(auth): add an SDK path for pre-registered OAuth clients (#994)"
+    },
+    {
+      "date": "2026-07-17",
+      "parents": [
+        "9df629e6314daaeadfd0a1a4592d11511282f9d6"
+      ],
+      "rule": "include",
+      "sha": "bc2c5f3c4a0bfdd91be6c3a49957dc4868a35321",
+      "subject": "fix(transport): cancel in-flight request on stateless streamable-HTTP client disconnect (#857) (#967"
+    },
+    {
+      "date": "2026-07-16",
+      "parents": [
+        "2e2c79173cafb7b7966eeab91f60a241c440b640"
+      ],
+      "rule": "include",
+      "sha": "9df629e6314daaeadfd0a1a4592d11511282f9d6",
+      "subject": "fix(auth): distinguish rejected refresh tokens from transient failures (#963)"
+    },
+    {
+      "date": "2026-07-16",
+      "parents": [
+        "77eb607ccbd7ee67b50a7968d5d698452f133147"
+      ],
+      "rule": "include",
+      "sha": "81745f1375303e309c857d27ba75a229e5bd064f",
+      "subject": "fix(auth): validate discovered metadata issuer (#996)"
+    },
+    {
+      "date": "2026-07-14",
+      "parents": [
+        "1543a1afeee1b14f83cc95e0c2be7e3f9b48329f"
+      ],
+      "rule": "include",
+      "sha": "24ba5265e2c98ed04c135616b61cab798bf33ed8",
+      "subject": "fix: bound streamable HTTP memory usage (#970)"
+    },
+    {
+      "date": "2026-07-14",
+      "parents": [
+        "f3459fa7773f46989f5969774a9f3ee00ec6c0bb"
+      ],
+      "rule": "include",
+      "sha": "1543a1afeee1b14f83cc95e0c2be7e3f9b48329f",
+      "subject": "fix(streamable-http): preserve progress in JSON mode (#990)"
+    },
+    {
+      "date": "2026-07-09",
+      "parents": [
+        "9e3de344f402823fe0984e4a3c7ecbec538aa26c"
+      ],
+      "rule": "include",
+      "sha": "60d3e77f52316cfe606f52bf95d0afbbcb79aac0",
+      "subject": "fix: flag schema derive on schemars feature (#966)"
+    },
+    {
+      "date": "2026-07-08",
+      "parents": [
+        "dbda50c0eb3fbecfb14e6aa4179c180458bb393a"
+      ],
+      "rule": "include",
+      "sha": "a03793530d39d3be7beef3b44eed509d2ac04ab1",
+      "subject": "fix: pass client conformance suite (#960)"
+    },
+    {
+      "date": "2026-07-08",
+      "parents": [
+        "45f2f728819cb1018973a83d16feace7174cdc82"
+      ],
+      "rule": "include",
+      "sha": "dbda50c0eb3fbecfb14e6aa4179c180458bb393a",
+      "subject": "fix: don't respond to cancelled requests (#957)"
+    },
+    {
+      "date": "2026-07-07",
+      "parents": [
+        "95490facd61a4f5c9bf5f6abe4a621eaa80cc3eb"
+      ],
+      "rule": "include",
+      "sha": "45f2f728819cb1018973a83d16feace7174cdc82",
+      "subject": "fix: fail orphaned streamable HTTP responses on reinit (#914)"
+    },
+    {
+      "date": "2026-07-02",
+      "parents": [
+        "8e44af499bfa8d54f18fb475eb86a601a5a2e432"
+      ],
+      "rule": "include",
+      "sha": "bdf0c32e8c1ea1847ab9c581c0ee0d4984d6b556",
+      "subject": "fix: address 2025-11-25 conformance audit findings (#951)"
+    },
+    {
+      "date": "2026-07-02",
+      "parents": [
+        "5837e225d3b85efe662478a94446e5f50a119b9e"
+      ],
+      "rule": "include",
+      "sha": "4833ec7b6357fcc84335572a8fd49737c368854a",
+      "subject": "fix(transport): make AsyncRwTransport::receive cancel-safe (#941) (#947)"
+    },
+    {
+      "date": "2026-07-02",
+      "parents": [
+        "ee2d81f4d06b715bde7e4f9532bb88daa4c95083"
+      ],
+      "rule": "include",
+      "sha": "5837e225d3b85efe662478a94446e5f50a119b9e",
+      "subject": "fix(auth): preserve refresh_token when refresh response omits it (#949)"
+    },
+    {
+      "date": "2026-07-01",
+      "parents": [
+        "64d22def0254b30da515646b81fcb3f4ea923006"
+      ],
+      "rule": "include",
+      "sha": "496902b9cf2c8a947454718da31829ae776b969b",
+      "subject": "fix: block redirect header leaks (#936)"
+    },
+    {
+      "date": "2026-07-01",
+      "parents": [
+        "288f99653e61949cc3c61e29573f87ead17ba7e5"
+      ],
+      "rule": "include",
+      "sha": "64d22def0254b30da515646b81fcb3f4ea923006",
+      "subject": "fix: don't respond to unparseable messages (#940)"
+    },
+    {
+      "date": "2026-06-27",
+      "parents": [
+        "eb435c6f51864df74926ef115befce55c16b01ba"
+      ],
+      "rule": "include",
+      "sha": "c1a8b29ff2cc45e7820b900dae42cbb4958089ec",
+      "subject": "fix: prevent OAuth resource spoofing (#937)"
+    },
+    {
+      "date": "2026-06-26",
+      "parents": [
+        "dfa7fd6f9309deab60bea230b041be9a3fcda846"
+      ],
+      "rule": "include",
+      "sha": "eb435c6f51864df74926ef115befce55c16b01ba",
+      "subject": "fix: block oauth metadata ssrf (#935)"
+    },
+    {
+      "date": "2026-06-26",
+      "parents": [
+        "e1af378949b375bfa36de8f9744ec7d5b693775a"
+      ],
+      "rule": "include",
+      "sha": "dfa7fd6f9309deab60bea230b041be9a3fcda846",
+      "subject": "fix: prevent streamable HTTP session leak (#934)"
+    },
+    {
+      "date": "2026-06-26",
+      "parents": [
+        "d1cabb458f079675a8a78875e3b5d0126a0470f9"
+      ],
+      "rule": "include",
+      "sha": "415852806d0b9d847882084f46c5540ce6c4de43",
+      "subject": "fix: fill missing fully qualified syntax in prompt_handler macros (#866)"
+    },
+    {
+      "date": "2026-06-23",
+      "parents": [
+        "25220361d5540715294c501c289d79de4bec2bfc"
+      ],
+      "rule": "include",
+      "sha": "0a95c3b608b9b2c0a932fb3a8e8474dbea8a27bc",
+      "subject": "fix(rmcp): add Audio variant to PromptMessageContent (#865)"
+    },
+    {
+      "date": "2026-06-22",
+      "parents": [
+        "de898dd842016b84ba615070bd02499c214f94d7"
+      ],
+      "rule": "include",
+      "sha": "6d020c9684876666dca3b8a6efe9b99ccba39c04",
+      "subject": "fix(auth): preserve configured reqwest client (#917)"
+    },
+    {
+      "date": "2026-06-22",
+      "parents": [
+        "443677ca313f84e8a64d368de9f6dd230ba2041f"
+      ],
+      "rule": "include",
+      "sha": "3c5ce2b0d78a5dee13457076c72971213829e670",
+      "subject": "fix(auth): align OAuth metadata discovery ordering (#887)"
+    },
+    {
+      "date": "2026-06-22",
+      "parents": [
+        "4fd4986b6204e7bf580b23592a99bc338e2899e5"
+      ],
+      "rule": "include",
+      "sha": "443677ca313f84e8a64d368de9f6dd230ba2041f",
+      "subject": "fix: align progress timeout token (#909)"
+    },
+    {
+      "date": "2026-06-20",
+      "parents": [
+        "bf71eb8b09dea9f808f8cf418d363ac56c7616c4"
+      ],
+      "rule": "include",
+      "sha": "4fd4986b6204e7bf580b23592a99bc338e2899e5",
+      "subject": "fix(elicitation): preserve enumNames through ElicitationSchema serde round-trip (#905)"
+    },
+    {
+      "date": "2026-06-11",
+      "parents": [
+        "53c6daadd9419c67853505c9b8b44267256d0b7b"
+      ],
+      "rule": "include",
+      "sha": "5a78773faad4825d981a8db4d034f6cb87faebc0",
+      "subject": "fix: return tool errors for invalid arguments (#894)"
+    },
+    {
+      "date": "2026-06-11",
+      "parents": [
+        "52e731bec60e534bcb874135ad365641e8a16218"
+      ],
+      "rule": "include",
+      "sha": "53c6daadd9419c67853505c9b8b44267256d0b7b",
+      "subject": "fix(auth): apply offline_access to reauth paths (#897)"
+    },
+    {
+      "date": "2026-06-10",
+      "parents": [
+        "2d3d1879ad6b0a12325c118176d2914ce857523e"
+      ],
+      "rule": "include",
+      "sha": "2536a05992fb02d37a7d7e1ddcb94e6f959c5304",
+      "subject": "fix: update peer info on duplicate initialize (#862)"
+    },
+    {
+      "date": "2026-06-02",
+      "parents": [
+        "8f558d83be9268c8922c91748033ff25891d86bf"
+      ],
+      "rule": "include",
+      "sha": "254f04a764c0f9c26e7514f1de31bde384c4251b",
+      "subject": "fix: strip and validate tool outputSchema and inputSchema (#860)"
+    },
+    {
+      "date": "2026-05-28",
+      "parents": [
+        "c330fede90e4729c234f8e87fdbc5ea27a1dd10c"
+      ],
+      "rule": "include",
+      "sha": "53e4410d9962af92e86269621de6d682d61753e2",
+      "subject": "fix: remove unnecessary fields from tools' inputSchema (#856)"
+    },
+    {
+      "date": "2026-05-14",
+      "parents": [
+        "3529c3675ff64db805bd947ca6ece6090809e43d"
+      ],
+      "rule": "include",
+      "sha": "cc66e3091e1584f48ee1e0058a2a1201a1d35c81",
+      "subject": "fix: accept 200 with empty body in response to notifications in addition to 202 (#849)"
+    },
+    {
+      "date": "2026-05-12",
+      "parents": [
+        "321ab14f67da734a8e0cfa0bfcdee1690663d9dc"
+      ],
+      "rule": "include",
+      "sha": "d83b1566d0fd536dd6a1f676e206f7daa8068e7e",
+      "subject": "fix(rmcp): flatten Resource variant of PromptMessageContent (#843)"
+    },
+    {
+      "date": "2026-05-07",
+      "parents": [
+        "0f776ab1d66f5e0d41c117b949b1381a913e8272"
+      ],
+      "rule": "include",
+      "sha": "321ab14f67da734a8e0cfa0bfcdee1690663d9dc",
+      "subject": "fix: reply -32700 on stdio parse errors instead of closing (#833)"
+    },
+    {
+      "date": "2026-05-04",
+      "parents": [
+        "014fb2e6cd9faddbe86ae30b5cc9adf84a62edb9"
+      ],
+      "rule": "include",
+      "sha": "2f8d3b73551dd9fbd2ffc50393f349778a2f848c",
+      "subject": "Fix/issue 817 idle timeout log level (#824)"
+    },
+    {
+      "date": "2026-05-01",
+      "parents": [
+        "ef7414711330e471ec2bfa575eba1dd93305faaf"
+      ],
+      "rule": "include",
+      "sha": "c1e0eadd5d2010ec775e37ef0a9f47cb6995be78",
+      "subject": "fix: add init_timeout for streamable-http sessions (#811)"
+    },
+    {
+      "date": "2026-05-01",
+      "parents": [
+        "4cf78736e7956fd9e37a9d9103bd8569816e9c6c"
+      ],
+      "rule": "include",
+      "sha": "ef7414711330e471ec2bfa575eba1dd93305faaf",
+      "subject": "fix(http): fall back to :authority for HTTP/2 (#827)"
+    },
+    {
+      "date": "2026-04-16",
+      "parents": [
+        "3e56d527641b6deebdba38e798ddf1294960f971"
+      ],
+      "rule": "include",
+      "sha": "01a6666429273ce221db290cf06b22ea53f50a50",
+      "subject": "fix: treat resource metadata JSON parse failure as soft error (#810)"
+    },
+    {
+      "date": "2026-04-16",
+      "parents": [
+        "6603c1ff157fc4d46344f67bf0e5febdd4435519"
+      ],
+      "rule": "include",
+      "sha": "3e56d527641b6deebdba38e798ddf1294960f971",
+      "subject": "fix: include http_request_id in request-wise priming event IDs (#799)"
+    },
+    {
+      "date": "2026-04-13",
+      "parents": [
+        "ad3997268d2c0f7eff80d166c3e837cb789206f2"
+      ],
+      "rule": "include",
+      "sha": "c99903a67a5ef8461135a8d5fdfa05f1c937ac3d",
+      "subject": "fix(http): drain SSE stream for connection reuse (#790)"
+    },
+    {
+      "date": "2026-04-09",
+      "parents": [
+        "a7b570062e69502fa7e209fb2e224c687ce23a60"
+      ],
+      "rule": "include",
+      "sha": "65d2b29da5fb3f4c4679b5850e09b371de293c2e",
+      "subject": "fix(server): remove initialized notification gate to support Streamable HTTP (#788)"
+    },
+    {
+      "date": "2026-04-08",
+      "parents": [
+        "cabf71aa74fa738c4fc54deefe1c7ba26b235867"
+      ],
+      "rule": "include",
+      "sha": "929441e4432d11b3d12aaa2fe8b2591927d0a1f4",
+      "subject": "fix: default session keep_alive to 5 minutes (#780)"
+    },
+    {
+      "date": "2026-04-01",
+      "parents": [
+        "012210baae3ff05836eca712dd4ba08bbf7dde05"
+      ],
+      "rule": "include",
+      "sha": "8e22aa2de28df5a285eed87c11cd89bf15fa90d3",
+      "subject": "fix(http): add host check (#764)"
+    },
+    {
+      "date": "2026-03-23",
+      "parents": [
+        "30cdc38c9a7d5604e39b9fd10d3d772dac2d14cb"
+      ],
+      "rule": "include",
+      "sha": "c8c0c0cffc595e22d70b42daa8e2b05f142acd1a",
+      "subject": "fix: prevent CallToolResult and GetTaskPayloadResult from shadowing CustomResult in untagged enums ("
+    },
+    {
+      "date": "2026-03-18",
+      "parents": [
+        "e709d0d084c74f6564222b4509f8fe204ba30a6f"
+      ],
+      "rule": "include",
+      "sha": "251ebec098fe3ffb1ae5d744a4776bbd27be5dd2",
+      "subject": "fix: drain in-flight responses on stdin EOF (#759)"
+    },
+    {
+      "date": "2026-03-18",
+      "parents": [
+        "d485249048b4e0c164b5a2f11e2d411d9a8efb85"
+      ],
+      "rule": "include",
+      "sha": "e709d0d084c74f6564222b4509f8fe204ba30a6f",
+      "subject": "fix: remove default type param from StreamableHttpService (#758)"
+    },
+    {
+      "date": "2026-03-18",
+      "parents": [
+        "55b478b0f4b49eb9a3d8f932b3f8dad9135c5c64"
+      ],
+      "rule": "include",
+      "sha": "d485249048b4e0c164b5a2f11e2d411d9a8efb85",
+      "subject": "fix: use cfg-gated Send+Sync supertraits to avoid semver break (#757)"
+    },
+    {
+      "date": "2026-03-17",
+      "parents": [
+        "44dfcf5550937fbf33c193077000fe9118e946e5"
+      ],
+      "rule": "include",
+      "sha": "55b478b0f4b49eb9a3d8f932b3f8dad9135c5c64",
+      "subject": "fix(rmcp): surface JSON-RPC error bodies on HTTP 4xx responses (#748)"
+    },
+    {
+      "date": "2026-03-13",
+      "parents": [
+        "66712db8080c4dafc8ca2a4e4211e2653ab9d8ef"
+      ],
+      "rule": "include",
+      "sha": "44dfcf5550937fbf33c193077000fe9118e946e5",
+      "subject": "fix: default CallToolResult content to empty vec on missing field (#752)"
+    },
+    {
+      "date": "2026-03-13",
+      "parents": [
+        "1a4a52a1732d78d8e63a55652ecab92de442e197"
+      ],
+      "rule": "include",
+      "sha": "66712db8080c4dafc8ca2a4e4211e2653ab9d8ef",
+      "subject": "fix(auth): redact secrets in Debug output for StoredCredentials and StoredAuthorizationState (#744)"
+    },
+    {
+      "date": "2026-03-11",
+      "parents": [
+        "3d2c951ca3f3f492fbfbb56df1e830e71a6128ac"
+      ],
+      "rule": "include",
+      "sha": "53224307728844aeafc36bce1164c97658562508",
+      "subject": "fix: handle ping requests sent before initialize handshake (#745)"
+    },
+    {
+      "date": "2026-03-09",
+      "parents": [
+        "1158cfe1b80b97272fd2d1d137e94754d2635e5a"
+      ],
+      "rule": "include",
+      "sha": "fc757d41ca311f16f8fa1e69a17aa9c1b901fcb0",
+      "subject": "fix: allow deserializing notifications without params field (#729)"
+    },
+    {
+      "date": "2026-03-09",
+      "parents": [
+        "9b507f5018e901e0b23279c7535c3969d8be5ed6"
+      ],
+      "rule": "include",
+      "sha": "8e5ebb4f5c427e3852e85a09878cc6466cddfe57",
+      "subject": "fix: accept logging/setLevel and ping before initialized notification (#730)"
+    },
+    {
+      "date": "2026-03-03",
+      "parents": [
+        "2d90b76501793437adcb711a83ac2b352d052050"
+      ],
+      "rule": "include",
+      "sha": "434ccb7812ce275f1a9b8ebbb79ee54a0d8a4be5",
+      "subject": "fix(auth): pass WWW-Authenticate scopes to DCR registration request (#705)"
+    },
+    {
+      "date": "2026-03-03",
+      "parents": [
+        "1fe5d1e1cdaeeb34a11a2b5b306006d2bcdcaf57"
+      ],
+      "rule": "include",
+      "sha": "2d90b76501793437adcb711a83ac2b352d052050",
+      "subject": "fix: api ergonomics follow-up (#720)"
+    },
+    {
+      "date": "2026-03-03",
+      "parents": [
+        "28beb9528bb235512d8d9e3a35e3d6c9df0cb0e4"
+      ],
+      "rule": "include",
+      "sha": "1fe5d1e1cdaeeb34a11a2b5b306006d2bcdcaf57",
+      "subject": "fix(streamable-http): map stale session 401 to status-aware error (#709)"
+    },
+    {
+      "date": "2026-02-27",
+      "parents": [
+        "955186502dc2d8b5ff46592054f87295447fa22b"
+      ],
+      "rule": "include",
+      "sha": "876da502711b7073e635b6de611fc2223a20222f",
+      "subject": "fix: downgrade logging of message to `TRACE` to avoid spamming logs (#699)"
+    },
+    {
+      "date": "2026-02-26",
+      "parents": [
+        "93bfb4ac6bc99375bb206c45054f22032dbc1652"
+      ],
+      "rule": "include",
+      "sha": "b967c132aef477afb1c0792772bb2e428ef98e32",
+      "subject": "fix: improve error logging and remove token secret from logs (#685)"
+    },
+    {
+      "date": "2026-02-24",
+      "parents": [
+        "3cb855bcf8a2db07cdfbe89ae1cc50c84f8496d4"
+      ],
+      "rule": "include",
+      "sha": "332fcbfb916a6775d0ed8f7d930384293ee73e02",
+      "subject": "Fix/sse channel replacement conflict (#682)"
+    },
+    {
+      "date": "2026-02-24",
+      "parents": [
+        "66c70006267e45192769efb9dd0d93f0e5a74437"
+      ],
+      "rule": "include",
+      "sha": "83808d311496ab63eaa457769667844009d5f2e5",
+      "subject": "fix: refresh token expiry (#680)"
+    },
+    {
+      "date": "2026-02-24",
+      "parents": [
+        "98eef440c6e3d36adc7ac51fbb47f5fde9b27717"
+      ],
+      "rule": "include",
+      "sha": "91e208efb7181fc46e49bf7e0a77fa9dbb78903d",
+      "subject": "fix: gate optional dependencies behind feature flags (#672)"
+    },
+    {
+      "date": "2026-02-24",
+      "parents": [
+        "085470025f690050e8776ffa939e7ba71d3abc01"
+      ],
+      "rule": "include",
+      "sha": "98eef440c6e3d36adc7ac51fbb47f5fde9b27717",
+      "subject": "fix: allow empty content in CallToolResult (#681)"
+    },
+    {
+      "date": "2026-02-19",
+      "parents": [
+        "3df4c5bf5f074df600e7ebe00a5770344c3fce51"
+      ],
+      "rule": "include",
+      "sha": "92b14596470377b2a944668ae3b212bd9d188a45",
+      "subject": "fix(schema): remove AddNullable from draft2020_12 settings (#664)"
+    },
+    {
+      "date": "2026-02-17",
+      "parents": [
+        "61ffba84b54d78d1a0c93793363af433784dcc67"
+      ],
+      "rule": "include",
+      "sha": "5a6ff1f74c979584152cdb80c2da2aa2b74f3e0d",
+      "subject": "fix: duplicate meta serialization (#662)"
+    },
+    {
+      "date": "2026-02-17",
+      "parents": [
+        "53cd5ed84ac785aa295d7e34e4eb3ac2742e8abe"
+      ],
+      "rule": "include",
+      "sha": "61ffba84b54d78d1a0c93793363af433784dcc67",
+      "subject": "fix: sort list_all() output in ToolRouter and PromptRouter for deterministic ordering (#665)"
+    },
+    {
+      "date": "2026-02-13",
+      "parents": [
+        "453032faedb5336a2ded4289eadfbd6672facd8a"
+      ],
+      "rule": "include",
+      "sha": "08a5b0551bd2c5936009f29b1b26efafc2712b40",
+      "subject": "fix: align task response types with MCP spec (#658)"
+    },
+    {
+      "date": "2026-02-05",
+      "parents": [
+        "f6ebc7af13efb74cb52dbf1c70fe1371f53631c5"
+      ],
+      "rule": "include",
+      "sha": "be23334f9d8a7550fb73dde70efc324372903849",
+      "subject": "fix(tasks): avoid dropping completed task results during collection (#639)"
+    },
+    {
+      "date": "2026-02-04",
+      "parents": [
+        "bfd9cc08d8b616ed3750b33f91d8efb4e3f1ec33"
+      ],
+      "rule": "include",
+      "sha": "f6ebc7af13efb74cb52dbf1c70fe1371f53631c5",
+      "subject": "fix(auth): oauth metadata discovery (#641)"
+    },
+    {
+      "date": "2026-02-03",
+      "parents": [
+        "1794fe15485b012346298cf8e4e7e03936f60ccd"
+      ],
+      "rule": "include",
+      "sha": "df6c3f0665246bdd9a3b21ba9357bf9f7dd04319",
+      "subject": "fix(tasks): expose `execution.taskSupport` on tools (#635)"
+    },
+    {
+      "date": "2026-01-30",
+      "parents": [
+        "d84573a6170b77d80ffc1dd05dc6db9904aa5d1a"
+      ],
+      "rule": "include",
+      "sha": "32a68aa2396aba6a9990d2b38164b2e74906e092",
+      "subject": "fix(tasks): correct enum variant ordering for deserialization (#634)"
+    },
+    {
+      "date": "2026-01-23",
+      "parents": [
+        "e623f2acabd53e51a978d160f955c315bc16c220"
+      ],
+      "rule": "include",
+      "sha": "613eafbda872a918873439274af2ca01fa295815",
+      "subject": "fix(tasks): #626 model task capabilities correctly (#627)"
+    },
+    {
+      "date": "2026-01-19",
+      "parents": [
+        "9e881a645b69763580a0f84168e1490d292548ae"
+      ],
+      "rule": "include",
+      "sha": "2e08001f322b409caebd24a245dfbbe07b8fd04a",
+      "subject": "fix: don't treat non-success HTTP codes as transport errors (#618)"
+    },
+    {
+      "date": "2026-01-14",
+      "parents": [
+        "81f858836d1a10d19bf2a292c8fe11b2fab3f7fd"
+      ],
+      "rule": "include",
+      "sha": "95d3e3f9403ea853f18ef692143cecf8bc156b20",
+      "subject": "fix: use the json rpc error from the initialize response and bubble it up to the client (#569)"
+    },
+    {
+      "date": "2026-01-13",
+      "parents": [
+        "69dbd5a3cee231788d978c4d728f18b9f29f5bd5"
+      ],
+      "rule": "include",
+      "sha": "c4a68295e070a1c75d440bda5e21287576f37d8e",
+      "subject": "fix: use Semaphore instead of Notify in OneshotTransport to prevent race condition (#611)"
+    },
+    {
+      "date": "2026-01-09",
+      "parents": [
+        "63d89b1a4edf0eab869079d6fee91e0ad871a33b"
+      ],
+      "rule": "include",
+      "sha": "61f7b7b99ed5aeb050c179f69ff0e83a227aa5b0",
+      "subject": "fix: add OpenID Connect discovery support per spec-2025-11-25 4.3 (#598)"
+    },
+    {
+      "date": "2026-01-06",
+      "parents": [
+        "de62b1b087f85a2a2e8bb7f302e0cd27641adc0a"
+      ],
+      "rule": "include",
+      "sha": "63d89b1a4edf0eab869079d6fee91e0ad871a33b",
+      "subject": "fix: only try to refresh access tokens if we have a refresh token or an expiry time (#594)"
+    },
+    {
+      "date": "2025-12-15",
+      "parents": [
+        "f20ed202af7ff11ffbc1d6a9260139c657205018"
+      ],
+      "rule": "include",
+      "sha": "d7a05aa43ffa4c63a49a6099b1c0ab7e69bd4c96",
+      "subject": "fix: update process-wrap to v9.0 (#586)"
+    },
+    {
+      "date": "2025-12-09",
+      "parents": [
+        "d4fcac02f86a983226dcef0a99d75d0348646e9d"
+      ],
+      "rule": "include",
+      "sha": "bce055506861e30a650889bf48df7667bc2403eb",
+      "subject": "fix(oauth): rfc8414 should judement the response_types (#485)"
+    },
+    {
+      "date": "2025-12-02",
+      "parents": [
+        "57d1ac94a01cc210a55f8ac41fba41594d9914b6"
+      ],
+      "rule": "include",
+      "sha": "3dee024325630a6ca328b878a28263c605e5b822",
+      "subject": "fix(streamable-http): gracefully shutdown while client connected (#494)"
+    },
+    {
+      "date": "2025-11-19",
+      "parents": [
+        "76cdf48b68c4d3d33f60006876b340ea44094ace"
+      ],
+      "rule": "include",
+      "sha": "da57ee7697117e44ba1400b17138e2f3dcbb3fec",
+      "subject": "fix: don't block on creating the SSE stream (#553)"
+    },
+    {
+      "date": "2025-11-19",
+      "parents": [
+        "1d38d687094304f5c6e6a3b4504fe28c44fbbd47"
+      ],
+      "rule": "include",
+      "sha": "76cdf48b68c4d3d33f60006876b340ea44094ace",
+      "subject": "fix(shemars): use JSON Schema 2020-12 as Default Dialect (#549)"
+    },
+    {
+      "date": "2025-11-18",
+      "parents": [
+        "9cba1620717386ac41d40b47f6762a0bc2288e4c"
+      ],
+      "rule": "include",
+      "sha": "b6cbd3950321687266db585879d2ad2ca148d9b2",
+      "subject": "fix(oauth): let OAuth discovery skip to next well-known URL candidate on JSON parse error. (#545)"
+    },
+    {
+      "date": "2025-11-05",
+      "parents": [
+        "101b8ad84f4a55519b9cff0c00b0835d2d037521"
+      ],
+      "rule": "include",
+      "sha": "82f9b0976a114a9551a9ab46469228495104dfd5",
+      "subject": "fix(oauth): respect oauth-protected-resource discovery (#511)"
+    },
+    {
+      "date": "2025-11-04",
+      "parents": [
+        "d3ddc09e5289ea68c37c308190d2ff0a29207766"
+      ],
+      "rule": "include",
+      "sha": "dcbeb9b9bc8a0943d4ebfad0a887da72507be0b9",
+      "subject": "fix(oauth): fix oauth credential refresh (#509)"
+    },
+    {
+      "date": "2025-11-03",
+      "parents": [
+        "04e0590652d029e2cdfadee6f4c7255280dfba0e"
+      ],
+      "rule": "include",
+      "sha": "d3ddc09e5289ea68c37c308190d2ff0a29207766",
+      "subject": "fix: do not manually construct fallback authorization metadata (#507)"
+    },
+    {
+      "date": "2025-10-22",
+      "parents": [
+        "44129e496d427dcfe7ec4bb10d0dfd136775d710"
+      ],
+      "rule": "include",
+      "sha": "3822d9d39c144df2c15951df94935d2ae3ccd0be",
+      "subject": "fix: accept 204 in addition to 202 on initialize (#497)"
+    },
+    {
+      "date": "2025-10-20",
+      "parents": [
+        "11093bc830d77717b8f24813d888238a12d7eefe"
+      ],
+      "rule": "include",
+      "sha": "e98e0d05df0ca3b6818b36f49f64888f0fec597a",
+      "subject": "fix(oauth): three oauth discovery and registration issues (#489)"
+    },
+    {
+      "date": "2025-10-14",
+      "parents": [
+        "75a7e48441364343d6485e526870af0f2ad653e5"
+      ],
+      "rule": "include",
+      "sha": "6cd779c5d7a149f64d7d76d1042bd3c901b0e5cb",
+      "subject": "fix(oauth): dynamic client registration should be optional (#463)"
+    },
+    {
+      "date": "2025-10-09",
+      "parents": [
+        "30c8e88076686861412e6f768673fa5a07982cb9"
+      ],
+      "rule": "include",
+      "sha": "87fcc7c5cb04802ef14ba7391dc42d7e493ee91c",
+      "subject": "fix(sse-client): consume control frames; refresh message endpoint (#448)"
+    },
+    {
+      "date": "2025-10-07",
+      "parents": [
+        "34f482375c4548a630a480dd9f7c0de74681fab1"
+      ],
+      "rule": "include",
+      "sha": "923145afdcf20cdbd3df00b7f1f16028389abc66",
+      "subject": "fix(oauth): pass bearer token to all streamable http requests (#476)"
+    },
+    {
+      "date": "2025-09-30",
+      "parents": [
+        "717ec56e230ce7073ec464fe0b339e0aff0b97b9"
+      ],
+      "rule": "include",
+      "sha": "0566d132eaa9043d8c2a45a3b33b94d805f1e4d4",
+      "subject": "fix(oauth): support suffixed and preffixed well-knonw paths (#459)"
+    },
+    {
+      "date": "2025-09-26",
+      "parents": [
+        "57fc428c578a1a3fe851ee0838bf068bda120eb3"
+      ],
+      "rule": "include",
+      "sha": "717ec56e230ce7073ec464fe0b339e0aff0b97b9",
+      "subject": "fix: generate default schema for tools with no params (#446)"
+    },
+    {
+      "date": "2025-09-23",
+      "parents": [
+        "a11c4de332eb5f9fef627852b196841b66be8707"
+      ],
+      "rule": "include",
+      "sha": "5216ab2bbdb2e61e7c1a822322aa9bb0b62a1035",
+      "subject": "fix: return auth errors (#451)"
+    },
+    {
+      "date": "2025-09-22",
+      "parents": [
+        "8ae2c2bcbf6f86b80682c6dfbca2e7bebdbdd3af"
+      ],
+      "rule": "include",
+      "sha": "4c8f5ba7b31cbf201b1970a4981b2a52d0590d84",
+      "subject": "fix(oauth): do not treat empty secret as valid for public clients (#443)"
+    },
+    {
+      "date": "2025-09-12",
+      "parents": [
+        "83ce13c331d7803d142e7fd9bf612ae41a917bf0"
+      ],
+      "rule": "include",
+      "sha": "271cf0b23279c24ffe22d7b86ddd4eb4d1654165",
+      "subject": "fix(oauth): require CSRF token as part of the OAuth authorization flow. (#435)"
+    },
+    {
+      "date": "2025-09-10",
+      "parents": [
+        "926cb3384550221887e34f8729055c4e7da65a76"
+      ],
+      "rule": "include",
+      "sha": "6fbd941a32bcf1719875719a448dbb07e0ad495e",
+      "subject": "fix:crates/rmcp/src/handler/client/progress.rs dispacher-> dispatcher (#429)"
+    },
+    {
+      "date": "2025-09-08",
+      "parents": [
+        "cb4abcb87b5193270dfad240253cc4523ff42105"
+      ],
+      "rule": "include",
+      "sha": "b482cfc4bb072c4ea3ad146f881c62b08aacfddd",
+      "subject": "fix: generate simple {} schema for tools with no parameters (#425)"
+    },
+    {
+      "date": "2025-09-04",
+      "parents": [
+        "ccbd7f0674a6a1082169512f4b02e4bffad7245d"
+      ],
+      "rule": "include",
+      "sha": "9105ba79637b5b693ba58381aa889901b509f339",
+      "subject": "fix: change JSON-RPC request ID type from u32 to i64 (#416)"
+    },
+    {
+      "date": "2025-09-04",
+      "parents": [
+        "f381c2b8998cc098207dd5f540f7df94ff58dcd1"
+      ],
+      "rule": "include",
+      "sha": "b514bc43587607a0f8e82648d56bd75bbd9c7e79",
+      "subject": "fix: resolve compatibility issues with servers sending LSP notifications (#413)"
+    },
+    {
+      "date": "2025-09-03",
+      "parents": [
+        "7d46b39b4988f0fe49b6b923f83a68f9b98d7b7f"
+      ],
+      "rule": "include",
+      "sha": "f381c2b8998cc098207dd5f540f7df94ff58dcd1",
+      "subject": "fix: remove batched json rpc  support (#408)"
+    },
+    {
+      "date": "2025-09-01",
+      "parents": [
+        "7bd45ec6a538fb6d1d003c356d325fc2f517c656"
+      ],
+      "rule": "include",
+      "sha": "b0e2c11df309a7e58845de0c810e5abf87071a04",
+      "subject": "fix: transport-streamable-http-server depends on transport-worker (#405)"
+    },
+    {
+      "date": "2025-08-29",
+      "parents": [
+        "6853143684b517fee9be6c7c19007b6d4ea0cd13"
+      ],
+      "rule": "include",
+      "sha": "048f1ac3af830fc889fd46ce3ed87507337a3770",
+      "subject": "fix(auth): url parse is not correct (#402)"
+    },
+    {
+      "date": "2025-08-28",
+      "parents": [
+        "a84a3eb79b525e8cf74db93b0ff524cc6a8de4e9"
+      ],
+      "rule": "include",
+      "sha": "d328157be3ebd6f404b068d7cd93ba09a265776c",
+      "subject": "fix: enhance transport graceful shutdown with proper writer closure (#392)"
+    },
+    {
+      "date": "2025-08-19",
+      "parents": [
+        "81ff3159f9c1b57ab593cf70e49189f856078d46"
+      ],
+      "rule": "include",
+      "sha": "a47cbaac4bf4c528b6926497186ae15281b9cbbe",
+      "subject": "fix: match shape of the calltoolresult schema (#377)"
+    },
+    {
+      "date": "2025-08-18",
+      "parents": [
+        "bdb8bf0f8958291a902483a825a3f39a51c345ac"
+      ],
+      "rule": "include",
+      "sha": "4e6c57ef1474e9cbfab1806167be8bb92a3f0bfa",
+      "subject": "fix: make stdio shutdown more graceful (#364)"
+    },
+    {
+      "date": "2025-08-15",
+      "parents": [
+        "05e9a04d1c397173fffd8b9c9ddf4331ba0a119f"
+      ],
+      "rule": "include",
+      "sha": "1555c0fa33c6bd9f86052706a7b08e3e4a97cba0",
+      "subject": "fix(tool): remove unnecessary schema validation (#375)"
+    },
+    {
+      "date": "2025-08-12",
+      "parents": [
+        "209dbac50f51737ad953c3a2c8e28f3619b6c277"
+      ],
+      "rule": "include",
+      "sha": "3d8e950a5236496ebac75d04152d3207b80d2cb8",
+      "subject": "fix(rmcp): return serialized json with structured content (#368)"
+    },
+    {
+      "date": "2025-08-07",
+      "parents": [
+        "6a97503e29507deb6b5d7488207483b0f1ac83d0"
+      ],
+      "rule": "include",
+      "sha": "589815a40e5c098a2c0e9a7f11b90f27500d5b91",
+      "subject": "fix: correct numeric types in progress notifications (#361)"
+    },
+    {
+      "date": "2025-08-07",
+      "parents": [
+        "984cd87ed85aeba2bee7ada77b9152ecca837fcc"
+      ],
+      "rule": "include",
+      "sha": "2ee6106fc3a92b80f265e4ba950de7d78cde2869",
+      "subject": "fix(rmcp): allow both content and structured content (#359)"
+    },
+    {
+      "date": "2025-08-05",
+      "parents": [
+        "855a1710ee100182e0289d078fa48648a84115dc"
+      ],
+      "rule": "include",
+      "sha": "156a92c2f078eddf34ff6ca1c76af55f2502da15",
+      "subject": "fix: don't wrap errors in streamable http auth client (#353)"
+    },
+    {
+      "date": "2025-07-31",
+      "parents": [
+        "ec6bd056d7bf539d6124c2250a63d31ffc43ef2d"
+      ],
+      "rule": "include",
+      "sha": "b1da5e8969574d8eca11bf60f1cd614e19a6df97",
+      "subject": "fix(prompt): remove unused code (#343)"
+    },
+    {
+      "date": "2025-07-30",
+      "parents": [
+        "855f57e0e79a8237cb60419a0a7567eebae9c8ef"
+      ],
+      "rule": "include",
+      "sha": "0a9a0a0b1f234bd296459fc98b41fd6215c8e3a9",
+      "subject": "fix(capabilities): do not serialize None as null for `list_changed` (#341)"
+    },
+    {
+      "date": "2025-07-30",
+      "parents": [
+        "98bf02df89961af695baabca11f00f52b5ee9b87"
+      ],
+      "rule": "include",
+      "sha": "855f57e0e79a8237cb60419a0a7567eebae9c8ef",
+      "subject": "fix(Transport): close oneshot transport on error (#340)"
+    },
+    {
+      "date": "2025-07-30",
+      "parents": [
+        "0e37736a76c1e7c15a391981ece6b9f629fdba01"
+      ],
+      "rule": "include",
+      "sha": "98bf02df89961af695baabca11f00f52b5ee9b87",
+      "subject": "fix(oauth): expose OAuthTokenResponse publicly (#335)"
+    },
+    {
+      "date": "2025-07-29",
+      "parents": [
+        "cdea86fb17a9d1e75bcf49f09211f727973f4bfb"
+      ],
+      "rule": "include",
+      "sha": "7ba1ac49598963380e5e51bba3474a21e7690920",
+      "subject": "fix: use mimeType instead of mime_type for MCP specification compliance (#339)"
+    },
+    {
+      "date": "2025-07-29",
+      "parents": [
+        "179296134a3aba4992de724942355a50242bae0d"
+      ],
+      "rule": "include",
+      "sha": "d251800d19f7cd8e6305f35a348817c7f604687d",
+      "subject": "fix: return a 405 for GET and DELETE if stateful_mode=false (#331)"
+    },
+    {
+      "date": "2025-07-29",
+      "parents": [
+        "9bfe2c967587ff4aaeb55d2ad607b12aa071310c"
+      ],
+      "rule": "include",
+      "sha": "179296134a3aba4992de724942355a50242bae0d",
+      "subject": "fix: propagate tracing spans when spawning new tokio tasks (#334)"
+    },
+    {
+      "date": "2025-07-22",
+      "parents": [
+        "8967daf87f62937d2a3744445457452712d2e8df"
+      ],
+      "rule": "include",
+      "sha": "2077c8faff8074e8dd583175916618e5473f9064",
+      "subject": "fix: Explicitly added client_id as an extra parameter causes bad token requests (#322)"
+    },
+    {
+      "date": "2025-06-24",
+      "parents": [
+        "57db771a81b6a32c239fa5dc1074cc81549a4beb"
+      ],
+      "rule": "include",
+      "sha": "893969ac7780897bbb804d41fb98347553386f33",
+      "subject": "fix: let users decide what to wrap in child process command (#279)"
+    },
+    {
+      "date": "2025-06-24",
+      "parents": [
+        "1f7f4d30550129f43bcbd7f526ad89614df30b56"
+      ],
+      "rule": "include",
+      "sha": "57db771a81b6a32c239fa5dc1074cc81549a4beb",
+      "subject": "fix: cancellable initialization process (#280)"
+    },
+    {
+      "date": "2025-06-24",
+      "parents": [
+        "a62c6d1db8c8daf271aabaf49627de5f3a30613d"
+      ],
+      "rule": "include",
+      "sha": "6d3190504c1c2264585e6aed3267d0268ca8e32c",
+      "subject": "fix: inject part into extension when handing init req (#275)"
+    },
+    {
+      "date": "2025-06-19",
+      "parents": [
+        "8a577659f01917289064c0a3c753392b44305ef4"
+      ],
+      "rule": "include",
+      "sha": "13e72ec6c494025b10e6861750a0dba3d3dcf4c5",
+      "subject": "sse: fix regression in URL joining (#265)"
+    },
+    {
+      "date": "2025-06-19",
+      "parents": [
+        "4c34b64b7f8dcabf94d52a9c6518c6b49c1f0451"
+      ],
+      "rule": "include",
+      "sha": "8a577659f01917289064c0a3c753392b44305ef4",
+      "subject": "fix: streamable http server close request channel on response(#266) (#270)"
+    },
+    {
+      "date": "2025-06-18",
+      "parents": [
+        "b9bba0be1513ccc99a6144622e243dd94fcf122e"
+      ],
+      "rule": "include",
+      "sha": "4c34b64b7f8dcabf94d52a9c6518c6b49c1f0451",
+      "subject": "fix: streamable http client close on response (#268)"
+    },
+    {
+      "date": "2025-06-18",
+      "parents": [
+        "d45136c3ed44505325e9a39be353e2cf8dff876e"
+      ],
+      "rule": "include",
+      "sha": "b9bba0be1513ccc99a6144622e243dd94fcf122e",
+      "subject": "Fix: remove erroneous definitions_path  (#264)"
+    },
+    {
+      "date": "2025-06-12",
+      "parents": [
+        "db03f63e76b5b32f65d34a1bd08ae56dab595f60"
+      ],
+      "rule": "include",
+      "sha": "a55bbddcf1af1ed67efb1e7850f2bc3d57bcfe43",
+      "subject": "fix: expose TokioChildWrapper::id() in TokioChildProcess and TokioChildProcessOut (#254)"
+    },
+    {
+      "date": "2025-06-07",
+      "parents": [
+        "47518b3906995cec1513c6e199b5d58c093e94e0"
+      ],
+      "rule": "include",
+      "sha": "37b4ddb35df28be2a17e97b36964ba15fbd187c9",
+      "subject": "fix: add compatibility handling for non-standard notifications in async_rw (#247)"
+    },
+    {
+      "date": "2025-06-07",
+      "parents": [
+        "97bb4796ddc82f659aea8fb67ef457519fa0ad49"
+      ],
+      "rule": "include",
+      "sha": "47518b3906995cec1513c6e199b5d58c093e94e0",
+      "subject": "fix: allow SSE server router to be nested (#240)"
+    },
+    {
+      "date": "2025-05-29",
+      "parents": [
+        "969fad26cc7863cd2fdfafa32cbc8afb0d1da96f"
+      ],
+      "rule": "include",
+      "sha": "a66f66ae345a0fafde1e2ee496ec137d77aef82a",
+      "subject": "fix: error for status in post method of streamable http client (#238)"
+    },
+    {
+      "date": "2025-05-29",
+      "parents": [
+        "ff71a526156e6c9409c450f71eccd6aced9bc339"
+      ],
+      "rule": "include",
+      "sha": "9fc6af091d9b36a98e38f8584123328cd5640257",
+      "subject": "fix: disable wasmbind in chrono for wasm32-unknown-unknown (#234)"
+    },
+    {
+      "date": "2025-05-26",
+      "parents": [
+        "23e8200a588905c115501a1f68efe0bb999434b0"
+      ],
+      "rule": "include",
+      "sha": "4e8686ff47f8c1d523dd80a22ae491460291097b",
+      "subject": "fix: generic ServerHandler (#223)"
+    },
+    {
+      "date": "2025-05-21",
+      "parents": [
+        "5b52641c0214fe1d08ddfa24099c538fe3c9c4c8"
+      ],
+      "rule": "include",
+      "sha": "8222e18e40a1e1a0f6bcff83ef9f1d86b2c65f02",
+      "subject": "fix: resolve the server 406 error in API calls (#203)"
+    },
+    {
+      "date": "2025-05-18",
+      "parents": [
+        "64995cc40c8b0208bda67fc4bf0d34226d5f5be5"
+      ],
+      "rule": "include",
+      "sha": "c1e282e50db31ab318a956086bbf4d985be5f830",
+      "subject": "fix: more friendly interface to get service error (#190)"
+    },
+    {
+      "date": "2025-05-18",
+      "parents": [
+        "68ddea3ad5e1a12813ee56b96f2c1cac53b007f0"
+      ],
+      "rule": "include",
+      "sha": "64995cc40c8b0208bda67fc4bf0d34226d5f5be5",
+      "subject": "fix: cleanup zombie processes for child process client (#156)"
+    },
+    {
+      "date": "2025-05-18",
+      "parents": [
+        "9a771fb157056b4daa332626b2fa41b16a523756"
+      ],
+      "rule": "include",
+      "sha": "5e4e77efa541a8f7e55f8c3b513bf3d9dc6b041d",
+      "subject": "refactor: fix error introduced by merge, and reorganize feature (#185)"
+    },
+    {
+      "date": "2025-05-16",
+      "parents": [
+        "614d974d8dbaa4d2cd059531917627cab54d2205"
+      ],
+      "rule": "include",
+      "sha": "01eedb77704fd32d66dea455431b29a03923bdf4",
+      "subject": "fix(schemar): use self-defined settings (#180)"
+    },
+    {
+      "date": "2025-05-12",
+      "parents": [
+        "6de444c62fad7fe66d2696b07db8049d52b23e62"
+      ],
+      "rule": "include",
+      "sha": "030b6f085892888dd1548ae5a6a7efc1f0c5b753",
+      "subject": "fix(transport-sse-server): cleanup on connection drop (#165)"
+    },
+    {
+      "date": "2025-05-08",
+      "parents": [
+        "52c0651158b9fe6d7c828868041d87ffe50db5dc"
+      ],
+      "rule": "include",
+      "sha": "6c2e6e22ee0211763e5eae9e3c786b52112c2aec",
+      "subject": "feat(oauth): fixes + cache client credentials (#157)"
+    },
+    {
+      "date": "2025-05-07",
+      "parents": [
+        "afb8a905e54b87c69e880f9377cfe8424aa6f13b"
+      ],
+      "rule": "include",
+      "sha": "09474d47694225dc7cf828776d934fbd02414cba",
+      "subject": "fix(test): skip serialize tool's annotation if empty (#160)"
+    },
+    {
+      "date": "2025-04-28",
+      "parents": [
+        "5e4d447b32f3a86d871e2abfbd29f66f097bfaa5"
+      ],
+      "rule": "include",
+      "sha": "b1542a6153493d078d49b465c1498deac9141e68",
+      "subject": "fix: fix resource leak (#136)"
+    },
+    {
+      "date": "2025-04-10",
+      "parents": [
+        "d0962ec9ee603538a267eb6bc9735c6d79fc0bcb"
+      ],
+      "rule": "include",
+      "sha": "31da5ff02d88c2022538eccd62517a3611dfa57b",
+      "subject": "fix(handler): do call handler methods when initialize server (#118)"
+    },
+    {
+      "date": "2025-04-07",
+      "parents": [
+        "d6a26fcd3140ffd7e460a890c21e6d57bbcb28d5"
+      ],
+      "rule": "include",
+      "sha": "b9be9797d1cd8562229c93b098cf6b9289949f65",
+      "subject": "fix(test): fix test introduced by #97 (#101)"
+    },
+    {
+      "date": "2025-04-07",
+      "parents": [
+        "68375460dffd4adc52c275a11c41027a00cda2d4"
+      ],
+      "rule": "include",
+      "sha": "36834f37d081b31b090b623d3fed32a43dfddc1a",
+      "subject": "fix(macro): add generics marco types support (#98)"
+    },
+    {
+      "date": "2025-04-01",
+      "parents": [
+        "2c0cafdde31d88d6b030fdb1be5ff72675d04e68"
+      ],
+      "rule": "include",
+      "sha": "4ca00c2052c55462d660b2c67241d3b050a4051a",
+      "subject": "fix(client): add error enum while deal client info (#76)"
+    },
+    {
+      "date": "2025-03-31",
+      "parents": [
+        "b91fe54409a9414195dfa81efdafaf4fadc2e504"
+      ],
+      "rule": "include",
+      "sha": "145b5de3229fb11f99d193da6f218db0d4436294",
+      "subject": "fix(notification): fix wrongly error report in notification (#70)"
+    },
+    {
+      "date": "2025-03-31",
+      "parents": [
+        "ac1b8c6ddb12df31ed6dbf5d4eb40102ebef594c"
+      ],
+      "rule": "include",
+      "sha": "0eea9aad4ac577d1dbe2f39a46091fa6ab9d3ec8",
+      "subject": "fix(test): fix tool deserialization error (#68)"
+    },
+    {
+      "date": "2025-03-30",
+      "parents": [
+        "50fadfb81bb4c4f3d389b37fb1c3276e556045fe"
+      ],
+      "rule": "include",
+      "sha": "0e2b115c10fbc1be1e06cd18a1526ec6615cc38d",
+      "subject": "fix(server): add error enum while deal server info (#51)"
+    }
+  ],
+  "head": "5596a8a0bba2a1ec5519cc855cdadf23e4dcecdc",
+  "include_rule": "(?i)\\b(fix(e[sd]|ing)?|bugs?|hotfix)\\b",
+  "path": "crates/rmcp",
+  "scanned": 546
+}

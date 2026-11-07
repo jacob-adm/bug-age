@@ -1,11 +1,11 @@
 {
   "blameless_gate": "PASS",
-  "command": "target/debug/bug-age bundle --repo work/tokenizers --results results/tokenizers --repo-url https://github.com/huggingface/tokenizers --out work/bundle-check",
+  "command": "target/debug/bug-age bundle --repo work/tokenizers --results results/tokenizers --repo-url https://github.com/huggingface/tokenizers --spike spike --out-of-scope Bindings (Python/Node), benches|out of scope for the Rust core crate|binding behaviour --out dist/tokenizers",
   "outputs": {
-    "bundle.js": "7ea84616582d75d3de9d5ffee801c700db7735b2880e8b1893f33217747fb9d1",
-    "bundle.json": "259fa5be2f27d33b8c2b0dae69e6ecce987775b3ed1d81d0e7f2edcd5e53c72a"
+    "bundle.js": "20343fe8c7152151e7d90c01c8c96725e0e205f97474fba56ca74dde13d5b923",
+    "bundle.json": "1378ff43db76b5ceeb332e0fa9ef817ed32b1862ce351719c386ce2ab8bb8464"
   },
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "size": {
     "bundle_js_bytes": 199364,
     "bundle_json_bytes": 199338,

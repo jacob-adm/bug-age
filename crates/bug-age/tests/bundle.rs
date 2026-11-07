@@ -75,3 +75,44 @@ fn people_include_names_emails_and_noreply_usernames() {
         assert!(p.iter().any(|x| x == expected), "missing {expected}: {p:?}");
     }
 }
+
+/// A target with only Method A outputs (no feasibility reports, no repros) still bundles:
+/// the missing stages are NOT TESTED, never an error and never a fabricated number.
+#[test]
+fn missing_stages_bundle_as_not_tested() {
+    let dir = std::env::temp_dir().join(format!("bug-age-partial-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&dir);
+    let (repo, results) = (dir.join("repo"), dir.join("results"));
+    std::fs::create_dir_all(&repo).unwrap();
+    std::fs::create_dir_all(&results).unwrap();
+    let git = |args: &[&str]| {
+        let out = std::process::Command::new("git").args(args).current_dir(&repo)
+            .env_remove("GIT_DIR").env_remove("GIT_INDEX_FILE").env_remove("GIT_WORK_TREE")
+            .env("GIT_AUTHOR_NAME", "t").env("GIT_AUTHOR_EMAIL", "t@t").env("GIT_COMMITTER_NAME", "t")
+            .env("GIT_COMMITTER_EMAIL", "t@t").output().unwrap();
+        assert!(out.status.success(), "{}", String::from_utf8_lossy(&out.stderr));
+        String::from_utf8(out.stdout).unwrap().trim().to_string()
+    };
+    git(&["init", "-q"]);
+    std::fs::write(repo.join("a.rs"), "fn main() {}\n").unwrap();
+    git(&["add", "."]);
+    git(&["commit", "-q", "-m", "initial"]);
+    let head = git(&["rev-parse", "HEAD"]);
+    std::fs::write(results.join("catalog.json"), json!({"include_rule": "fix", "scanned": 1, "excluded": [], "fixes": []}).to_string()).unwrap();
+    std::fs::write(results.join("szz.json"), json!({"head": head, "path": ".", "bugs": [],
+        "summary": {"fixes": 0, "with_introducer": 0}}).to_string()).unwrap();
+
+    let scope = Some(("Bindings".to_string(), "out of scope".to_string(), "binding behaviour".to_string()));
+    let built = bug_age::bundle::build(&repo, &results, &dir.join("no-spike"), "https://example.org/r", &scope).unwrap();
+    let b = built.bundle;
+    let errors: Vec<String> = validator().iter_errors(&b).map(|e| format!("{} at {}", e, e.instance_path())).collect();
+    assert!(errors.is_empty(), "{errors:#?}");
+    assert!(b["feasibility"]["baseline"].is_null() && b["feasibility"]["time_travel"].is_null());
+    let status = |stage: &str| b["coverage"].as_array().unwrap().iter()
+        .find(|r| r["stage"] == stage).map(|r| r["status"].as_str().unwrap().to_string());
+    assert_eq!(status("Historical buildability").as_deref(), Some("NOT TESTED"));
+    assert_eq!(status("Method B (behavioural sweep)").as_deref(), Some("NOT TESTED"));
+    assert_eq!(status("Bindings").as_deref(), Some("NOT TESTED"));
+    assert_eq!(b["summary"]["method_b"]["swept"], 0);
+    let _ = std::fs::remove_dir_all(&dir);
+}

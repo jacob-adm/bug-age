@@ -4,7 +4,7 @@
 //!   bug-age szz     --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--out FILE]
 //!   bug-age sweep   --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD [options]
 //!   bug-age probe   --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [options]
-//!   bug-age bundle  --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR]
+//!   bug-age bundle  --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR] [--out-of-scope 'STAGE|EVIDENCE|DOES_NOT_PROVE']
 
 use bug_age::runner::{Docker, Local, Runner, Spec};
 use bug_age::{bundle, catalog, sweep, szz};
@@ -22,7 +22,7 @@ const USAGE: &str = "usage: bug-age [--version | --help]
              [--time-travel-script FILE|none] [--scratch DIR] [--logs DIR] [--out FILE]
              [--namespace NAME] [--bucket N (toolchain minor rounding, default 4; 0 = exact)]
        bug-age probe --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]
-       bug-age bundle --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR]";
+       bug-age bundle --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR] [--out-of-scope 'STAGE|EVIDENCE|DOES_NOT_PROVE']";
 
 fn flags(args: &[String]) -> Result<HashMap<String, String>, String> {
     let mut map = HashMap::new();
@@ -169,7 +169,14 @@ fn cmd_bundle(f: &HashMap<String, String>) -> Result<(), String> {
     let repo = Path::new(need(f, "repo")?);
     let out = Path::new(need(f, "out")?);
     let spike = Path::new(f.get("spike").map_or("spike", String::as_str));
-    let built = bundle::build(repo, Path::new(need(f, "results")?), spike, need(f, "repo-url")?)?;
+    let out_of_scope = match f.get("out-of-scope") {
+        None => None,
+        Some(v) => match v.splitn(3, '|').collect::<Vec<_>>()[..] {
+            [stage, evidence, not_proved] => Some((stage.to_string(), evidence.to_string(), not_proved.to_string())),
+            _ => return Err("--out-of-scope must be 'STAGE|EVIDENCE|DOES_NOT_PROVE'".into()),
+        },
+    };
+    let built = bundle::build(repo, Path::new(need(f, "results")?), spike, need(f, "repo-url")?, &out_of_scope)?;
     let json = serde_json::to_string(&built.bundle).map_err(|e| e.to_string())?;
     let js = format!("window.BUG_AGE_BUNDLE = {json};\n");
     if js.len() > MAX_BYTES {

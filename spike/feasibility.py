@@ -2,7 +2,7 @@
 """BUGAGE-1 feasibility spike: can the target crate be built and tested at historical commits?
 
 Throwaway evidence script (stdlib only). Every number in the report is produced here; nothing is
-hand-entered. Usage:  python3 spike/feasibility.py [--samples 20]
+hand-entered. Usage:  python3 spike/feasibility.py [--config targets/NAME.toml] [--samples 20] [--time-travel]
 Needs: git, docker (image built from spike/Dockerfile as bug-age-spike:4), network for clone/fetch.
 Build and test steps run in a Linux container with --network none. A native macOS run was abandoned:
 the current Xcode linker rejects rlibs from old toolchains (see results/smoke-native-macos.*).
@@ -30,6 +30,7 @@ SCRATCH = Path(os.environ.get("BUG_AGE_SCRATCH", Path.home() / ".cache" / "bug-a
 GO_MIN_SHARE = 0.70
 TEST_REPEATS = 2
 IMAGE = "bug-age-spike:4"
+SCOPE = ["--all"]                            # cargo package selection; a config `package` narrows it to one crate
 TARGET_VOLUME = "bugage-target"               # wiped before every commit
 SRC_VOLUME = "bugage-src"                     # commit tree, copied in with git archive; wiped per commit
 RUST_1_0 = dt.date(2015, 5, 15)            # stable cadence: one minor release every 42 days
@@ -187,11 +188,11 @@ def probe(sha: str, idx: int) -> dict:
     if step("fetch", ["cargo", f"+{tc}", "fetch"], False, timeout=900)[0] != 0:
         return {**rec, "status": "NOT_TESTED", "reason": "dependency fetch/resolution failed: "
                 + rec["steps"]["fetch"]["hint"]}
-    if step("build", ["cargo", f"+{tc}", "build", "--all", "--offline"], True)[0] != 0:
+    if step("build", ["cargo", f"+{tc}", "build", *SCOPE, "--offline"], True)[0] != 0:
         return {**rec, "status": "BUILD_FAILED", "reason": rec["steps"]["build"]["hint"]}
     runs = []
     for r in range(TEST_REPEATS):
-        code, out = step(f"test_{r + 1}", ["cargo", f"+{tc}", "test", "--all", "--lib", "--offline"], True)
+        code, out = step(f"test_{r + 1}", ["cargo", f"+{tc}", "test", *SCOPE, "--lib", "--offline"], True)
         runs.append((code, *test_totals(out)))
     rec["test_runs"] = [{"exit": c, "passed": p, "failed": f} for c, p, f in runs]
     if len({c for c, _, _ in runs}) > 1:
@@ -206,15 +207,26 @@ def probe(sha: str, idx: int) -> dict:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
+    ap.add_argument("--config", help="target config (targets/NAME.toml); default: the tokenizers spike")
     ap.add_argument("--samples", type=int, default=20)
     ap.add_argument("--time-travel", action="store_true",
                     help="BUGAGE-5: resolve lockfile-less commits against a crates.io index as of the commit date")
     ap.add_argument("--reclassify", action="store_true",
                     help="recompute failure hints from saved logs with the current HINTS table and rewrite outputs")
     args = ap.parse_args()
-    global OUT, LOGS, TICKET, TIME_TRAVEL
+    global OUT, LOGS, TICKET, TIME_TRAVEL, REPO, REPO_URL, CRATE, SCOPE
+    spike_dir, logs = ROOT / "spike", WORK / "logs"
+    if args.config:
+        import tomllib
+        cfg = tomllib.loads(Path(args.config).read_text())
+        REPO_URL, CRATE, REPO = cfg["repo_url"], cfg["crate_path"], ROOT / cfg["work_dir"]
+        spike_dir, logs = ROOT / cfg["spike_dir"], WORK / f"logs-{cfg['name']}"
+        OUT, LOGS, TICKET = spike_dir / "results", logs, cfg.get("ticket", TICKET)
+        if "package" in cfg:
+            SCOPE = ["--package", cfg["package"]]
     if args.time_travel:
-        OUT, LOGS, TICKET, TIME_TRAVEL = ROOT / "spike" / "results-timetravel", WORK / "logs-tt", "BUGAGE-5", True
+        OUT, LOGS, TIME_TRAVEL = spike_dir / "results-timetravel", Path(f"{logs}-tt"), True
+        TICKET = TICKET if args.config else "BUGAGE-5"
     if args.reclassify:
         return reclassify()
     if not REPO.is_dir():
@@ -284,8 +296,8 @@ def write_outputs(results, head, history_len, n, reclassified=False) -> int:
                    "dependency_resolution": ("lockfile-less commits: crates.io index filtered to versions published by "
                                              "the commit time (yank state reset); lockfile commits: committed lock")
                                             if TIME_TRAVEL else "committed Cargo.lock if present, else today's crates.io",
-                   "build": "cargo build --all --offline in docker --network none",
-                   "test": f"cargo test --all --lib --offline (all workspace members' unit tests) in docker --network none, repeated {TEST_REPEATS}x",
+                   "build": f"cargo build {' '.join(SCOPE)} --offline in docker --network none",
+                   "test": f"cargo test {' '.join(SCOPE)} --lib --offline ({'all workspace members' if SCOPE == ['--all'] else 'that package'}' unit tests) in docker --network none, repeated {TEST_REPEATS}x",
                    "not_covered": "integration tests under tests/ (need downloaded fixtures), benches, bindings",
                    "decision_rule": f"GO iff BUILT_AND_TESTED share >= {GO_MIN_SHARE:.0%} and no FLAKY"},
         "counts": counts, "built_and_tested_share": round(share, 3), "verdict": verdict,
