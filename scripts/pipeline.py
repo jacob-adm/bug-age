@@ -105,7 +105,8 @@ def main():
         stage("feasibility (time-travel)" if tt else "feasibility (baseline)", out, fn)
     cat = res / "catalog.json"
     if stage("catalog (rule-based fixes)", cat, cli("catalog", ["--repo", repo, "--path", c["crate_path"], "--head", c["head"]], cat)):
-        szz_args = ["--repo", repo, "--catalog", cat] + (["--window-start", c["szz_window_start"]] if "szz_window_start" in c else [])
+        szz_args = ["--repo", repo, "--catalog", cat] + (["--window-start", c["szz_window_start"]] if "szz_window_start" in c else []) \
+            + (["--release-tags", c["release_tag_glob"]] if "release_tag_glob" in c else [])
         szz_ok = stage("Method A (szz)", res / "szz.json", cli("szz", szz_args, res / "szz.json"))
     else:
         szz_ok = False

@@ -16,7 +16,38 @@
         "churn_insertions": 65230,
         "commits_elapsed": 358,
         "commits_elapsed_first_parent": 358,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1",
+          "rmcp-v3.6.0",
+          "rmcp-v3.7.0",
+          "rmcp-v3.8.0"
+        ]
       },
       "nominees": [
         {
@@ -57,7 +88,72 @@
         "churn_insertions": 92640,
         "commits_elapsed": 636,
         "commits_elapsed_first_parent": 636,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1",
+          "rmcp-v3.6.0",
+          "rmcp-v3.7.0",
+          "rmcp-v3.8.0"
+        ]
       },
       "nominees": [
         {
@@ -91,7 +187,33 @@
         "churn_insertions": 57068,
         "commits_elapsed": 290,
         "commits_elapsed_first_parent": 290,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1",
+          "rmcp-v3.6.0",
+          "rmcp-v3.7.0",
+          "rmcp-v3.8.0"
+        ]
       },
       "nominees": [
         {
@@ -130,7 +252,35 @@
         "churn_insertions": 59574,
         "commits_elapsed": 318,
         "commits_elapsed_first_parent": 318,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1",
+          "rmcp-v3.6.0",
+          "rmcp-v3.7.0",
+          "rmcp-v3.8.0"
+        ]
       },
       "nominees": [
         {
@@ -204,7 +354,64 @@
         "churn_insertions": 88683,
         "commits_elapsed": 580,
         "commits_elapsed_first_parent": 580,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1",
+          "rmcp-v3.6.0",
+          "rmcp-v3.7.0",
+          "rmcp-v3.8.0"
+        ]
       },
       "nominees": [
         {
@@ -243,7 +450,49 @@
         "churn_insertions": 79346,
         "commits_elapsed": 478,
         "commits_elapsed_first_parent": 478,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1",
+          "rmcp-v3.6.0",
+          "rmcp-v3.7.0",
+          "rmcp-v3.8.0"
+        ]
       },
       "nominees": [
         {
@@ -288,7 +537,29 @@
         "churn_insertions": 37274,
         "commits_elapsed": 214,
         "commits_elapsed_first_parent": 214,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1",
+          "rmcp-v3.6.0",
+          "rmcp-v3.7.0",
+          "rmcp-v3.8.0"
+        ]
       },
       "nominees": [
         {
@@ -330,7 +601,16 @@
         "churn_insertions": 15184,
         "commits_elapsed": 93,
         "commits_elapsed_first_parent": 93,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1",
+          "rmcp-v3.6.0",
+          "rmcp-v3.7.0",
+          "rmcp-v3.8.0"
+        ]
       },
       "nominees": [
         {
@@ -357,7 +637,13 @@
         "churn_insertions": 10793,
         "commits_elapsed": 55,
         "commits_elapsed_first_parent": 55,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1",
+          "rmcp-v3.6.0",
+          "rmcp-v3.7.0",
+          "rmcp-v3.8.0"
+        ]
       },
       "nominees": [
         {
@@ -384,7 +670,72 @@
         "churn_insertions": 92220,
         "commits_elapsed": 647,
         "commits_elapsed_first_parent": 647,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1",
+          "rmcp-v3.6.0",
+          "rmcp-v3.7.0",
+          "rmcp-v3.8.0"
+        ]
       },
       "nominees": [
         {
@@ -425,7 +776,34 @@
         "churn_insertions": 53506,
         "commits_elapsed": 290,
         "commits_elapsed_first_parent": 290,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1",
+          "rmcp-v3.6.0",
+          "rmcp-v3.7.0",
+          "rmcp-v3.8.0"
+        ]
       },
       "nominees": [
         {
@@ -457,7 +835,28 @@
         "churn_insertions": 39418,
         "commits_elapsed": 212,
         "commits_elapsed_first_parent": 212,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1",
+          "rmcp-v3.6.0",
+          "rmcp-v3.7.0"
+        ]
       },
       "nominees": [
         {
@@ -533,7 +932,36 @@
         "churn_insertions": 57710,
         "commits_elapsed": 335,
         "commits_elapsed_first_parent": 335,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1",
+          "rmcp-v3.6.0"
+        ]
       },
       "nominees": [
         {
@@ -565,7 +993,26 @@
         "churn_insertions": 22968,
         "commits_elapsed": 171,
         "commits_elapsed_first_parent": 171,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1"
+        ]
       },
       "nominees": [
         {
@@ -599,7 +1046,26 @@
         "churn_insertions": 40246,
         "commits_elapsed": 213,
         "commits_elapsed_first_parent": 213,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1"
+        ]
       },
       "nominees": [
         {
@@ -641,7 +1107,28 @@
         "churn_insertions": 43729,
         "commits_elapsed": 228,
         "commits_elapsed_first_parent": 228,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1"
+        ]
       },
       "nominees": [
         {
@@ -671,7 +1158,41 @@
         "churn_insertions": 61344,
         "commits_elapsed": 375,
         "commits_elapsed_first_parent": 375,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.17.0",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1"
+        ]
       },
       "nominees": [
         {
@@ -732,7 +1253,16 @@
         "churn_insertions": 15604,
         "commits_elapsed": 102,
         "commits_elapsed_first_parent": 102,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1"
+        ]
       },
       "nominees": [
         {
@@ -771,7 +1301,26 @@
         "churn_insertions": 39538,
         "commits_elapsed": 207,
         "commits_elapsed_first_parent": 207,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1"
+        ]
       },
       "nominees": [
         {
@@ -805,7 +1354,36 @@
         "churn_insertions": 56382,
         "commits_elapsed": 328,
         "commits_elapsed_first_parent": 328,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1"
+        ]
       },
       "nominees": [
         {
@@ -839,7 +1417,28 @@
         "churn_insertions": 41111,
         "commits_elapsed": 216,
         "commits_elapsed_first_parent": 216,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1"
+        ]
       },
       "nominees": [
         {
@@ -871,7 +1470,69 @@
         "churn_insertions": 90320,
         "commits_elapsed": 692,
         "commits_elapsed_first_parent": 692,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1"
+        ]
       },
       "nominees": [
         {
@@ -910,7 +1571,26 @@
         "churn_insertions": 24354,
         "commits_elapsed": 165,
         "commits_elapsed_first_parent": 165,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1"
+        ]
       },
       "nominees": [
         {
@@ -949,7 +1629,29 @@
         "churn_insertions": 41482,
         "commits_elapsed": 224,
         "commits_elapsed_first_parent": 224,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0",
+          "rmcp-v3.5.1"
+        ]
       },
       "nominees": [
         {
@@ -978,7 +1680,35 @@
         "churn_insertions": 54561,
         "commits_elapsed": 316,
         "commits_elapsed_first_parent": 316,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0"
+        ]
       },
       "nominees": [
         {
@@ -1037,7 +1767,25 @@
         "churn_insertions": 29463,
         "commits_elapsed": 174,
         "commits_elapsed_first_parent": 174,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0"
+        ]
       },
       "nominees": [
         {
@@ -1074,7 +1822,68 @@
         "churn_insertions": 90099,
         "commits_elapsed": 709,
         "commits_elapsed_first_parent": 709,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0"
+        ]
       },
       "nominees": [
         {
@@ -1103,7 +1912,24 @@
         "churn_insertions": 17166,
         "commits_elapsed": 138,
         "commits_elapsed_first_parent": 138,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1",
+          "rmcp-v3.5.0"
+        ]
       },
       "nominees": [
         {
@@ -1139,7 +1965,67 @@
         "churn_insertions": 89672,
         "commits_elapsed": 701,
         "commits_elapsed_first_parent": 701,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1"
+        ]
       },
       "nominees": [
         {
@@ -1176,7 +2062,24 @@
         "churn_insertions": 35011,
         "commits_elapsed": 176,
         "commits_elapsed_first_parent": 176,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1"
+        ]
       },
       "nominees": [
         {
@@ -1203,7 +2106,30 @@
         "churn_insertions": 46378,
         "commits_elapsed": 250,
         "commits_elapsed_first_parent": 250,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1"
+        ]
       },
       "nominees": [
         {
@@ -1230,7 +2156,24 @@
         "churn_insertions": 32291,
         "commits_elapsed": 169,
         "commits_elapsed_first_parent": 169,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1"
+        ]
       },
       "nominees": [
         {
@@ -1257,7 +2200,62 @@
         "churn_insertions": 77411,
         "commits_elapsed": 528,
         "commits_elapsed_first_parent": 528,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0",
+          "rmcp-v3.4.1"
+        ]
       },
       "nominees": [
         {
@@ -1285,7 +2283,11 @@
         "churn_insertions": 7298,
         "commits_elapsed": 43,
         "commits_elapsed_first_parent": 43,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0",
+          "rmcp-v3.4.0"
+        ]
       },
       "nominees": [
         {
@@ -1338,7 +2340,22 @@
         "churn_insertions": 22130,
         "commits_elapsed": 128,
         "commits_elapsed_first_parent": 128,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0"
+        ]
       },
       "nominees": [
         {
@@ -1384,7 +2401,22 @@
         "churn_insertions": 25211,
         "commits_elapsed": 139,
         "commits_elapsed_first_parent": 139,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0"
+        ]
       },
       "nominees": [
         {
@@ -1467,7 +2499,18 @@
         "churn_insertions": 12853,
         "commits_elapsed": 91,
         "commits_elapsed_first_parent": 91,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0"
+        ]
       },
       "nominees": [
         {
@@ -1537,7 +2580,37 @@
         "churn_insertions": 53764,
         "commits_elapsed": 312,
         "commits_elapsed_first_parent": 312,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.17.0",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0"
+        ]
       },
       "nominees": [
         {
@@ -1569,7 +2642,22 @@
         "churn_insertions": 25486,
         "commits_elapsed": 136,
         "commits_elapsed_first_parent": 136,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0"
+        ]
       },
       "nominees": [
         {
@@ -1598,7 +2686,28 @@
         "churn_insertions": 43536,
         "commits_elapsed": 225,
         "commits_elapsed_first_parent": 225,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0",
+          "rmcp-v3.3.0"
+        ]
       },
       "nominees": [
         {
@@ -1635,7 +2744,64 @@
         "churn_insertions": 80805,
         "commits_elapsed": 596,
         "commits_elapsed_first_parent": 596,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4",
+          "rmcp-v3.2.0"
+        ]
       },
       "nominees": [
         {
@@ -1665,7 +2831,9 @@
         "churn_insertions": 2818,
         "commits_elapsed": 7,
         "commits_elapsed_first_parent": 7,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.2.0"
+        ]
       },
       "nominees": [
         {
@@ -1702,7 +2870,13 @@
         "churn_insertions": 6676,
         "commits_elapsed": 56,
         "commits_elapsed_first_parent": 56,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4"
+        ]
       },
       "nominees": [
         {
@@ -1779,7 +2953,36 @@
         "churn_insertions": 51812,
         "commits_elapsed": 307,
         "commits_elapsed_first_parent": 307,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4"
+        ]
       },
       "nominees": [
         {
@@ -1810,7 +3013,30 @@
         "churn_insertions": 45550,
         "commits_elapsed": 247,
         "commits_elapsed_first_parent": 247,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3",
+          "rmcp-v3.1.4"
+        ]
       },
       "nominees": [
         {
@@ -1932,7 +3158,19 @@
         "churn_insertions": 23388,
         "commits_elapsed": 118,
         "commits_elapsed_first_parent": 118,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3"
+        ]
       },
       "nominees": [
         {
@@ -1964,7 +3202,19 @@
         "churn_insertions": 16589,
         "commits_elapsed": 100,
         "commits_elapsed_first_parent": 100,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2",
+          "rmcp-v3.1.3"
+        ]
       },
       "nominees": [
         {
@@ -1991,7 +3241,14 @@
         "churn_insertions": 4256,
         "commits_elapsed": 47,
         "commits_elapsed_first_parent": 47,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2"
+        ]
       },
       "nominees": [
         {
@@ -2018,7 +3275,37 @@
         "churn_insertions": 54867,
         "commits_elapsed": 331,
         "commits_elapsed_first_parent": 331,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2"
+        ]
       },
       "nominees": [
         {
@@ -2045,7 +3332,46 @@
         "churn_insertions": 58720,
         "commits_elapsed": 386,
         "commits_elapsed_first_parent": 386,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2"
+        ]
       },
       "nominees": [
         {
@@ -2108,7 +3434,18 @@
         "churn_insertions": 16266,
         "commits_elapsed": 87,
         "commits_elapsed_first_parent": 87,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1",
+          "rmcp-v3.1.2"
+        ]
       },
       "nominees": [
         {
@@ -2194,7 +3531,60 @@
         "churn_insertions": 73471,
         "commits_elapsed": 550,
         "commits_elapsed_first_parent": 550,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1"
+        ]
       },
       "nominees": [
         {
@@ -2243,7 +3633,15 @@
         "churn_insertions": 4385,
         "commits_elapsed": 48,
         "commits_elapsed_first_parent": 48,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1",
+          "rmcp-v3.1.0",
+          "rmcp-v3.1.1"
+        ]
       },
       "nominees": [
         {
@@ -2309,7 +3707,9 @@
         "churn_insertions": 85,
         "commits_elapsed": 4,
         "commits_elapsed_first_parent": 4,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.1.0"
+        ]
       },
       "nominees": [
         {
@@ -2348,7 +3748,15 @@
         "churn_insertions": 16049,
         "commits_elapsed": 65,
         "commits_elapsed_first_parent": 65,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1"
+        ]
       },
       "nominees": [
         {
@@ -2380,7 +3788,15 @@
         "churn_insertions": 14116,
         "commits_elapsed": 60,
         "commits_elapsed_first_parent": 60,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5",
+          "rmcp-v3.0.1"
+        ]
       },
       "nominees": [
         {
@@ -2427,7 +3843,15 @@
         "churn_insertions": 24746,
         "commits_elapsed": 86,
         "commits_elapsed_first_parent": 86,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5"
+        ]
       },
       "nominees": [
         {
@@ -2454,7 +3878,14 @@
         "churn_insertions": 14823,
         "commits_elapsed": 59,
         "commits_elapsed_first_parent": 59,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5"
+        ]
       },
       "nominees": [
         {
@@ -2483,7 +3914,14 @@
         "churn_insertions": 12675,
         "commits_elapsed": 52,
         "commits_elapsed_first_parent": 52,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5"
+        ]
       },
       "nominees": [
         {
@@ -2523,7 +3961,10 @@
         "churn_insertions": 156,
         "commits_elapsed": 4,
         "commits_elapsed_first_parent": 4,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0",
+          "rmcp-v3.0.0-beta.5"
+        ]
       },
       "nominees": [
         {
@@ -2560,7 +4001,46 @@
         "churn_insertions": 61185,
         "commits_elapsed": 389,
         "commits_elapsed_first_parent": 389,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4",
+          "rmcp-v3.0.0-beta.5"
+        ]
       },
       "nominees": [
         {
@@ -2591,7 +4071,9 @@
         "churn_insertions": 1118,
         "commits_elapsed": 12,
         "commits_elapsed_first_parent": 12,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0-beta.4"
+        ]
       },
       "nominees": [
         {
@@ -2694,7 +4176,16 @@
         "churn_insertions": 29844,
         "commits_elapsed": 99,
         "commits_elapsed_first_parent": 99,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4"
+        ]
       },
       "nominees": [
         {
@@ -2741,7 +4232,55 @@
         "churn_insertions": 75886,
         "commits_elapsed": 582,
         "commits_elapsed_first_parent": 582,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0",
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3",
+          "rmcp-v3.0.0-beta.4"
+        ]
       },
       "nominees": [
         {
@@ -2768,7 +4307,11 @@
         "churn_insertions": 13601,
         "commits_elapsed": 41,
         "commits_elapsed_first_parent": 41,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2",
+          "rmcp-v3.0.0-beta.3"
+        ]
       },
       "nominees": [
         {
@@ -2829,7 +4372,10 @@
         "churn_insertions": 12637,
         "commits_elapsed": 34,
         "commits_elapsed_first_parent": 34,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0-beta.1",
+          "rmcp-v3.0.0-beta.2"
+        ]
       },
       "nominees": [
         {
@@ -2860,7 +4406,9 @@
         "churn_insertions": 21000,
         "commits_elapsed": 53,
         "commits_elapsed_first_parent": 53,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v3.0.0-beta.1"
+        ]
       },
       "nominees": [
         {
@@ -2922,7 +4470,20 @@
         "churn_insertions": 38382,
         "commits_elapsed": 185,
         "commits_elapsed_first_parent": 185,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0"
+        ]
       },
       "nominees": [
         {
@@ -2965,7 +4526,51 @@
         "churn_insertions": 72034,
         "commits_elapsed": 558,
         "commits_elapsed_first_parent": 558,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0"
+        ]
       },
       "nominees": [
         {
@@ -3192,7 +4797,51 @@
         "churn_insertions": 65099,
         "commits_elapsed": 483,
         "commits_elapsed_first_parent": 483,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0"
+        ]
       },
       "nominees": [
         {
@@ -3239,7 +4888,31 @@
         "churn_insertions": 45359,
         "commits_elapsed": 279,
         "commits_elapsed_first_parent": 279,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0"
+        ]
       },
       "nominees": [
         {
@@ -3273,7 +4946,51 @@
         "churn_insertions": 55980,
         "commits_elapsed": 429,
         "commits_elapsed_first_parent": 429,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0"
+        ]
       },
       "nominees": [
         {
@@ -3340,7 +5057,23 @@
         "churn_insertions": 25543,
         "commits_elapsed": 167,
         "commits_elapsed_first_parent": 167,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.17.0",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0"
+        ]
       },
       "nominees": [
         {
@@ -3370,7 +5103,51 @@
         "churn_insertions": 59012,
         "commits_elapsed": 520,
         "commits_elapsed_first_parent": 520,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0",
+          "rmcp-v2.2.0"
+        ]
       },
       "nominees": [
         {
@@ -3405,7 +5182,32 @@
         "churn_insertions": 35671,
         "commits_elapsed": 259,
         "commits_elapsed_first_parent": 259,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0"
+        ]
       },
       "nominees": [
         {
@@ -3455,7 +5257,50 @@
         "churn_insertions": 57568,
         "commits_elapsed": 513,
         "commits_elapsed_first_parent": 513,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0"
+        ]
       },
       "nominees": [
         {
@@ -3489,7 +5334,17 @@
         "churn_insertions": 17052,
         "commits_elapsed": 115,
         "commits_elapsed_first_parent": 115,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0"
+        ]
       },
       "nominees": [
         {
@@ -3526,7 +5381,26 @@
         "churn_insertions": 31752,
         "commits_elapsed": 220,
         "commits_elapsed_first_parent": 220,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0",
+          "rmcp-v2.1.0"
+        ]
       },
       "nominees": [
         {
@@ -3563,7 +5437,11 @@
         "churn_insertions": 9159,
         "commits_elapsed": 52,
         "commits_elapsed_first_parent": 52,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0"
+        ]
       },
       "nominees": [
         {
@@ -3590,7 +5468,16 @@
         "churn_insertions": 16688,
         "commits_elapsed": 115,
         "commits_elapsed_first_parent": 115,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0"
+        ]
       },
       "nominees": [
         {
@@ -3617,7 +5504,13 @@
         "churn_insertions": 11814,
         "commits_elapsed": 69,
         "commits_elapsed_first_parent": 69,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0"
+        ]
       },
       "nominees": [
         {
@@ -3644,7 +5537,11 @@
         "churn_insertions": 8465,
         "commits_elapsed": 48,
         "commits_elapsed_first_parent": 48,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0",
+          "rmcp-v2.0.0"
+        ]
       },
       "nominees": [
         {
@@ -3685,7 +5582,9 @@
         "churn_insertions": 5171,
         "commits_elapsed": 15,
         "commits_elapsed_first_parent": 15,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.8.0"
+        ]
       },
       "nominees": [
         {
@@ -3724,7 +5623,11 @@
         "churn_insertions": 9214,
         "commits_elapsed": 54,
         "commits_elapsed_first_parent": 54,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0"
+        ]
       },
       "nominees": [
         {
@@ -3773,7 +5676,48 @@
         "churn_insertions": 54282,
         "commits_elapsed": 480,
         "commits_elapsed_first_parent": 480,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0",
+          "rmcp-v1.8.0"
+        ]
       },
       "nominees": [
         {
@@ -3827,7 +5771,23 @@
         "churn_insertions": 24602,
         "commits_elapsed": 186,
         "commits_elapsed_first_parent": 186,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0"
+        ]
       },
       "nominees": [
         {
@@ -3888,7 +5848,23 @@
         "churn_insertions": 24817,
         "commits_elapsed": 189,
         "commits_elapsed_first_parent": 189,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0"
+        ]
       },
       "nominees": [
         {
@@ -3917,7 +5893,47 @@
         "churn_insertions": 44226,
         "commits_elapsed": 349,
         "commits_elapsed_first_parent": 349,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0"
+        ]
       },
       "nominees": [
         {
@@ -3951,7 +5967,14 @@
         "churn_insertions": 9058,
         "commits_elapsed": 81,
         "commits_elapsed_first_parent": 81,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0"
+        ]
       },
       "nominees": [
         {
@@ -3984,7 +6007,47 @@
         "churn_insertions": 46456,
         "commits_elapsed": 388,
         "commits_elapsed_first_parent": 388,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0"
+        ]
       },
       "nominees": [
         {
@@ -4068,7 +6131,19 @@
         "churn_insertions": 11514,
         "commits_elapsed": 106,
         "commits_elapsed_first_parent": 106,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.17.0",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0",
+          "rmcp-v1.7.0"
+        ]
       },
       "nominees": [
         {
@@ -4122,7 +6197,46 @@
         "churn_insertions": 54977,
         "commits_elapsed": 478,
         "commits_elapsed_first_parent": 471,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0"
+        ]
       },
       "nominees": [
         {
@@ -4155,7 +6269,46 @@
         "churn_insertions": 45344,
         "commits_elapsed": 384,
         "commits_elapsed_first_parent": 384,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0"
+        ]
       },
       "nominees": [
         {
@@ -4210,7 +6363,46 @@
         "churn_insertions": 43500,
         "commits_elapsed": 349,
         "commits_elapsed_first_parent": 349,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0",
+          "rmcp-v1.6.0"
+        ]
       },
       "nominees": [
         {
@@ -4247,7 +6439,45 @@
         "churn_insertions": 43213,
         "commits_elapsed": 347,
         "commits_elapsed_first_parent": 347,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0"
+        ]
       },
       "nominees": [
         {
@@ -4276,7 +6506,10 @@
         "churn_insertions": 3351,
         "commits_elapsed": 28,
         "commits_elapsed_first_parent": 28,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.4.0",
+          "rmcp-v1.5.0"
+        ]
       },
       "nominees": [
         {
@@ -4308,7 +6541,29 @@
         "churn_insertions": 24406,
         "commits_elapsed": 194,
         "commits_elapsed_first_parent": 194,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0"
+        ]
       },
       "nominees": [
         {
@@ -4338,7 +6593,44 @@
         "churn_insertions": 41144,
         "commits_elapsed": 336,
         "commits_elapsed_first_parent": 336,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0"
+        ]
       },
       "nominees": [
         {
@@ -4394,7 +6686,11 @@
         "churn_insertions": 4192,
         "commits_elapsed": 40,
         "commits_elapsed_first_parent": 40,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0",
+          "rmcp-v1.4.0"
+        ]
       },
       "nominees": [
         {
@@ -4463,7 +6759,11 @@
         "churn_insertions": 4483,
         "commits_elapsed": 44,
         "commits_elapsed_first_parent": 44,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0"
+        ]
       },
       "nominees": [
         {
@@ -4510,7 +6810,43 @@
         "churn_insertions": 40178,
         "commits_elapsed": 320,
         "commits_elapsed_first_parent": 320,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0"
+        ]
       },
       "nominees": [
         {
@@ -4537,7 +6873,43 @@
         "churn_insertions": 40107,
         "commits_elapsed": 318,
         "commits_elapsed_first_parent": 318,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0",
+          "rmcp-v1.3.0"
+        ]
       },
       "nominees": [
         {
@@ -4567,7 +6939,15 @@
         "churn_insertions": 7720,
         "commits_elapsed": 69,
         "commits_elapsed_first_parent": 69,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0"
+        ]
       },
       "nominees": [
         {
@@ -4599,7 +6979,42 @@
         "churn_insertions": 39785,
         "commits_elapsed": 334,
         "commits_elapsed_first_parent": 334,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0"
+        ]
       },
       "nominees": [
         {
@@ -4626,7 +7041,42 @@
         "churn_insertions": 37829,
         "commits_elapsed": 302,
         "commits_elapsed_first_parent": 302,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0"
+        ]
       },
       "nominees": [
         {
@@ -4690,7 +7140,42 @@
         "churn_insertions": 39471,
         "commits_elapsed": 331,
         "commits_elapsed_first_parent": 331,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0"
+        ]
       },
       "nominees": [
         {
@@ -4724,7 +7209,42 @@
         "churn_insertions": 45471,
         "commits_elapsed": 402,
         "commits_elapsed_first_parent": 402,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0"
+        ]
       },
       "nominees": [
         {
@@ -4758,7 +7278,23 @@
         "churn_insertions": 20366,
         "commits_elapsed": 143,
         "commits_elapsed_first_parent": 143,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1",
+          "rmcp-v1.2.0"
+        ]
       },
       "nominees": [
         {
@@ -4792,7 +7328,41 @@
         "churn_insertions": 44861,
         "commits_elapsed": 387,
         "commits_elapsed_first_parent": 387,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1"
+        ]
       },
       "nominees": [
         {
@@ -4834,7 +7404,41 @@
         "churn_insertions": 43037,
         "commits_elapsed": 360,
         "commits_elapsed_first_parent": 360,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0",
+          "rmcp-v1.1.1"
+        ]
       },
       "nominees": [
         {
@@ -4863,7 +7467,40 @@
         "churn_insertions": 44555,
         "commits_elapsed": 379,
         "commits_elapsed_first_parent": 379,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0",
+          "rmcp-v1.0.0-alpha",
+          "rmcp-v1.1.0"
+        ]
       },
       "nominees": [
         {
@@ -4922,7 +7559,38 @@
         "churn_insertions": 40525,
         "commits_elapsed": 321,
         "commits_elapsed_first_parent": 321,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1",
+          "rmcp-v1.0.0-alpha"
+        ]
       },
       "nominees": [
         {
@@ -4961,7 +7629,9 @@
         "churn_insertions": 199,
         "commits_elapsed": 4,
         "commits_elapsed_first_parent": 4,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v1.0.0-alpha"
+        ]
       },
       "nominees": [
         {
@@ -5002,7 +7672,37 @@
         "churn_insertions": 34524,
         "commits_elapsed": 266,
         "commits_elapsed_first_parent": 266,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.17.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5071,7 +7771,36 @@
         "churn_insertions": 33467,
         "commits_elapsed": 254,
         "commits_elapsed_first_parent": 254,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5105,7 +7834,19 @@
         "churn_insertions": 15623,
         "commits_elapsed": 101,
         "commits_elapsed_first_parent": 101,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5156,7 +7897,36 @@
         "churn_insertions": 40490,
         "commits_elapsed": 344,
         "commits_elapsed_first_parent": 344,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5200,7 +7970,31 @@
         "churn_insertions": 25905,
         "commits_elapsed": 185,
         "commits_elapsed_first_parent": 185,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5249,7 +8043,16 @@
         "churn_insertions": 14532,
         "commits_elapsed": 85,
         "commits_elapsed_first_parent": 85,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.16.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5281,7 +8084,35 @@
         "churn_insertions": 38862,
         "commits_elapsed": 313,
         "commits_elapsed_first_parent": 313,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5311,7 +8142,35 @@
         "churn_insertions": 30389,
         "commits_elapsed": 217,
         "commits_elapsed_first_parent": 217,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5347,7 +8206,11 @@
         "churn_insertions": 10864,
         "commits_elapsed": 50,
         "commits_elapsed_first_parent": 50,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.15.0"
+        ]
       },
       "nominees": [
         {
@@ -5384,7 +8247,10 @@
         "churn_insertions": 5491,
         "commits_elapsed": 36,
         "commits_elapsed_first_parent": 36,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0"
+        ]
       },
       "nominees": [
         {
@@ -5411,7 +8277,10 @@
         "churn_insertions": 4038,
         "commits_elapsed": 28,
         "commits_elapsed_first_parent": 28,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0"
+        ]
       },
       "nominees": [
         {
@@ -5440,7 +8309,34 @@
         "churn_insertions": 35137,
         "commits_elapsed": 315,
         "commits_elapsed_first_parent": 315,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5474,7 +8370,10 @@
         "churn_insertions": 4742,
         "commits_elapsed": 30,
         "commits_elapsed_first_parent": 30,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.13.0",
+          "rmcp-v0.14.0"
+        ]
       },
       "nominees": [
         {
@@ -5506,7 +8405,9 @@
         "churn_insertions": 4708,
         "commits_elapsed": 27,
         "commits_elapsed_first_parent": 27,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.13.0"
+        ]
       },
       "nominees": [
         {
@@ -5533,7 +8434,21 @@
         "churn_insertions": 10368,
         "commits_elapsed": 89,
         "commits_elapsed_first_parent": 89,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.13.0",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5560,7 +8475,20 @@
         "churn_insertions": 10069,
         "commits_elapsed": 96,
         "commits_elapsed_first_parent": 96,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5587,7 +8515,32 @@
         "churn_insertions": 23184,
         "commits_elapsed": 200,
         "commits_elapsed_first_parent": 200,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5614,7 +8567,17 @@
         "churn_insertions": 5182,
         "commits_elapsed": 51,
         "commits_elapsed_first_parent": 51,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.12.0",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5655,7 +8618,29 @@
         "churn_insertions": 16470,
         "commits_elapsed": 143,
         "commits_elapsed_first_parent": 143,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5697,7 +8682,31 @@
         "churn_insertions": 24804,
         "commits_elapsed": 222,
         "commits_elapsed_first_parent": 222,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.11.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5725,7 +8734,30 @@
         "churn_insertions": 18847,
         "commits_elapsed": 169,
         "commits_elapsed_first_parent": 169,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.10.0",
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0",
+          "rmcp-v0.9.1"
+        ]
       },
       "nominees": [
         {
@@ -5754,7 +8786,28 @@
         "churn_insertions": 20394,
         "commits_elapsed": 191,
         "commits_elapsed_first_parent": 191,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0"
+        ]
       },
       "nominees": [
         {
@@ -5791,7 +8844,19 @@
         "churn_insertions": 7580,
         "commits_elapsed": 76,
         "commits_elapsed_first_parent": 76,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0"
+        ]
       },
       "nominees": [
         {
@@ -5818,7 +8883,13 @@
         "churn_insertions": 241,
         "commits_elapsed": 14,
         "commits_elapsed_first_parent": 14,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4",
+          "rmcp-v0.8.5",
+          "rmcp-v0.9.0"
+        ]
       },
       "nominees": [
         {
@@ -5845,7 +8916,11 @@
         "churn_insertions": 82,
         "commits_elapsed": 9,
         "commits_elapsed_first_parent": 9,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3",
+          "rmcp-v0.8.4"
+        ]
       },
       "nominees": [
         {
@@ -5874,7 +8949,25 @@
         "churn_insertions": 24521,
         "commits_elapsed": 195,
         "commits_elapsed_first_parent": 195,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3"
+        ]
       },
       "nominees": [
         {
@@ -5908,7 +9001,25 @@
         "churn_insertions": 24512,
         "commits_elapsed": 194,
         "commits_elapsed_first_parent": 194,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2",
+          "rmcp-v0.8.3"
+        ]
       },
       "nominees": [
         {
@@ -5960,7 +9071,24 @@
         "churn_insertions": 20154,
         "commits_elapsed": 176,
         "commits_elapsed_first_parent": 176,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1",
+          "rmcp-v0.8.2"
+        ]
       },
       "nominees": [
         {
@@ -5989,7 +9117,10 @@
         "churn_insertions": 2906,
         "commits_elapsed": 17,
         "commits_elapsed_first_parent": 17,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1"
+        ]
       },
       "nominees": [
         {
@@ -6028,7 +9159,23 @@
         "churn_insertions": 22067,
         "commits_elapsed": 184,
         "commits_elapsed_first_parent": 184,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1"
+        ]
       },
       "nominees": [
         {
@@ -6073,7 +9220,23 @@
         "churn_insertions": 17623,
         "commits_elapsed": 166,
         "commits_elapsed_first_parent": 166,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0",
+          "rmcp-v0.8.1"
+        ]
       },
       "nominees": [
         {
@@ -6112,7 +9275,22 @@
         "churn_insertions": 17434,
         "commits_elapsed": 162,
         "commits_elapsed_first_parent": 162,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0",
+          "rmcp-v0.8.0"
+        ]
       },
       "nominees": [
         {
@@ -6146,7 +9324,21 @@
         "churn_insertions": 21816,
         "commits_elapsed": 171,
         "commits_elapsed_first_parent": 171,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3",
+          "rmcp-v0.7.0"
+        ]
       },
       "nominees": [
         {
@@ -6193,7 +9385,20 @@
         "churn_insertions": 17268,
         "commits_elapsed": 153,
         "commits_elapsed_first_parent": 153,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3"
+        ]
       },
       "nominees": [
         {
@@ -6230,7 +9435,20 @@
         "churn_insertions": 21567,
         "commits_elapsed": 162,
         "commits_elapsed_first_parent": 162,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3"
+        ]
       },
       "nominees": [
         {
@@ -6257,7 +9475,20 @@
         "churn_insertions": 21622,
         "commits_elapsed": 160,
         "commits_elapsed_first_parent": 160,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3"
+        ]
       },
       "nominees": [
         {
@@ -6284,7 +9515,20 @@
         "churn_insertions": 12941,
         "commits_elapsed": 87,
         "commits_elapsed_first_parent": 87,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2",
+          "rmcp-v0.6.3"
+        ]
       },
       "nominees": [
         {
@@ -6327,7 +9571,19 @@
         "churn_insertions": 23878,
         "commits_elapsed": 205,
         "commits_elapsed_first_parent": 205,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1",
+          "rmcp-v0.6.2"
+        ]
       },
       "nominees": [
         {
@@ -6364,7 +9620,18 @@
         "churn_insertions": 9738,
         "commits_elapsed": 92,
         "commits_elapsed_first_parent": 92,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1"
+        ]
       },
       "nominees": [
         {
@@ -6397,7 +9664,18 @@
         "churn_insertions": 18616,
         "commits_elapsed": 171,
         "commits_elapsed_first_parent": 171,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0",
+          "rmcp-v0.6.1"
+        ]
       },
       "nominees": [
         {
@@ -6473,7 +9751,17 @@
         "churn_insertions": 19907,
         "commits_elapsed": 137,
         "commits_elapsed_first_parent": 137,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0"
+        ]
       },
       "nominees": [
         {
@@ -6508,7 +9796,17 @@
         "churn_insertions": 13160,
         "commits_elapsed": 116,
         "commits_elapsed_first_parent": 116,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0",
+          "rmcp-v0.6.0"
+        ]
       },
       "nominees": [
         {
@@ -6542,7 +9840,11 @@
         "churn_insertions": 2509,
         "commits_elapsed": 17,
         "commits_elapsed_first_parent": 17,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0"
+        ]
       },
       "nominees": [
         {
@@ -6581,7 +9883,16 @@
         "churn_insertions": 17158,
         "commits_elapsed": 180,
         "commits_elapsed_first_parent": 180,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0"
+        ]
       },
       "nominees": [
         {
@@ -6632,7 +9943,11 @@
         "churn_insertions": 142,
         "commits_elapsed": 11,
         "commits_elapsed_first_parent": 11,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0"
+        ]
       },
       "nominees": [
         {
@@ -6669,7 +9984,11 @@
         "churn_insertions": 97,
         "commits_elapsed": 8,
         "commits_elapsed_first_parent": 8,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1",
+          "rmcp-v0.5.0"
+        ]
       },
       "nominees": [
         {
@@ -6696,7 +10015,15 @@
         "churn_insertions": 16947,
         "commits_elapsed": 171,
         "commits_elapsed_first_parent": 171,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2",
+          "rmcp-v0.4.0",
+          "rmcp-v0.4.1"
+        ]
       },
       "nominees": [
         {
@@ -6723,7 +10050,9 @@
         "churn_insertions": 23,
         "commits_elapsed": 4,
         "commits_elapsed_first_parent": 4,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.4.0"
+        ]
       },
       "nominees": [
         {
@@ -6750,7 +10079,13 @@
         "churn_insertions": 8776,
         "commits_elapsed": 95,
         "commits_elapsed_first_parent": 95,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2"
+        ]
       },
       "nominees": [
         {
@@ -6779,7 +10114,13 @@
         "churn_insertions": 18754,
         "commits_elapsed": 185,
         "commits_elapsed_first_parent": 178,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1",
+          "rmcp-v0.3.2"
+        ]
       },
       "nominees": [
         {
@@ -6828,7 +10169,12 @@
         "churn_insertions": 4141,
         "commits_elapsed": 58,
         "commits_elapsed_first_parent": 58,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1"
+        ]
       },
       "nominees": [
         {
@@ -6855,7 +10201,12 @@
         "churn_insertions": 10963,
         "commits_elapsed": 102,
         "commits_elapsed_first_parent": 102,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0",
+          "rmcp-v0.3.1"
+        ]
       },
       "nominees": [
         {
@@ -6882,7 +10233,11 @@
         "churn_insertions": 14541,
         "commits_elapsed": 158,
         "commits_elapsed_first_parent": 158,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0"
+        ]
       },
       "nominees": [
         {
@@ -6909,7 +10264,11 @@
         "churn_insertions": 4011,
         "commits_elapsed": 53,
         "commits_elapsed_first_parent": 53,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0"
+        ]
       },
       "nominees": [
         {
@@ -6938,7 +10297,11 @@
         "churn_insertions": 14433,
         "commits_elapsed": 155,
         "commits_elapsed_first_parent": 155,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0"
+        ]
       },
       "nominees": [
         {
@@ -6975,7 +10338,11 @@
         "churn_insertions": 10828,
         "commits_elapsed": 94,
         "commits_elapsed_first_parent": 94,
-        "releases_spanned": []
+        "releases_spanned": [
+          "rmcp-v0.2.0",
+          "rmcp-v0.2.1",
+          "rmcp-v0.3.0"
+        ]
       },
       "nominees": [
         {
@@ -7735,6 +11102,7 @@
   "summary": {
     "fixes": 237,
     "in_window": null,
+    "release_tags": "rmcp-v[0-9]*",
     "window_start": null,
     "with_introducer": 205
   }

@@ -45,6 +45,7 @@ fn synthetic_repo(name: &str) -> Repo {
         "add mul", "2025-01-02T00:00:00Z");
     commit(&dir, "core/README.md", "core\n", "describe core", "2025-01-05T00:00:00Z");
     run_git(&dir, &["tag", "v0.1.0"], "2025-01-05T00:00:00Z");
+    run_git(&dir, &["tag", "core-v0.1.0"], "2025-01-05T00:00:00Z"); // prefixed scheme, matched only with --release-tags
     // Release branch cut from main before the fix: its tag shipped the bug but is never merged back.
     run_git(&dir, &["checkout", "-q", "-b", "release-0.1"], "2025-01-06T00:00:00Z");
     commit(&dir, "core/CHANGELOG.md", "0.1.1\n", "changelog 0.1.1", "2025-01-06T00:00:00Z");
@@ -105,6 +106,19 @@ fn szz_nominates_planting_commit_with_scripted_lifetime() {
     assert_eq!(life["churn_files"], 2, "README.md added and lib.rs fixed under core/");
     assert_eq!(bug["in_window"], true);
     assert_eq!(res["summary"]["in_window"], 1);
+}
+
+#[test]
+fn release_tag_glob_selects_prefixed_release_tags() {
+    let r = synthetic_repo("tags");
+    let dir = r.dir.to_str().unwrap();
+    let cat_path = r.dir.join("catalog.json");
+    assert!(Command::new(env!("CARGO_BIN_EXE_bug-age"))
+        .args(["catalog", "--repo", dir, "--path", "core", "--out", cat_path.to_str().unwrap()])
+        .output().unwrap().status.success());
+    let res = bug_age(&["szz", "--repo", dir, "--catalog", cat_path.to_str().unwrap(), "--release-tags", "core-v[0-9]*"]);
+    assert_eq!(res["bugs"][0]["lifetime"]["releases_spanned"], serde_json::json!(["core-v0.1.0"]));
+    assert_eq!(res["summary"]["release_tags"], "core-v[0-9]*");
 }
 
 #[test]

@@ -34,7 +34,7 @@ For {{tokenizers:summary.method_b.verdicts.censored-by-testability}} other bugs,
 
 ![Commit-by-test results: green passes, red fails, grey does not build](figures/heatmap-tokenizers.png)
 
-**rust-sdk (the rmcp crate).** I ran the same pipeline on the Model Context Protocol Rust SDK with only a config file. The catalog admitted {{rust-sdk:summary.method_a.fixes}} fixes from {{rust-sdk:catalog.scanned}} commits, and blame traced {{rust-sdk:summary.method_a.with_introducer}}. Median age: {{rust-sdk:summary.method_a.calendar_days.median}} days; `p90`: {{rust-sdk:summary.method_a.calendar_days.p90}} days. This is a young codebase: here, {{rust-sdk:summary.feasibility.baseline_share|pct}} of sampled commits built with today's registry.
+**rust-sdk (the rmcp crate).** I ran the same pipeline on the Model Context Protocol Rust SDK with only a config file. The catalog admitted {{rust-sdk:summary.method_a.fixes}} fixes from {{rust-sdk:catalog.scanned}} commits, and blame traced {{rust-sdk:summary.method_a.with_introducer}}. Median age: {{rust-sdk:summary.method_a.calendar_days.median}} days; `p90`: {{rust-sdk:summary.method_a.calendar_days.p90}} days. The median bug shipped in {{rust-sdk:summary.method_a.releases_shipped_bug.median}} releases before its fix, and the worst in {{rust-sdk:summary.method_a.releases_shipped_bug.max}}. A fast release cadence means a bug that survives a few months ships many times. This is a young codebase: here, {{rust-sdk:summary.feasibility.baseline_share|pct}} of sampled commits built with today's registry.
 
 ## Patterns, locked in tests
 
@@ -57,7 +57,7 @@ For rust-sdk:
 
 {{rust-sdk:coverage|limits}}
 
-Two more caveats. Method A is a nomination, not proof: the one bug both methods could compare exactly shows blame can be off by a wide margin. And the rust-sdk release counts are {{rust-sdk:summary.method_a.releases_shipped_bug.max}} for every bug, which most likely means the tool did not recognise that repository's release tags. I have not verified that, so treat release counts for rust-sdk as NOT TESTED.
+One more caveat. Method A is a nomination, not proof: the one bug both methods could compare exactly shows blame can be off by a wide margin. Release counts depend on each repository's tag naming, which the target config sets.
 
 ## Run it on your repository
 

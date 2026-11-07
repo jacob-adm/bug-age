@@ -1,7 +1,7 @@
 //! bug-age CLI.
 //!
 //!   bug-age catalog --repo DIR --path CRATE [--head REV] [--out FILE]
-//!   bug-age szz     --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--out FILE]
+//!   bug-age szz     --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--release-tags GLOB] [--out FILE]
 //!   bug-age sweep   --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD [options]
 //!   bug-age probe   --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [options]
 //!   bug-age bundle  --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR] [--out-of-scope 'STAGE|EVIDENCE|DOES_NOT_PROVE']
@@ -18,7 +18,7 @@ use std::process::ExitCode;
 
 const USAGE: &str = "usage: bug-age [--version | --help]
        bug-age catalog --repo DIR --path CRATE [--head REV] [--out FILE]
-       bug-age szz --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--out FILE]
+       bug-age szz --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--release-tags GLOB] [--out FILE]
        bug-age sweep --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD
              [--build CMD] [--start SHA] [--runner docker|local] [--repeats N] [--image IMG]
              [--time-travel-script FILE|none] [--scratch DIR] [--logs DIR] [--out FILE]
@@ -67,6 +67,7 @@ fn cmd_szz(f: &HashMap<String, String>) -> Result<(), String> {
     let cat: Value = serde_json::from_str(&text).map_err(|e| e.to_string())?;
     let path = cat["path"].as_str().ok_or("catalog has no path")?;
     let window = f.get("window-start").map(String::as_str);
+    let release_tags = f.get("release-tags").map_or("v[0-9]*", String::as_str);
     let mut bugs = Vec::new();
     for e in cat["fixes"].as_array().ok_or("catalog has no fixes")? {
         let entry = catalog::Entry {
@@ -76,13 +77,14 @@ fn cmd_szz(f: &HashMap<String, String>) -> Result<(), String> {
             subject: e["subject"].as_str().unwrap_or_default().into(),
             rule: e["rule"].as_str().unwrap_or_default().into(),
         };
-        bugs.push(szz::analyze(repo, &entry, path, window)?);
+        bugs.push(szz::analyze(repo, &entry, path, window, release_tags)?);
     }
     let with_intro = bugs.iter().filter(|b| b.lifetime.is_some()).count();
     let in_window = bugs.iter().filter(|b| b.in_window == Some(true)).count();
     eprintln!("szz: {} fixes, {with_intro} with a nominated introducer, {in_window} in window", bugs.len());
     let summary = json!({"fixes": bugs.len(), "with_introducer": with_intro,
-                         "in_window": window.map(|_| in_window), "window_start": window});
+                         "in_window": window.map(|_| in_window), "window_start": window,
+                         "release_tags": release_tags});
     emit(&json!({"head": cat["head"], "path": path, "method": "A (SZZ-style, git blame -w on first parent)",
                  "summary": summary, "bugs": bugs}), f.get("out"))
 }
