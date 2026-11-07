@@ -6,9 +6,10 @@
 #   make explorer      rebuild the explorer page for every bundled target
 #   make article       render the article and recapture its figures (needs Chrome)
 #   make history-scan  blameless check over all git history (run before publishing)
+#   make timings       regenerate results/TIMINGS.md and the README timing table from run records
 #   make sweep         long Method B sweeps, detached:  make sweep ARGS="results/bench work/tokenizers tokenizers"
 
-.PHONY: sweep test bundle pipeline explorer article history-scan
+.PHONY: sweep test bundle pipeline explorer article history-scan timings
 
 # Long runs go here: detached, no agent in the loop, one notification at the end.
 sweep:
@@ -39,3 +40,7 @@ article: explorer
 # Blameless check over every file version and commit message ever committed (needs the target clones in work/).
 history-scan:
 	python3 scripts/history_scan.py --targets work/tokenizers,work/rust-sdk --allow scripts/history_scan.allow
+
+# Timing tables from committed run records (pipeline.json, feasibility reports, sweeps, SUMMARY.md).
+timings:
+	python3 scripts/timings.py

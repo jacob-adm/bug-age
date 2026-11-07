@@ -1,11 +1,11 @@
 {
-  "bug-age": "1.0.0",
+  "bug-age": "1.0.1",
   "gate_bytes": 8388608,
   "outputs": {
-    "data/rust-sdk.js": "612b1828642d3aa6891ab951fd6ae943bd2a4d4e7409d9db134dbf321f7984e8",
-    "data/tokenizers.js": "4995e7d3a3c85b980d91655dadf460916c9ae0067c9e022a674f2881f8e6d661",
-    "index.html": "f933d47c52820f20074cc0bcb1bc1da823c07daf7cca76bf277c22e4cc3fdcec"
+    "data/rust-sdk.js": "457d853a0a879023bb02e8be42a08af6b57e5029dd0fa4d05efd47ac0e6e3511",
+    "data/tokenizers.js": "ed23fd1ef404f9ae6f8609a35ab8c96472a1a87660a9c52c13ffb4350f9371ca",
+    "index.html": "d72ce84262a5b194a050ff0f0fb1859401e3a9044902eb4ac4bb59adcd711db3"
   },
   "size_gate": "PASS",
-  "total_bytes": 507771
+  "total_bytes": 512815
 }
