@@ -26,7 +26,7 @@ pub struct Lifetime {
     pub calendar_days: f64,
     /// Author-date difference: robust to rebases that compress committer dates.
     pub calendar_days_author: f64,
-    /// Releases that shipped the bug: `v[0-9]*` tags containing the introducer but not the fix,
+    /// Releases that shipped the bug: tags matching the release glob (default `v[0-9]*`) containing the introducer but not the fix,
     /// created no later than the fix landed. Counts release-branch tags that `--merged` would miss.
     pub releases_spanned: Vec<String>,
     pub churn_files: u64,
@@ -100,7 +100,7 @@ fn shortstat(s: &str) -> (u64, u64, u64) {
     (num("file"), num("insertion"), num("deletion"))
 }
 
-pub fn lifetime(repo: &Path, intro: &str, fix: &str, path: &str) -> Result<Lifetime, String> {
+pub fn lifetime(repo: &Path, intro: &str, fix: &str, path: &str, release_tags: &str) -> Result<Lifetime, String> {
     let range = format!("{intro}..{fix}");
     let count = |extra: &[&str]| -> Result<u64, String> {
         let mut args = vec!["rev-list", "--count"];
@@ -109,7 +109,7 @@ pub fn lifetime(repo: &Path, intro: &str, fix: &str, path: &str) -> Result<Lifet
         git(repo, &args)?.trim().parse().map_err(|e| format!("bad count: {e}"))
     };
     let fix_time = commit_time(repo, fix)?;
-    let tags = git(repo, &["tag", "--list", "v[0-9]*", "--contains", intro, "--no-contains", fix,
+    let tags = git(repo, &["tag", "--list", release_tags, "--contains", intro, "--no-contains", fix,
                            "--format=%(refname:short)\t%(creatordate:unix)"])?;
     let releases_spanned = tags
         .lines()
@@ -132,7 +132,7 @@ pub fn lifetime(repo: &Path, intro: &str, fix: &str, path: &str) -> Result<Lifet
     })
 }
 
-pub fn analyze(repo: &Path, fix: &Entry, path: &str, window_start: Option<&str>) -> Result<Bug, String> {
+pub fn analyze(repo: &Path, fix: &Entry, path: &str, window_start: Option<&str>, release_tags: &str) -> Result<Bug, String> {
     let mut bug = Bug {
         fix: fix.sha.clone(),
         fix_date: fix.date.clone(),
@@ -174,7 +174,7 @@ pub fn analyze(repo: &Path, fix: &Entry, path: &str, window_start: Option<&str>)
     }
     let primary = &bug.nominees[0];
     bug.in_window = window_start.map(|w| primary.date.as_str() >= w);
-    let life = lifetime(repo, &primary.sha, &fix.sha, path)?;
+    let life = lifetime(repo, &primary.sha, &fix.sha, path, release_tags)?;
     if life.calendar_days < 0.1 && life.commits_elapsed > 1 {
         bug.flags.push("committer-dates-compressed(use-author-days)".into());
     }

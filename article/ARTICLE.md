@@ -34,7 +34,7 @@ For 4 other bugs, the test already failed at the oldest commit where it could co
 
 ![Commit-by-test results: green passes, red fails, grey does not build](figures/heatmap-tokenizers.png)
 
-**rust-sdk (the rmcp crate).** I ran the same pipeline on the Model Context Protocol Rust SDK with only a config file. The catalog admitted 237 fixes from 546 commits, and blame traced 205. Median age: 93.6 days; `p90`: 350.9 days. This is a young codebase: here, 95% of sampled commits built with today's registry.
+**rust-sdk (the rmcp crate).** I ran the same pipeline on the Model Context Protocol Rust SDK with only a config file. The catalog admitted 237 fixes from 546 commits, and blame traced 205. Median age: 93.6 days; `p90`: 350.9 days. The median bug shipped in 11 releases before its fix, and the worst in 64. A fast release cadence means a bug that survives a few months ships many times. This is a young codebase: here, 95% of sampled commits built with today's registry.
 
 ## Patterns, locked in tests
 
@@ -61,7 +61,7 @@ For rust-sdk:
 - **Method B (behavioural sweep)** (NOT TESTED): 0 of 237 fixes have a regression test. Does not prove: any bug's behavioural lifetime.
 - **rmcp-macros, examples, conformance** (NOT TESTED): out of scope for the rmcp crate. Does not prove: behaviour of the other workspace crates.
 
-Two more caveats. Method A is a nomination, not proof: the one bug both methods could compare exactly shows blame can be off by a wide margin. And the rust-sdk release counts are 0 for every bug, which most likely means the tool did not recognise that repository's release tags. I have not verified that, so treat release counts for rust-sdk as NOT TESTED.
+One more caveat. Method A is a nomination, not proof: the one bug both methods could compare exactly shows blame can be off by a wide margin. Release counts depend on each repository's tag naming, which the target config sets.
 
 ## Run it on your repository
 

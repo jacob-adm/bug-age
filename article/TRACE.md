@@ -30,7 +30,8 @@ Every number in ARTICLE.md, the template line it comes from, and its bundle path
 | 37 | 205 | `rust-sdk:summary.method_a.with_introducer` |
 | 37 | 93.6 | `rust-sdk:summary.method_a.calendar_days.median` |
 | 37 | 350.9 | `rust-sdk:summary.method_a.calendar_days.p90` |
+| 37 | 11 | `rust-sdk:summary.method_a.releases_shipped_bug.median` |
+| 37 | 64 | `rust-sdk:summary.method_a.releases_shipped_bug.max` |
 | 37 | 95% | `rust-sdk:summary.feasibility.baseline_share|pct` |
 | 54 | (coverage list) | `tokenizers:coverage[status!=COVERED]` |
 | 58 | (coverage list) | `rust-sdk:coverage[status!=COVERED]` |
-| 60 | 0 | `rust-sdk:summary.method_a.releases_shipped_bug.max` |
