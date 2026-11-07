@@ -1,132 +1,23 @@
-# Reviewed history-scan hits (BUGAGE-14, 2026-11-06). All are false positives:
+# Reviewed history-scan hits (BUGAGE-14/15). `*` = accepted anywhere; used only for matches that cannot
+# identify a person: ordinary-word usernames and the Co-Authored-By system address.
 # - person git/code/look/info/mail: target-repo usernames that are ordinary words in code and docs
-# - person marco: typo (only the listed files and commits) for 'macro' in a rust-sdk commit subject; matches a tokenizers username
 # - email noreply@anthropic.com: Co-Authored-By trailer in commit messages
-# - email *@example.invalid / ada@example.org / *@users.noreply.github.com fixtures: planted test identities
-email	commit: BUGAGE-10: article draft with every number traced to the bundle, figures from th	noreply@anthropic.com
-email	commit: BUGAGE-11: compile-frontier search and adaptive repeats	noreply@anthropic.com
-email	commit: BUGAGE-11: toolchain buckets, parallel workers, unattended make sweep	noreply@anthropic.com
-email	commit: BUGAGE-12: per-target release tag pattern; rust-sdk release counts fixed	noreply@anthropic.com
-email	commit: BUGAGE-13: README screenshots of the explorer	noreply@anthropic.com
-email	commit: BUGAGE-14: blameless history scan before going public	noreply@anthropic.com
-email	commit: BUGAGE-15: history scan survives a history rewrite	noreply@anthropic.com
-email	commit: BUGAGE-15: receipts record repo-relative paths, not local home paths	noreply@anthropic.com
-email	commit: BUGAGE-16: CI runs cargo test and the article number check on ubuntu and macOS	noreply@anthropic.com
-email	commit: BUGAGE-1: Cargo workspace skeleton and Rust .gitignore	noreply@anthropic.com
-email	commit: BUGAGE-1: feasibility spike on huggingface/tokenizers — verdict NO-GO	noreply@anthropic.com
-email	commit: BUGAGE-2: Method A — fix-commit catalog and SZZ introducer nomination	noreply@anthropic.com
-email	commit: BUGAGE-3: behavioural sweep harness (Method B) in the Rust CLI	noreply@anthropic.com
-email	commit: BUGAGE-4: regression repros for 6 tokenizers bugs + Method A vs B comparison	noreply@anthropic.com
-email	commit: BUGAGE-5: time-travel dependency resolution — 4/20 -> 18/20 buildable	noreply@anthropic.com
-email	commit: BUGAGE-6: canonical bundle + JSON Schema + blameless gate	noreply@anthropic.com
-email	commit: BUGAGE-7: config-driven pipeline; bundle reports missing stages as NOT TESTED	noreply@anthropic.com
-email	commit: BUGAGE-7: run rust-sdk (rmcp) through the pipeline	noreply@anthropic.com
-email	commit: BUGAGE-8: explorer page and `bug-age explorer` assembly with size gate	noreply@anthropic.com
-email	commit: BUGAGE-9: read-only MCP server, dist/agent AGENTS.md and SKILL.md	noreply@anthropic.com
-email	commit: Merge feature/BUGAGE-1-feasibility-spike (BUGAGE-1, dual-approved)	noreply@anthropic.com
-email	commit: Merge feature/BUGAGE-2-szz-method-a (BUGAGE-2, dual-approved)	noreply@anthropic.com
-email	commit: Merge feature/BUGAGE-3-sweep-harness (BUGAGE-3, dual-approved)	noreply@anthropic.com
-email	commit: Merge feature/BUGAGE-4-repro-tests (BUGAGE-4, dual-approved)	noreply@anthropic.com
-email	commit: Merge feature/BUGAGE-5-time-travel-deps (BUGAGE-5, dual-approved)	noreply@anthropic.com
-email	commit: docs: add README	noreply@anthropic.com
+# - person marco: typo for 'macro' in one rust-sdk commit subject; accepted only at the locations below
+# - email *@example.invalid / ada@example.org / fixture noreply addresses: planted test identities
+email	*	noreply@anthropic.com
+person	*	code
+person	*	git
+person	*	info
+person	*	look
+person	*	mail
 email	crates/bug-age/src/bundle.rs	12345+name@users.noreply.github.com
 email	crates/bug-age/tests/bundle.rs	123+ghopper@users.noreply.github.com
 email	crates/bug-age/tests/bundle.rs	ada@example.org
 email	crates/bug-age/tests/method_a.rs	test@example.invalid
 email	crates/bug-age/tests/sweep.rs	t@example.invalid
-person	.gitignore	git
-person	README.md	git
-person	article/ARTICLE.md	code
-person	article/ARTICLE.md	git
-person	article/ARTICLE.md	look
-person	article/ARTICLE.tmpl.md	code
-person	article/ARTICLE.tmpl.md	git
-person	article/ARTICLE.tmpl.md	look
 person	commit: BUGAGE-14: blameless history scan before going public	marco
-person	commit: BUGAGE-15: history scan survives a history rewrite	git
-person	commit: BUGAGE-2: Method A — fix-commit catalog and SZZ introducer nomination	git
-person	commit: BUGAGE-3: behavioural sweep harness (Method B) in the Rust CLI	git
-person	commit: BUGAGE-4: regression repros for 6 tokenizers bugs + Method A vs B comparison	code
-person	commit: BUGAGE-4: regression repros for 6 tokenizers bugs + Method A vs B comparison	git
-person	commit: BUGAGE-5: time-travel dependency resolution — 4/20 -> 18/20 buildable	code
-person	commit: BUGAGE-5: time-travel dependency resolution — 4/20 -> 18/20 buildable	git
-person	crates/bug-age/Cargo.toml	git
-person	crates/bug-age/src/bundle.rs	git
-person	crates/bug-age/src/catalog.rs	git
-person	crates/bug-age/src/git.rs	git
-person	crates/bug-age/src/lib.rs	git
-person	crates/bug-age/src/main.rs	git
-person	crates/bug-age/src/mcp.rs	code
-person	crates/bug-age/src/runner.rs	code
-person	crates/bug-age/src/runner.rs	git
-person	crates/bug-age/src/sweep.rs	git
-person	crates/bug-age/src/szz.rs	git
-person	crates/bug-age/tests/bundle.rs	git
-person	crates/bug-age/tests/bundle.rs	mail
-person	crates/bug-age/tests/cli.rs	code
-person	crates/bug-age/tests/fixtures/mcp/responses.jsonl	code
-person	crates/bug-age/tests/method_a.rs	git
-person	crates/bug-age/tests/sweep.rs	git
-person	dist/agent/AGENTS.md	git
-person	dist/agent/AGENTS.md	look
-person	dist/agent/SKILL.md	git
-person	dist/explorer/data/rust-sdk.js	code
-person	dist/explorer/data/rust-sdk.js	git
 person	dist/explorer/data/rust-sdk.js	marco
-person	dist/explorer/data/tokenizers.js	git
-person	dist/explorer/index.html	code
-person	dist/explorer/index.html	git
-person	dist/rust-sdk/bundle.js	code
 person	dist/rust-sdk/bundle.js	marco
-person	dist/rust-sdk/bundle.json	code
 person	dist/rust-sdk/bundle.json	marco
-person	dist/rust-sdk/receipt.json	git
-person	dist/tokenizers/receipt.json	git
-person	explorer/index.html	code
-person	explorer/index.html	git
-person	results/render_method_a.py	git
-person	results/run_repros.py	code
-person	results/run_repros.py	git
-person	results/rust-sdk/catalog.json	code
-person	results/rust-sdk/catalog.json	info
-person	results/rust-sdk/catalog.json	look
 person	results/rust-sdk/catalog.json	marco
-person	results/rust-sdk/spike/results-timetravel/receipt.json	git
-person	results/rust-sdk/spike/results-timetravel/report.json	git
-person	results/rust-sdk/spike/results/receipt.json	git
-person	results/rust-sdk/spike/results/report.json	git
-person	results/rust-sdk/szz.json	code
-person	results/rust-sdk/szz.json	git
-person	results/rust-sdk/szz.json	info
-person	results/rust-sdk/szz.json	look
 person	results/rust-sdk/szz.json	marco
-person	results/tokenizers/AB.md	code
-person	results/tokenizers/METHOD_A.md	git
-person	results/tokenizers/repros/8a6a8dc9d5/sweep.json.receipt.json	git
-person	results/tokenizers/repros/9a93c50c25/sweep.json.receipt.json	git
-person	results/tokenizers/repros/9b77c054ef/sweep.json.receipt.json	git
-person	results/tokenizers/repros/a350ec3e72/sweep.json.receipt.json	git
-person	results/tokenizers/repros/c046da7679/sweep.json.receipt.json	git
-person	results/tokenizers/repros/fb837b4adb/sweep.json.receipt.json	git
-person	results/tokenizers/szz.json	git
-person	scripts/article.py	code
-person	scripts/pipeline.py	git
-person	spike/Dockerfile	git
-person	spike/feasibility.py	code
-person	spike/feasibility.py	git
-person	spike/render_report.py	code
-person	spike/results-timetravel/REPORT.md	code
-person	spike/results-timetravel/REPORT.md	git
-person	spike/results-timetravel/receipt.json	git
-person	spike/results-timetravel/report.json	git
-person	spike/results-timetravel/run1-image2/receipt.json	git
-person	spike/results-timetravel/run1-image2/report.json	git
-person	spike/results/REPORT.md	code
-person	spike/results/REPORT.md	git
-person	spike/results/receipt.json	git
-person	spike/results/report.json	git
-person	spike/results/smoke-native-macos.receipt.json	git
-person	spike/results/smoke-native-macos.report.json	code
-person	spike/results/smoke-native-macos.report.json	git
-person	spike/timetravel.py	code
-person	spike/timetravel.py	git

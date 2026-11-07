@@ -1,19 +1,25 @@
 # bug-age
 
-Measures how long bugs lived in a git repository, using real repository data. For each fixed bug it reports commits elapsed, calendar days, and churn between the commit that introduced it and the fix.
+Measures how long bugs lived in a git repository, using real repository data. For each fixed bug it reports commits elapsed, calendar days, releases shipped, and churn between the commit that introduced it and the fix.
+
+### ▶ [Open the live explorer](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)
+
+Every bug, lifespan and test run from both showcase repositories (huggingface/tokenizers and modelcontextprotocol/rust-sdk). Each number opens to its evidence: the SHAs, the test runs, the receipt hash and the command that reproduces it. The page also recomputes its headline numbers in your browser and flags any mismatch.
+
+[![The bug-age explorer: headline bug ages, self-check and stage coverage for tokenizers](article/figures/overview-tokenizers.png)](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)
 
 It uses two independent methods and compares them:
 
 - **Method A, blame-based (SZZ-style).** Runs `git blame` on the lines a fix changed and names the commit that last touched them as the likely introducer. This is fast and needs only git, but it can be wrong. Known failure cases: ghost commits, formatting-only changes, and introducers that were not the latest toucher.
-- **Method B, behavioral sweep.** Writes a deterministic regression test that fails before the fix and passes after it, then replays that test across history in a hermetic per-commit Docker environment. The result is the first failing commit, the last passing commit, and every untestable commit with a reason.
+- **Method B, behavioral sweep.** Takes a regression test that fails before the fix and passes after it, then replays that test across history in a hermetic per-commit Docker environment. The result is the first failing commit, the last passing commit, and every untestable commit with a reason.
 
-Every number comes from scripts. An LLM may suggest fix commits or draft repro tests, but it never produces a metric.
+Every number comes from scripts. AI helped write the code, the Method B regression tests and the article prose, but no model produces or changes a number. See [What is deterministic and what uses AI](#what-is-deterministic-and-what-uses-ai).
 
 Rust/Cargo is the first supported ecosystem. The first showcase target is the Rust core crate of [huggingface/tokenizers](https://github.com/huggingface/tokenizers); the second, run from a config file alone, is the `rmcp` crate of [modelcontextprotocol/rust-sdk](https://github.com/modelcontextprotocol/rust-sdk).
 
 ## What it produces
 
-The pipeline writes a bundle (one JSON file, every number computed by a script) and a static explorer page built from it. These screenshots are captured from that page by `make article`, so they always match the committed data.
+The pipeline writes a bundle (one JSON file, every number computed by a script) and a static explorer page built from it; the [live explorer](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb) is that page for the two showcase targets. These screenshots are captured from that page by `make article`, so they always match the committed data.
 
 **Overview.** Headline ages, how many old commits still build, and what each stage proves. The page recomputes these numbers from the raw rows in your browser and flags any mismatch.
 
@@ -26,6 +32,30 @@ The pipeline writes a bundle (one JSON file, every number computed by a script) 
 **Commit × test results.** Every commit the pipeline built and tested in Docker without network: green passes, red fails, grey does not build there. Each square opens the run log.
 
 ![Commit-by-test results for tokenizers feasibility runs and regression sweeps](article/figures/heatmap-tokenizers.png)
+
+## What is deterministic and what uses AI
+
+**Deterministic.** These parts make no model calls. Given the same repository, pinned commit and config, they produce the same output, and `make pipeline` needs no API key.
+
+| Part | How it works |
+|---|---|
+| Fix catalog | Regular-expression rules over commit subjects, plus exclusion rules (docs, lint, release, ...). Locked by `classify_rules`. |
+| Method A | `git blame` on the lines each fix changed; days, commits, releases and churn computed from git. |
+| Buildability and Method B sweeps | Each commit built and tested in Docker with no network and a date-matched toolchain. PASS or FAIL comes from the test's exit status, and decisive commits are re-run. |
+| Bundle and summary | Medians, 90th percentiles, counts and coverage computed by the CLI; the blameless gate rejects names and emails. |
+| Explorer | Renders the bundle as it is, recomputes the headline numbers in the browser, and ranks search results with fixed rules. |
+| MCP server | Returns values copied from the bundle; unknown input is an error, never a guess. |
+| Article numbers | Inserted from the bundle by `scripts/article.py`, which fails on any number typed into the prose. |
+| History scan | Fixed identity and email patterns over every committed file and message. |
+
+**Uses AI.** In each case the AI's output is checked mechanically, and none of it becomes a number.
+
+| Part | What AI did | What checks it |
+|---|---|---|
+| Method B regression tests (`results/<target>/repros/*/overlay`) | Drafted by an AI coding agent from each fix's diff | The sweep counts a test only if it fails before the fix and passes after it; otherwise the verdict is `repro-invalid`. Whether a test captures the real bug is a human judgement, so read the overlay. |
+| Article prose (`article/ARTICLE.tmpl.md`) | Drafted with AI | Every number is a bundle reference; the check fails on anything else. |
+| "Ask Claude" in the explorer (optional) | Claude answers a question on the viewer's own account, from the rows the search found | The answer is shown only if every cited SHA and every number appears in those rows. It runs only when the viewer clicks, and is hidden where unavailable. |
+| The code | Written with an AI coding agent (Claude Code) and reviewed by the maintainer | Each change merged through a pull request after `cargo test`; commits carry a `Co-Authored-By` line. |
 
 ## Results so far (tokenizers)
 
