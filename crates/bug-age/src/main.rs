@@ -5,9 +5,10 @@
 //!   bug-age sweep   --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD [options]
 //!   bug-age probe   --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [options]
 //!   bug-age bundle  --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR] [--out-of-scope 'STAGE|EVIDENCE|DOES_NOT_PROVE']
+//!   bug-age explorer --page FILE --targets NAME=DIR,NAME=DIR --out DIR
 
 use bug_age::runner::{Docker, Local, Runner, Spec};
-use bug_age::{bundle, catalog, sweep, szz};
+use bug_age::{bundle, catalog, explorer, sweep, szz};
 use sha2::{Digest, Sha256};
 use serde_json::{json, Value};
 use std::collections::HashMap;
@@ -22,7 +23,8 @@ const USAGE: &str = "usage: bug-age [--version | --help]
              [--time-travel-script FILE|none] [--scratch DIR] [--logs DIR] [--out FILE]
              [--namespace NAME] [--bucket N (toolchain minor rounding, default 4; 0 = exact)]
        bug-age probe --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]
-       bug-age bundle --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR] [--out-of-scope 'STAGE|EVIDENCE|DOES_NOT_PROVE']";
+       bug-age bundle --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR] [--out-of-scope 'STAGE|EVIDENCE|DOES_NOT_PROVE']
+       bug-age explorer --page FILE --targets NAME=DIR,NAME=DIR --out DIR   (DIR = a bundle output dir)";
 
 fn flags(args: &[String]) -> Result<HashMap<String, String>, String> {
     let mut map = HashMap::new();
@@ -199,6 +201,34 @@ fn cmd_bundle(f: &HashMap<String, String>) -> Result<(), String> {
     emit(&receipt, Some(&out.join("receipt.json").to_string_lossy().to_string()))
 }
 
+fn cmd_explorer(f: &HashMap<String, String>) -> Result<(), String> {
+    let page = std::fs::read_to_string(need(f, "page")?).map_err(|e| format!("{}: {e}", need(f, "page").unwrap_or("")))?;
+    let out = Path::new(need(f, "out")?);
+    let read = |p: PathBuf| -> Result<Value, String> {
+        let text = std::fs::read_to_string(&p).map_err(|e| format!("{}: {e}", p.display()))?;
+        serde_json::from_str(&text).map_err(|e| format!("{}: {e}", p.display()))
+    };
+    let mut targets = Vec::new();
+    for spec in need(f, "targets")?.split(',') {
+        let (name, dir) = spec.split_once('=').ok_or(format!("--targets entry '{spec}' must be NAME=DIR"))?;
+        let dir = Path::new(dir);
+        targets.push(explorer::Target { name: name.to_string(), bundle: read(dir.join("bundle.json"))?, receipt: read(dir.join("receipt.json"))? });
+    }
+    let built = explorer::assemble(&page, &targets)?;
+    std::fs::create_dir_all(out.join("data")).map_err(|e| e.to_string())?;
+    std::fs::write(out.join("index.html"), &built.page).map_err(|e| e.to_string())?;
+    let sha = |b: &[u8]| format!("{:x}", Sha256::digest(b));
+    let mut outputs = serde_json::Map::new();
+    outputs.insert("index.html".into(), json!(sha(built.page.as_bytes())));
+    for (path, content) in &built.files {
+        std::fs::write(out.join(path), content).map_err(|e| e.to_string())?;
+        outputs.insert(path.clone(), json!(sha(content.as_bytes())));
+    }
+    eprintln!("explorer: {} targets, {} bytes (gate {}), size gate PASS", targets.len(), built.total_bytes, explorer::GATE_BYTES);
+    emit(&json!({"total_bytes": built.total_bytes, "gate_bytes": explorer::GATE_BYTES, "size_gate": "PASS", "outputs": outputs,
+                 "bug-age": env!("CARGO_PKG_VERSION")}), Some(&out.join("receipt.json").to_string_lossy().to_string()))
+}
+
 fn overlay_listing(dir: &Path) -> Vec<String> {
     let mut out = Vec::new();
     let mut stack = vec![dir.to_path_buf()];
@@ -232,6 +262,7 @@ fn main() -> ExitCode {
         Some("sweep") => flags(&args[1..]).and_then(|f| cmd_sweep(&f)),
         Some("probe") => flags(&args[1..]).and_then(|f| cmd_probe(&f)),
         Some("bundle") => flags(&args[1..]).and_then(|f| cmd_bundle(&f)),
+        Some("explorer") => flags(&args[1..]).and_then(|f| cmd_explorer(&f)),
         Some(other) => {
             eprintln!("bug-age: unknown argument '{other}'\n{USAGE}");
             return ExitCode::from(2);
