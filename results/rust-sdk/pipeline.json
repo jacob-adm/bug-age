@@ -1,0 +1,65 @@
+{
+  "target": "rust-sdk",
+  "repo_url": "https://github.com/modelcontextprotocol/rust-sdk",
+  "head": "5596a8a0bba2a1ec5519cc855cdadf23e4dcecdc",
+  "crate_path": "crates/rmcp",
+  "generated_utc": "2026-11-07T02:42:43+00:00",
+  "stages": [
+    {
+      "stage": "clone",
+      "status": "OK",
+      "reason": "at pinned head 5596a8a0bb",
+      "seconds": 0,
+      "output": null,
+      "sha256": null
+    },
+    {
+      "stage": "feasibility (baseline)",
+      "status": "OK",
+      "reason": "GO, built+tested share 0.95",
+      "seconds": 345,
+      "output": "results/rust-sdk/spike/results/report.json",
+      "sha256": "4bdf0c7ade866a75c70709c2e4a3fdd73c54a54a75d41ff503ab443ea8bbdbdc"
+    },
+    {
+      "stage": "feasibility (time-travel)",
+      "status": "OK",
+      "reason": "NO-GO, built+tested share 0.45",
+      "seconds": 1392,
+      "output": "results/rust-sdk/spike/results-timetravel/report.json",
+      "sha256": "d0d17d2a86aade976a0b8a863abf4a201539a2d14f95aac5e12810203fe5fd26"
+    },
+    {
+      "stage": "catalog (rule-based fixes)",
+      "status": "OK",
+      "reason": "catalog: 237 fixes, 28 excluded, 546 commits scanned",
+      "seconds": 4,
+      "output": "results/rust-sdk/catalog.json",
+      "sha256": "331992cd3403aa5b139364c93426cc1625903b1767864ff4c2f97e13914b7aa4"
+    },
+    {
+      "stage": "Method A (szz)",
+      "status": "OK",
+      "reason": "szz: 237 fixes, 205 with a nominated introducer, 0 in window",
+      "seconds": 49,
+      "output": "results/rust-sdk/szz.json",
+      "sha256": "7ba3cfd0b1d5494940a672e5416a7f315d412a7fcccc9447537ed7b4bd2e0254"
+    },
+    {
+      "stage": "Method B (repro sweeps)",
+      "status": "NOT TESTED",
+      "reason": "no regression tests written for this target (results_dir/repros/<fix>/overlay)",
+      "seconds": 0,
+      "output": null,
+      "sha256": null
+    },
+    {
+      "stage": "bundle",
+      "status": "OK",
+      "reason": "bundle: 200565 bytes, sha256 97e22ab5241d6f1df6a4524b11a731e5b1cd88eb54c971a7795912d1b665e703, blameless gate PASS",
+      "seconds": 5,
+      "output": "dist/rust-sdk/bundle.json",
+      "sha256": "97e22ab5241d6f1df6a4524b11a731e5b1cd88eb54c971a7795912d1b665e703"
+    }
+  ]
+}

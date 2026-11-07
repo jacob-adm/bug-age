@@ -1,0 +1,62 @@
+{
+  "command": "python3 spike/feasibility.py --samples 20",
+  "generated_utc": "2026-11-07T02:18:34+00:00",
+  "inputs": {
+    "head": "5596a8a0bba2a1ec5519cc855cdadf23e4dcecdc",
+    "repo": "https://github.com/modelcontextprotocol/rust-sdk",
+    "sampled_shas": [
+      "0be6067326dfb3508ac0d4ae14338c01e87532af",
+      "57e14c56e85deebc434eb11e4866e3f5ec77d906",
+      "97bb4796ddc82f659aea8fb67ef457519fa0ad49",
+      "2077c8faff8074e8dd583175916618e5473f9064",
+      "7a67482777636c2e15abf0a49025f93315a980b5",
+      "5216ab2bbdb2e61e7c1a822322aa9bb0b62a1035",
+      "da57ee7697117e44ba1400b17138e2f3dcbb3fec",
+      "46e149ee8b54525b23681c5c415646caae9dceb3",
+      "016b7d3bfab2607c0151a87c3f03888595c1f26e",
+      "434ccb7812ce275f1a9b8ebbb79ee54a0d8a4be5",
+      "cf6988ac7c7c37e32f33017333537146370f8baf",
+      "3529c3675ff64db805bd947ca6ece6090809e43d",
+      "dfa7fd6f9309deab60bea230b041be9a3fcda846",
+      "24ba5265e2c98ed04c135616b61cab798bf33ed8",
+      "6839cfd61314c2a3c2bc51bf5563c42b1eee2fd2",
+      "58b136f44fb671aed1154c12351b0daac910c312",
+      "ad9832ec212baf526e1a69d73ee04cd8305ae331",
+      "22ef52a21ddafa3b97baf67180e4242e5df31d34",
+      "74d789515fdee63ef46a1635b801364aad6695e4",
+      "5596a8a0bba2a1ec5519cc855cdadf23e4dcecdc"
+    ]
+  },
+  "outputs": {
+    "results/rust-sdk/spike/results/report.json": "4bdf0c7ade866a75c70709c2e4a3fdd73c54a54a75d41ff503ab443ea8bbdbdc"
+  },
+  "ticket": "BUGAGE-7",
+  "totals": {
+    "BUILT_AND_TESTED": 19,
+    "NOT_TESTED": 1
+  },
+  "verdict": "GO",
+  "versions": {
+    "docker": "29.8.1 arm64",
+    "git": "git version 2.50.1 (Apple Git-155)",
+    "host": "Darwin arm64",
+    "image": "sha256:0b3d18b716e11da155a9fe892078be0fff6b6b61fa0bbc781b0a8949c20cfd6d",
+    "python": "3.14.8",
+    "toolchains": [
+      "1.85",
+      "1.86",
+      "1.87",
+      "1.88",
+      "1.89",
+      "1.91",
+      "1.92",
+      "1.93",
+      "1.94",
+      "1.95",
+      "1.96",
+      "1.97",
+      "1.98",
+      "1.99"
+    ]
+  }
+}

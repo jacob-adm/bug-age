@@ -1,0 +1,1195 @@
+{
+  "built_and_tested_share": 0.95,
+  "counts": {
+    "BUILT_AND_TESTED": 19,
+    "NOT_TESTED": 1
+  },
+  "method": {
+    "build": "cargo build --package rmcp --offline in docker --network none",
+    "decision_rule": "GO iff BUILT_AND_TESTED share >= 70% and no FLAKY",
+    "dependency_resolution": "committed Cargo.lock if present, else today's crates.io",
+    "not_covered": "integration tests under tests/ (need downloaded fixtures), benches, bindings",
+    "sampling": "20 evenly spaced first-parent commits touching crates/rmcp/",
+    "test": "cargo test --package rmcp --lib --offline (that package' unit tests) in docker --network none, repeated 2x",
+    "toolchain_rule": "latest stable released >=14 days before commit date, raised to rust-version; aarch64-unknown-linux-gnu in bug-age-spike:4"
+  },
+  "results": [
+    {
+      "date": "2025-03-27",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 0,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "6 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "0be6067326dfb3508ac0d4ae14338c01e87532af",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.85 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 6.6
+        },
+        "fetch": {
+          "cmd": "cargo +1.85 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 2.7
+        },
+        "test_1": {
+          "cmd": "cargo +1.85 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 6.4
+        },
+        "test_2": {
+          "cmd": "cargo +1.85 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.85 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.4
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 6
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 6
+        }
+      ],
+      "toolchain": "1.85"
+    },
+    {
+      "date": "2025-05-08",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 29,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "dependency fetch/resolution failed: dependency resolution failed",
+      "rust_version_field": null,
+      "sha": "57e14c56e85deebc434eb11e4866e3f5ec77d906",
+      "status": "NOT_TESTED",
+      "steps": {
+        "fetch": {
+          "cmd": "cargo +1.86 fetch",
+          "exit": 101,
+          "hint": "dependency resolution failed",
+          "network_none": false,
+          "seconds": 0.6,
+          "tail": [
+            "warning: /src/examples/simple-chat-client/Cargo.toml: unused manifest key: dependencies.rmcp.no-default-features",
+            "warning: /src/crates/rmcp/Cargo.toml: unused manifest key: dependencies.rmcp-macros.version",
+            "    Updating crates.io index",
+            "    Updating git repository `https://github.com/modelcontextprotocol/rust-sdk`",
+            "error: failed to select a version for `rmcp`.",
+            "    ... required by package `simple-chat-client v0.1.0 (/src/examples/simple-chat-client)`",
+            "versions that meet the requirements `*` are: 3.9.0",
+            "",
+            "the package `simple-chat-client` depends on `rmcp`, with features: `transport-sse` but `rmcp` does not have these features.",
+            "",
+            "",
+            "failed to select a version for `rmcp` which could resolve this conflict"
+          ]
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.86 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.4
+        }
+      },
+      "toolchain": "1.86"
+    },
+    {
+      "date": "2025-06-07",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 57,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "9 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "97bb4796ddc82f659aea8fb67ef457519fa0ad49",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.87 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 4.9
+        },
+        "fetch": {
+          "cmd": "cargo +1.87 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 2.0
+        },
+        "test_1": {
+          "cmd": "cargo +1.87 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 5.6
+        },
+        "test_2": {
+          "cmd": "cargo +1.87 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.6
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.87 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 9
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 9
+        }
+      ],
+      "toolchain": "1.87"
+    },
+    {
+      "date": "2025-07-22",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 86,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "11 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "2077c8faff8074e8dd583175916618e5473f9064",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.88 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 4.7
+        },
+        "fetch": {
+          "cmd": "cargo +1.88 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.2
+        },
+        "test_1": {
+          "cmd": "cargo +1.88 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 5.2
+        },
+        "test_2": {
+          "cmd": "cargo +1.88 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.6
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.88 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.4
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 11
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 11
+        }
+      ],
+      "toolchain": "1.88"
+    },
+    {
+      "date": "2025-08-29",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 115,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "20 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "7a67482777636c2e15abf0a49025f93315a980b5",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.89 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 4.9
+        },
+        "fetch": {
+          "cmd": "cargo +1.89 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.9
+        },
+        "test_1": {
+          "cmd": "cargo +1.89 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 6.5
+        },
+        "test_2": {
+          "cmd": "cargo +1.89 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.89 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.4
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 20
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 20
+        }
+      ],
+      "toolchain": "1.89"
+    },
+    {
+      "date": "2025-09-23",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 143,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "26 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "5216ab2bbdb2e61e7c1a822322aa9bb0b62a1035",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.89 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 5.0
+        },
+        "fetch": {
+          "cmd": "cargo +1.89 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.9
+        },
+        "test_1": {
+          "cmd": "cargo +1.89 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 6.4
+        },
+        "test_2": {
+          "cmd": "cargo +1.89 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.2
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.89 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 26
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 26
+        }
+      ],
+      "toolchain": "1.89"
+    },
+    {
+      "date": "2025-11-19",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 172,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "37 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "da57ee7697117e44ba1400b17138e2f3dcbb3fec",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.91 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 5.1
+        },
+        "fetch": {
+          "cmd": "cargo +1.91 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.0
+        },
+        "test_1": {
+          "cmd": "cargo +1.91 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 5.0
+        },
+        "test_2": {
+          "cmd": "cargo +1.91 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.5
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.91 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 37
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 37
+        }
+      ],
+      "toolchain": "1.91"
+    },
+    {
+      "date": "2026-01-13",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 201,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "66 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "46e149ee8b54525b23681c5c415646caae9dceb3",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.92 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 5.8
+        },
+        "fetch": {
+          "cmd": "cargo +1.92 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.9
+        },
+        "test_1": {
+          "cmd": "cargo +1.92 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 5.4
+        },
+        "test_2": {
+          "cmd": "cargo +1.92 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.6
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.92 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 66
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 66
+        }
+      ],
+      "toolchain": "1.92"
+    },
+    {
+      "date": "2026-02-13",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 229,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "85 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "016b7d3bfab2607c0151a87c3f03888595c1f26e",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.93 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 6.0
+        },
+        "fetch": {
+          "cmd": "cargo +1.93 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.0
+        },
+        "test_1": {
+          "cmd": "cargo +1.93 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 7.1
+        },
+        "test_2": {
+          "cmd": "cargo +1.93 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.6
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.93 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.5
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 85
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 85
+        }
+      ],
+      "toolchain": "1.93"
+    },
+    {
+      "date": "2026-03-03",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 258,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "98 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "434ccb7812ce275f1a9b8ebbb79ee54a0d8a4be5",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.93 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 6.0
+        },
+        "fetch": {
+          "cmd": "cargo +1.93 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.4
+        },
+        "test_1": {
+          "cmd": "cargo +1.93 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 8.0
+        },
+        "test_2": {
+          "cmd": "cargo +1.93 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.3
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.93 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 98
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 98
+        }
+      ],
+      "toolchain": "1.93"
+    },
+    {
+      "date": "2026-04-01",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 287,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "103 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "cf6988ac7c7c37e32f33017333537146370f8baf",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.94 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 6.3
+        },
+        "fetch": {
+          "cmd": "cargo +1.94 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 2.0
+        },
+        "test_1": {
+          "cmd": "cargo +1.94 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 9.0
+        },
+        "test_2": {
+          "cmd": "cargo +1.94 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.9
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.94 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 103
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 103
+        }
+      ],
+      "toolchain": "1.94"
+    },
+    {
+      "date": "2026-05-13",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 316,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "104 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "3529c3675ff64db805bd947ca6ece6090809e43d",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.95 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 6.1
+        },
+        "fetch": {
+          "cmd": "cargo +1.95 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.4
+        },
+        "test_1": {
+          "cmd": "cargo +1.95 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 10.1
+        },
+        "test_2": {
+          "cmd": "cargo +1.95 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.4
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.95 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.4
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 104
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 104
+        }
+      ],
+      "toolchain": "1.95"
+    },
+    {
+      "date": "2026-06-26",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 344,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "124 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "dfa7fd6f9309deab60bea230b041be9a3fcda846",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.96 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 6.0
+        },
+        "fetch": {
+          "cmd": "cargo +1.96 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.2
+        },
+        "test_1": {
+          "cmd": "cargo +1.96 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 11.1
+        },
+        "test_2": {
+          "cmd": "cargo +1.96 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.3
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.96 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.4
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 124
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 124
+        }
+      ],
+      "toolchain": "1.96"
+    },
+    {
+      "date": "2026-07-14",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 373,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "154 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "24ba5265e2c98ed04c135616b61cab798bf33ed8",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.96 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 6.9
+        },
+        "fetch": {
+          "cmd": "cargo +1.96 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 1.5
+        },
+        "test_1": {
+          "cmd": "cargo +1.96 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 11.3
+        },
+        "test_2": {
+          "cmd": "cargo +1.96 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.3
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.96 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 154
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 154
+        }
+      ],
+      "toolchain": "1.96"
+    },
+    {
+      "date": "2026-07-24",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 402,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "190 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "6839cfd61314c2a3c2bc51bf5563c42b1eee2fd2",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.97 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 7.0
+        },
+        "fetch": {
+          "cmd": "cargo +1.97 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 2.2
+        },
+        "test_1": {
+          "cmd": "cargo +1.97 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 11.8
+        },
+        "test_2": {
+          "cmd": "cargo +1.97 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.4
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.97 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 190
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 190
+        }
+      ],
+      "toolchain": "1.97"
+    },
+    {
+      "date": "2026-07-30",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 430,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "193 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "58b136f44fb671aed1154c12351b0daac910c312",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.97 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 7.4
+        },
+        "fetch": {
+          "cmd": "cargo +1.97 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.9
+        },
+        "test_1": {
+          "cmd": "cargo +1.97 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 12.1
+        },
+        "test_2": {
+          "cmd": "cargo +1.97 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.4
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.97 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 193
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 193
+        }
+      ],
+      "toolchain": "1.97"
+    },
+    {
+      "date": "2026-09-01",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 459,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "197 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "ad9832ec212baf526e1a69d73ee04cd8305ae331",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.97 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 7.5
+        },
+        "fetch": {
+          "cmd": "cargo +1.97 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 2.5
+        },
+        "test_1": {
+          "cmd": "cargo +1.97 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 12.2
+        },
+        "test_2": {
+          "cmd": "cargo +1.97 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.4
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.97 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 197
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 197
+        }
+      ],
+      "toolchain": "1.97"
+    },
+    {
+      "date": "2026-09-25",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 488,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "202 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "22ef52a21ddafa3b97baf67180e4242e5df31d34",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.98 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 7.7
+        },
+        "fetch": {
+          "cmd": "cargo +1.98 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.9
+        },
+        "test_1": {
+          "cmd": "cargo +1.98 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 12.1
+        },
+        "test_2": {
+          "cmd": "cargo +1.98 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.4
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.98 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.4
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 202
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 202
+        }
+      ],
+      "toolchain": "1.98"
+    },
+    {
+      "date": "2026-10-19",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 516,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "227 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "74d789515fdee63ef46a1635b801364aad6695e4",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.99 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 7.2
+        },
+        "fetch": {
+          "cmd": "cargo +1.99 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.8
+        },
+        "test_1": {
+          "cmd": "cargo +1.99 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 12.0
+        },
+        "test_2": {
+          "cmd": "cargo +1.99 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.4
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.99 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.4
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 227
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 227
+        }
+      ],
+      "toolchain": "1.99"
+    },
+    {
+      "date": "2026-11-05",
+      "edition": "2015",
+      "fixture_dependent_test_files": 0,
+      "fixture_urls": [],
+      "index": 545,
+      "license": null,
+      "lockfile_committed": false,
+      "pinned_toolchain_file": null,
+      "reason": "278 unit tests passed x2",
+      "rust_version_field": null,
+      "sha": "5596a8a0bba2a1ec5519cc855cdadf23e4dcecdc",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "build": {
+          "cmd": "cargo +1.99 build --package rmcp --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 7.6
+        },
+        "fetch": {
+          "cmd": "cargo +1.99 fetch",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 2.4
+        },
+        "test_1": {
+          "cmd": "cargo +1.99 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 12.7
+        },
+        "test_2": {
+          "cmd": "cargo +1.99 test --package rmcp --lib --offline",
+          "exit": 0,
+          "network_none": true,
+          "seconds": 0.4
+        },
+        "toolchain": {
+          "cmd": "rustup toolchain install 1.99 --profile minimal --no-self-update",
+          "exit": 0,
+          "network_none": false,
+          "seconds": 0.3
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 278
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 278
+        }
+      ],
+      "toolchain": "1.99"
+    }
+  ],
+  "subject": {
+    "crate_path": "crates/rmcp",
+    "first_parent_commits_touching_crate": 546,
+    "head": "5596a8a0bba2a1ec5519cc855cdadf23e4dcecdc",
+    "history_window": [
+      "2025-03-27",
+      "2026-11-05"
+    ],
+    "repo": "https://github.com/modelcontextprotocol/rust-sdk"
+  },
+  "ticket": "BUGAGE-7",
+  "verdict": "GO"
+}

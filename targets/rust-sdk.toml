@@ -3,6 +3,7 @@ name = "rust-sdk"
 repo_url = "https://github.com/modelcontextprotocol/rust-sdk"
 head = "5596a8a0bba2a1ec5519cc855cdadf23e4dcecdc"
 crate_path = "crates/rmcp"
+package = "rmcp"                 # build/test only this crate, not the whole workspace
 work_dir = "work/rust-sdk"
 results_dir = "results/rust-sdk"
 spike_dir = "results/rust-sdk/spike"
