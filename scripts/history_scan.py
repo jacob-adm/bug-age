@@ -14,7 +14,7 @@ from pathlib import Path
 
 EMAIL = re.compile(rb"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 GENERIC = {"github", "noreply", "web-flow", "users.noreply.github.com"}
-# The scanner's own files list the reviewed matches, so they always match themselves.
+# The scanner's own files list the reviewed matches; there a hit passes only if that match is reviewed elsewhere.
 SELF = {"scripts/history_scan.py", "scripts/history_scan.allow"}
 
 
@@ -46,7 +46,7 @@ def main():
     for t in a.targets.split(","):
         names |= people(Path(t))
     alternation = b"|".join(re.escape(n.encode()) for n in sorted(names, key=len, reverse=True))
-    who = re.compile(rb"(?i)(?:^|[^\w])(" + alternation + rb")(?:$|[^\w])")
+    who = re.compile(rb"(?i)(?<!\w)(" + alternation + rb")(?!\w)")
     allow = set()
     if a.allow and Path(a.allow).exists():
         allow = {l for l in Path(a.allow).read_text().splitlines() if l and not l.startswith("#")}
@@ -70,8 +70,6 @@ def main():
         if kind != b"blob" or b"\0" in body[:8000]:
             continue
         where = seen[sha.decode()]
-        if where in SELF:
-            continue
         for m in set(EMAIL.findall(body)):
             hits.append(("email", where, m.decode("utf-8", "replace")))
         for m in set(x.lower() for x in who.findall(body)):
@@ -80,13 +78,15 @@ def main():
         if "\x00" not in line:
             continue
         sha, msg = line.strip().split("\x00", 1)
+        where = "commit: " + (msg.splitlines() or [""])[0][:80]
         for m in set(EMAIL.findall(msg.encode())):
-            hits.append(("email", "commit message", m.decode()))
+            hits.append(("email", where, m.decode()))
         for m in set(x.lower() for x in who.findall(msg.encode())):
-            hits.append(("person", "commit message", m.decode()))
+            hits.append(("person", where, m.decode()))
 
     hits = sorted(set(hits))
-    open_hits = [h for h in hits if "\t".join(h) not in allow]
+    reviewed = {line.split("\t")[2] for line in allow if line.count("\t") == 2}
+    open_hits = [h for h in hits if "\t".join(h) not in allow and not (h[1] in SELF and h[2] in reviewed)]
     for h in open_hits:
         print("\t".join(h))
     print(f"history scan: {len(seen)} objects, {len(names)} target identities, {len(hits)} hits, "

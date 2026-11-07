@@ -242,7 +242,7 @@ def main() -> int:
         print(f"[{len(results) + 1}/{len(picks)}] {r['sha'][:10]} {r['date']} {r['toolchain']:<28} {r['status']}: {r['reason']}",
               flush=True)
         results.append(r)
-        (OUT / "partial.json").write_text(json.dumps(results, indent=2))
+        (OUT / "partial.json").write_text(json.dumps(sanitize(results), indent=2))
     run(["git", "-C", str(REPO), "worktree", "remove", "--force", str(SCRATCH / "wt")])
     return write_outputs(results, head, len(history), n)
 

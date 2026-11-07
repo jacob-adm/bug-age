@@ -151,7 +151,8 @@ fn cmd_sweep(f: &HashMap<String, String>) -> Result<(), String> {
         versions["image"] = json!(tool_version("docker", &["image", "inspect", &opt("image", "bug-age-spike:4"), "--format", "{{.Id}}"]));
     }
     let receipt = json!({
-        "command": std::env::args().collect::<Vec<_>>().join(" "),
+        "command": bundle::public_command(&std::env::args().collect::<Vec<_>>(),
+            &std::env::current_dir().map(|d| d.display().to_string()).unwrap_or_default(), &std::env::var("HOME").unwrap_or_default()),
         "inputs": {"repo_head": bug_age::git::git(&spec.repo, &["rev-parse", "HEAD"])?.trim(), "fix": result.fix,
                    "start": result.start, "overlay_files": overlay_listing(&spec.overlay)},
         "versions": versions,
@@ -193,7 +194,7 @@ fn cmd_bundle(f: &HashMap<String, String>) -> Result<(), String> {
     std::fs::write(out.join("bundle.js"), &js).map_err(|e| e.to_string())?;
     let sha = |b: &[u8]| format!("{:x}", Sha256::digest(b));
     let receipt = json!({
-        "command": bundle::public_command(&std::env::args().collect::<Vec<_>>().join(" "),
+        "command": bundle::public_command(&std::env::args().collect::<Vec<_>>(),
             &std::env::current_dir().map(|d| d.display().to_string()).unwrap_or_default(), &std::env::var("HOME").unwrap_or_default()),
         "schema_version": bundle::SCHEMA_VERSION,
         "blameless_gate": "PASS",

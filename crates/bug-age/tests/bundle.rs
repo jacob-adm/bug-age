@@ -118,9 +118,15 @@ fn missing_stages_bundle_as_not_tested() {
 }
 
 #[test]
-fn recorded_commands_carry_no_local_paths() {
-    let cmd = "/home/u/src/bug-age/target/debug/bug-age bundle --repo /home/u/src/bug-age/work/t --scratch /home/u/.cache/x";
-    assert_eq!(bug_age::bundle::public_command(cmd, "/home/u/src/bug-age", "/home/u"),
-               "target/debug/bug-age bundle --repo work/t --scratch ~/.cache/x");
-    assert_eq!(bug_age::bundle::public_command(cmd, "", ""), cmd);
+fn recorded_commands_carry_no_local_paths_and_rerun_as_written() {
+    use bug_age::bundle::public_command;
+    let v = |xs: &[&str]| xs.iter().map(|x| x.to_string()).collect::<Vec<_>>();
+    let cmd = v(&["/home/u/src/bug-age/target/debug/bug-age", "bundle", "--repo", "/home/u/src/bug-age/work/t",
+                  "--here", "/home/u/src/bug-age", "--scratch", "/home/u/.cache/x", "--other", "/home/user2/x",
+                  "--note", "a|b c", "--q", "it's"]);
+    assert_eq!(public_command(&cmd, "/home/u/src/bug-age", "/home/u"),
+               "target/debug/bug-age bundle --repo work/t --here . --scratch ~/.cache/x --other /home/user2/x --note 'a|b c' --q 'it'\\''s'");
+    // cwd "/" must not eat slashes; empty roots change nothing
+    assert_eq!(public_command(&v(&["/usr/bin/x", "/data/y"]), "/", ""), "/usr/bin/x /data/y");
+    assert_eq!(public_command(&v(&["/a/c", "/b/a/c"]), "/a", ""), "c /b/a/c");
 }

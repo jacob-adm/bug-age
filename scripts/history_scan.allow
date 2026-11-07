@@ -1,9 +1,34 @@
 # Reviewed history-scan hits (BUGAGE-14, 2026-11-06). All are false positives:
 # - person git/code/look/info/mail: target-repo usernames that are ordinary words in code and docs
-# - person marco: typo for 'macro' in a rust-sdk commit subject; matches a tokenizers username
+# - person marco: typo (only the listed files and commits) for 'macro' in a rust-sdk commit subject; matches a tokenizers username
 # - email noreply@anthropic.com: Co-Authored-By trailer in commit messages
 # - email *@example.invalid / ada@example.org / *@users.noreply.github.com fixtures: planted test identities
-email	commit message	noreply@anthropic.com
+email	commit: BUGAGE-10: article draft with every number traced to the bundle, figures from th	noreply@anthropic.com
+email	commit: BUGAGE-11: compile-frontier search and adaptive repeats	noreply@anthropic.com
+email	commit: BUGAGE-11: toolchain buckets, parallel workers, unattended make sweep	noreply@anthropic.com
+email	commit: BUGAGE-12: per-target release tag pattern; rust-sdk release counts fixed	noreply@anthropic.com
+email	commit: BUGAGE-13: README screenshots of the explorer	noreply@anthropic.com
+email	commit: BUGAGE-14: blameless history scan before going public	noreply@anthropic.com
+email	commit: BUGAGE-15: history scan survives a history rewrite	noreply@anthropic.com
+email	commit: BUGAGE-15: receipts record repo-relative paths, not local home paths	noreply@anthropic.com
+email	commit: BUGAGE-16: CI runs cargo test and the article number check on ubuntu and macOS	noreply@anthropic.com
+email	commit: BUGAGE-1: Cargo workspace skeleton and Rust .gitignore	noreply@anthropic.com
+email	commit: BUGAGE-1: feasibility spike on huggingface/tokenizers — verdict NO-GO	noreply@anthropic.com
+email	commit: BUGAGE-2: Method A — fix-commit catalog and SZZ introducer nomination	noreply@anthropic.com
+email	commit: BUGAGE-3: behavioural sweep harness (Method B) in the Rust CLI	noreply@anthropic.com
+email	commit: BUGAGE-4: regression repros for 6 tokenizers bugs + Method A vs B comparison	noreply@anthropic.com
+email	commit: BUGAGE-5: time-travel dependency resolution — 4/20 -> 18/20 buildable	noreply@anthropic.com
+email	commit: BUGAGE-6: canonical bundle + JSON Schema + blameless gate	noreply@anthropic.com
+email	commit: BUGAGE-7: config-driven pipeline; bundle reports missing stages as NOT TESTED	noreply@anthropic.com
+email	commit: BUGAGE-7: run rust-sdk (rmcp) through the pipeline	noreply@anthropic.com
+email	commit: BUGAGE-8: explorer page and `bug-age explorer` assembly with size gate	noreply@anthropic.com
+email	commit: BUGAGE-9: read-only MCP server, dist/agent AGENTS.md and SKILL.md	noreply@anthropic.com
+email	commit: Merge feature/BUGAGE-1-feasibility-spike (BUGAGE-1, dual-approved)	noreply@anthropic.com
+email	commit: Merge feature/BUGAGE-2-szz-method-a (BUGAGE-2, dual-approved)	noreply@anthropic.com
+email	commit: Merge feature/BUGAGE-3-sweep-harness (BUGAGE-3, dual-approved)	noreply@anthropic.com
+email	commit: Merge feature/BUGAGE-4-repro-tests (BUGAGE-4, dual-approved)	noreply@anthropic.com
+email	commit: Merge feature/BUGAGE-5-time-travel-deps (BUGAGE-5, dual-approved)	noreply@anthropic.com
+email	commit: docs: add README	noreply@anthropic.com
 email	crates/bug-age/src/bundle.rs	12345+name@users.noreply.github.com
 email	crates/bug-age/tests/bundle.rs	123+ghopper@users.noreply.github.com
 email	crates/bug-age/tests/bundle.rs	ada@example.org
@@ -17,9 +42,14 @@ person	article/ARTICLE.md	look
 person	article/ARTICLE.tmpl.md	code
 person	article/ARTICLE.tmpl.md	git
 person	article/ARTICLE.tmpl.md	look
-person	commit message	code
-person	commit message	git
-person	commit message	marco
+person	commit: BUGAGE-14: blameless history scan before going public	marco
+person	commit: BUGAGE-15: history scan survives a history rewrite	git
+person	commit: BUGAGE-2: Method A — fix-commit catalog and SZZ introducer nomination	git
+person	commit: BUGAGE-3: behavioural sweep harness (Method B) in the Rust CLI	git
+person	commit: BUGAGE-4: regression repros for 6 tokenizers bugs + Method A vs B comparison	code
+person	commit: BUGAGE-4: regression repros for 6 tokenizers bugs + Method A vs B comparison	git
+person	commit: BUGAGE-5: time-travel dependency resolution — 4/20 -> 18/20 buildable	code
+person	commit: BUGAGE-5: time-travel dependency resolution — 4/20 -> 18/20 buildable	git
 person	crates/bug-age/Cargo.toml	git
 person	crates/bug-age/src/bundle.rs	git
 person	crates/bug-age/src/catalog.rs	git

@@ -15,6 +15,8 @@ Usage: python3 results/run_repros.py results/tokenizers work/tokenizers tokenize
 import datetime as dt, hashlib, json, subprocess, sys
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parent.parent  # repo root; stripped from recorded paths
+
 WINDOW_DAYS = 3 * 365
 BUILD = "cargo test --test bugage_repro --no-run"
 TEST = "cargo test --test bugage_repro"
@@ -43,12 +45,12 @@ def sweep(res, repo, crate, rid, worker="w0"):
            "--logs", f"work/sweep-logs/{rid}", "--out", str(out), "--namespace", worker]
     print(f"== {rid}: {' '.join(cmd[2:])}", flush=True)
     p = subprocess.run(cmd, stderr=subprocess.PIPE, text=True)
-    (res / "repros" / rid / "sweep.stderr.log").write_text(p.stderr.replace(str(Path.home()), "~"))
+    (res / "repros" / rid / "sweep.stderr.log").write_text(p.stderr.replace(f"{ROOT}/", "").replace(str(Path.home()), "~"))
     if p.returncode != 0:
         print(f"!! {rid} failed: {p.stderr.strip().splitlines()[-1:]}", flush=True)
         return
     rec = out.with_name("sweep.json.receipt.json")
-    rec.write_text(rec.read_text().replace(str(Path.home()), "~"))
+    rec.write_text(rec.read_text().replace(f"{ROOT}/", "").replace(str(Path.home()), "~"))
     print(f"   {json.loads(out.read_text())['verdict']}", flush=True)
 
 
@@ -65,7 +67,7 @@ def acheck(res, repo, crate, rid):
     if p.returncode != 0:
         print(f"!! A-check {rid} failed: {p.stderr.strip().splitlines()[-1:]}", flush=True)
         return
-    out.write_text(out.read_text().replace(str(Path.home()), "~"))
+    out.write_text(out.read_text().replace(f"{ROOT}/", "").replace(str(Path.home()), "~"))
     print("   " + " / ".join(r["outcome"] for r in json.loads(out.read_text())["results"]), flush=True)
 
 

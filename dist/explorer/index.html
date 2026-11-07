@@ -674,10 +674,10 @@ async function askClaude() {
   const slice = sliceFor(LAST), prompt = promptFor(q, slice);
   if (prompt.length > 200000) { $("t2-status").textContent = "Too many rows to send. Narrow the search."; return; }
   if (inflight) inflight.abort();
-  inflight = new AbortController();
+  const ctrl = inflight = new AbortController();
   $("t2-status").textContent = "Thinking…"; $("t2-out").replaceChildren();
   try {
-    const ans = await SAMPLE.json(prompt, { signal: inflight.signal, modelTier: "default" });
+    const ans = await SAMPLE.json(prompt, { signal: ctrl.signal, modelTier: "default" });
     const problems = verifyAnswer(ans, slice, q);
     $("t2-status").textContent = "";
     if (problems.length) {
@@ -692,7 +692,7 @@ async function askClaude() {
     if (e && e.code === "not_granted") { $("tier2").hidden = true; return; }
     if (e && e.name === "AbortError") return;
     $("t2-status").textContent = e && e.code === "rate_limited" ? "Too many requests. Wait a minute and try again." : "Claude could not answer. The search results above still stand.";
-  } finally { inflight = null; }
+  } finally { if (inflight === ctrl) inflight = null; }
 }
 $("t2-ask").addEventListener("click", askClaude);
 $("t2-selftest").addEventListener("click", () => {
