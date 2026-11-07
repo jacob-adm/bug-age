@@ -40,6 +40,8 @@ bug-age sweep   --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD
                 [--namespace NAME] [--bucket N]
 bug-age probe   --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]
 bug-age bundle  --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR]
+bug-age explorer --page FILE --targets NAME=DIR,... --out DIR
+bug-age mcp     --bundles NAME=FILE,...
 ```
 
 | Command | What it does |
@@ -49,6 +51,8 @@ bug-age bundle  --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR]
 | `sweep` | Method B: binary-searches for the first commit where the test compiles, then bisects PASS/FAIL above it. Decisive commits are re-run `--repeats` times and flagged UNSTABLE if the result changes |
 | `probe` | Runs the same test at a fixed list of commits, with no search |
 | `bundle` | Builds `bundle.json` (validated against [`schema/bundle.schema.json`](schema/bundle.schema.json)), `bundle.js`, and `receipt.json` (sha256 hashes and sizes) |
+| `explorer` | Builds the static explorer page with one data file per repository; fails over 8 MB |
+| `mcp` | Read-only MCP server on stdio answering bundle queries; see [`dist/agent/AGENTS.md`](dist/agent/AGENTS.md) |
 
 ## Running the pipeline
 

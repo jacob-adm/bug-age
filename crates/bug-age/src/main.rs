@@ -6,9 +6,10 @@
 //!   bug-age probe   --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [options]
 //!   bug-age bundle  --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR] [--out-of-scope 'STAGE|EVIDENCE|DOES_NOT_PROVE']
 //!   bug-age explorer --page FILE --targets NAME=DIR,NAME=DIR --out DIR
+//!   bug-age mcp --bundles NAME=FILE,NAME=FILE   (MCP server on stdio)
 
 use bug_age::runner::{Docker, Local, Runner, Spec};
-use bug_age::{bundle, catalog, explorer, sweep, szz};
+use bug_age::{bundle, catalog, explorer, mcp, sweep, szz};
 use sha2::{Digest, Sha256};
 use serde_json::{json, Value};
 use std::collections::HashMap;
@@ -24,7 +25,8 @@ const USAGE: &str = "usage: bug-age [--version | --help]
              [--namespace NAME] [--bucket N (toolchain minor rounding, default 4; 0 = exact)]
        bug-age probe --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]
        bug-age bundle --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR] [--out-of-scope 'STAGE|EVIDENCE|DOES_NOT_PROVE']
-       bug-age explorer --page FILE --targets NAME=DIR,NAME=DIR --out DIR   (DIR = a bundle output dir)";
+       bug-age explorer --page FILE --targets NAME=DIR,NAME=DIR --out DIR   (DIR = a bundle output dir)
+       bug-age mcp --bundles NAME=FILE,NAME=FILE   (read-only MCP server on stdio over bundle.json files)";
 
 fn flags(args: &[String]) -> Result<HashMap<String, String>, String> {
     let mut map = HashMap::new();
@@ -229,6 +231,16 @@ fn cmd_explorer(f: &HashMap<String, String>) -> Result<(), String> {
                  "bug-age": env!("CARGO_PKG_VERSION")}), Some(&out.join("receipt.json").to_string_lossy().to_string()))
 }
 
+fn cmd_mcp(f: &HashMap<String, String>) -> Result<(), String> {
+    let mut targets = Vec::new();
+    for spec in need(f, "bundles")?.split(',') {
+        let (name, file) = spec.split_once('=').ok_or(format!("--bundles entry '{spec}' must be NAME=FILE"))?;
+        targets.push(mcp::Target::load(name, Path::new(file))?);
+    }
+    eprintln!("bug-age mcp: serving {} target(s) on stdio", targets.len());
+    mcp::serve(&targets, std::io::stdin().lock(), std::io::stdout().lock())
+}
+
 fn overlay_listing(dir: &Path) -> Vec<String> {
     let mut out = Vec::new();
     let mut stack = vec![dir.to_path_buf()];
@@ -263,6 +275,7 @@ fn main() -> ExitCode {
         Some("probe") => flags(&args[1..]).and_then(|f| cmd_probe(&f)),
         Some("bundle") => flags(&args[1..]).and_then(|f| cmd_bundle(&f)),
         Some("explorer") => flags(&args[1..]).and_then(|f| cmd_explorer(&f)),
+        Some("mcp") => flags(&args[1..]).and_then(|f| cmd_mcp(&f)),
         Some(other) => {
             eprintln!("bug-age: unknown argument '{other}'\n{USAGE}");
             return ExitCode::from(2);
