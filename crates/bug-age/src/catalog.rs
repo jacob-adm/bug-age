@@ -2,7 +2,7 @@
 //!
 //! This is where bug-age decides which commits are bug fixes. It does not test anything: it reads
 //! commit subjects. A commit is a fix when it is on the first-parent history, touches the crate path,
-//! its subject matches [`INCLUDE`], and it matches none of the [`EXCLUDE`] rules. Bugs that were never
+//! its subject matches `INCLUDE`, and it matches none of the `EXCLUDE` rules. Bugs that were never
 //! fixed, or were fixed under a subject without these words, are not in the catalog.
 //!
 //! First-parent commits touching the crate path whose subject matches
@@ -70,7 +70,7 @@ pub fn sanitize_subject(s: &str) -> String {
     handle.replace_all(&from.replace_all(s, ""), "").trim().chars().take(100).collect()
 }
 
-/// Returns `Some(rule)` naming why the subject is a fix ("include") or excluded ("exclude:<name>"),
+/// Returns `Some(rule)` naming why the subject is a fix ("include") or excluded (`exclude:<name>`),
 /// or `None` if the include rule does not match at all.
 pub fn classify(subject: &str) -> Option<String> {
     if !Regex::new(INCLUDE).expect("valid regex").is_match(subject) {

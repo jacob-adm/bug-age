@@ -1,3 +1,5 @@
+//! MCP server.
+//!
 //! Read-only MCP server over stdio (JSON-RPC 2.0, one message per line) answering bundle queries.
 //!
 //! Every value a tool returns is copied from a bundle.json; nothing is computed or inferred.
@@ -7,15 +9,24 @@ use serde_json::{json, Map, Value};
 use sha2::{Digest, Sha256};
 use std::io::{BufRead, Write};
 
+/// MCP protocol revision this server implements.
 pub const PROTOCOL_VERSION: &str = "2025-06-18";
 
+/// One loaded bundle.
 pub struct Target {
+    /// Name clients pass as `target`.
     pub name: String,
+    /// Parsed bundle.
     pub bundle: Value,
+    /// sha256 of the bundle file as read, so clients can check provenance.
     pub sha256: String,
 }
 
 impl Target {
+    /// Reads and hashes a bundle file.
+    ///
+    /// # Errors
+    /// Returns an error if the file cannot be read or is not JSON.
     pub fn load(name: &str, path: &std::path::Path) -> Result<Target, String> {
         let bytes = std::fs::read(path).map_err(|e| format!("{}: {e}", path.display()))?;
         let bundle = serde_json::from_slice(&bytes).map_err(|e| format!("{}: {e}", path.display()))?;
@@ -23,10 +34,12 @@ impl Target {
     }
 }
 
+/// JSON schema fragment for the `target` argument shared by most tools.
 fn target_arg() -> Value {
     json!({"type": "string", "description": "Target name, as listed by list_targets"})
 }
 
+/// Tool definitions returned by `tools/list`. Every tool is read-only.
 pub fn tools() -> Value {
     json!([
         {"name": "list_targets", "description": "Repositories loaded, with subject (repo URL, crate path, pinned head) and bundle sha256.",
@@ -45,16 +58,19 @@ pub fn tools() -> Value {
     ])
 }
 
+/// Resolves the `target` argument to a loaded bundle, or explains which targets exist.
 fn find<'a>(targets: &'a [Target], args: &Value) -> Result<&'a Target, String> {
     let name = args["target"].as_str().ok_or("missing argument: target")?;
     targets.iter().find(|t| t.name == name)
         .ok_or_else(|| format!("unknown target '{name}'; known: {}", targets.iter().map(|t| t.name.as_str()).collect::<Vec<_>>().join(", ")))
 }
 
+/// Commit subject of `sha` from the bundle, or an empty string if absent.
 fn subject(t: &Target, sha: &str) -> String {
     t.bundle["commits"][sha]["subject"].as_str().unwrap_or("").to_string()
 }
 
+/// `search_fixes`: filters Method A rows by subject words or SHA prefix; longest-lived first.
 fn search(t: &Target, args: &Value) -> Result<Value, String> {
     let query = args["query"].as_str().unwrap_or("").trim().to_lowercase();
     let limit = args["limit"].as_u64().unwrap_or(20).clamp(1, 200) as usize;
@@ -78,6 +94,7 @@ fn search(t: &Target, args: &Value) -> Result<Value, String> {
     Ok(json!({"target": t.name, "query": query, "total": total, "returned": out.len(), "fixes": out}))
 }
 
+/// `get_fix`: one fix by unique SHA prefix, with its Method B sweep and every referenced commit.
 fn get_fix(t: &Target, args: &Value) -> Result<Value, String> {
     let sha = args["sha"].as_str().ok_or("missing argument: sha")?;
     if sha.len() < 7 || sha.len() > 40 || !sha.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b)) {
@@ -104,6 +121,10 @@ fn get_fix(t: &Target, args: &Value) -> Result<Value, String> {
     Ok(json!({"target": t.name, "method_a": row, "method_b": sweep, "commits": commits}))
 }
 
+/// Dispatches a `tools/call` by tool name.
+///
+/// # Errors
+/// Returns a message for the client when the tool or its input is invalid.
 pub fn call(targets: &[Target], name: &str, args: &Value) -> Result<Value, String> {
     match name {
         "list_targets" => Ok(json!({"targets": targets.iter().map(|t| json!({"name": t.name, "subject": t.bundle["subject"],
@@ -140,6 +161,10 @@ pub fn handle(targets: &[Target], msg: &Value) -> Option<Value> {
     }
 }
 
+/// Reads one JSON-RPC message per line from `input` and writes replies to `output` until EOF.
+///
+/// # Errors
+/// Returns an error only when reading input or writing output fails.
 pub fn serve(targets: &[Target], input: impl BufRead, mut output: impl Write) -> Result<(), String> {
     for line in input.lines() {
         let line = line.map_err(|e| e.to_string())?;
