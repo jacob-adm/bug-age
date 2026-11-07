@@ -12,6 +12,27 @@ use std::collections::{BTreeMap, BTreeSet};
 use std::path::Path;
 
 pub const SCHEMA_VERSION: &str = "1.1.0";
+
+/// Make a recorded command shareable and re-runnable: each argument that is the working
+/// directory, or a path under it, becomes relative; one that is HOME or under it starts with `~`
+/// (path boundaries only); arguments with shell metacharacters are single-quoted.
+pub fn public_command(args: &[String], cwd: &str, home: &str) -> String {
+    let under = |a: &str, root: &str| -> Option<String> {
+        let root = root.trim_end_matches('/');
+        if root.is_empty() { return None; }
+        if a == root { return Some(String::new()); }
+        a.strip_prefix(root).and_then(|r| r.strip_prefix('/')).map(str::to_string)
+    };
+    args.iter().map(|a| {
+        let a = match (under(a, cwd), under(a, home)) {
+            (Some(rel), _) => if rel.is_empty() { ".".to_string() } else { rel },
+            (None, Some(rel)) => if rel.is_empty() { "~".to_string() } else { format!("~/{rel}") },
+            _ => a.clone(),
+        };
+        let plain = !a.is_empty() && a.chars().all(|c| c.is_ascii_alphanumeric() || "_./:=,@+-~".contains(c));
+        if plain { a } else { format!("'{}'", a.replace('\'', "'\\''")) }
+    }).collect::<Vec<_>>().join(" ")
+}
 const REDACTED: &str = "[redacted]";
 
 /// Names, emails and handles of everyone in the repository history (lower-cased, deduplicated).
