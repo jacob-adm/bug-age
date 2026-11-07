@@ -116,3 +116,11 @@ fn missing_stages_bundle_as_not_tested() {
     assert_eq!(b["summary"]["method_b"]["swept"], 0);
     let _ = std::fs::remove_dir_all(&dir);
 }
+
+#[test]
+fn recorded_commands_carry_no_local_paths() {
+    let cmd = "/home/u/src/bug-age/target/debug/bug-age bundle --repo /home/u/src/bug-age/work/t --scratch /home/u/.cache/x";
+    assert_eq!(bug_age::bundle::public_command(cmd, "/home/u/src/bug-age", "/home/u"),
+               "target/debug/bug-age bundle --repo work/t --scratch ~/.cache/x");
+    assert_eq!(bug_age::bundle::public_command(cmd, "", ""), cmd);
+}

@@ -273,7 +273,7 @@ def sanitize(obj):
         return {k: sanitize(v) for k, v in obj.items() if k != "subject" or not isinstance(v, str)}
     if isinstance(obj, list):
         return [sanitize(v) for v in obj]
-    return obj.replace(str(Path.home()), "~") if isinstance(obj, str) else obj
+    return obj.replace(f"{ROOT}/", "").replace(str(Path.home()), "~") if isinstance(obj, str) else obj
 
 
 def write_outputs(results, head, history_len, n, reclassified=False) -> int:

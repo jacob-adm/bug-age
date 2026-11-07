@@ -193,7 +193,8 @@ fn cmd_bundle(f: &HashMap<String, String>) -> Result<(), String> {
     std::fs::write(out.join("bundle.js"), &js).map_err(|e| e.to_string())?;
     let sha = |b: &[u8]| format!("{:x}", Sha256::digest(b));
     let receipt = json!({
-        "command": std::env::args().collect::<Vec<_>>().join(" ").replace(&std::env::var("HOME").unwrap_or_default(), "~"),
+        "command": bundle::public_command(&std::env::args().collect::<Vec<_>>().join(" "),
+            &std::env::current_dir().map(|d| d.display().to_string()).unwrap_or_default(), &std::env::var("HOME").unwrap_or_default()),
         "schema_version": bundle::SCHEMA_VERSION,
         "blameless_gate": "PASS",
         "size": {"bundle_json_bytes": json.len(), "bundle_js_bytes": js.len(), "warn_over_8mb": js.len() > WARN_BYTES},

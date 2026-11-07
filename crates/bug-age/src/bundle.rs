@@ -12,6 +12,18 @@ use std::collections::{BTreeMap, BTreeSet};
 use std::path::Path;
 
 pub const SCHEMA_VERSION: &str = "1.1.0";
+
+/// Make a recorded command shareable: paths under `cwd` become relative, then `home` becomes `~`.
+pub fn public_command(command: &str, cwd: &str, home: &str) -> String {
+    let mut out = command.to_string();
+    if !cwd.is_empty() {
+        out = out.replace(&format!("{}/", cwd.trim_end_matches('/')), "");
+    }
+    if !home.is_empty() {
+        out = out.replace(home, "~");
+    }
+    out
+}
 const REDACTED: &str = "[redacted]";
 
 /// Names, emails and handles of everyone in the repository history (lower-cased, deduplicated).
