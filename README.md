@@ -1,12 +1,10 @@
 # bug-age
 
+**[▶ Open the live explorer](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)**: every bug, lifespan and test run from huggingface/tokenizers and modelcontextprotocol/rust-sdk. Each number opens to its evidence (SHAs, test runs, receipt hash, and the command that reproduces it), and the page recomputes its headline numbers in your browser.
+
+[![The bug-age explorer: headline bug ages, self-check and stage coverage for tokenizers. Click to open.](article/figures/overview-tokenizers.png)](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)
+
 Measures how long bugs lived in a git repository, using real repository data. For each fixed bug it reports commits elapsed, calendar days, releases shipped, and churn between the commit that introduced it and the fix.
-
-### ▶ [Open the live explorer](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)
-
-Every bug, lifespan and test run from both showcase repositories (huggingface/tokenizers and modelcontextprotocol/rust-sdk). Each number opens to its evidence: the SHAs, the test runs, the receipt hash and the command that reproduces it. The page also recomputes its headline numbers in your browser and flags any mismatch.
-
-[![The bug-age explorer: headline bug ages, self-check and stage coverage for tokenizers](article/figures/overview-tokenizers.png)](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)
 
 It uses two independent methods and compares them:
 
