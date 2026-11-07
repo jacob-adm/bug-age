@@ -29,7 +29,7 @@
     }
   },
   "properties": {
-    "schema_version": {"const": "1.0.0"},
+    "schema_version": {"const": "1.1.0"},
     "generator": {"type": "string", "description": "bug-age version that built the bundle"},
     "subject": {"type": "object", "required": ["repo_url", "crate_path", "head"],
       "properties": {"repo_url": {"type": "string"}, "crate_path": {"type": "string"}, "head": {"$ref": "#/$defs/sha"}}},
@@ -74,7 +74,8 @@
         }}
     },
     "feasibility": {"type": "object", "required": ["baseline", "time_travel"],
-      "properties": {"baseline": {"$ref": "#/$defs/feasibility_run"}, "time_travel": {"$ref": "#/$defs/feasibility_run"}}},
+      "description": "null = that feasibility run did not happen for this target",
+      "properties": {"baseline": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/feasibility_run"}]}, "time_travel": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/feasibility_run"}]}}},
     "coverage": {"type": "array", "items": {"type": "object", "required": ["stage", "status", "evidence", "proves", "does_not_prove"],
       "properties": {"status": {"enum": ["COVERED", "PARTIAL", "NOT TESTED"]}}}},
     "commits": {

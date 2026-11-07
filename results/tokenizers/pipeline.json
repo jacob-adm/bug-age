@@ -1,0 +1,65 @@
+{
+  "target": "tokenizers",
+  "repo_url": "https://github.com/huggingface/tokenizers",
+  "head": "fb49a29223724a96f26e061bec8ec7517aa14177",
+  "crate_path": "tokenizers",
+  "generated_utc": "2026-11-07T01:52:32+00:00",
+  "stages": [
+    {
+      "stage": "clone",
+      "status": "OK",
+      "reason": "at pinned head fb49a29223",
+      "seconds": 0,
+      "output": null,
+      "sha256": null
+    },
+    {
+      "stage": "feasibility (baseline)",
+      "status": "REUSED",
+      "reason": "existing report (pass --fresh to rerun)",
+      "seconds": 0,
+      "output": "spike/results/report.json",
+      "sha256": "47dc10dc1a51f1820211b001a88dac5aa7d9f1dee753d7c9ab265098820f7b2a"
+    },
+    {
+      "stage": "feasibility (time-travel)",
+      "status": "REUSED",
+      "reason": "existing report (pass --fresh to rerun)",
+      "seconds": 0,
+      "output": "spike/results-timetravel/report.json",
+      "sha256": "6e6fa99e9264e8b9b9ce3fb7a7c4bde9dc48037adfa663cc2011420bde2d8d05"
+    },
+    {
+      "stage": "catalog (rule-based fixes)",
+      "status": "OK",
+      "reason": "catalog: 109 fixes, 41 excluded, 717 commits scanned",
+      "seconds": 3,
+      "output": "results/tokenizers/catalog.json",
+      "sha256": "2bf58d007442c04b039cb45af986d8fedc28ec0b68ecbfa0f33bc5e05c2eeac7"
+    },
+    {
+      "stage": "Method A (szz)",
+      "status": "OK",
+      "reason": "szz: 109 fixes, 93 with a nominated introducer, 4 in window",
+      "seconds": 27,
+      "output": "results/tokenizers/szz.json",
+      "sha256": "b0292ad44965c8bc7dcf64b9bdb5c32c2e7cf07c3b74182733e8fc24608a14d8"
+    },
+    {
+      "stage": "Method B (repro sweeps)",
+      "status": "REUSED",
+      "reason": "6 existing sweeps (pass --fresh to rerun)",
+      "seconds": 0,
+      "output": null,
+      "sha256": null
+    },
+    {
+      "stage": "bundle",
+      "status": "OK",
+      "reason": "bundle: 199338 bytes, sha256 1378ff43db76b5ceeb332e0fa9ef817ed32b1862ce351719c386ce2ab8bb8464, blameless gate PASS",
+      "seconds": 6,
+      "output": "dist/tokenizers/bundle.json",
+      "sha256": "1378ff43db76b5ceeb332e0fa9ef817ed32b1862ce351719c386ce2ab8bb8464"
+    }
+  ]
+}

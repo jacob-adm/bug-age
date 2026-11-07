@@ -1,0 +1,12 @@
+# modelcontextprotocol/rust-sdk, the rmcp crate (portability proof, BUGAGE-7).
+name = "rust-sdk"
+repo_url = "https://github.com/modelcontextprotocol/rust-sdk"
+head = "5596a8a0bba2a1ec5519cc855cdadf23e4dcecdc"
+crate_path = "crates/rmcp"
+work_dir = "work/rust-sdk"
+results_dir = "results/rust-sdk"
+spike_dir = "results/rust-sdk/spike"
+dist_dir = "dist/rust-sdk"
+samples = 20
+ticket = "BUGAGE-7"
+out_of_scope = "rmcp-macros, examples, conformance|out of scope for the rmcp crate|behaviour of the other workspace crates"

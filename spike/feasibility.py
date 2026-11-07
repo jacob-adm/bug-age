@@ -2,7 +2,7 @@
 """BUGAGE-1 feasibility spike: can the target crate be built and tested at historical commits?
 
 Throwaway evidence script (stdlib only). Every number in the report is produced here; nothing is
-hand-entered. Usage:  python3 spike/feasibility.py [--samples 20]
+hand-entered. Usage:  python3 spike/feasibility.py [--config targets/NAME.toml] [--samples 20] [--time-travel]
 Needs: git, docker (image built from spike/Dockerfile as bug-age-spike:4), network for clone/fetch.
 Build and test steps run in a Linux container with --network none. A native macOS run was abandoned:
 the current Xcode linker rejects rlibs from old toolchains (see results/smoke-native-macos.*).
@@ -206,15 +206,24 @@ def probe(sha: str, idx: int) -> dict:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
+    ap.add_argument("--config", help="target config (targets/NAME.toml); default: the tokenizers spike")
     ap.add_argument("--samples", type=int, default=20)
     ap.add_argument("--time-travel", action="store_true",
                     help="BUGAGE-5: resolve lockfile-less commits against a crates.io index as of the commit date")
     ap.add_argument("--reclassify", action="store_true",
                     help="recompute failure hints from saved logs with the current HINTS table and rewrite outputs")
     args = ap.parse_args()
-    global OUT, LOGS, TICKET, TIME_TRAVEL
+    global OUT, LOGS, TICKET, TIME_TRAVEL, REPO, REPO_URL, CRATE
+    spike_dir, logs = ROOT / "spike", WORK / "logs"
+    if args.config:
+        import tomllib
+        cfg = tomllib.loads(Path(args.config).read_text())
+        REPO_URL, CRATE, REPO = cfg["repo_url"], cfg["crate_path"], ROOT / cfg["work_dir"]
+        spike_dir, logs = ROOT / cfg["spike_dir"], WORK / f"logs-{cfg['name']}"
+        OUT, LOGS, TICKET = spike_dir / "results", logs, cfg.get("ticket", TICKET)
     if args.time_travel:
-        OUT, LOGS, TICKET, TIME_TRAVEL = ROOT / "spike" / "results-timetravel", WORK / "logs-tt", "BUGAGE-5", True
+        OUT, LOGS, TIME_TRAVEL = spike_dir / "results-timetravel", Path(f"{logs}-tt"), True
+        TICKET = TICKET if args.config else "BUGAGE-5"
     if args.reclassify:
         return reclassify()
     if not REPO.is_dir():

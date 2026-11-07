@@ -52,18 +52,35 @@ bug-age bundle  --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR]
 
 ## Running the pipeline
 
-Clone the target into `work/` (the directory is git-ignored), then:
+Each target repository has one config file in [`targets/`](targets/), and nothing else is target-specific:
+
+```toml
+name = "rust-sdk"
+repo_url = "https://github.com/modelcontextprotocol/rust-sdk"
+head = "5596a8a0bba2a1ec5519cc855cdadf23e4dcecdc"   # pinned subject
+crate_path = "crates/rmcp"
+work_dir = "work/rust-sdk"
+results_dir = "results/rust-sdk"
+spike_dir = "results/rust-sdk/spike"
+dist_dir = "dist/rust-sdk"
+samples = 20
+# optional: szz_window_start = "YYYY-MM-DD", out_of_scope = "STAGE|EVIDENCE|DOES_NOT_PROVE"
+```
+
+One command runs every stage:
 
 ```sh
-cargo build
-cargo run -q -- catalog --repo work/tokenizers --path tokenizers --out results/tokenizers/catalog.json
-cargo run -q -- szz --repo work/tokenizers --catalog results/tokenizers/catalog.json --out results/tokenizers/szz.json
-
-# Method B for every repro under results/tokenizers/repros/<fix>/overlay, plus the A vs B report
-python3 results/run_repros.py results/tokenizers work/tokenizers tokenizers [--workers N]
-
-make bundle    # writes dist/tokenizers/
+make pipeline TARGET=targets/rust-sdk.toml        # or: python3 scripts/pipeline.py targets/rust-sdk.toml
 ```
+
+The stages are clone at the pinned head, feasibility (baseline and time-travel dependencies), catalog, Method A, Method B for every repro under `<results_dir>/repros/<fix>/overlay`, and bundle.
+
+- A stage whose output already exists is REUSED, so the expensive Docker stages are never redone silently. Pass `--fresh` to rerun them.
+- A failing stage is recorded with its reason, and the stages that don't depend on it still run.
+- The run writes `<results_dir>/PIPELINE.md` and `pipeline.json`, listing each stage's status, reason, time taken and output sha256.
+- A stage that did not run appears in the bundle's coverage as NOT TESTED.
+
+Method B needs a regression test per bug, written as a test overlay. Those tests are drafted per target, so a target without any shows Method B as NOT TESTED.
 
 ### Unattended sweeps
 

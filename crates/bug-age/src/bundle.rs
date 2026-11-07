@@ -11,7 +11,7 @@ use serde_json::{json, Map, Value};
 use std::collections::{BTreeMap, BTreeSet};
 use std::path::Path;
 
-pub const SCHEMA_VERSION: &str = "1.0.0";
+pub const SCHEMA_VERSION: &str = "1.1.0";
 const REDACTED: &str = "[redacted]";
 
 /// Names, emails and handles of everyone in the repository history (lower-cased, deduplicated).
@@ -170,6 +170,9 @@ fn days_between(repo: &Path, from: &str, to: &str) -> Result<f64, String> {
 /// One Method B record per repro, with the A-check and the A-vs-B relation derived from the data.
 fn method_b(repo: &Path, dir: &Path, szz: &Value) -> Result<Vec<Value>, String> {
     let mut out = Vec::new();
+    if !dir.is_dir() {
+        return Ok(out); // no repros for this target: Method B is reported NOT TESTED
+    }
     let mut entries: Vec<_> = std::fs::read_dir(dir).map_err(|e| e.to_string())?.flatten().collect();
     entries.sort_by_key(|e| e.file_name());
     for e in entries {
@@ -231,7 +234,11 @@ fn method_b(repo: &Path, dir: &Path, szz: &Value) -> Result<Vec<Value>, String> 
     Ok(out)
 }
 
+/// A missing report is `null` (the stage did not run) rather than an error.
 fn feasibility(path: &Path) -> Result<Value, String> {
+    if !path.is_file() {
+        return Ok(Value::Null);
+    }
     let r = read(path)?;
     Ok(json!({
         "verdict": r["verdict"],
@@ -245,26 +252,50 @@ fn feasibility(path: &Path) -> Result<Value, String> {
     }))
 }
 
-fn coverage(a: &Value, b: &[Value], feas: &Value, tt: &Value) -> Value {
+/// A stage that is out of scope for the target, as `(stage, evidence, does_not_prove)`; listed NOT TESTED.
+pub type OutOfScope = Option<(String, String, String)>;
+
+fn coverage(a: &Value, b: &[Value], feas: &Value, tt: &Value, out_of_scope: &OutOfScope) -> Value {
     let swept = b.len();
     let fixes = a["fixes"].as_u64().unwrap_or(0);
-    json!([
-        {"stage": "Historical buildability", "status": "COVERED",
-         "evidence": format!("{} sampled commits; {} with today's registry, {} with time-travel dependencies",
-                             feas["samples"].as_array().map_or(0, Vec::len), feas["built_and_tested_share"], tt["built_and_tested_share"]),
-         "proves": "sampled commits build and pass their unit tests offline in a date-matched toolchain",
-         "does_not_prove": "that every commit builds; integration tests needing downloaded fixtures were not run"},
+    let share = |f: &Value| if f.is_null() { "not run".to_string() } else { f["built_and_tested_share"].to_string() };
+    let buildability = if feas.is_null() && tt.is_null() {
+        json!({"stage": "Historical buildability", "status": "NOT TESTED",
+               "evidence": "no feasibility report", "proves": "nothing",
+               "does_not_prove": "that any historical commit builds"})
+    } else {
+        let samples = [feas, tt].iter().find(|f| !f.is_null()).and_then(|f| f["samples"].as_array()).map_or(0, Vec::len);
+        json!({"stage": "Historical buildability", "status": "COVERED",
+               "evidence": format!("{samples} sampled commits; {} with today's registry, {} with time-travel dependencies",
+                                   share(feas), share(tt)),
+               "proves": "sampled commits build and pass their unit tests offline in a date-matched toolchain",
+               "does_not_prove": "that every commit builds; integration tests needing downloaded fixtures were not run"})
+    };
+    let method_b = if swept == 0 {
+        json!({"stage": "Method B (behavioural sweep)", "status": "NOT TESTED",
+               "evidence": format!("0 of {fixes} fixes have a regression test"), "proves": "nothing",
+               "does_not_prove": "any bug's behavioural lifetime"})
+    } else {
+        json!({"stage": "Method B (behavioural sweep)", "status": "PARTIAL",
+               "evidence": format!("{swept} of {fixes} fixes have a regression test and a sweep"),
+               "proves": "where each tested bug's regression test starts failing, or a lower bound when censored",
+               "does_not_prove": "anything about the fixes without a regression test (NOT TESTED)"})
+    };
+    let mut rows = vec![buildability, json!(
         {"stage": "Method A (SZZ)", "status": "PARTIAL",
          "evidence": format!("{} fixes from a rule-based catalog, {} with a nominated introducer", fixes, a["with_introducer"]),
          "proves": "which earlier commit last touched the lines each fix changed",
-         "does_not_prove": "that the nominee introduced the bug (see the refuted case in Method B); fixes missed by the subject rules"},
-        {"stage": "Method B (behavioural sweep)", "status": "PARTIAL",
-         "evidence": format!("{swept} of {fixes} fixes have a regression test and a sweep"),
-         "proves": "where each tested bug's regression test starts failing, or a lower bound when censored",
-         "does_not_prove": "anything about the fixes without a regression test (NOT TESTED)"},
-        {"stage": "Bindings (Python/Node), benches", "status": "NOT TESTED",
-         "evidence": "out of scope for the Rust core crate", "proves": "nothing", "does_not_prove": "binding behaviour"},
-    ])
+         "does_not_prove": if b.iter().any(|s| s["a_check"]["label"] == "refuted") {
+             "that the nominee introduced the bug (see the refuted case in Method B); fixes missed by the subject rules"
+         } else {
+             "that the nominee introduced the bug; fixes missed by the subject rules"
+         }}),
+        method_b];
+    if let Some((stage, evidence, not_proved)) = out_of_scope {
+        rows.push(json!({"stage": stage, "status": "NOT TESTED", "evidence": evidence, "proves": "nothing",
+                         "does_not_prove": not_proved}));
+    }
+    Value::Array(rows)
 }
 
 pub struct Built {
@@ -272,7 +303,7 @@ pub struct Built {
     pub warnings: Vec<String>,
 }
 
-pub fn build(repo: &Path, results: &Path, spike: &Path, repo_url: &str) -> Result<Built, String> {
+pub fn build(repo: &Path, results: &Path, spike: &Path, repo_url: &str, out_of_scope: &OutOfScope) -> Result<Built, String> {
     let catalog = read(&results.join("catalog.json"))?;
     let szz = read(&results.join("szz.json"))?;
     let feas = feasibility(&spike.join("results/report.json"))?;
@@ -324,7 +355,7 @@ pub fn build(repo: &Path, results: &Path, spike: &Path, repo_url: &str) -> Resul
         "method_a": method_a,
         "method_b": b,
         "feasibility": {"baseline": feas, "time_travel": tt},
-        "coverage": coverage(&a_summary, &b, &feas, &tt),
+        "coverage": coverage(&a_summary, &b, &feas, &tt, out_of_scope),
         "commits": commits,
     });
     let hits = scan_with(&bundle, &ids);
