@@ -5,6 +5,7 @@ import { spawn } from "node:child_process";
 import { writeFileSync, mkdirSync } from "node:fs";
 import { resolve } from "node:path";
 
+// Chrome binary; override with the CHROME environment variable on other systems.
 const CHROME = process.env.CHROME || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 const [page, outDir] = process.argv.slice(2);
 const FIGURES = [
@@ -20,6 +21,7 @@ const chrome = spawn(CHROME, ["--headless=new", "--disable-gpu", "--hide-scrollb
   "--force-prefers-reduced-motion", "--blink-settings=preferredColorScheme=1", "--window-size=1280,900", "about:blank"], { stdio: "ignore" });
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
+/** Waits for Chrome's DevTools endpoint and returns the first page target. */
 async function target() {
   for (let i = 0; i < 50; i++) {
     try { const list = await (await fetch(`http://127.0.0.1:${port}/json`)).json(); const p = list.find(t => t.type === "page"); if (p) return p; } catch {}
