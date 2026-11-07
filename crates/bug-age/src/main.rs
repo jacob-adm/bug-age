@@ -19,6 +19,7 @@ const USAGE: &str = "usage: bug-age [--version | --help]
        bug-age sweep --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD
              [--build CMD] [--start SHA] [--runner docker|local] [--repeats N] [--image IMG]
              [--time-travel-script FILE|none] [--scratch DIR] [--logs DIR] [--out FILE]
+             [--namespace NAME] [--bucket N (toolchain minor rounding, default 4; 0 = exact)]
        bug-age probe --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]";
 
 fn flags(args: &[String]) -> Result<HashMap<String, String>, String> {
@@ -103,7 +104,10 @@ fn spec_and_runner(f: &HashMap<String, String>, tag: &str) -> Result<(Spec, Box<
         "local" => Box::new(Local::new(&spec)),
         "docker" => {
             let tt = opt("time-travel-script", "spike/timetravel.py");
-            Box::new(Docker::new(opt("image", "bug-age-spike:4"), (tt != "none").then(|| PathBuf::from(tt))))
+            let mut d = Docker::new(opt("image", "bug-age-spike:4"), (tt != "none").then(|| PathBuf::from(tt)));
+            d.namespace = f.get("namespace").map(|n| format!("-{n}")).unwrap_or_default();
+            d.bucket = opt("bucket", "4").parse().map_err(|e| format!("--bucket: {e}"))?;
+            Box::new(d)
         }
         other => return Err(format!("unknown runner '{other}'")),
     };
@@ -118,7 +122,7 @@ fn cmd_probe(f: &HashMap<String, String>) -> Result<(), String> {
     let mut results = Vec::new();
     for c in &commits {
         let sha = bug_age::git::git(&spec.repo, &["rev-parse", c])?.trim().to_string();
-        let r = sweep::evaluate(runner.as_mut(), &spec, &sha);
+        let r = sweep::evaluate(runner.as_mut(), &spec, &sha, spec.repeats);
         eprintln!("probe: {} {:?} ({})", &sha[..10], r.outcome, r.reason);
         results.push(r);
     }
