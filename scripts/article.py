@@ -17,7 +17,9 @@ outside a reference, a code span, a fenced block, or a link/image target.
 import argparse, json, re, sys
 from pathlib import Path
 
+# {{target:path}} or {{target:path|format}}
 REF = re.compile(r"\{\{([a-z0-9-]+):([^}|]+)(?:\|([a-z]+))?\}\}")
+# One path segment: an optional field name followed by zero or more [selector]s
 SEG = re.compile(r"^([A-Za-z_][A-Za-z0-9_-]*)?((?:\[[^\]]+\])*)$")
 
 
@@ -26,6 +28,10 @@ class TraceError(Exception):
 
 
 def resolve(value, path):
+    """Follow a dotted bundle path (with [i], [key=value] and [@max=key] selectors) and return the value.
+
+    Raises TraceError when a field, index or matching row does not exist.
+    """
     for seg in path.split("."):
         m = SEG.match(seg)
         if not m:
@@ -61,6 +67,10 @@ def resolve(value, path):
 
 
 def fmt(value, how, bundle):
+    """Format a resolved value for the article according to `how` (num, pct, len, short, text, subject, limits).
+
+    Raises TraceError for null values and type mismatches, so a missing stage cannot print as a number.
+    """
     if how == "limits":
         rows = [c for c in bundle["coverage"] if c["status"] != "COVERED"]
         return "\n".join(f"- **{c['stage']}** ({c['status']}): {c['evidence']}. Does not prove: {c['does_not_prove']}." for c in rows)
@@ -94,6 +104,7 @@ def strip_allowed(text):
 
 
 def main():
+    """Render the template, check that every number is traced, and write the article and trace table."""
     ap = argparse.ArgumentParser()
     ap.add_argument("template")
     ap.add_argument("--bundle", action="append", required=True, metavar="NAME=FILE")
@@ -108,6 +119,7 @@ def main():
     errors, trace = [], []
 
     def sub(m):
+        """Replace one reference with its formatted value and record the trace; collect errors instead of raising."""
         target, path, how = m.group(1), m.group(2).strip(), m.group(3)
         line = src.count("\n", 0, m.start()) + 1
         try:

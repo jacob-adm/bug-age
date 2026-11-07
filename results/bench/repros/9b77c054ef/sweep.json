@@ -1,0 +1,207 @@
+{
+  "build": "cargo test --test bugage_repro --no-run",
+  "commits_tested": 5,
+  "confirmation": "decisive commits confirmed x3",
+  "first_failing": "c1100ec542d11861a00a388ec4f5004c5d74b079",
+  "fix": "9b77c054ef4297c7057fa8db875368c7c02f1bfc",
+  "frontier": "c1100ec542d11861a00a388ec4f5004c5d74b079",
+  "last_passing": null,
+  "non_monotonic": false,
+  "range_commits": 274,
+  "reason": "test fails from the first commit of the range",
+  "repeats": 3,
+  "results": [
+    {
+      "outcome": "FAIL",
+      "reason": "failed 3x",
+      "sha": "c1100ec542d11861a00a388ec4f5004c5d74b079",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 1.8
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 22.6
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_2",
+          "network": false,
+          "seconds": 0.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_3",
+          "network": false,
+          "seconds": 0.2
+        }
+      ],
+      "toolchain": "1.56"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 1x",
+      "sha": "b240ccb68a9ef8d295ace69f5e040e4cbd133f04",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 25.4
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.3
+        }
+      ],
+      "toolchain": "1.60"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 1x",
+      "sha": "31dd4364f0a1cdd1c274aefa4b335c01a1b423d6",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 1.9
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 14.1
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.3
+        }
+      ],
+      "toolchain": "1.60"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 3x",
+      "sha": "bce68a60cb7b8bd3ecd252f1a24b30e66cbce037",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 4.1
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 7.8
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.1
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_2",
+          "network": false,
+          "seconds": 0.1
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 101,
+          "name": "test_3",
+          "network": false,
+          "seconds": 0.1
+        }
+      ],
+      "toolchain": "1.84"
+    },
+    {
+      "outcome": "PASS",
+      "reason": "passed 3x",
+      "sha": "9b77c054ef4297c7057fa8db875368c7c02f1bfc",
+      "steps": [
+        {
+          "cmd": "cargo fetch",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 4.8
+        },
+        {
+          "cmd": "cargo test --test bugage_repro --no-run",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 14.5
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 0,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 0,
+          "name": "test_2",
+          "network": false,
+          "seconds": 0.2
+        },
+        {
+          "cmd": "cargo test --test bugage_repro",
+          "exit": 0,
+          "name": "test_3",
+          "network": false,
+          "seconds": 0.2
+        }
+      ],
+      "toolchain": "1.84"
+    }
+  ],
+  "runner": "docker",
+  "start": "c1100ec542d11861a00a388ec4f5004c5d74b079",
+  "test": "cargo test --test bugage_repro",
+  "untestable_between": 0,
+  "verdict": "left-censored"
+}

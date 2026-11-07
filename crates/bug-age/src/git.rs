@@ -1,5 +1,7 @@
-//! Thin wrapper over the `git` CLI. All history access goes through here so every
-//! number bug-age reports is traceable to a concrete git command.
+//! Git access layer.
+//!
+//! Thin wrapper over the `git` CLI. All history access goes through this module, so every
+//! number bug-age reports is traceable to a concrete git command that anyone can re-run.
 
 use std::path::Path;
 use std::process::Command;
@@ -12,6 +14,9 @@ const GIT_ENV: &[&str] = &[
     "GIT_COMMON_DIR", "GIT_PREFIX", "GIT_NAMESPACE", "GIT_CEILING_DIRECTORIES",
 ];
 
+/// Returns a `git` command with inherited repository variables removed.
+///
+/// Use this instead of `Command::new("git")` everywhere, including tests.
 pub fn command() -> Command {
     let mut cmd = Command::new("git");
     for var in GIT_ENV {
@@ -20,6 +25,10 @@ pub fn command() -> Command {
     cmd
 }
 
+/// Runs `git -C <repo> <args>` and returns stdout as text.
+///
+/// # Errors
+/// Returns the command line and git's stderr when git cannot start or exits non-zero.
 pub fn git(repo: &Path, args: &[&str]) -> Result<String, String> {
     let out = command()
         .arg("-C")
@@ -47,6 +56,7 @@ pub fn author_time(repo: &Path, sha: &str) -> Result<i64, String> {
     unix_time(repo, sha, "%at")
 }
 
+/// Reads one timestamp field (`%ct` or `%at`) of a commit as unix seconds.
 fn unix_time(repo: &Path, sha: &str, fmt: &str) -> Result<i64, String> {
     let s = git(repo, &["show", "-s", &format!("--format={fmt}"), sha])?;
     s.trim().parse().map_err(|e| format!("bad time for {sha}: {e}"))

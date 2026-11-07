@@ -1,6 +1,7 @@
+# bug-age: library and single CLI binary. Runtime dependencies are kept to regex, serde and sha2.
 [package]
 name = "bug-age"
-version = "1.0.0"
+version = "1.0.1"
 description = "Measure how long bugs lived in a git repository"
 edition.workspace = true
 rust-version.workspace = true

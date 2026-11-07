@@ -11,27 +11,31 @@ continues with whatever does not depend on it. Writes <results_dir>/PIPELINE.md 
 import datetime as dt, hashlib, json, subprocess, sys, time, tomllib
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-BIN = ROOT / "target" / "debug" / "bug-age"
+ROOT = Path(__file__).resolve().parent.parent       # repository root; all stages run from here
+BIN = ROOT / "target" / "debug" / "bug-age"        # CLI built by `cargo build`
 
 
 def sha256(p):
+    """Return the hex sha256 of a file, recorded per stage output."""
     return hashlib.sha256(Path(p).read_bytes()).hexdigest() if Path(p).is_file() else None
 
 
 def run(cmd, log):
+    """Run a command from the repo root, append its output to `log`, and return the exit status."""
     with open(log, "a") as f:
         f.write(f"\n$ {' '.join(map(str, cmd))}\n"); f.flush()
         return subprocess.run(list(map(str, cmd)), cwd=ROOT, stdout=f, stderr=subprocess.STDOUT).returncode
 
 
 def tail(log, n=3):
+    """Return the last `n` non-empty log lines as one stage reason, with local paths removed."""
     lines = [l for l in Path(log).read_text().splitlines() if l.strip()]
     text = " / ".join(lines[-n:]).replace(f"{ROOT}/", "").replace(str(ROOT), ".").replace(str(Path.home()), "~")
     return text[:300]
 
 
 def main():
+    """Load the target config, run each stage in order, and write the stage report."""
     cfg_path = Path(sys.argv[1])
     fresh, skip_feas = "--fresh" in sys.argv, "--skip-feasibility" in sys.argv
     c = tomllib.loads(cfg_path.read_text())
@@ -42,6 +46,7 @@ def main():
     stages = []
 
     def stage(name, out, fn):
+        """Run one stage unless its output exists (reused unless --fresh); record status, reason, time and hash."""
         t0 = time.time()
         try:
             status, reason = fn()
@@ -54,6 +59,7 @@ def main():
         return status in ("OK", "REUSED")
 
     def clone():
+        """Clone the target repository if needed and check out the pinned head."""
         if not repo.is_dir() and run(["git", "clone", "-q", c["repo_url"], repo], log):
             return "FAILED", "git clone failed: " + tail(log)
         g = lambda *a: subprocess.run(["git", "-C", repo, *a], capture_output=True, text=True)
@@ -67,8 +73,10 @@ def main():
         return "OK", f"at pinned head {c['head'][:10]}"
 
     def feasibility(tt):
+        """Run the feasibility spike (baseline, or time-travel when `tt`) for this target."""
         out = spike / ("results-timetravel" if tt else "results") / "report.json"
         def fn():
+            """Stage body; returns (status, reason)."""
             if skip_feas:
                 return "NOT TESTED", "skipped (--skip-feasibility)"
             if out.is_file() and not fresh:
@@ -81,13 +89,16 @@ def main():
         return out, fn
 
     def cli(name, args, out):
+        """Return a stage function that runs one bug-age subcommand writing to `out`."""
         def fn():
+            """Stage body; returns (status, reason)."""
             if run([BIN, name, *args, "--out", out], log):
                 return "FAILED", tail(log)
             return "OK", tail(log, 1)
         return fn
 
     def repros():
+        """Sweep the target's regression tests if it has any; otherwise report Method B as NOT TESTED."""
         overlays = sorted((res / "repros").glob("*/overlay")) if (res / "repros").is_dir() else []
         if not overlays:
             return "NOT TESTED", "no regression tests written for this target (results_dir/repros/<fix>/overlay)"
@@ -122,6 +133,7 @@ def main():
 
 
 def finish(c, res, stages):
+    """Write pipeline.json and PIPELINE.md, and return a non-zero exit code if any stage failed."""
     failed = [s for s in stages if s["status"] == "FAILED"]
     doc = {"target": c["name"], "repo_url": c["repo_url"], "head": c["head"], "crate_path": c["crate_path"],
            "generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "stages": stages}

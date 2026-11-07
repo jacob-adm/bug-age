@@ -1,7 +1,10 @@
+//! CLI contract: version output and usage errors.
+//!
 //! Runs the built binary as a subprocess; no mocks.
 
 use std::process::Command;
 
+/// Runs the built binary with `args` and returns its raw output.
 fn bug_age(args: &[&str]) -> std::process::Output {
     Command::new(env!("CARGO_BIN_EXE_bug-age"))
         .args(args)
@@ -9,6 +12,7 @@ fn bug_age(args: &[&str]) -> std::process::Output {
         .expect("failed to spawn bug-age binary")
 }
 
+/// `--version` prints the crate version.
 #[test]
 fn version_reports_crate_version() {
     let out = bug_age(&["--version"]);
@@ -19,6 +23,7 @@ fn version_reports_crate_version() {
     );
 }
 
+/// An unknown subcommand exits with status 2 and prints usage.
 #[test]
 fn unknown_argument_fails_with_usage_exit_code() {
     let out = bug_age(&["--definitely-not-a-flag"]);

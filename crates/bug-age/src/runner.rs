@@ -1,3 +1,5 @@
+//! Commit runners.
+//!
 //! Execution environments for testing one commit with a regression-test overlay.
 //!
 //! `Docker` is the real runner: each commit's tree is copied into a volume with `git archive`
@@ -15,43 +17,71 @@ use std::time::Instant;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+/// Classification of one commit for one test.
 pub enum Outcome {
+    /// Built, and every test repeat passed.
     Pass,
+    /// Built, and every test repeat failed.
     Fail,
+    /// Could not be tested here: staging, dependency fetch or build failed.
     Untestable,
+    /// Built, but repeats disagreed.
     Flaky,
 }
 
 #[derive(Debug, Clone, Serialize)]
+/// One executed step (fetch, build, test_N) and its evidence.
 pub struct Step {
+    /// Step name, e.g. `build` or `test_2`.
     pub name: String,
+    /// Shell command run.
     pub cmd: String,
+    /// Exit status; -1 if the step could not be started.
     pub exit: i32,
+    /// Wall-clock duration.
     pub seconds: f64,
+    /// Whether the step had network access (only dependency fetches do).
     pub network: bool,
 }
 
 #[derive(Debug, Clone, Serialize)]
+/// Everything recorded for one tested commit.
 pub struct CommitResult {
+    /// Commit SHA.
     pub sha: String,
+    /// PASS, FAIL, UNTESTABLE or FLAKY.
     pub outcome: Outcome,
+    /// Plain-language reason for the outcome.
     pub reason: String,
+    /// Rust toolchain used, e.g. `1.46`.
     pub toolchain: String,
+    /// Steps in execution order.
     pub steps: Vec<Step>,
 }
 
+/// What to test and where: shared by every commit in a sweep.
 pub struct Spec {
+    /// Target repository clone.
     pub repo: PathBuf,
+    /// Crate directory inside the repository.
     pub crate_path: String,
+    /// Directory copied over each commit's tree: the regression test for one bug.
     pub overlay: PathBuf,
+    /// Build command, run in the crate directory.
     pub build: String,
+    /// Test command, run in the crate directory.
     pub test: String,
+    /// Repeats used to confirm decisive commits.
     pub repeats: u32,
+    /// Working directory for worktrees and staging.
     pub scratch: PathBuf,
+    /// Directory for per-commit step logs.
     pub logs: PathBuf,
 }
 
+/// An environment that can stage a commit and run commands in it.
 pub trait Runner {
+    /// Short identifier recorded in results: `local` or `docker`.
     fn name(&self) -> &'static str;
     /// Prepare the tree for `sha`; returns the toolchain label used.
     fn stage(&mut self, spec: &Spec, sha: &str) -> Result<String, String>;
@@ -83,6 +113,7 @@ pub fn bucketed(toolchain: &str, bucket: i64) -> String {
     }
 }
 
+/// Reads `rust-version` from the crate manifest at `sha`, if declared.
 fn rust_version(repo: &Path, sha: &str, crate_path: &str) -> Option<String> {
     let manifest = git(repo, &["show", &format!("{sha}:{crate_path}/Cargo.toml")]).ok()?;
     manifest.lines().find_map(|l| {
@@ -91,12 +122,14 @@ fn rust_version(repo: &Path, sha: &str, crate_path: &str) -> Option<String> {
     })
 }
 
+/// True if a `Cargo.lock` exists at `sha` in the crate directory or the repository root.
 pub fn has_lockfile(repo: &Path, sha: &str, crate_path: &str) -> bool {
     [format!("{sha}:{crate_path}/Cargo.lock"), format!("{sha}:Cargo.lock")]
         .iter()
         .any(|obj| git(repo, &["cat-file", "-e", obj]).is_ok())
 }
 
+/// Runs a command, writes its combined output to `log`, and returns (exit status, seconds).
 fn run_logged(cmd: &mut Command, log: &Path, stdin: Option<&[u8]>) -> Result<(i32, f64), String> {
     let t0 = Instant::now();
     let mut child = cmd
@@ -134,11 +167,15 @@ pub fn copy_tree(src: &Path, dst: &Path) -> Result<(), String> {
     Ok(())
 }
 
+/// Host runner: checks commits out in a git worktree and uses the host toolchain. Not hermetic;
+/// used to test the sweep logic without Docker.
 pub struct Local {
+    /// Worktree directory under the scratch path.
     wt: PathBuf,
 }
 
 impl Local {
+    /// Creates a runner whose worktree lives under `spec.scratch`.
     pub fn new(spec: &Spec) -> Self {
         Local { wt: spec.scratch.join("local-wt") }
     }
@@ -171,9 +208,14 @@ impl Runner for Local {
     }
 }
 
+/// Hermetic runner: each commit is built and tested in a container with no network, a
+/// date-matched toolchain, and dependencies resolved as of the commit date when it has no lockfile.
 pub struct Docker {
+    /// Container image with rustup and build tools.
     pub image: String,
+    /// Script that builds a time-travel registry index; `None` disables time travel.
     pub time_travel_script: Option<PathBuf>,
+    /// Toolchain selected for the currently staged commit.
     toolchain: String,
     /// Most recently used toolchains whose build caches are kept (oldest first).
     recent: Vec<String>,
@@ -191,25 +233,30 @@ pub struct Docker {
 /// date-matched sweep touches many toolchains (an uncapped run consumed 17 GB in 10 minutes).
 const KEEP_TARGETS: usize = 2;
 
+/// Volume holding the staged commit tree; recreated for every commit.
 const SRC: &str = "bugage-src";
-/// Build cache: one volume per toolchain, reused across commits so registry dependencies are not
-/// recompiled. Workspace crates always rebuild because staged files get fresh mtimes (see untar_into).
+/// Volume holding the time-travel registry index for lockfile-less commits.
 const INDEX: &str = "bugage-index";
 
 impl Docker {
+    /// Creates a runner for `image`; set the public fields to enable namespacing and bucketing.
     pub fn new(image: String, time_travel_script: Option<PathBuf>) -> Self {
         Docker { image, time_travel_script, toolchain: String::new(), recent: Vec::new(), namespace: String::new(),
                  bucket: 0, exact_toolchain: String::new(), unavailable: Vec::new() }
     }
 
+    /// Volume name with this worker's namespace suffix.
     fn v(&self, base: &str) -> String {
         format!("{base}{}", self.namespace)
     }
 
+    /// Build cache: one volume per toolchain, reused across commits so registry dependencies are not
+    /// recompiled. Workspace crates always rebuild because staged files get fresh mtimes (see untar_into).
     fn target_volume(&self, toolchain: &str) -> String {
         format!("bugage-target{}-{toolchain}", self.namespace)
     }
 
+    /// Installs the selected toolchain into the shared rustup volume (serialized with a file lock).
     fn install(&mut self, spec: &Spec, log: &Path) -> Result<(), String> {
         // flock: parallel workers share the rustup volume; concurrent installs can corrupt it.
         let install = format!("flock /rustup/.bug-age-install.lock rustup toolchain install {} --profile minimal --no-self-update",
@@ -221,10 +268,12 @@ impl Docker {
         Ok(())
     }
 
+    /// Runs a `docker` CLI command with logging.
     fn docker(&self, args: &[&str], stdin: Option<&[u8]>, log: &Path) -> Result<(i32, f64), String> {
         run_logged(Command::new("docker").args(args), log, stdin)
     }
 
+    /// Extracts a tar stream into `dir` inside a volume.
     fn untar_into(&self, volume: &str, dir: &str, tar: &[u8], log: &Path) -> Result<(), String> {
         let mount = format!("{}:/{volume}", self.v(volume));
         // -m: stamp files with extraction time. git archive stamps them with the commit time, and
@@ -240,6 +289,7 @@ impl Docker {
         Ok(())
     }
 
+    /// Keeps only the `KEEP_TARGETS` most recently used build-cache volumes to bound disk use.
     fn evict_build_caches(&mut self, logs: &Path) -> Result<(), String> {
         self.recent.retain(|t| *t != self.toolchain);
         self.recent.push(self.toolchain.clone());
@@ -261,6 +311,8 @@ impl Docker {
         Ok(())
     }
 
+    /// Builds a registry index limited to crate versions published by the commit date, so a
+    /// lockfile-less commit resolves the dependencies it would have had at the time.
     fn time_travel(&self, spec: &Spec, sha: &str, script: &Path) -> Result<(), String> {
         let short = &sha[..12];
         let tree = spec.scratch.join("tt-tree").join(short);

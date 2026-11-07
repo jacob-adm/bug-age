@@ -1,3 +1,10 @@
+<!--
+  bug-age explorer page (source). `bug-age explorer` replaces the data marker below with one
+  <script src="data/NAME.js"> per repository and writes the result to dist/explorer.
+  Rules: no network at runtime, all repository text rendered with textContent, works with every
+  capability absent. The optional "Ask Claude" panel is the only AI feature, and its answers are
+  shown only after a mechanical citation check.
+-->
 <title>Bug Age Explorer</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -249,6 +256,7 @@ let T = null;      // current target {name, receipt, bundle}
 let B = null;      // its bundle
 
 // ---------- DOM helpers: every piece of bundle text goes through textContent ----------
+/** Creates an HTML element. String children become text nodes; attributes named on* become listeners. Never uses innerHTML. */
 function el(tag, attrs, ...kids) {
   const n = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs || {})) {
@@ -261,6 +269,7 @@ function el(tag, attrs, ...kids) {
   return n;
 }
 const SVGNS = "http://www.w3.org/2000/svg";
+/** Creates an SVG element with the same rules as el(). */
 function sv(tag, attrs, ...kids) {
   const n = document.createElementNS(SVGNS, tag);
   for (const [k, v] of Object.entries(attrs || {})) {
@@ -270,27 +279,39 @@ function sv(tag, attrs, ...kids) {
   return n;
 }
 const $ = id => document.getElementById(id);
+/** First 10 characters of a SHA, or an em dash. */
 const short = s => s ? s.slice(0, 10) : "—";
+/** Commit subject from the bundle. Repository text: render with textContent only. */
 const subj = sha => (B.commits[sha] && B.commits[sha].subject) || "(subject not in bundle)";
+/** Commit date from the bundle, YYYY-MM-DD. */
 const cdate = sha => (B.commits[sha] && B.commits[sha].date) || "";
+/** Display format: integers as is, other numbers to one decimal, null as an em dash. */
 const fmt = v => v == null ? "—" : (Number.isInteger(v) ? String(v) : String(Math.round(v * 10) / 10));
 const store = { get(k) { try { return localStorage.getItem(k) } catch (e) { return null } }, set(k, v) { try { localStorage.setItem(k, v) } catch (e) {} } };
+/** Link to a commit on the repository host, labelled with its short SHA. */
 function commitLink(sha) { return el("a", { href: B.subject.repo_url.replace(/\/$/, "") + "/commit/" + sha, target: "_blank", rel: "noopener", class: "mono" }, short(sha)); }
 
 // ---------- Self-check: the CLI's formulas, recomputed from rows ----------
+/** Median of sorted values (mean of the two middle values when n is even). Same formula as the CLI. */
 function median(v) { const n = v.length; return n % 2 ? v[(n - 1) / 2] : (v[n / 2 - 1] + v[n / 2]) / 2; }
+/** Nearest-rank percentile of sorted values: index floor(q * n). Same formula as the CLI. */
 function pct(v, q) { return v[Math.min(Math.floor(q * v.length), v.length - 1)]; }
+/** {median, p90, max, n} over the numeric values, or null when there are none. */
 function stat(vals) { const v = vals.filter(x => typeof x === "number").sort((a, b) => a - b); return v.length ? { median: median(v), p90: pct(v, 0.9), max: v[v.length - 1], n: v.length } : null; }
+/** Method A age of one row: committer days, or author days when a rebase compressed committer dates. */
 function aDays(r) {
   const l = r.lifetime; if (!l || typeof l !== "object" || !Array.isArray(r.flags)) return null;
   const compressed = r.flags.some(f => typeof f === "string" && f.startsWith("committer-dates-compressed"));
   const d = l[compressed ? "calendar_days_author" : "calendar_days"]; return typeof d === "number" ? d : null;
 }
+/** Share of feasibility samples that built and passed unit tests, rounded to 3 places; null if not run. */
 function share(run) {
   if (!run) return null;
   const n = run.samples.length; return n ? Math.round(run.samples.filter(s => s.status === "BUILT_AND_TESTED").length / n * 1000) / 1000 : 0;
 }
+/** Counts rows per key returned by f; null keys are skipped. */
 function countBy(rows, f) { const m = {}; for (const r of rows) { const k = f(r); if (k != null) m[k] = (m[k] || 0) + 1; } return m; }
+/** Recomputes every summary metric from the raw rows, independently of the CLI. */
 function recompute(b) {
   const a = b.method_a, mb = b.method_b;
   return {
@@ -308,7 +329,9 @@ function recompute(b) {
     "feasibility.time_travel_share": share(b.feasibility.time_travel),
   };
 }
+/** Reads a dotted path from an object; undefined if any step is missing. */
 function pick(obj, path) { return path.split(".").reduce((o, k) => o == null ? undefined : o[k], obj); }
+/** Deep equality with a 1e-9 tolerance for numbers; null and undefined are equal. */
 function same(x, y) {
   if (typeof x === "number" && typeof y === "number") return Math.abs(x - y) < 1e-9;
   if (x == null || y == null) return x == null && y == null;
@@ -318,6 +341,7 @@ function same(x, y) {
   }
   return x === y;
 }
+/** Compares the CLI summary with recompute(); returns one {path, cli, mine, ok} row per metric. */
 function selfCheck(b) {
   const re = recompute(b);
   return Object.entries(re).map(([path, mine]) => {
@@ -331,15 +355,19 @@ let CHECKS = [];
 
 // ---------- Drawer ----------
 let lastFocus = null;
+/** Opens the evidence drawer with a title and body nodes; remembers focus to restore on close. */
 function openDrawer(title, ...body) {
   lastFocus = document.activeElement;
   $("drawer-title").textContent = title;
   $("drawer-body").replaceChildren(...body.flat().filter(Boolean));
   $("drawer").hidden = false; $("drawer-close").focus();
 }
+/** Closes the evidence drawer and returns focus. */
 function closeDrawer() { $("drawer").hidden = true; if (lastFocus) lastFocus.focus(); }
 $("drawer-close").addEventListener("click", closeDrawer);
+/** Definition list from [label, value] pairs; falsy pairs are skipped. */
 function dl(pairs) { return el("dl", null, pairs.filter(Boolean).flatMap(([k, v]) => [el("dt", null, k), el("dd", null, v)])); }
+/** Preformatted text with a Copy button; falls back to selecting the text if the clipboard is refused. */
 function copyBlock(text) {
   const pre = el("pre", null, text);
   const btn = el("button", { class: "btn", type: "button", onclick: () => {
@@ -349,6 +377,7 @@ function copyBlock(text) {
   } }, "Copy");
   return el("div", { class: "copy" }, pre, btn);
 }
+/** Drawer section: bundle sha256, blameless gate result, generator, and rebuild commands. */
 function provenance() {
   const sha = T.receipt && T.receipt.outputs ? T.receipt.outputs["bundle.json"] : null;
   return [el("h3", null, "Provenance"), dl([
@@ -357,11 +386,13 @@ function provenance() {
     ["Generator", B.generator],
   ]), el("p", { class: "dim" }, "Rebuild and compare:"), copyBlock(reproCommands())];
 }
+/** Shell commands that rebuild this target's bundle from scratch and hash it. */
 function reproCommands() {
   return `git clone https://github.com/jacob-adm/bug-age && cd bug-age\nmake pipeline TARGET=targets/${T.name}.toml\nshasum -a 256 dist/${T.name}/bundle.json`;
 }
 
 const STAT_FORMULA = "Sorted values; median = middle value (mean of the two middle values when n is even); p90 = value at index floor(0.9 × n); max = last value.";
+/** Drawer body for one summary metric: source rows, formula, CLI vs recomputed value, provenance. */
 function evidenceForCheck(path) {
   const c = CHECKS.find(x => x.path === path);
   const rows = {
@@ -386,6 +417,7 @@ function evidenceForCheck(path) {
 }
 
 // ---------- Overview ----------
+/** Renders the title, self-check banner, headline tiles and coverage table. */
 function renderOverview() {
   const s = B.summary, a = s.method_a;
   $("ov-title").textContent = B.subject.repo_url.replace(/^https?:\/\/(www\.)?github\.com\//, "") + " · " + B.subject.crate_path;
@@ -426,6 +458,7 @@ const COLS = [
   ["releases", "Releases", r => r.lifetime && r.lifetime.releases_spanned ? r.lifetime.releases_spanned.length : null, true],
 ];
 let sortKey = "days", sortDir = -1;
+/** Drawer for one fix: Method A nominees and lifetime, Method B sweep if any, provenance. */
 function bugDrawer(r) {
   const l = r.lifetime || {};
   const sweep = B.method_b.find(m => m.fix === r.fix);
@@ -442,6 +475,7 @@ function bugDrawer(r) {
     sweep ? el("pre", null, sweep.repro_test) : null,
     provenance());
 }
+/** Renders the sortable, filterable table of catalogued fixes. */
 function renderBugs() {
   const head = $("bug-table").tHead.rows[0];
   head.replaceChildren(...COLS.map(([k, label, , num]) => el("th", { class: num ? "num" : null, "aria-sort": sortKey === k ? (sortDir < 0 ? "descending" : "ascending") : null },
@@ -462,6 +496,7 @@ $("bug-filter").addEventListener("input", () => renderBugs());
 // ---------- Timeline ----------
 const DAY = 86400000;
 let TL = null;
+/** Draws one bar per traced bug, from nominated introducer to fix, with a year axis and date scrubber. */
 function renderTimeline() {
   const bars = B.method_a.filter(r => aDays(r) != null).map(r => { const end = Date.parse(r.fix_date); return { r, start: end - aDays(r) * DAY, end }; }).sort((a, b) => a.start - b.start);
   const host = $("tl-svg");
@@ -488,6 +523,7 @@ function renderTimeline() {
   TL = { bars, rects, cursor, x, t0 };
   scrub();
 }
+/** Updates the timeline for the scrubber date: highlights bugs alive on that day. */
 function scrub() {
   if (!TL) return;
   const at = $("scrub").value === $("scrub").max;   // resting at the end: show every bar, no cursor
@@ -501,6 +537,7 @@ $("scrub").addEventListener("input", scrub);
 
 // ---------- Heatmap ----------
 const STATUS = { PASS: "--pass", BUILT_AND_TESTED: "--pass", FAIL: "--fail", TESTS_FAILED: "--fail", BUILD_FAILED: "--untestable", UNTESTABLE: "--untestable", NOT_TESTED: "--none", FLAKY: "--flaky" };
+/** Drawer for one tested commit: outcome, reason, toolchain and the step-by-step run log. */
 function cellDrawer(row, c) {
   const status = c.outcome || c.status;
   openDrawer(`${short(c.sha)} · ${status}`,
@@ -510,12 +547,14 @@ function cellDrawer(row, c) {
       el("tbody", null, c.steps.map(s => el("tr", null, el("td", null, s.name), el("td", { class: "num" }, s.exit), el("td", { class: "num" }, fmt(s.seconds)), el("td", null, s.network ? "yes" : "no"))))))] : null,
     provenance());
 }
+/** One heatmap row: a label and one square per tested commit, oldest first. */
 function heatRow(label, cells) {
   const sorted = [...cells].sort((a, b) => (a.date || cdate(a.sha)).localeCompare(b.date || cdate(b.sha)));
   return el("div", { class: "hrow" }, el("div", { class: "hlabel" }, label, el("div", { class: "dim mono" }, `${cells.length} commits`)),
     el("div", { class: "cells" }, sorted.map(c => { const s = c.outcome || c.status;
       return el("button", { class: "cell", type: "button", style: `background: var(${STATUS[s] || "--none"})`, "aria-label": `${short(c.sha)} ${s}`, title: `${short(c.sha)} ${cdate(c.sha) || c.date || ""} ${s}`, onclick: () => cellDrawer(label, c) }); })));
 }
+/** Renders feasibility rows and one row per Method B sweep; missing stages show NOT TESTED. */
 function renderHeatmap() {
   $("heat-legend").replaceChildren(...[["Pass", "--pass"], ["Fail", "--fail"], ["Does not build here", "--untestable"], ["Flaky", "--flaky"], ["Not tested", "--none"]]
     .map(([k, v]) => el("span", null, el("i", { class: "sw", style: `background: var(${v})` }), k)));
@@ -550,6 +589,7 @@ const VERDICT_TEXT = {
   "left-censored": "The test fails at the start of the swept range; the bug is older than the range.",
   "repro-invalid": "The regression test did not fail before the fix, so it was rejected.",
 };
+/** Builds pattern cards from catalog exclusions, Method A flags and sweep verdicts, each with its locking test. */
 function patternCards() {
   const cards = [];
   const exRules = countBy(B.catalog.excluded, e => e.rule);
@@ -566,11 +606,13 @@ function patternCards() {
   return cards;
 }
 let CARDS = [];
+/** Drawer for one pattern: explanation, locking test, and the commits behind the count. */
 function cardDrawer(c) {
   openDrawer(c.title, el("p", null, c.text), dl([["Rows", String(c.n)], ["Locked by", c.lock || "No test locks this pattern yet."]]),
     el("h3", null, "Commits"), el("div", { class: "scroll" }, el("table", null, el("tbody", null, c.shas.map(s => el("tr", { onclick: () => { const r = B.method_a.find(x => x.fix === s); if (r) bugDrawer(r); } },
       el("td", null, commitLink(s)), el("td", { class: "mono" }, cdate(s)), el("td", null, subj(s))))))), provenance());
 }
+/** Renders the pattern cards. */
 function renderPatterns() {
   CARDS = patternCards();
   $("cards").replaceChildren(...CARDS.map(c => el("button", { class: "card", type: "button", onclick: () => cardDrawer(c) },
@@ -579,6 +621,7 @@ function renderPatterns() {
 }
 
 // ---------- Method A vs B ----------
+/** Renders the Method A vs Method B comparison, or NOT TESTED when no sweeps exist. */
 function renderAB() {
   const mb = B.method_b;
   if (!mb.length) { const cov = B.coverage.find(c => c.stage.startsWith("Method B")); $("ab").replaceChildren(el("p", { class: "note" }, "Method B: NOT TESTED for this repository. " + (cov ? cov.evidence + "." : ""), " Only Method A numbers are reported here.")); return; }
@@ -594,7 +637,9 @@ function renderAB() {
 
 // ---------- Ask the repo: Tier 1 ----------
 const STOP = new Set("the a an and or of to in for on with from by fix fixes fixed fixing bug bugs when is are be not no it its this that as at into use using add update merge pull request".split(" "));
+/** Lower-case search terms from text, without stop words. */
 function words(s) { return (s.toLowerCase().match(/[a-z][a-z0-9_]{2,}/g) || []).filter(w => !STOP.has(w)); }
+/** Suggested searches: fixed orderings plus the five most frequent words in fix subjects. */
 function chipsFor() {
   const freq = {};
   for (const r of B.method_a) for (const w of new Set(words(subj(r.fix)))) freq[w] = (freq[w] || 0) + 1;
@@ -602,6 +647,7 @@ function chipsFor() {
   return [["Longest-lived bugs", ":longest"], ["Shipped in the most releases", ":releases"], ["Most recent fixes", ":recent"], ...top.map(w => [w, w])];
 }
 let LAST = [];
+/** Tier 1 search: special orderings (:longest, :releases, :recent) or ranked subject/SHA matches. No model involved. */
 function search(q) {
   const rows = B.method_a.filter(r => aDays(r) != null || q.startsWith(":"));
   const rel = r => r.lifetime && r.lifetime.releases_spanned ? r.lifetime.releases_spanned.length : 0;
@@ -617,6 +663,7 @@ function search(q) {
     return { r, score };
   }).filter(x => x.score > 0).sort((a, b) => b.score - a.score || (aDays(b.r) || 0) - (aDays(a.r) || 0)).slice(0, 15).map(x => x.r);
 }
+/** Runs a Tier 1 search and renders matching patterns and fixes as evidence cards. */
 function runAsk(q, label) {
   LAST = search(q);
   const out = $("ask-results");
@@ -632,6 +679,7 @@ function runAsk(q, label) {
 $("ask-form").addEventListener("submit", e => { e.preventDefault(); const q = $("ask-q").value.trim(); if (q) runAsk(q); });
 
 // ---------- Ask the repo: Tier 2 (optional, via sample) ----------
+/** The data sent to Claude for Tier 2: headline metrics and at most 40 matching rows. */
 function sliceFor(rows) {
   const a = B.summary.method_a;
   return {
@@ -642,8 +690,10 @@ function sliceFor(rows) {
   };
 }
 const HEX = /\b[0-9a-f]{7,40}\b/g;
+/** Every number in a string, normalized (e.g. "07" -> "7"). */
 function numbersIn(s) { return (s.match(/\d+(?:\.\d+)?/g) || []).map(x => String(Number(x))); }
 // Mechanical checks; returns a list of problems (empty = accepted).
+/** Mechanical check of a Tier 2 answer: shape, every cited SHA in the slice, every number in the slice. Returns problems; empty means accepted. */
 function verifyAnswer(ans, slice, question) {
   if (!ans || typeof ans !== "object" || typeof ans.answer !== "string" || !Array.isArray(ans.citations)) return ["The reply was not in the form {answer, citations[]}."];
   const problems = [];
@@ -656,6 +706,7 @@ function verifyAnswer(ans, slice, question) {
   for (const n of numbersIn(ans.answer.replace(HEX, m => /[a-f]/.test(m) ? " " : m))) if (!allowed.has(n)) problems.push(`The number ${n} does not appear in the rows that were sent.`);
   return [...new Set(problems)];
 }
+/** Tier 2 prompt: rules, the slice as delimited untrusted data, the question, and the required JSON shape. */
 function promptFor(question, slice) {
   return [
     "You answer questions about a git repository's bug history using ONLY the JSON data below.",
@@ -667,6 +718,7 @@ function promptFor(question, slice) {
   ].join("\n");
 }
 let SAMPLE = null, inflight = null;
+/** Tier 2: sends the slice to Claude on the viewer's account and shows the answer only if verifyAnswer() accepts it. */
 async function askClaude() {
   const q = $("ask-q").value.trim() || "Which of these bugs lived longest, and what do they have in common?";
   if (!LAST.length) runAsk(q);
@@ -707,6 +759,7 @@ $("t2-selftest").addEventListener("click", () => {
     el("ul", null, problems.map(p => el("li", null, p))),
     good ? el("p", null, el("span", { class: "pill " + (good.length ? "bad" : "ok") }, good.length ? "REJECTED" : "ACCEPTED"), ` Control answer citing ${short(real.fix)} with its real age of ${real.days} days.`) : null);
 });
+/** Tier 2 is shown only when the viewer's Claude host provides `sample`; otherwise it stays hidden. */
 (async () => {
   try {
     if (!window.claude || typeof window.claude.use !== "function") return;
@@ -716,6 +769,7 @@ $("t2-selftest").addEventListener("click", () => {
 })();
 
 // ---------- Reproduce ----------
+/** Renders the rebuild commands, the recorded bundle command, and hashes from the receipt. */
 function renderRepro() {
   const r = T.receipt || {};
   $("repro").replaceChildren(
@@ -730,11 +784,13 @@ function renderRepro() {
 
 // ---------- Command palette ----------
 let palItems = [], palSel = 0;
+/** Search palette entries: sections, pattern cards and every fix. */
 function palIndex() {
   const secs = [...document.querySelectorAll("nav.rail a")].map(a => ({ kind: "Section", label: a.textContent, go: () => { location.hash = a.getAttribute("href"); } }));
   return [...secs, ...CARDS.map(c => ({ kind: "Pattern", label: c.title, go: () => cardDrawer(c) })),
     ...B.method_a.map(r => ({ kind: short(r.fix), label: subj(r.fix), key: r.fix, go: () => bugDrawer(r) }))];
 }
+/** Filters palette entries by the query and renders the list. */
 function palRender() {
   const q = $("palette-q").value.trim().toLowerCase();
   const all = palIndex();
@@ -743,8 +799,11 @@ function palRender() {
   $("palette-list").replaceChildren(...palItems.map((it, i) => el("button", { type: "button", role: "option", "aria-selected": i === palSel ? "true" : "false", onclick: () => palGo(i) },
     el("span", { class: "dim mono" }, it.kind), el("span", null, it.label))));
 }
+/** Opens the search palette. */
 function palOpen() { if (!B) return; $("palette").hidden = false; $("palette-q").value = ""; palSel = 0; palRender(); $("palette-q").focus(); }
+/** Closes the search palette. */
 function palClose() { $("palette").hidden = true; }
+/** Closes the palette and opens the chosen entry. */
 function palGo(i) { const it = palItems[i]; palClose(); if (it) it.go(); }
 $("open-palette").addEventListener("click", palOpen);
 $("palette").addEventListener("click", e => { if (e.target === $("palette")) palClose(); });
@@ -761,6 +820,7 @@ document.addEventListener("keydown", e => {
 
 // ---------- Section rail ----------
 const SECTIONS = ["overview", "bugs", "timeline", "patterns", "method", "ask", "reproduce"];
+/** Highlights the section nav entry for the section currently in view. */
 function markRail() {
   let cur = SECTIONS[0];
   for (const id of SECTIONS) { const s = $(id); if (s && s.getBoundingClientRect().top < 140) cur = id; }
@@ -769,6 +829,7 @@ function markRail() {
 addEventListener("scroll", markRail, { passive: true });
 
 // ---------- Boot ----------
+/** Switches repository: re-renders every section from that bundle and remembers the choice. */
 function selectTarget(name) {
   T = TARGETS.find(t => t.name === name) || TARGETS[0]; B = T.bundle;
   store.set("bug-age.target", T.name);

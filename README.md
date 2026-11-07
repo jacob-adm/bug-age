@@ -1,12 +1,10 @@
 # bug-age
 
+**[▶ Open the live explorer](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)**: every bug, lifespan and test run from huggingface/tokenizers and modelcontextprotocol/rust-sdk. Each number opens to its evidence (SHAs, test runs, receipt hash, and the command that reproduces it), and the page recomputes its headline numbers in your browser.
+
+[![The bug-age explorer: headline bug ages, self-check and stage coverage for tokenizers. Click to open.](article/figures/overview-tokenizers.png)](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)
+
 Measures how long bugs lived in a git repository, using real repository data. For each fixed bug it reports commits elapsed, calendar days, releases shipped, and churn between the commit that introduced it and the fix.
-
-### ▶ [Open the live explorer](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)
-
-Every bug, lifespan and test run from both showcase repositories (huggingface/tokenizers and modelcontextprotocol/rust-sdk). Each number opens to its evidence: the SHAs, the test runs, the receipt hash and the command that reproduces it. The page also recomputes its headline numbers in your browser and flags any mismatch.
-
-[![The bug-age explorer: headline bug ages, self-check and stage coverage for tokenizers](article/figures/overview-tokenizers.png)](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)
 
 It uses two independent methods and compares them:
 
@@ -32,6 +30,39 @@ The pipeline writes a bundle (one JSON file, every number computed by a script) 
 **Commit × test results.** Every commit the pipeline built and tested in Docker without network: green passes, red fails, grey does not build there. Each square opens the run log.
 
 ![Commit-by-test results for tokenizers feasibility runs and regression sweeps](article/figures/heatmap-tokenizers.png)
+
+## How bugs are found
+
+bug-age does not discover new bugs. It works from bugs the project has already fixed, and uses testing only to date some of them.
+
+1. **Find the fixes (no testing).** Read the first-parent commit history of the crate and keep commits whose subject says `fix`, `bug` or `hotfix`. Fixed rules exclude typo, docs, lint, CI, release and similar commits. Each remaining commit counts as one bug. Every decision is recorded with the rule that made it.
+2. **Date every fix from history (Method A, no testing).** Blame the lines each fix changed; the commit that last touched them is the nominated introducer. Age is the time, commits and releases between that commit and the fix.
+3. **Date selected bugs by testing (Method B).** For a few bugs, a regression test reproduces the bug. It must fail just before the fix and pass at the fix, or it is rejected. The test is then run on older commits, in Docker without network, to find where the failure first appears.
+
+What this means for the numbers:
+
+- Bugs that were never fixed, or were fixed in a commit whose subject does not say so, are not counted.
+- A commit that says "fix" but is not a bug fix is counted unless an exclusion rule catches it. This is one reason Method A is reported as PARTIAL.
+- Method A covers every catalogued fix but is a nomination. Method B is evidence, but only for the bugs that have a regression test.
+
+## How long it takes
+
+<!-- timings:begin -->
+
+Measured on Darwin arm64, Docker 28.3.3 arm64. Figures come from committed run records via `scripts/timings.py`; full tables in [`results/TIMINGS.md`](results/TIMINGS.md). Step time excludes container staging and toolchain installs, so expect wall time to be longer.
+
+| Stage | What was measured | Time |
+|---|---|---|
+| catalog | last pipeline run, 2 target(s) | 3-4 s |
+| Method A | last pipeline run, 2 target(s) | 27-53 s |
+| bundle | last pipeline run, 2 target(s) | 5-6 s |
+| Feasibility (one run, 20 sampled commits) | 4 runs | 4 min to 7 min per run |
+| Method B sweep (one bug, current search) | 6 sweeps, 84 commits | 101 s to 6 min of step time per bug; median per commit 7 s to 22 s |
+| Method B, all 6 tokenizers sweeps end to end | one unattended run, wall clock | 20 min |
+
+Method B dominates: each bug needs a regression test, and the current search built and tested 5 to 23 commits per bug in Docker. Catalog, Method A and bundle together took 36 to 62 s per repository.
+
+<!-- timings:end -->
 
 ## What is deterministic and what uses AI
 

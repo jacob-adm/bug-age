@@ -1,3 +1,5 @@
+//! Bundle builder.
+//!
 //! Canonical data bundle: every number the explorer page and the article use, assembled from
 //! script outputs only (catalog, Method A, Method B sweeps, A-checks, feasibility runs).
 //!
@@ -33,6 +35,7 @@ pub fn public_command(args: &[String], cwd: &str, home: &str) -> String {
         if plain { a } else { format!("'{}'", a.replace('\'', "'\\''")) }
     }).collect::<Vec<_>>().join(" ")
 }
+/// Replacement text for a redacted identity.
 const REDACTED: &str = "[redacted]";
 
 /// Names, emails and handles of everyone in the repository history (lower-cased, deduplicated).
@@ -60,12 +63,16 @@ pub fn people(repo: &Path) -> Result<Vec<String>, String> {
 /// All identities as one case-insensitive whole-word regex, compiled once (one regex per person
 /// per string made a bundle build take over ten minutes on tokenizers).
 pub struct Identities {
+    /// Every known person, longest first; `None` when the history has no identities.
     names: Option<Regex>,
+    /// Any email address.
     email: Regex,
+    /// Any `@handle` at the start of a word.
     handle: Regex,
 }
 
 impl Identities {
+    /// Compiles the matchers for `people` (output of [`people`]).
     pub fn new(people: &[String]) -> Self {
         let alternation: Vec<String> = people.iter().map(|p| regex::escape(p)).collect();
         let names = (!alternation.is_empty()).then(|| {
@@ -78,6 +85,7 @@ impl Identities {
         }
     }
 
+    /// Replaces every known person in `text` with `[redacted]`.
     pub fn redact(&self, text: &str) -> String {
         let mut out = text.to_string();
         if let Some(re) = &self.names {
@@ -89,6 +97,7 @@ impl Identities {
         out
     }
 
+    /// Describes the first identity found in `s`, or `None` if `s` is clean.
     fn hits(&self, s: &str) -> Option<String> {
         if self.email.is_match(s) || self.handle.is_match(s) {
             return Some(format!("email/handle in {s:?}"));
@@ -98,6 +107,7 @@ impl Identities {
     }
 }
 
+/// Convenience wrapper: redacts `people` from `text` without keeping the compiled matcher.
 pub fn redact(text: &str, people: &[String]) -> String {
     Identities::new(people).redact(text)
 }
@@ -107,6 +117,7 @@ pub fn scan(v: &Value, people: &[String]) -> Vec<String> {
     scan_with(v, &Identities::new(people))
 }
 
+/// Walks every string in a JSON value and collects identity hits.
 fn scan_with(v: &Value, ids: &Identities) -> Vec<String> {
     let mut hits = Vec::new();
     let mut stack = vec![v];
@@ -121,15 +132,19 @@ fn scan_with(v: &Value, ids: &Identities) -> Vec<String> {
     hits
 }
 
+/// Reads and parses a JSON file, naming the file in any error.
 fn read(path: &Path) -> Result<Value, String> {
     let text = std::fs::read_to_string(path).map_err(|e| format!("{}: {e}", path.display()))?;
     serde_json::from_str(&text).map_err(|e| format!("{}: {e}", path.display()))
 }
 
+/// Nearest-rank percentile of sorted values: the value at index floor(q * n), capped at the last.
+/// The explorer's self-check uses the same formula.
 fn pct(sorted: &[f64], q: f64) -> f64 {
     sorted[((q * sorted.len() as f64) as usize).min(sorted.len() - 1)]
 }
 
+/// Median of sorted values: the middle value, or the mean of the two middle values when n is even.
 fn median(sorted: &[f64]) -> f64 {
     let n = sorted.len();
     if n % 2 == 1 { sorted[n / 2] } else { (sorted[n / 2 - 1] + sorted[n / 2]) / 2.0 }
@@ -142,6 +157,7 @@ fn method_a_days(bug: &Value) -> Option<f64> {
     life.get(if compressed { "calendar_days_author" } else { "calendar_days" })?.as_f64()
 }
 
+/// Headline Method A metrics: fix counts, and median / p90 / max / n of days, commits and releases.
 fn method_a_summary(szz: &Value) -> Value {
     let bugs = szz["bugs"].as_array().cloned().unwrap_or_default();
     let mut days: Vec<f64> = bugs.iter().filter_map(method_a_days).collect();
@@ -164,6 +180,9 @@ fn method_a_summary(szz: &Value) -> Value {
     })
 }
 
+/// Labels the A-check: the regression test run at Method A's nominee's parent and at the nominee.
+/// `confirmed` = PASS then FAIL (the nominee introduced it); `refuted` = PASS at both;
+/// `too-late` = FAIL at both (the bug is older); `plausible` = parent untestable, nominee FAIL.
 fn acheck_label(outcomes: &[&str]) -> &'static str {
     match outcomes {
         ["PASS", "FAIL"] => "confirmed",
@@ -175,15 +194,18 @@ fn acheck_label(outcomes: &[&str]) -> &'static str {
     }
 }
 
+/// True if commit `a` is an ancestor of commit `b`.
 fn is_ancestor(repo: &Path, a: &str, b: &str) -> bool {
     crate::git::command().arg("-C").arg(repo).args(["merge-base", "--is-ancestor", a, b])
         .status().is_ok_and(|s| s.success())
 }
 
+/// Committer time of `sha` in unix seconds.
 fn commit_time(repo: &Path, sha: &str) -> Result<i64, String> {
     crate::git::commit_time(repo, sha)
 }
 
+/// Committer-time difference from `from` to `to`, in days rounded to one decimal.
 fn days_between(repo: &Path, from: &str, to: &str) -> Result<f64, String> {
     Ok(((commit_time(repo, to)? - commit_time(repo, from)?) as f64 / 86_400.0 * 10.0).round() / 10.0)
 }
@@ -276,6 +298,8 @@ fn feasibility(path: &Path) -> Result<Value, String> {
 /// A stage that is out of scope for the target, as `(stage, evidence, does_not_prove)`; listed NOT TESTED.
 pub type OutOfScope = Option<(String, String, String)>;
 
+/// The coverage table: for each stage, its status (COVERED, PARTIAL, NOT TESTED), the evidence,
+/// what it proves and what it does not prove.
 fn coverage(a: &Value, b: &[Value], feas: &Value, tt: &Value, out_of_scope: &OutOfScope) -> Value {
     let swept = b.len();
     let fixes = a["fixes"].as_u64().unwrap_or(0);
@@ -319,11 +343,23 @@ fn coverage(a: &Value, b: &[Value], feas: &Value, tt: &Value, out_of_scope: &Out
     Value::Array(rows)
 }
 
+/// A finished bundle and the non-fatal warnings raised while building it.
 pub struct Built {
+    /// The bundle, valid against `schema/bundle.schema.json`.
     pub bundle: Value,
+    /// Issues worth recording in the receipt that did not stop the build.
     pub warnings: Vec<String>,
 }
 
+/// Assembles the bundle for one target from its result files.
+///
+/// Reads `catalog.json`, `szz.json`, `repros/*` and the feasibility reports, computes the summary
+/// and coverage, collects every referenced commit with a redacted subject, and runs the blameless
+/// gate. Missing feasibility reports or repros become `null` / NOT TESTED rather than errors.
+///
+/// # Errors
+/// Returns an error if a required input is missing or malformed, a git command fails, or the
+/// blameless gate finds an identity.
 pub fn build(repo: &Path, results: &Path, spike: &Path, repo_url: &str, out_of_scope: &OutOfScope) -> Result<Built, String> {
     let catalog = read(&results.join("catalog.json"))?;
     let szz = read(&results.join("szz.json"))?;
@@ -333,6 +369,7 @@ pub fn build(repo: &Path, results: &Path, spike: &Path, repo_url: &str, out_of_s
     let b = method_b(repo, &results.join("repros"), &szz)?;
     let ids = Identities::new(&people(repo)?);
 
+    // Collect every SHA the bundle references, so `commits` can describe each one.
     let mut shas: BTreeSet<String> = BTreeSet::new();
     let mut add = |v: &Value| if let Some(s) = v.as_str().filter(|s| s.len() == 40) { shas.insert(s.to_string()); };
     for bug in szz["bugs"].as_array().into_iter().flatten() {

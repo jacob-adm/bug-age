@@ -1,3 +1,4 @@
+# Cargo workspace for bug-age. Shared edition and minimum Rust version for all members.
 [workspace]
 resolver = "2"
 members = ["crates/bug-age"]

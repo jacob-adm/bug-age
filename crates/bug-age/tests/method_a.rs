@@ -8,6 +8,7 @@ use serde_json::Value;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
+/// Runs git in `dir` with fixed author and committer identity and date.
 fn run_git(dir: &Path, args: &[&str], date: &str) {
     let ok = bug_age::git::command()
         .arg("-C").arg(dir)
@@ -21,6 +22,7 @@ fn run_git(dir: &Path, args: &[&str], date: &str) {
     assert!(ok, "git {args:?} failed");
 }
 
+/// Writes `body` to `file`, commits it with message `msg` at `date`, and returns the SHA.
 fn commit(dir: &Path, file: &str, body: &str, msg: &str, date: &str) -> String {
     let p = dir.join(file);
     std::fs::create_dir_all(p.parent().unwrap()).unwrap();
@@ -31,8 +33,10 @@ fn commit(dir: &Path, file: &str, body: &str, msg: &str, date: &str) -> String {
     String::from_utf8(out.stdout).unwrap().trim().to_string()
 }
 
+/// The synthetic repository and the SHAs of its planted bug, fix and typo-only commit.
 struct Repo { dir: PathBuf, intro: String, fix: String, typo: String }
 
+/// Builds the synthetic history: init, planted bug, README, release tags on main and a release branch, the fix, then a typo-only commit.
 fn synthetic_repo(name: &str) -> Repo {
     let dir = std::env::temp_dir().join(format!("bug-age-test-{name}-{}", std::process::id()));
     let _ = std::fs::remove_dir_all(&dir);
@@ -63,12 +67,14 @@ fn synthetic_repo(name: &str) -> Repo {
     Repo { dir, intro, fix, typo }
 }
 
+/// Runs the built binary with `args`, asserts success, and parses stdout as JSON.
 fn bug_age(args: &[&str]) -> Value {
     let out = Command::new(env!("CARGO_BIN_EXE_bug-age")).args(args).output().expect("spawn bug-age");
     assert!(out.status.success(), "bug-age {args:?}: {}", String::from_utf8_lossy(&out.stderr));
     serde_json::from_slice(&out.stdout).expect("json output")
 }
 
+/// The catalog admits the fix and records the typo commit as `exclude:typo`.
 #[test]
 fn catalog_admits_fix_and_records_exclusion_rule() {
     let r = synthetic_repo("catalog");
@@ -84,6 +90,7 @@ fn catalog_admits_fix_and_records_exclusion_rule() {
     assert_eq!(cat["scanned"], 5);
 }
 
+/// Method A nominates the planting commit and reports the scripted days, commits, releases and churn.
 #[test]
 fn szz_nominates_planting_commit_with_scripted_lifetime() {
     let r = synthetic_repo("szz");
@@ -108,6 +115,7 @@ fn szz_nominates_planting_commit_with_scripted_lifetime() {
     assert_eq!(res["summary"]["in_window"], 1);
 }
 
+/// `--release-tags` counts prefixed release tags that the default glob ignores.
 #[test]
 fn release_tag_glob_selects_prefixed_release_tags() {
     let r = synthetic_repo("tags");
@@ -121,6 +129,7 @@ fn release_tag_glob_selects_prefixed_release_tags() {
     assert_eq!(res["summary"]["release_tags"], "core-v[0-9]*");
 }
 
+/// Include and exclude rules classify representative subjects as expected.
 #[test]
 fn classify_rules() {
     assert_eq!(classify("fix(bpe): wrong merge order (#12)").as_deref(), Some("include"));
@@ -129,12 +138,14 @@ fn classify_rules() {
     assert_eq!(classify("Add a prefix option"), None, "'prefix' must not match the fix rule");
 }
 
+/// Sanitized subjects drop `from user/branch` and `@handles`.
 #[test]
 fn subjects_lose_usernames() {
     assert_eq!(sanitize_subject("Merge pull request #7 from alice/fix-bpe"), "Merge pull request #7");
     assert_eq!(sanitize_subject("fix decoder, thanks @bob-dev"), "fix decoder, thanks");
 }
 
+/// Removed-line ranges cover only in-scope Rust files and parse hunk counts correctly.
 #[test]
 fn removed_ranges_respects_scope_and_counts() {
     let diff = "--- a/core/src/lib.rs\n+++ b/core/src/lib.rs\n@@ -2 +2 @@\n-x\n+y\n@@ -10,0 +11,2 @@\n+z\n\
@@ -143,6 +154,7 @@ fn removed_ranges_respects_scope_and_counts() {
     assert!(in_scope("core/src/a.rs", "core") && !in_scope("core/benches/b.rs", "core") && !in_scope("other/a.rs", "core"));
 }
 
+/// Inherited `GIT_DIR` and related variables do not redirect bug-age to the calling repository.
 #[test]
 fn ignores_git_env_inherited_from_hooks() {
     // A git hook exports GIT_DIR/GIT_INDEX_FILE; bug-age must still read --repo, not the caller.

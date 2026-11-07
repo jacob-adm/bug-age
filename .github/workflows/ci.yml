@@ -1,3 +1,5 @@
+# Continuous integration: every pull request and every push to main.
+# The job names below are the required status checks on main.
 name: ci
 
 on:
@@ -22,7 +24,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      # Unit, contract and end-to-end tests; --locked fails if Cargo.lock is out of date.
       - name: cargo test
         run: cargo test --workspace --locked
+      # Fails if any number in the article is not a reference into a committed bundle.
       - name: article numbers trace to the bundle
         run: python3 scripts/article.py article/ARTICLE.tmpl.md --bundle tokenizers=dist/tokenizers/bundle.json --bundle rust-sdk=dist/rust-sdk/bundle.json
+      # Fails if results/TIMINGS.md or the README timing table no longer match the committed run records.
+      - name: timing tables match the run records
+        run: python3 scripts/timings.py --check

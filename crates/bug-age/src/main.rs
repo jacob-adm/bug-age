@@ -1,4 +1,8 @@
-//! bug-age CLI.
+//! bug-age command-line interface.
+//!
+//! One binary, one subcommand per pipeline stage. Each subcommand reads files, writes one JSON
+//! output (stdout or `--out`), and logs a one-line summary to stderr. Exit status is 0 on success,
+//! 1 on a runtime error and 2 on a usage error.
 //!
 //!   bug-age catalog --repo DIR --path CRATE [--head REV] [--out FILE]
 //!   bug-age szz     --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--release-tags GLOB] [--out FILE]
@@ -16,6 +20,7 @@ use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 use std::process::ExitCode;
 
+/// Text printed for `--help` and on a usage error.
 const USAGE: &str = "usage: bug-age [--version | --help]
        bug-age catalog --repo DIR --path CRATE [--head REV] [--out FILE]
        bug-age szz --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--release-tags GLOB] [--out FILE]
@@ -28,6 +33,7 @@ const USAGE: &str = "usage: bug-age [--version | --help]
        bug-age explorer --page FILE --targets NAME=DIR,NAME=DIR --out DIR   (DIR = a bundle output dir)
        bug-age mcp --bundles NAME=FILE,NAME=FILE   (read-only MCP server on stdio over bundle.json files)";
 
+/// Parses `--key value` pairs into a map. Every flag takes exactly one value.
 fn flags(args: &[String]) -> Result<HashMap<String, String>, String> {
     let mut map = HashMap::new();
     let mut it = args.iter();
@@ -39,10 +45,12 @@ fn flags(args: &[String]) -> Result<HashMap<String, String>, String> {
     Ok(map)
 }
 
+/// Returns a required flag's value or a `missing --key` error.
 fn need<'a>(f: &'a HashMap<String, String>, key: &str) -> Result<&'a str, String> {
     f.get(key).map(String::as_str).ok_or(format!("missing --{key}"))
 }
 
+/// Writes pretty-printed JSON to `out`, or to stdout when no path is given.
 fn emit(value: &Value, out: Option<&String>) -> Result<(), String> {
     let text = serde_json::to_string_pretty(value).map_err(|e| e.to_string())? + "\n";
     match out {
@@ -54,6 +62,7 @@ fn emit(value: &Value, out: Option<&String>) -> Result<(), String> {
     }
 }
 
+/// `bug-age catalog`: lists fix commits for a crate path (see [`catalog`]).
 fn cmd_catalog(f: &HashMap<String, String>) -> Result<(), String> {
     let head = f.get("head").map_or("HEAD", String::as_str);
     let cat = catalog::build(Path::new(need(f, "repo")?), head, need(f, "path")?)?;
@@ -61,6 +70,7 @@ fn cmd_catalog(f: &HashMap<String, String>) -> Result<(), String> {
     emit(&json!(cat), f.get("out"))
 }
 
+/// `bug-age szz`: runs Method A over every fix in a catalog (see [`szz`]).
 fn cmd_szz(f: &HashMap<String, String>) -> Result<(), String> {
     let repo = Path::new(need(f, "repo")?);
     let text = std::fs::read_to_string(need(f, "catalog")?).map_err(|e| e.to_string())?;
@@ -89,12 +99,14 @@ fn cmd_szz(f: &HashMap<String, String>) -> Result<(), String> {
                  "summary": summary, "bugs": bugs}), f.get("out"))
 }
 
+/// Version string of an external tool for receipts, or `unavailable`.
 fn tool_version(cmd: &str, args: &[&str]) -> String {
     std::process::Command::new(cmd).args(args).output()
         .map(|o| String::from_utf8_lossy(&o.stdout).lines().next().unwrap_or_default().to_string())
         .unwrap_or_else(|_| "unavailable".into())
 }
 
+/// Builds the test spec and runner (`local` or `docker`) shared by `sweep` and `probe`.
 fn spec_and_runner(f: &HashMap<String, String>, tag: &str) -> Result<(Spec, Box<dyn Runner>), String> {
     let opt = |k: &str, d: &str| f.get(k).cloned().unwrap_or_else(|| d.to_string());
     let home = std::env::var("HOME").unwrap_or_default();
@@ -137,6 +149,8 @@ fn cmd_probe(f: &HashMap<String, String>) -> Result<(), String> {
     emit(&json!({"runner": runner.name(), "test": spec.test, "repeats": spec.repeats, "results": results}), f.get("out"))
 }
 
+/// `bug-age sweep`: runs Method B for one fix and writes the sweep report plus a receipt with
+/// tool versions, input hashes and the report's sha256.
 fn cmd_sweep(f: &HashMap<String, String>) -> Result<(), String> {
     let opt = |k: &str, d: &str| f.get(k).cloned().unwrap_or_else(|| d.to_string());
     let fix = need(f, "fix")?.to_string();
@@ -169,9 +183,13 @@ fn cmd_sweep(f: &HashMap<String, String>) -> Result<(), String> {
 }
 
 /// Size gate for the published page's data (the artifact limit is 16 MB; target 8 MB).
+/// Size above which the receipt flags the bundle as over the 8 MB target.
 const WARN_BYTES: usize = 8 * 1024 * 1024;
+/// Hard limit: a larger bundle cannot be published as an artifact.
 const MAX_BYTES: usize = 16 * 1024 * 1024;
 
+/// `bug-age bundle`: builds `bundle.json`, `bundle.js` and `receipt.json` for one target
+/// (see [`bundle::build`]).
 fn cmd_bundle(f: &HashMap<String, String>) -> Result<(), String> {
     let repo = Path::new(need(f, "repo")?);
     let out = Path::new(need(f, "out")?);
@@ -207,6 +225,8 @@ fn cmd_bundle(f: &HashMap<String, String>) -> Result<(), String> {
     emit(&receipt, Some(&out.join("receipt.json").to_string_lossy().to_string()))
 }
 
+/// `bug-age explorer`: writes the explorer page and one data file per target, with a receipt
+/// (see [`explorer::assemble`]).
 fn cmd_explorer(f: &HashMap<String, String>) -> Result<(), String> {
     let page = std::fs::read_to_string(need(f, "page")?).map_err(|e| format!("{}: {e}", need(f, "page").unwrap_or("")))?;
     let out = Path::new(need(f, "out")?);
@@ -235,6 +255,7 @@ fn cmd_explorer(f: &HashMap<String, String>) -> Result<(), String> {
                  "bug-age": env!("CARGO_PKG_VERSION")}), Some(&out.join("receipt.json").to_string_lossy().to_string()))
 }
 
+/// `bug-age mcp`: serves the given bundles over MCP on stdio until stdin closes (see [`mcp`]).
 fn cmd_mcp(f: &HashMap<String, String>) -> Result<(), String> {
     let mut targets = Vec::new();
     for spec in need(f, "bundles")?.split(',') {
@@ -245,6 +266,7 @@ fn cmd_mcp(f: &HashMap<String, String>) -> Result<(), String> {
     mcp::serve(&targets, std::io::stdin().lock(), std::io::stdout().lock())
 }
 
+/// Every file in a regression-test overlay with its sha256, sorted, for the sweep receipt.
 fn overlay_listing(dir: &Path) -> Vec<String> {
     let mut out = Vec::new();
     let mut stack = vec![dir.to_path_buf()];
@@ -262,6 +284,7 @@ fn overlay_listing(dir: &Path) -> Vec<String> {
     out
 }
 
+/// Dispatches to the subcommand and maps errors to exit codes.
 fn main() -> ExitCode {
     let args: Vec<String> = std::env::args().skip(1).collect();
     let result = match args.first().map(String::as_str) {
