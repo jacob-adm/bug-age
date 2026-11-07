@@ -5,3 +5,4 @@ pub mod git;
 pub mod szz;
 pub mod runner;
 pub mod sweep;
+pub mod bundle;

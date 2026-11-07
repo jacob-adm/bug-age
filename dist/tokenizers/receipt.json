@@ -1,0 +1,19 @@
+{
+  "blameless_gate": "PASS",
+  "command": "target/debug/bug-age bundle --repo work/tokenizers --results results/tokenizers --repo-url https://github.com/huggingface/tokenizers --out work/bundle-check",
+  "outputs": {
+    "bundle.js": "7ea84616582d75d3de9d5ffee801c700db7735b2880e8b1893f33217747fb9d1",
+    "bundle.json": "259fa5be2f27d33b8c2b0dae69e6ecce987775b3ed1d81d0e7f2edcd5e53c72a"
+  },
+  "schema_version": "1.0.0",
+  "size": {
+    "bundle_js_bytes": 199364,
+    "bundle_json_bytes": 199338,
+    "warn_over_8mb": false
+  },
+  "versions": {
+    "bug-age": "0.1.0",
+    "git": "git version 2.50.1 (Apple Git-155)"
+  },
+  "warnings": []
+}
