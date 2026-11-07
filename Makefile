@@ -1,5 +1,5 @@
 # Long runs go here: detached, no agent in the loop, one notification at the end.
-.PHONY: sweep test bundle pipeline explorer article
+.PHONY: sweep test bundle pipeline explorer article history-scan
 sweep:
 	nohup scripts/sweep-unattended.sh $(ARGS) > /dev/null 2>&1 &
 	@echo "sweep started in the background; notification + <results-dir>/SUMMARY.md when done"
@@ -19,3 +19,7 @@ explorer:
 article: explorer
 	python3 scripts/article.py article/ARTICLE.tmpl.md --bundle tokenizers=dist/tokenizers/bundle.json --bundle rust-sdk=dist/rust-sdk/bundle.json --out article/ARTICLE.md --trace article/TRACE.md
 	node scripts/capture_figures.mjs dist/explorer/index.html article/figures
+
+# Blameless check over every file version and commit message ever committed (run before going public)
+history-scan:
+	python3 scripts/history_scan.py --targets work/tokenizers,work/rust-sdk --allow scripts/history_scan.allow
