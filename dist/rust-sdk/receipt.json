@@ -2,8 +2,8 @@
   "blameless_gate": "PASS",
   "command": "target/debug/bug-age bundle --repo work/rust-sdk --results results/rust-sdk --repo-url https://github.com/modelcontextprotocol/rust-sdk --spike results/rust-sdk/spike --out-of-scope 'rmcp-macros, examples, conformance|out of scope for the rmcp crate|behaviour of the other workspace crates' --out dist/rust-sdk",
   "outputs": {
-    "bundle.js": "7fa31e7a0d60d50f1a70a16a515e5ed23c2354e5853b112c85f6a0341335cf70",
-    "bundle.json": "ab9a9f87125107823f63987c40d513d33582fa972c352fdb6549c9b280c6a7b5"
+    "bundle.js": "2b48ba091331f0cf238224618d635e1989cd21b77a40a35ed832afe550a88e37",
+    "bundle.json": "5bb66d75433026761744ed65c7a78cab6ef9769466b59c3b8e5e0c332c9deaf4"
   },
   "schema_version": "1.1.0",
   "size": {
@@ -12,7 +12,7 @@
     "warn_over_8mb": false
   },
   "versions": {
-    "bug-age": "0.1.0",
+    "bug-age": "1.0.0",
     "git": "git version 2.50.1 (Apple Git-155)"
   },
   "warnings": []

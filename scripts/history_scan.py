@@ -7,7 +7,8 @@ Scans every blob reachable from any ref (each distinct file version once) and ev
 for (1) the names, emails and noreply usernames of anyone in the target repositories' history, using
 the same rules as the bundle gate (crates/bug-age/src/bundle.rs people()), and (2) any email address.
 Prints one line per hit as `kind<TAB>where<TAB>match` and exits 1 if anything is not allowlisted.
-The allowlist file holds one `kind<TAB>where<TAB>match` line per reviewed, accepted hit.
+The allowlist file holds one `kind<TAB>where<TAB>match` line per reviewed, accepted hit; `where` = `*`
+accepts that match everywhere (only for matches that cannot identify a person).
 """
 import argparse, re, subprocess, sys
 from pathlib import Path
@@ -86,7 +87,9 @@ def main():
 
     hits = sorted(set(hits))
     reviewed = {line.split("\t")[2] for line in allow if line.count("\t") == 2}
-    open_hits = [h for h in hits if "\t".join(h) not in allow and not (h[1] in SELF and h[2] in reviewed)]
+    anywhere = {(l.split("\t")[0], l.split("\t")[2]) for l in allow if l.count("\t") == 2 and l.split("\t")[1] == "*"}
+    open_hits = [h for h in hits if "\t".join(h) not in allow and (h[0], h[2]) not in anywhere
+                 and not (h[1] in SELF and h[2] in reviewed)]
     for h in open_hits:
         print("\t".join(h))
     print(f"history scan: {len(seen)} objects, {len(names)} target identities, {len(hits)} hits, "
