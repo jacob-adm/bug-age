@@ -80,7 +80,7 @@ class Oracle(unittest.TestCase):
 
     def test_explorer(self):
         """The explorer page and data files built from the committed bundles."""
-        cli("explorer", "--page", ROOT / "explorer" / "index.html",
+        cli("explorer",
             "--targets", f"tokenizers={ROOT / 'dist/tokenizers'},rust-sdk={ROOT / 'dist/rust-sdk'}", "--out", self.out)
         for rel in ("index.html", "data/tokenizers.js", "data/rust-sdk.js"):
             self.assertSameFile(self.out / rel, ROOT / "dist" / "explorer" / rel)

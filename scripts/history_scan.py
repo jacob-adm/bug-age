@@ -5,7 +5,7 @@
 
 Scans every blob reachable from any ref (each distinct file version once) and every commit message
 for (1) the names, emails and noreply usernames of anyone in the target repositories' history, using
-the same rules as the bundle gate (crates/bug-age/src/bundle.rs people()), and (2) any email address.
+the same rules as the bundle gate (bug_age/bundle.py people()), and (2) any email address.
 Prints one line per hit as `kind<TAB>where<TAB>match` and exits 1 if anything is not allowlisted.
 The allowlist file holds one `kind<TAB>where<TAB>match` line per reviewed, accepted hit; `where` = `*`
 accepts that match everywhere (only for matches that cannot identify a person).

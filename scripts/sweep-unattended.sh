@@ -5,7 +5,6 @@ set -u
 cd "$(dirname "$0")/.."
 RES=${1:-results/tokenizers}; REPO=${2:-work/tokenizers}; CRATE=${3:-tokenizers}; shift $(( $# < 3 ? $# : 3 ))
 STAMP=$(date +%Y%m%d-%H%M%S); LOG=work/unattended-$STAMP.log; SUMMARY=$RES/SUMMARY.md
-cargo build -q || exit 1
 START=$(date +%s)
 python3 -m bug_age.repros "$RES" "$REPO" "$CRATE" "$@" > "$LOG" 2>&1; STATUS=$?
 MIN=$(( ($(date +%s) - START) / 60 ))

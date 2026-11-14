@@ -19,22 +19,22 @@ To see the output first, [open the live example](https://claude.ai/artifact/UDw6
 
 ## Get started
 
-Point bug-age at your own repository in six steps. A first run with Method A only needs git and Rust; Docker is needed only for the feasibility check and Method B.
+Point bug-age at your own repository in six steps. A first run with Method A only needs git and Python; Docker is needed only for the feasibility check and Method B.
 
-**1. Install the requirements and build.**
+**1. Install.**
 
 ```sh
-git clone https://github.com/jacob-adm/bug-age && cd bug-age
-cargo build                                          # Rust 1.86 or later
-docker build -t bug-age-spike:4 -f spike/Dockerfile spike   # only for feasibility and Method B
+pip install bug-age                                       # Python 3.11 or later, no dependencies
+bug-age dockerfile | docker build -t bug-age-spike:4 -    # only for feasibility and Method B
 ```
 
-You also need git and Python 3.11 or later. The Docker image name `bug-age-spike:4` is the CLI default; pass `--image` to use another.
+You also need git. The Docker image name `bug-age-spike:4` is the CLI default; pass `--image` to use another.
 
 **2. Describe your repository in a config file.** Copy an existing one and edit it:
 
 ```sh
-cp targets/rust-sdk.toml targets/myrepo.toml
+curl -sO https://raw.githubusercontent.com/jacob-adm/bug-age/main/targets/rust-sdk.toml
+mkdir -p targets && mv rust-sdk.toml targets/myrepo.toml
 ```
 
 | Key | Required | What to set |
@@ -53,8 +53,8 @@ cp targets/rust-sdk.toml targets/myrepo.toml
 **3. Run the pipeline.**
 
 ```sh
-make pipeline TARGET=targets/myrepo.toml ARGS=--skip-feasibility   # Method A only, no Docker
-make pipeline TARGET=targets/myrepo.toml                           # adds the Docker feasibility check
+bug-age pipeline targets/myrepo.toml --skip-feasibility   # Method A only, no Docker
+bug-age pipeline targets/myrepo.toml                       # adds the Docker feasibility check
 ```
 
 **4. Read the report.** `results/myrepo/PIPELINE.md` lists every stage with its status (OK, REUSED, FAILED or NOT TESTED), the reason, and the time taken. The bundle, `dist/myrepo/bundle.json`, is the report of record: every number for this repository is in it. Its sha256 and the exact command that built it are in `dist/myrepo/receipt.json`.
@@ -62,7 +62,7 @@ make pipeline TARGET=targets/myrepo.toml                           # adds the Do
 **5. Browse the report in your own explorer.** This builds a viewer for your bundle on your machine. The published live example is not affected and keeps showing only the two example runs. To browse several of your repositories together, list them all: `--targets a=dist/a,b=dist/b`.
 
 ```sh
-target/debug/bug-age explorer --page explorer/index.html --targets myrepo=dist/myrepo --out dist/explorer-myrepo
+bug-age explorer --targets myrepo=dist/myrepo --out dist/explorer-myrepo
 open dist/explorer-myrepo/index.html        # or open the file in any browser
 ```
 
@@ -176,8 +176,10 @@ bug-age sweep   --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD
                 [--namespace NAME] [--bucket N]
 bug-age probe   --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]
 bug-age bundle  --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR]
-bug-age explorer --page FILE --targets NAME=DIR,... --out DIR
+bug-age explorer [--page FILE] --targets NAME=DIR,... --out DIR
 bug-age mcp     --bundles NAME=FILE,...
+bug-age pipeline TARGET.toml [--fresh] [--skip-feasibility]
+bug-age dockerfile
 ```
 
 | Command | What it does |
@@ -186,9 +188,11 @@ bug-age mcp     --bundles NAME=FILE,...
 | `szz` | Method A: names a likely introducing commit for each fix in the catalog |
 | `sweep` | Method B: binary-searches for the first commit where the test compiles, then bisects PASS/FAIL above it. Decisive commits are re-run `--repeats` times and flagged UNSTABLE if the result changes |
 | `probe` | Runs the same test at a fixed list of commits, with no search |
-| `bundle` | Builds `bundle.json` (validated against [`schema/bundle.schema.json`](schema/bundle.schema.json)), `bundle.js`, and `receipt.json` (sha256 hashes and sizes) |
+| `bundle` | Builds `bundle.json` (validated against [`bug_age/data/bundle.schema.json`](bug_age/data/bundle.schema.json)), `bundle.js`, and `receipt.json` (sha256 hashes and sizes) |
 | `explorer` | Builds an explorer: a static viewer page for the listed bundles, with one data file per repository; fails over 8 MB. It reads reports and adds no results. |
 | `mcp` | Read-only MCP server on stdio answering bundle queries; see [`dist/agent/AGENTS.md`](dist/agent/AGENTS.md) |
+| `pipeline` | Runs every stage for one target config; paths in the config are relative to the current directory |
+| `dockerfile` | Prints the Dockerfile of the Method B image |
 
 ## Pipeline reference
 
@@ -210,7 +214,7 @@ samples = 20
 One command runs every stage:
 
 ```sh
-make pipeline TARGET=targets/rust-sdk.toml        # or: python3 scripts/pipeline.py targets/rust-sdk.toml
+bug-age pipeline targets/rust-sdk.toml            # or, in a clone: make pipeline TARGET=targets/rust-sdk.toml
 ```
 
 The stages are clone at the pinned head, feasibility (baseline and time-travel dependencies), catalog, Method A, Method B for every repro under `<results_dir>/repros/<fix>/overlay`, and bundle.
@@ -244,16 +248,19 @@ python3 results/compare_runs.py results/tokenizers results/bench   # prints IDEN
 ## Tests
 
 ```sh
-cargo test                 # unit and CLI tests
-cargo test -- --ignored    # adds the end-to-end Docker runner test (needs the image)
+python3 -m unittest discover -s tests                          # unit, CLI, oracle and sweep tests
+BUG_AGE_DOCKER_TESTS=1 python3 -m unittest discover -s tests   # adds the Docker runner test (needs the image)
 ```
+
+The oracle test regenerates both example runs from clones in `work/` and compares every output
+with the committed files byte for byte. The sweep tests build a toy crate, so they need cargo.
 
 ## Contributing
 
 Changes reach `main` only through pull requests.
 
 1. Fork the repository and create a branch.
-2. Make the change, then run `cargo test`. If you changed bundles, results or the article, also run `make article timings`.
+2. Make the change, then run `python3 -m unittest discover -s tests`. If you changed bundles, results or the article, also run `make article timings`.
 3. Open a pull request against `main`. CI runs the tests and the article and timing checks on Linux and macOS; all must pass before merging. Pull requests are merged with a merge commit.
 
 Keep the rules in [Rigor rules](#rigor-rules): numbers come from scripts, unrun stages are NOT TESTED, and bundles stay blameless.
@@ -268,9 +275,10 @@ that produced the tokenizers and rust-sdk example runs. To use it, check out its
 git clone --branch v1.0.2 https://github.com/jacob-adm/bug-age
 ```
 
-Later versions are a Python port of the same tool, installed with pip and producing the same
-numbers for these runs.
+2.0.0 and later are a Python port of the same tool, installed with `pip install bug-age`. On both
+example runs it reproduces every output of 1.0.2 byte for byte; the only difference in a bundle is
+the `generator` string that names the version.
 
 ## License
 
-Licensed under either of [Apache License, Version 2.0](LICENSE-APACHE) or [MIT License](LICENSE-MIT), at your option, as declared in `Cargo.toml`.
+Licensed under either of [Apache License, Version 2.0](LICENSE-APACHE) or [MIT License](LICENSE-MIT), at your option, as declared in `pyproject.toml`.
