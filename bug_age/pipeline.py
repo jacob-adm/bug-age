@@ -8,10 +8,14 @@ A stage whose output already exists is REUSED unless --fresh (the expensive Dock
 are never redone silently). A failing stage is recorded with its reason and the pipeline
 continues with whatever does not depend on it. Writes <results_dir>/PIPELINE.md and pipeline.json.
 """
-import datetime as dt, hashlib, json, shutil, subprocess, sys, time, tomllib
+import datetime as dt, hashlib, json, re, shutil, subprocess, sys, time, tomllib
 from pathlib import Path
 
+from .repros import BUILD, TEST, range_start
 from .sweep import _overlay_listing as overlay_listing
+
+# The Method B image's recipe; receipts made since 2.1.1 record its hash so reuse can check it.
+RECIPE = hashlib.sha256((Path(__file__).parent / "data" / "Dockerfile").read_bytes()).hexdigest()
 
 ROOT = Path.cwd()                                   # config paths are relative to the working directory
 BIN = [sys.executable, "-m", "bug_age"]             # this package's CLI, same interpreter
@@ -88,11 +92,12 @@ def main(argv=None):
                 return "NOT TESTED", "skipped (--skip-feasibility)"
             if out.is_file() and not fresh:
                 # Reuse only a report made for this repository at this pinned head.
-                stale = feasibility_mismatch(out.parent / "receipt.json")
+                notes = []
+                stale = feasibility_mismatch(out, tt, notes)
                 if stale:
                     return "FAILED", f"stale report: {stale} (pass --fresh to rerun)"
                 current.add(out)
-                return "REUSED", "existing report for this head (pass --fresh to rerun)"
+                return "REUSED", "existing report, every recorded input matches" + "".join(f"; {n}" for n in notes)
             cmd = [sys.executable, "-m", "bug_age.feasibility", "--config", cfg_path, "--samples", c.get("samples", 20)]
             if run(cmd + (["--time-travel"] if tt else []), log) or not out.is_file():
                 return "FAILED", tail(log)
@@ -117,39 +122,85 @@ def main(argv=None):
             return "NOT TESTED", "no regression tests written for this target (results_dir/repros/<fix>/overlay)"
         if all((o.parent / "sweep.json").is_file() for o in overlays) and not fresh:
             # Reuse only sweeps of this overlay whose fix is in the pinned history.
-            stale = [f"{o.parent.name}: {why}" for o in overlays if (why := sweep_mismatch(o))]
+            notes = []
+            stale = [f"{o.parent.name}: {why}" for o in overlays if (why := sweep_mismatch(o, notes))]
             if stale:
                 return "FAILED", f"stale sweeps: {'; '.join(stale)} (pass --fresh to rerun)"
             current.update(o.parent for o in overlays)
-            return "REUSED", f"{len(overlays)} existing sweeps for this head and overlay (pass --fresh to rerun)"
+            note = f"; image recipe not recorded for {len(notes)} (made before 2.1.1)" if notes else ""
+            return "REUSED", f"{len(overlays)} existing sweeps, every recorded input matches{note}"
         if run([sys.executable, "-m", "bug_age.repros", res, repo, c["crate_path"]], log):
             return "FAILED", tail(log)
-        current.update(o.parent for o in overlays if (o.parent / "sweep.json").is_file() and not sweep_mismatch(o))
+        current.update(o.parent for o in overlays if (o.parent / "sweep.json").is_file() and not sweep_mismatch(o, []))
         return "OK", f"{len(overlays)} repros swept"
 
-    def feasibility_mismatch(receipt):
-        """Why a feasibility report does not belong to this run, or None."""
+    def image_mismatch(versions, what, notes):
+        """Compare the recorded image recipe with this package's; note receipts that predate the record."""
+        recorded = versions.get("image_recipe") if isinstance(versions, dict) else None
+        if recorded is None:
+            notes.append(f"{what}: image recipe not recorded (made before 2.1.1)")
+            return None
+        return None if recorded == RECIPE else "made with a different Method B image recipe"
+
+    def feasibility_mismatch(report, tt, notes):
+        """Why a feasibility report does not match this run's material inputs, or None.
+
+        Material: repository, pinned head, sample count, time-travel or not, package scope, the
+        report's own bytes (against the hash its receipt recorded), and the image recipe.
+        """
+        receipt = report.parent / "receipt.json"
         if not receipt.is_file():
             return "no receipt recording its inputs"
-        inputs = json.loads(receipt.read_text()).get("inputs", {})
+        rec = json.loads(receipt.read_text())
+        inputs = rec.get("inputs", {})
         if inputs.get("head") != c["head"]:
             return f"made at head {str(inputs.get('head'))[:10]}, pinned head is {c['head'][:10]}"
         if str(inputs.get("repo", "")).removesuffix(".git") != c["repo_url"].removesuffix(".git"):
             return f"made for {inputs.get('repo')}"
-        return None
+        command = str(rec.get("command", ""))
+        m = re.search(r"--samples (\d+)", command)
+        want = int(c.get("samples", 20))
+        if not m or int(m.group(1)) != want:
+            return f"made with --samples {m.group(1) if m else '?'}, the config asks for {want}"
+        if ("--time-travel" in command) != tt:
+            return "made " + ("with" if not tt else "without") + " time-travel dependencies"
+        hashes = [v for k, v in rec.get("outputs", {}).items() if k.endswith("report.json")]
+        if hashes != [sha256(report)]:
+            return "report.json does not match the hash recorded in its receipt"
+        scope = f"--package {c['package']}" if "package" in c else "--all"
+        build = str(json.loads(report.read_text()).get("method", {}).get("build", ""))
+        if not build.startswith(f"cargo build {scope} "):
+            return f"built with another package scope ({build.split(' --offline')[0]}), the config asks for {scope}"
+        return image_mismatch(rec.get("versions"), "feasibility", notes)
 
-    def sweep_mismatch(overlay):
-        """Why a recorded sweep does not belong to this run, or None."""
+    def sweep_mismatch(overlay, notes):
+        """Why a recorded sweep does not match what this run would do, or None.
+
+        Material: the fix (in the pinned history), the range start, the regression test, the
+        build and test commands, repeats, runner and search, the report's own bytes (against the
+        hash its receipt recorded), and the image recipe.
+        """
         receipt = overlay.parent / "sweep.json.receipt.json"
+        report = overlay.parent / "sweep.json"
         if not receipt.is_file():
             return "no receipt recording its inputs"
-        inputs = json.loads(receipt.read_text()).get("inputs", {})
+        rec = json.loads(receipt.read_text())
+        inputs = rec.get("inputs", {})
         if inputs.get("overlay_files") != overlay_listing(overlay):
             return "the regression test changed since it was swept"
         fix = str(inputs.get("fix", ""))
         if subprocess.run(["git", "-C", repo, "merge-base", "--is-ancestor", fix, c["head"]], capture_output=True).returncode:
             return f"fix {fix[:10]} is not in the history of the pinned head"
-        return None
+        if rec.get("report_sha256") != sha256(report):
+            return "sweep.json does not match the hash recorded in its receipt"
+        s = json.loads(report.read_text())
+        want = {"build": BUILD, "test": TEST, "repeats": 3, "runner": "docker", "search": "bisection",
+                "start": range_start(repo, fix)}
+        got = dict(s, search=s.get("search") or "bisection")
+        for key, value in want.items():
+            if got.get(key) != value:
+                return f"made with {key} {got.get(key)!r}, this run would use {value!r}"
+        return image_mismatch(rec.get("versions"), overlay.parent.name, notes)
 
     def bundle_inputs():
         """A results folder for the bundle holding only what this run produced or verified.

@@ -35,11 +35,13 @@ class Pipeline(unittest.TestCase):
         (self.d / "targets").mkdir()
         self.cfg = tomllib.loads((ROOT / "targets" / "tokenizers.toml").read_text())
 
-    def run_pipeline(self, *args, head=None):
+    def run_pipeline(self, *args, head=None, edit=None):
         """Run the pipeline (optionally re-pinned to `head`); return (exit code, stages by name, bundle)."""
         text = (ROOT / "targets" / "tokenizers.toml").read_text()
         if head:
             text = text.replace(self.cfg["head"], head)
+        if edit:
+            text = edit(text)
         (self.d / "targets" / "tokenizers.toml").write_text(text)
         out = subprocess.run([sys.executable, "-m", "bug_age", "pipeline", "targets/tokenizers.toml", *args],
                              cwd=self.d, env=dict(clean_env(), PYTHONPATH=str(ROOT)), capture_output=True, text=True)
@@ -81,6 +83,40 @@ class Pipeline(unittest.TestCase):
         if stages["Method B (repro sweeps)"]["status"] == "FAILED":
             self.assertIn("is not in the history of the pinned head", stages["Method B (repro sweeps)"]["reason"])
             self.assertEqual(bundle["method_b"], [])
+
+
+    def test_same_head_drift_is_never_reused(self):
+        """At the pinned head, a different sample count, an edited report or other sweep settings are stale."""
+        import hashlib
+        code, stages, bundle = self.run_pipeline(edit=lambda t: t.replace("samples = 20", "samples = 1"))
+        self.assertEqual(stages["feasibility (baseline)"]["status"], "FAILED")
+        self.assertIn("made with --samples 20, the config asks for 1", stages["feasibility (baseline)"]["reason"])
+        self.assertEqual(bundle["feasibility"], {"baseline": None, "time_travel": None})
+        # An edited report no longer matches the hash its receipt recorded.
+        report = self.d / "spike" / "results" / "report.json"
+        report.write_text(report.read_text().replace('"NO-GO"', '"GO"', 1))
+        _, stages, _ = self.run_pipeline()
+        self.assertIn("does not match the hash recorded in its receipt", stages["feasibility (baseline)"]["reason"])
+        # A sweep made with other settings, its receipt hash updated to match, is still stale.
+        sweep_dir = self.d / "results" / "tokenizers" / "repros" / "c046da7679"
+        sweep = json.loads((sweep_dir / "sweep.json").read_text())
+        sweep["repeats"] = 1
+        text = json.dumps(sweep)
+        (sweep_dir / "sweep.json").write_text(text)
+        receipt = json.loads((sweep_dir / "sweep.json.receipt.json").read_text())
+        receipt["report_sha256"] = hashlib.sha256(text.encode()).hexdigest()
+        (sweep_dir / "sweep.json.receipt.json").write_text(json.dumps(receipt))
+        _, stages, bundle = self.run_pipeline()
+        self.assertEqual(stages["Method B (repro sweeps)"]["status"], "FAILED")
+        self.assertIn("made with repeats 1, this run would use 3", stages["Method B (repro sweeps)"]["reason"])
+        self.assertEqual(bundle["method_b"], [])
+
+    def test_receipts_without_an_image_recipe_are_disclosed(self):
+        """Receipts made before the recipe was recorded are reused, and the stage report says so."""
+        code, stages, _ = self.run_pipeline()
+        self.assertEqual(stages["feasibility (baseline)"]["status"], "REUSED")
+        self.assertIn("image recipe not recorded", stages["feasibility (baseline)"]["reason"])
+        self.assertIn("image recipe not recorded for 6", stages["Method B (repro sweeps)"]["reason"])
 
 
 if __name__ == "__main__":

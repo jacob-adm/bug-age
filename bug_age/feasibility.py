@@ -325,6 +325,7 @@ def write_outputs(results, head, history_len, n, reclassified=False) -> int:
         "versions": {"python": platform.python_version(), "git": tool("git", "--version"),
                      "docker": tool("docker", "version", "--format", "{{.Server.Version}} {{.Server.Arch}}"),
                      "image": tool("docker", "image", "inspect", IMAGE, "--format", "{{.Id}}"),
+                     "image_recipe": hashlib.sha256((Path(__file__).parent / "data" / "Dockerfile").read_bytes()).hexdigest(),
                      "host": f"{platform.system()} {platform.machine()}",
                      "toolchains": sorted({r["toolchain"] for r in results})},
         "totals": counts, "verdict": verdict,

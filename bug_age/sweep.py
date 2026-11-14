@@ -326,6 +326,8 @@ def cmd_sweep(f):
         versions["docker"] = tool_version("docker", ["version", "--format", "{{.Server.Version}} {{.Server.Arch}}"])
         versions["image"] = tool_version("docker", ["image", "inspect", f.get("image", "bug-age-spike:4"),
                                                     "--format", "{{.Id}}"])
+        # The recipe the image is built from (bug-age dockerfile), so a later run can tell whether it changed.
+        versions["image_recipe"] = hashlib.sha256((Path(__file__).parent / "data" / "Dockerfile").read_bytes()).hexdigest()
     receipt = {
         "command": command_line(),
         "inputs": {"repo_head": trim(git(spec.repo, ["rev-parse", "HEAD"])), "fix": result["fix"],
