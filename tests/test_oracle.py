@@ -4,8 +4,10 @@
 The committed results/ and dist/ files are the output of bug-age 1.0.2, the last Rust version.
 Each stage is regenerated from the target clones in work/ (see targets/*.toml) and must equal
 them exactly; in a bundle the only allowed difference is the "generator" string, which names the
-tool version. The test is skipped when a clone is missing (CI clones both).
+tool version. The test is skipped when a clone is missing. CI clones both afresh and sets
+BUG_AGE_FRESH_CLONES=1, which limits the comparison to catalog and szz (see check()).
 """
+import os
 import re
 import shutil
 import tempfile
@@ -59,6 +61,11 @@ class Oracle(unittest.TestCase):
         if (committed / "repros").is_dir():
             shutil.copytree(committed / "repros", res / "repros")
         args = ["--out-of-scope", c["out_of_scope"]] if "out_of_scope" in c else []
+        # The bundle's redaction list comes from every ref in the clone (`git log --all`), so a clone
+        # made later than the published run's can carry newer contributors, redact differently or
+        # trip the blameless gate; 1.x behaves the same. Fresh CI clones compare catalog and szz only.
+        if os.environ.get("BUG_AGE_FRESH_CLONES") == "1":
+            return
         cli("bundle", "--repo", repo, "--results", res, "--repo-url", c["repo_url"], "--out", dist,
             "--spike", ROOT / c["spike_dir"], *args)
         self.assertSameFile(dist / "bundle.json", ROOT / c["dist_dir"] / "bundle.json", generator=True)

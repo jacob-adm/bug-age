@@ -35,6 +35,8 @@ jobs:
       # Python port: unit tests, and the oracle that regenerates both runs and compares byte for byte.
       - name: python tests
         run: python3 -m unittest discover -s tests
+        env:
+          BUG_AGE_FRESH_CLONES: "1"
       # Fails if any number in the article is not a reference into a committed bundle.
       - name: article numbers trace to the bundle
         run: python3 scripts/article.py article/ARTICLE.tmpl.md --bundle tokenizers=dist/tokenizers/bundle.json --bundle rust-sdk=dist/rust-sdk/bundle.json
