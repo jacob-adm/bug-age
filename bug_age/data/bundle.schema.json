@@ -29,7 +29,7 @@
     }
   },
   "properties": {
-    "schema_version": {"const": "1.1.0"},
+    "schema_version": {"const": "1.2.0"},
     "generator": {"type": "string", "description": "bug-age version that built the bundle"},
     "subject": {"type": "object", "required": ["repo_url", "crate_path", "head"],
       "properties": {"repo_url": {"type": "string"}, "crate_path": {"type": "string"}, "head": {"$ref": "#/$defs/sha"}}},
@@ -63,7 +63,8 @@
         "required": ["id", "fix", "verdict", "first_failing", "last_passing", "days", "days_is_lower_bound", "method_a_nominee", "a_check", "results", "repro_test"],
         "properties": {
           "fix": {"$ref": "#/$defs/sha"},
-          "verdict": {"enum": ["located", "interval", "censored-by-testability", "left-censored", "repro-invalid"]},
+          "verdict": {"enum": ["located", "boundary", "interval", "censored-by-testability", "left-censored", "repro-invalid"]},
+          "search": {"enum": ["bisection", "exhaustive"], "description": "located only with exhaustive; a bisected boundary is a lower bound"},
           "first_failing": {"$ref": "#/$defs/sha_or_null"},
           "last_passing": {"$ref": "#/$defs/sha_or_null"},
           "days_is_lower_bound": {"type": "boolean"},

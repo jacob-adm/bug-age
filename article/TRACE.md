@@ -19,9 +19,9 @@ Every number in ARTICLE.md, the template line it comes from, and its bundle path
 | 31 | 1668.6 | `tokenizers:method_a[@max=days].days` |
 | 31 | 479 | `tokenizers:method_a[@max=days].lifetime.commits_elapsed` |
 | 35 | 6 | `tokenizers:summary.method_b.swept` |
-| 35 | Fix stripping strings containing Unicode characters (#707) | `tokenizers:method_b[verdict=located].fix|subject` |
-| 35 | 462.4 | `tokenizers:method_b[verdict=located].method_a_days` |
-| 35 | 278.2 | `tokenizers:method_b[verdict=located].days` |
+| 35 | Fix stripping strings containing Unicode characters (#707) | `tokenizers:method_b[verdict=boundary].fix|subject` |
+| 35 | 462.4 | `tokenizers:method_b[verdict=boundary].method_a_days` |
+| 35 | 278.2 | `tokenizers:method_b[verdict=boundary].days` |
 | 37 | 4 | `tokenizers:summary.method_b.verdicts.censored-by-testability` |
 | 37 | Fix off-by-one error in tokenizer::normalizer::Range::len (#1638) | `tokenizers:method_b[verdict=left-censored].fix|subject` |
 | 37 | 1033.7 | `tokenizers:method_b[verdict=left-censored].days` |

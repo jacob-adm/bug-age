@@ -32,7 +32,7 @@ Before trusting either method, I checked whether history can be built at all. Wi
 
 ![Lifespan of every traced tokenizers bug, from nominated introducer to fix](figures/timeline-tokenizers.png)
 
-**Where blame and behaviour disagree.** I wrote regression tests for {{tokenizers:summary.method_b.swept}} tokenizers bugs and swept each one. One sweep found the exact first failing commit: "{{tokenizers:method_b[verdict=located].fix|subject}}". Blame said that bug was {{tokenizers:method_b[verdict=located].method_a_days}} days old. The sweep says {{tokenizers:method_b[verdict=located].days}} days. Running the test at blame's nominee showed it passed there, so the nominee did not introduce the bug.
+**Where blame and behaviour disagree.** I wrote regression tests for {{tokenizers:summary.method_b.swept}} tokenizers bugs and swept each one. One sweep found where its test goes from passing to failing: "{{tokenizers:method_b[verdict=boundary].fix|subject}}". Blame said that bug was {{tokenizers:method_b[verdict=boundary].method_a_days}} days old. The sweep says at least {{tokenizers:method_b[verdict=boundary].days}} days: it bisected, so it tested a sample of commits and cannot rule out an earlier failure. Running the test at blame's nominee showed it passed there, so the nominee did not introduce the bug.
 
 For {{tokenizers:summary.method_b.verdicts.censored-by-testability}} other bugs, the test already failed at the oldest commit where it could compile, so their ages are lower bounds. One bug, "{{tokenizers:method_b[verdict=left-censored].fix|subject}}", was already present at the start of the swept range: at least {{tokenizers:method_b[verdict=left-censored].days}} days old.
 

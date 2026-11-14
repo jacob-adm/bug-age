@@ -21,6 +21,7 @@ USAGE = """usage: bug-age [--version | --help]
              [--build CMD] [--start SHA] [--runner docker|local] [--repeats N] [--image IMG]
              [--time-travel-script FILE|none] [--scratch DIR] [--logs DIR] [--out FILE]
              [--namespace NAME] [--bucket N (toolchain minor rounding, default 4; 0 = exact)]
+             [--search bisection|exhaustive (exhaustive tests every commit; only it can report located)]
        bug-age probe --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]
        bug-age bundle --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR] [--out-of-scope 'STAGE|EVIDENCE|DOES_NOT_PROVE']
        bug-age explorer [--page FILE] --targets NAME=DIR,NAME=DIR --out DIR   (DIR = a bundle output dir)
@@ -47,7 +48,7 @@ _SWEEP = {"repo", "path", "overlay", "test", "build", "runner", "repeats", "imag
 OPTIONS = {
     "catalog": {"repo", "path", "head", "out"},
     "szz": {"repo", "catalog", "window-start", "release-tags", "out"},
-    "sweep": _SWEEP | {"fix", "start"},
+    "sweep": _SWEEP | {"fix", "start", "search"},
     "probe": _SWEEP | {"commits"},
     "bundle": {"repo", "results", "repo-url", "out", "spike", "out-of-scope"},
     "explorer": {"page", "targets", "out"},

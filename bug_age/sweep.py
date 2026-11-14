@@ -120,14 +120,20 @@ def commit_range(spec, fix, start):
     return every[every.index(s):]
 
 
-def run(runner, spec, fix, start=None):
-    """Sweep one fix: validate the repro, find the PASS->FAIL boundary, confirm, and classify."""
+def run(runner, spec, fix, start=None, exhaustive=False):
+    """Sweep one fix: validate the repro, find the PASS->FAIL boundary, confirm, and classify.
+
+    Bisection tests a sample of commits, so it cannot rule out a failure before the boundary it
+    finds: its result is a `boundary`, a lower bound on the age. With `exhaustive`, every commit
+    from the frontier to the fix is tested and only then can the verdict be `located`.
+    """
     commits = commit_range(spec, fix, start)
     if len(commits) < 2:
         raise RuntimeError("range must contain the fix and at least its first parent")
     f, p = len(commits) - 1, len(commits) - 2
     probe = Probe(runner, spec, commits)
     sweep = {"fix": commits[f], "start": commits[0], "runner": runner.name, "build": spec.build, "test": spec.test,
+             "search": "exhaustive" if exhaustive else "bisection",
              "repeats": spec.repeats, "verdict": "", "reason": "", "last_passing": None, "first_failing": None,
              "untestable_between": 0, "non_monotonic": False, "frontier": None, "confirmation": "",
              "range_commits": len(commits), "commits_tested": 0, "results": []}
@@ -150,7 +156,14 @@ def run(runner, spec, fix, start=None):
         frontier = testable
     sweep["frontier"] = commits[frontier]
     lo, hi = frontier - 1, p
-    if probe.outcome(frontier) == PASS:
+    if exhaustive:
+        # Every commit from the frontier to the fix's parent: the first FAIL is the true boundary.
+        for i in range(frontier, p + 1):
+            probe.outcome(i)
+        hi = min(i for i in range(frontier, p + 1) if probe.seen[i]["outcome"] == FAIL)
+        passes = [i for i in range(frontier, hi) if probe.seen[i]["outcome"] == PASS]
+        lo = passes[-1] if passes else frontier - 1
+    elif probe.outcome(frontier) == PASS:
         lo = frontier
         while hi - lo > 1:
             found = probe.testable_near((lo + hi) // 2, lo, hi)
@@ -174,8 +187,12 @@ def run(runner, spec, fix, start=None):
     sweep["first_failing"] = commits[hi]
     sweep["last_passing"] = commits[lo] if testable_lo else None
     sweep["untestable_between"] = hi - lo - 1 if testable_lo else 0
-    if testable_lo and hi - lo == 1:
-        sweep["verdict"], sweep["reason"] = "located", "adjacent last PASS and first FAIL"
+    if testable_lo and hi - lo == 1 and exhaustive:
+        sweep["verdict"], sweep["reason"] = "located", "adjacent last PASS and first FAIL; every commit in the range tested"
+    elif testable_lo and hi - lo == 1:
+        sweep["verdict"] = "boundary"
+        sweep["reason"] = ("adjacent last PASS and first FAIL among the commits tested; bisection does not rule out "
+                           "an earlier failure, so the age is a lower bound")
     elif testable_lo:
         sweep["verdict"] = "interval"
         sweep["reason"] = (f"bug introduced within {sweep['untestable_between']} untestable commit(s) "
@@ -247,7 +264,11 @@ def cmd_sweep(f):
     from .cli import command_line, emit, need, sha256, tool_version, write
     fix = need(f, "fix")
     spec, runner = _spec_and_runner(f, fix[:12])
-    result = run(runner, spec, fix, f.get("start"))
+    search = f.get("search", "bisection")
+    if search not in ("bisection", "exhaustive"):
+        from .cli import UsageError
+        raise UsageError("--search must be bisection or exhaustive")
+    result = run(runner, spec, fix, f.get("start"), exhaustive=search == "exhaustive")
     print(f"sweep: {result['verdict']} — {result['reason']} ({result['commits_tested']} of {result['range_commits']} "
           f"commits tested)", file=sys.stderr)
     report = dumps(result, pretty=True) + "\n"

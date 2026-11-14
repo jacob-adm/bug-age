@@ -21,24 +21,24 @@ FLAKY = "fn mul(a,b){ a * b } // FLAKY"
 
 # name: (bodies, start index or None, verdict, commits tested, non_monotonic, confirmation prefix)
 SCENARIOS = {
-    "located": ([NONE, OK, OK, BUG, BUG, BUG, OK], None, "located", 7, False, "decisive commits confirmed x3"),
+    "located": ([NONE, OK, OK, BUG, BUG, BUG, OK], None, "boundary", 7, False, "decisive commits confirmed x3"),
     "left-censored": ([OK, BUG, BUG, BUG, OK], 1, "left-censored", 4, False, "decisive commits confirmed x3"),
     "censored-by-testability": ([NONE, NONE, NONE, BUG, BUG, OK], None, "censored-by-testability", 5, False, "decisive"),
-    "bounded": ([NONE] * 40 + [OK, OK, BUG, BUG, OK], None, "located", 11, False, "decisive"),
+    "bounded": ([NONE] * 40 + [OK, OK, BUG, BUG, OK], None, "boundary", 11, False, "decisive"),
     "frontier": ([NONE, OK, NONE, NONE, NONE, NONE, NONE, BUG, BUG, OK], None, "censored-by-testability", 6, False, "decisive"),
     "interval": ([OK, OK, OK, NONE, NONE, NONE, BUG, BUG, OK], None, "interval", 8, False, "decisive"),
     "interval-wide": ([OK] * 5 + [NONE] * 9 + [BUG] * 5 + [OK], None, "interval", 10, False, "decisive"),
-    "non-monotonic": ([OK, OK, BUG, OK, BUG, BUG, BUG, OK], None, "located", 7, True, "decisive"),
-    "flaky-boundary": ([OK, OK, OK, FLAKY, BUG, BUG, OK], None, "located", 6, False, "UNSTABLE on confirmation: "),
+    "non-monotonic": ([OK, OK, BUG, OK, BUG, BUG, BUG, OK], None, "boundary", 7, True, "decisive"),
+    "flaky-boundary": ([OK, OK, OK, FLAKY, BUG, BUG, OK], None, "boundary", 6, False, "UNSTABLE on confirmation: "),
     "repro-invalid": ([OK, OK, OK], None, "repro-invalid", 2, False, ""),
-    "long": ([OK] * 30 + [BUG] * 30 + [OK], None, "located", 10, False, "decisive"),
+    "long": ([OK] * 30 + [BUG] * 30 + [OK], None, "boundary", 10, False, "decisive"),
 }
 
 
 class Scenarios(unittest.TestCase):
     """Each scripted history gets the verdict, cost and flags 1.0.2 reported."""
 
-    def run_scenario(self, bodies, start):
+    def run_scenario(self, bodies, start, exhaustive=False):
         """Build the history, sweep its last commit, return (report, shas)."""
         root = Path(tempfile.mkdtemp(prefix="bug-age-scenario-"))
         self.addCleanup(shutil.rmtree, root, True)
@@ -62,7 +62,7 @@ class Scenarios(unittest.TestCase):
         counter = root / "counter"
         test = (f"if grep -q FLAKY src/lib.rs; then n=$(cat {counter} 2>/dev/null || echo 0); echo $((n+1)) > {counter}; "
                 f"[ $((n % 2)) = 0 ]; else grep -q 'a \\* b' src/lib.rs; fi")
-        args = ["sweep", "--repo", repo, "--path", "toy", "--fix", shas[-1], "--overlay", root / "overlay", "--runner", "local",
+        args = ["sweep", *(["--search", "exhaustive"] if exhaustive else []), "--repo", repo, "--path", "toy", "--fix", shas[-1], "--overlay", root / "overlay", "--runner", "local",
                 "--repeats", "3", "--build", "grep -q 'fn mul' src/lib.rs", "--test", test, "--scratch", root / "scratch",
                 "--logs", root / "scratch" / "logs"] + (["--start", shas[start]] if start is not None else [])
         return json.loads(cli(*args).stdout)["report"], shas
@@ -74,6 +74,27 @@ class Scenarios(unittest.TestCase):
                 r, _ = self.run_scenario(bodies, start)
                 self.assertEqual((r["verdict"], r["commits_tested"], r["non_monotonic"]), (verdict, tested, nonmono))
                 self.assertTrue(r["confirmation"].startswith(confirmation), r["confirmation"])
+
+
+    def test_exhaustive_scenarios(self):
+        """Every commit tested: the true first failure, located only when the range is monotone."""
+        # The audit's history: fails at 2, passes again, fails from 14. Bisection reports 14 as a boundary.
+        audit = [OK, OK, BUG] + [OK] * 11 + [BUG, BUG, OK]
+        r, s = self.run_scenario(audit, None)
+        self.assertEqual((r["verdict"], s.index(r["first_failing"]), r["non_monotonic"]), ("boundary", 14, False))
+        r, s = self.run_scenario(audit, None, exhaustive=True)
+        self.assertEqual((r["verdict"], s.index(r["first_failing"]), s.index(r["last_passing"])), ("located", 2, 1))
+        self.assertIs(r["non_monotonic"], True)
+        self.assertEqual((r["search"], r["commits_tested"]), ("exhaustive", 17))
+        # A monotone history: only the exhaustive search may say located.
+        r, s = self.run_scenario([NONE, OK, OK, BUG, BUG, BUG, OK], None, exhaustive=True)
+        self.assertEqual((r["verdict"], s.index(r["first_failing"]), r["non_monotonic"]), ("located", 3, False))
+        # Untestable commits between the last PASS and the first FAIL: an interval, even when exhaustive.
+        r, s = self.run_scenario([OK, OK, OK, NONE, NONE, NONE, BUG, BUG, OK], None, exhaustive=True)
+        self.assertEqual((r["verdict"], r["untestable_between"]), ("interval", 3))
+        # Failing from the first commit: left-censored either way.
+        r, _ = self.run_scenario([BUG, BUG, BUG, OK], None, exhaustive=True)
+        self.assertEqual(r["verdict"], "left-censored")
 
 
 if __name__ == "__main__":

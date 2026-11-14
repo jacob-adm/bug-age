@@ -86,5 +86,41 @@ class Oracle(unittest.TestCase):
             self.assertSameFile(self.out / rel, ROOT / "dist" / "explorer" / rel)
 
 
+    def test_only_documented_changes_since_1_0_2(self):
+        """Against tag v1.0.2, the published bundles differ only in the documented fields.
+
+        2.1: a bisected sweep's "located" became "boundary" (a lower bound), every sweep records its
+        search, and the schema version and generator changed. No number changed.
+        """
+        import json
+        import subprocess
+
+        def diff(a, b, path=""):
+            if type(a) is not type(b):
+                yield path
+            elif isinstance(a, dict):
+                for k in sorted(set(a) | set(b)):
+                    yield from diff(a.get(k), b.get(k), f"{path}.{k}")
+            elif isinstance(a, list):
+                if len(a) != len(b):
+                    yield f"{path}[len]"
+                for i, (x, y) in enumerate(zip(a, b)):
+                    yield from diff(x, y, f"{path}[{i}]")
+            elif a != b:
+                yield path
+        allowed = re.compile(r"^\.(generator|schema_version|summary\.method_b\.(located|verdicts\.(located|boundary))"
+                             r"|method_b\[\d+\]\.(search|verdict|reason|days_is_lower_bound))$")
+        for name in ("tokenizers", "rust-sdk"):
+            old = subprocess.run(["git", "show", f"v1.0.2:dist/{name}/bundle.json"], cwd=ROOT, capture_output=True, text=True)
+            if old.returncode != 0:
+                self.skipTest("tag v1.0.2 not fetched")
+            new = json.loads((ROOT / "dist" / name / "bundle.json").read_text(encoding="utf-8"))
+            changed = [d for d in diff(json.loads(old.stdout), new) if not allowed.match(d)]
+            self.assertEqual(changed, [], name)
+            for row in new["method_b"]:
+                # Only a full scan may claim an exact boundary.
+                self.assertTrue(row["verdict"] != "located" or row["search"] == "exhaustive", row["id"])
+
+
 if __name__ == "__main__":
     unittest.main()

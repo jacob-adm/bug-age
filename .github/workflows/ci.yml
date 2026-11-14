@@ -20,6 +20,8 @@ jobs:
         os: [ubuntu-24.04, macos-15]
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # tags, for the comparison with v1.0.2's published bundles
       # cargo builds the toy crate in the Method B tests (the rust profile); bug-age itself is Python.
       - uses: dtolnay/rust-toolchain@1.86.0
       # The example runs' clones, so the oracle test can regenerate them (full history: blame and tags).
