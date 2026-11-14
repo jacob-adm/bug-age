@@ -236,9 +236,12 @@ def _spec_and_runner(f, tag):
     repeats = number("repeats", "3")
     if repeats < 1:
         raise UsageError("--repeats must be at least 1")
-    spec = Spec(need(f, "repo"), need(f, "path"), need(f, "overlay"), f.get("build", "cargo test --no-run"),
-                need(f, "test"), repeats, f.get("scratch", f"{home}/.cache/bug-age"),
-                f.get("logs", f"work/sweep-logs/{tag}"))
+    try:
+        spec = Spec(need(f, "repo"), need(f, "path"), need(f, "overlay"), f.get("build", "cargo test --no-run"),
+                    need(f, "test"), repeats, f.get("scratch", f"{home}/.cache/bug-age"),
+                    f.get("logs", f"work/sweep-logs/{tag}"))
+    except ValueError as exc:  # an unsafe crate path or overlay entry: refused before any work
+        raise UsageError(str(exc)) from None
     kind = f.get("runner", "docker")
     if kind == "local":
         return spec, Local(spec)

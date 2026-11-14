@@ -28,11 +28,37 @@ class RunnerError(RuntimeError):
     """The harness could not prepare or run a commit (not a test result)."""
 
 
+# A path inside the repository or the overlay: relative, plain characters, no `..`. It is used to
+# build file system paths and Docker arguments, so anything else is refused before any work.
+_SAFE_PATH = re.compile(r"[A-Za-z0-9._-]+(/[A-Za-z0-9._-]+)*")
+
+
+def check_path(rel, what):
+    """Return `rel` if it is a safe relative path ("." allowed for the root); else raise ValueError."""
+    if rel == "." or (_SAFE_PATH.fullmatch(rel) and ".." not in rel.split("/") and "." not in rel.split("/")):
+        return rel
+    raise ValueError(f"{what} {rel!r} must be a relative path of letters, digits, '.', '_', '-' and '/', without '..'")
+
+
+def overlay_files(overlay):
+    """Every file in the overlay as a checked relative path; symlinks in the overlay are refused."""
+    out = []
+    for dirpath, dirs, files in os.walk(overlay):
+        for name in dirs + files:
+            p = Path(dirpath) / name
+            if p.is_symlink():
+                raise ValueError(f"overlay entry {p} is a symlink")
+        for name in files:
+            out.append(check_path(os.path.relpath(Path(dirpath) / name, overlay).replace(os.sep, "/"), "overlay file"))
+    return sorted(out)
+
+
 class Spec:
     """What to test: repository, crate path, overlay, build and test commands, repeats and directories."""
 
     def __init__(self, repo, crate_path, overlay, build, test, repeats, scratch, logs):
-        self.repo, self.crate_path, self.overlay = Path(repo), crate_path, Path(overlay)
+        self.repo, self.crate_path, self.overlay = Path(repo), check_path(crate_path, "crate path"), Path(overlay)
+        self.overlay_files = overlay_files(self.overlay)
         self.build, self.test, self.repeats = build, test, repeats
         self.scratch, self.logs = Path(scratch), Path(logs)
 
@@ -106,6 +132,29 @@ def run_logged(argv, log, stdin=None, cwd=None, env=None):
     return (out.returncode if out.returncode >= 0 else -1), seconds
 
 
+def place_overlay(spec, root):
+    """Copy the overlay into the crate under `root`, never through a symlink.
+
+    A commit can make any directory on the way a symlink (tests -> /somewhere); following it would
+    write outside the work tree. Every component from `root` down is checked, and files are opened
+    with O_NOFOLLOW so the last component cannot be a link either.
+    """
+    for rel in spec.overlay_files:
+        parts = ([] if spec.crate_path == "." else spec.crate_path.split("/")) + rel.split("/")
+        here = Path(root)
+        for part in parts[:-1]:
+            here = here / part
+            if here.is_symlink():
+                raise RunnerError(f"overlay path goes through a symlink: {os.path.relpath(here, root)}")
+            here.mkdir(exist_ok=True)
+        target = here / parts[-1]
+        if target.is_symlink():
+            raise RunnerError(f"overlay file would replace a symlink: {os.path.relpath(target, root)}")
+        fd = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_TRUNC | getattr(os, "O_NOFOLLOW", 0), 0o644)
+        with os.fdopen(fd, "wb") as f:
+            f.write((spec.overlay / rel).read_bytes())
+
+
 def copy_tree(src, dst):
     """Copy every file under `src` into `dst`, creating directories, overwriting files."""
     for entry in sorted(Path(src).iterdir()):
@@ -130,7 +179,7 @@ class Local:
         git_run(spec.repo, ["worktree", "remove", "--force", str(self.wt)], check=False)
         shutil.rmtree(self.wt, ignore_errors=True)
         git(spec.repo, ["worktree", "add", "--force", "--detach", str(self.wt), sha])
-        copy_tree(spec.overlay, self.wt / spec.crate_path)
+        place_overlay(spec, self.wt)
         return "host"
 
     def exec(self, spec, cmd, network, log):
@@ -183,8 +232,9 @@ class Docker:
     def untar_into(self, volume, d, tar, log):
         """Extract a tar stream into directory `d` of a volume."""
         mount = f"{self.v(volume)}:/{volume}"
+        # The directory reaches the shell as an argument ($1), never as part of the script text.
         code, _ = self.docker(["run", "-i", "--rm", "-v", mount, self.image, "sh", "-c",
-                               f"mkdir -p {d} && tar -x -m --no-same-owner -C {d}"], tar, log)
+                               'mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"', "sh", d], tar, log)
         if code != 0:
             raise RunnerError(f"harness: untar into {volume}:{d} failed (see {log})")
 
@@ -260,6 +310,16 @@ class Docker:
         if archive.returncode != 0:
             raise RunnerError(f"harness: git archive {sha} failed")
         self.untar_into(SRC, f"/{SRC}", archive.stdout, logs / "stage-src.log")
+        # Refuse a commit whose tree puts a symlink on any overlay path before extracting into it.
+        check = ('root=$1; shift; set -f; IFS=/; for rel in "$@"; do p=$root; for part in $rel; do p=$p/$part; '
+                 'if [ -L "$p" ]; then echo "symlink on the overlay path: ${p#$root/}"; exit 3; fi; done; done')
+        crate = "" if spec.crate_path == "." else spec.crate_path + "/"
+        code, _ = self.docker(["run", "--rm", "-v", f"{self.v(SRC)}:/{SRC}", self.image, "sh", "-c", check, "sh", f"/{SRC}",
+                               *(crate + rel for rel in spec.overlay_files)], None, logs / "stage-overlay-check.log")
+        if code == 3:
+            raise RunnerError("overlay path goes through a symlink in this commit (see stage-overlay-check.log)")
+        if code != 0:
+            raise RunnerError(f"harness: overlay check failed (see {logs / 'stage-overlay-check.log'})")
         self.untar_into(SRC, f"/{SRC}/{spec.crate_path}", self._tar_dir(spec.overlay), logs / "stage-overlay.log")
         if not has_lockfile(spec.repo, sha, spec.crate_path) and self.time_travel_script is not None:
             self.time_travel(spec, sha, self.time_travel_script)
@@ -287,8 +347,11 @@ class Docker:
         args = ["run", "--rm"]
         if not network:
             args += ["--network", "none", "-e", "CARGO_NET_OFFLINE=true"]
+        # Build and test run the repository's code offline; they get the shared toolchain and cargo
+        # caches read-only, so that code cannot change what later commits are tested with.
+        ro = "" if network else ":ro"
         args += ["-v", f"{self.v(SRC)}:/{SRC}", "-v", f"{self.v(INDEX)}:/{INDEX}",
-                 "-v", f"{self.target_volume(self.toolchain)}:/target", "-v", "bugage-rustup:/rustup",
-                 "-v", f"{self.v('bugage-cargo')}:/cargo", "-e", "CARGO_TARGET_DIR=/target", "-e", "CARGO_TERM_COLOR=never",
+                 "-v", f"{self.target_volume(self.toolchain)}:/target", "-v", f"bugage-rustup:/rustup{ro}",
+                 "-v", f"{self.v('bugage-cargo')}:/cargo{ro}", "-e", "CARGO_TARGET_DIR=/target", "-e", "CARGO_TERM_COLOR=never",
                  "-e", f"RUSTUP_TOOLCHAIN={self.toolchain}", "-w", f"/{SRC}/{spec.crate_path}", self.image, "sh", "-c", cmd]
         return self.docker(args, None, log)
