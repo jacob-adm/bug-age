@@ -182,6 +182,8 @@ bug-age pipeline TARGET.toml [--fresh] [--skip-feasibility]
 bug-age dockerfile
 ```
 
+Every command accepts only its own options: an unknown, repeated or valueless option exits 2 with the usage text, and `--repeats` must be at least 1.
+
 | Command | What it does |
 |---|---|
 | `catalog` | Lists the fix commits that touch a crate and records why each other commit was excluded (docs, lint, release, and so on) |

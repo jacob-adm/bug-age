@@ -69,6 +69,45 @@ class Cli(unittest.TestCase):
         self.assertEqual(out.stderr.strip(), "bug-age: missing --repo")
 
 
+class Options(unittest.TestCase):
+    """Unknown, repeated or valueless options never fall back to a default."""
+
+    def test_unknown_option_is_a_usage_error_for_every_subcommand(self):
+        """A misspelt option exits 2 and names it, before any work."""
+        for sub in ("catalog", "szz", "sweep", "probe", "bundle", "explorer", "mcp"):
+            with self.subTest(sub=sub):
+                out = cli(sub, "--hed", "x", check=False)
+                self.assertEqual(out.returncode, 2, out.stderr)
+                self.assertIn("unknown option '--hed'", out.stderr)
+
+    def test_repeated_option_is_a_usage_error(self):
+        """A repeated option is refused instead of keeping the last value."""
+        out = cli("catalog", "--repo", ".", "--path", "x", "--head", "a", "--head", "b", check=False)
+        self.assertEqual(out.returncode, 2)
+        self.assertIn("given twice", out.stderr)
+
+    def test_missing_value_is_a_usage_error(self):
+        """An option without its value exits 2."""
+        out = cli("catalog", "--repo", check=False)
+        self.assertEqual(out.returncode, 2)
+        self.assertIn("missing value for '--repo'", out.stderr)
+
+    def test_zero_repeats_is_refused(self):
+        """--repeats 0 would report PASS without running the test, so it is refused."""
+        for sub, extra in (("probe", ["--commits", "HEAD"]), ("sweep", ["--fix", "HEAD"])):
+            with self.subTest(sub=sub):
+                out = cli(sub, "--repo", ".", "--path", "x", "--overlay", ".", "--test", "true", "--runner", "local",
+                          "--repeats", "0", *extra, check=False)
+                self.assertEqual(out.returncode, 2, out.stderr)
+                self.assertIn("--repeats must be at least 1", out.stderr)
+
+    def test_evaluate_refuses_zero_repeats(self):
+        """The library function refuses it too."""
+        from bug_age.sweep import evaluate
+        with self.assertRaises(ValueError):
+            evaluate(None, None, "0" * 40, 0)
+
+
 def serve(requests):
     """Replies of the MCP server over the tokenizers bundle to the given request lines."""
     out = cli("mcp", "--bundles", f"tokenizers={BUNDLE}", stdin=requests)
