@@ -16,21 +16,21 @@ sweep:
 	nohup scripts/sweep-unattended.sh $(ARGS) > /dev/null 2>&1 &
 	@echo "sweep started in the background; notification + <results-dir>/SUMMARY.md when done"
 
-# Full test suite: unit, contract and end-to-end tests (the Docker test is ignored by default).
+# Full test suite: unit, contract, oracle and end-to-end tests (the Docker test is opt-in: BUG_AGE_DOCKER_TESTS=1).
 test:
-	cargo test
+	python3 -m unittest discover -s tests
 
 # Tokenizers bundle from results/tokenizers; rust-sdk is built by `make pipeline`.
 bundle:
-	cargo run -q -- bundle --repo work/tokenizers --results results/tokenizers --repo-url https://github.com/huggingface/tokenizers --out dist/tokenizers --out-of-scope "Bindings (Python/Node), benches|out of scope for the Rust core crate|binding behaviour"
+	python3 -m bug_age bundle --repo work/tokenizers --results results/tokenizers --repo-url https://github.com/huggingface/tokenizers --out dist/tokenizers --out-of-scope "Bindings (Python/Node), benches|out of scope for the Rust core crate|binding behaviour"
 
 # One target end to end from its config: clone, feasibility, catalog, Method A, Method B, bundle.
 pipeline:
-	python3 scripts/pipeline.py $(TARGET) $(ARGS)
+	python3 -m bug_age pipeline $(TARGET) $(ARGS)
 
 # Explorer page for every bundled target (size gate: 8 MB).
 explorer:
-	cargo run -q -- explorer --page explorer/index.html --targets tokenizers=dist/tokenizers,rust-sdk=dist/rust-sdk --out dist/explorer
+	python3 -m bug_age explorer --page explorer/index.html --targets tokenizers=dist/tokenizers,rust-sdk=dist/rust-sdk --out dist/explorer
 
 # Render the article from bundle references; fails on any untraced number. Figures need Chrome.
 article: explorer

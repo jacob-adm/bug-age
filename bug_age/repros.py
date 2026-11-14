@@ -9,13 +9,13 @@ reported left-censored rather than borrowing Method A's answer.
 A-check (separate, labelled column): Method A's nominee and its parent are probed with the same
 test. It verifies A behaviourally where the test compiles; it never changes Method B's verdict.
 
-Usage: python3 results/run_repros.py results/tokenizers work/tokenizers tokenizers
+Usage: python3 -m bug_age.repros results/tokenizers work/tokenizers tokenizers
        [--only ID ...] [--render-only] [--acheck-only]
 """
 import datetime as dt, hashlib, json, subprocess, sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent  # repo root; stripped from recorded paths
+ROOT = Path.cwd()  # working directory; stripped from recorded paths
 
 WINDOW_DAYS = 3 * 365                                # sweep range: at most three years before the fix
 BUILD = "cargo test --test bugage_repro --no-run"   # compile the regression test only
@@ -42,11 +42,11 @@ def sweep(res, repo, crate, rid, worker="w0"):
     """Run `bug-age sweep` (Docker) for one regression test and write its report, receipt and log."""
     fix = git(repo, "rev-parse", rid)
     out = res / "repros" / rid / "sweep.json"
-    cmd = ["target/debug/bug-age", "sweep", "--repo", str(repo), "--path", crate, "--fix", fix,
+    cmd = [sys.executable, "-m", "bug_age", "sweep", "--repo", str(repo), "--path", crate, "--fix", fix,
            "--start", range_start(repo, fix), "--overlay", str(res / "repros" / rid / "overlay"),
            "--runner", "docker", "--repeats", "3", "--build", BUILD, "--test", TEST,
            "--logs", f"work/sweep-logs/{rid}", "--out", str(out), "--namespace", worker]
-    print(f"== {rid}: {' '.join(cmd[2:])}", flush=True)
+    print(f"== {rid}: {' '.join(cmd[4:])}", flush=True)
     p = subprocess.run(cmd, stderr=subprocess.PIPE, text=True)
     (res / "repros" / rid / "sweep.stderr.log").write_text(p.stderr.replace(f"{ROOT}/", "").replace(str(Path.home()), "~"))
     if p.returncode != 0:
@@ -63,7 +63,7 @@ def acheck(res, repo, crate, rid):
     szz = {b["fix"]: b for b in json.loads((res / "szz.json").read_text())["bugs"]}
     a = szz[fix]["nominees"][0]["sha"]
     out = res / "repros" / rid / "acheck.json"
-    cmd = ["target/debug/bug-age", "probe", "--repo", str(repo), "--path", crate, "--commits", f"{a}^,{a}",
+    cmd = [sys.executable, "-m", "bug_age", "probe", "--repo", str(repo), "--path", crate, "--commits", f"{a}^,{a}",
            "--overlay", str(res / "repros" / rid / "overlay"), "--runner", "docker", "--repeats", "3",
            "--build", BUILD, "--test", TEST, "--logs", f"work/sweep-logs/acheck-{rid}", "--out", str(out)]
     print(f"== A-check {rid}: nominee {a[:10]} and parent", flush=True)
