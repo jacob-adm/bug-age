@@ -36,16 +36,40 @@ class Failure(Exception):
     """A runtime error: printed as `bug-age: <message>`, exit status 1."""
 
 
-def flags(args):
-    """`--key value` pairs as a dict; anything else is an error."""
+class UsageError(Exception):
+    """A malformed command line: printed with the usage text, exit status 2."""
+
+
+# The options each subcommand accepts. Anything else is a usage error, so a typo such as --hed can
+# never fall back to a default and silently change what is measured.
+_SWEEP = {"repo", "path", "overlay", "test", "build", "runner", "repeats", "image", "time-travel-script",
+          "scratch", "logs", "out", "namespace", "bucket"}
+OPTIONS = {
+    "catalog": {"repo", "path", "head", "out"},
+    "szz": {"repo", "catalog", "window-start", "release-tags", "out"},
+    "sweep": _SWEEP | {"fix", "start"},
+    "probe": _SWEEP | {"commits"},
+    "bundle": {"repo", "results", "repo-url", "out", "spike", "out-of-scope"},
+    "explorer": {"page", "targets", "out"},
+    "mcp": {"bundles"},
+}
+
+
+def flags(args, allowed=None):
+    """`--key value` pairs as a dict; unknown, repeated or valueless options are usage errors."""
     out, it = {}, iter(args)
     for k in it:
         if not k.startswith("--"):
-            raise Failure(f"unexpected argument '{k}'")
+            raise UsageError(f"unexpected argument '{k}'")
+        key = k[2:]
+        if allowed is not None and key not in allowed:
+            raise UsageError(f"unknown option '{k}'")
+        if key in out:
+            raise UsageError(f"option '{k}' given twice")
         try:
-            out[k[2:]] = next(it)
+            out[key] = next(it)
         except StopIteration:
-            raise Failure(f"missing value for '{k}'") from None
+            raise UsageError(f"missing value for '{k}'") from None
     return out
 
 
@@ -258,7 +282,10 @@ def main(argv=None):
         print(f"bug-age: unknown argument '{first}'\n{USAGE}", file=sys.stderr)
         return 2
     try:
-        COMMANDS[first](flags(args[1:]))
+        COMMANDS[first](flags(args[1:], OPTIONS.get(first)))
+    except UsageError as exc:
+        print(f"bug-age: {exc}\n{USAGE}", file=sys.stderr)
+        return 2
     except (Failure, RuntimeError) as exc:
         print(f"bug-age: {exc}", file=sys.stderr)
         return 1

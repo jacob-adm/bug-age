@@ -27,6 +27,8 @@ SEARCH_REPEATS = 1   # test runs per commit while searching; decisive commits ge
 
 def evaluate(runner, spec, sha, repeats):
     """Stage `sha`, build the overlay test, run it `repeats` times: PASS, FAIL, FLAKY or UNTESTABLE."""
+    if repeats < 1:
+        raise ValueError("repeats must be at least 1: with none, the test would never run")
     logs = spec.logs / sha[:12]
     steps = []
 
@@ -203,7 +205,7 @@ def _finish(sweep, probe):
 
 def _spec_and_runner(f, tag):
     """The test spec and runner from the sweep/probe flags."""
-    from .cli import Failure, need
+    from .cli import Failure, UsageError, need
     home = os.environ.get("HOME", "")
 
     def number(key, default, signed=False):
@@ -211,10 +213,14 @@ def _spec_and_runner(f, tag):
         text = f.get(key, default)
         digits = text[1:] if text[:1] in ("+", "-" if signed else "+") else text
         if not (digits.isascii() and digits.isdigit()):
-            raise Failure(f"--{key}: invalid digit found in string")
+            raise UsageError(f"--{key}: invalid digit found in string")
         return int(text)
+    # At least one run: with none, a commit would PASS ("passed 0x") without its test ever running.
+    repeats = number("repeats", "3")
+    if repeats < 1:
+        raise UsageError("--repeats must be at least 1")
     spec = Spec(need(f, "repo"), need(f, "path"), need(f, "overlay"), f.get("build", "cargo test --no-run"),
-                need(f, "test"), number("repeats", "3"), f.get("scratch", f"{home}/.cache/bug-age"),
+                need(f, "test"), repeats, f.get("scratch", f"{home}/.cache/bug-age"),
                 f.get("logs", f"work/sweep-logs/{tag}"))
     kind = f.get("runner", "docker")
     if kind == "local":
