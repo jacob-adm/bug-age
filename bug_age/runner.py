@@ -7,7 +7,6 @@ against a time-travel index, and build/test run with `--network none`. `Local` u
 toolchain in a git worktree; it exists so the sweep logic can be tested end to end without Docker,
 and is not hermetic.
 """
-import collections
 import os
 import re
 import shlex
@@ -139,22 +138,23 @@ def run_logged(argv, log, stdin=None, cwd=None, env=None, timeout=None, on_timeo
                                 start_new_session=True)
     except OSError as exc:
         raise RunnerError(f"spawn failed: {exc}") from exc
-    head, tail, dropped = bytearray(), collections.deque(), [0]
-    tail_size = [0]
+    half = LOG_CAP // 2
+    head, tail, dropped = bytearray(), bytearray(), [0]
 
     def read():
-        # Keep the first half of the cap, then a rolling window of the last half.
+        # Keep exactly the first half of the cap, then exactly the last half: the tail is trimmed
+        # byte for byte, never by whole read chunks, so the kept output never exceeds LOG_CAP.
         for chunk in iter(lambda: proc.stdout.read(65536), b""):
-            room = LOG_CAP // 2 - len(head)
+            room = half - len(head)
             if room > 0:
                 head.extend(chunk[:room])
                 chunk = chunk[room:]
             if chunk:
-                tail.append(chunk)
-                tail_size[0] += len(chunk)
-                while tail_size[0] - len(tail[0]) >= LOG_CAP // 2:
-                    tail_size[0] -= len(tail[0])
-                    dropped[0] += len(tail.popleft())
+                tail.extend(chunk)
+                if len(tail) > half:
+                    excess = len(tail) - half
+                    dropped[0] += excess
+                    del tail[:excess]
     reader = threading.Thread(target=read, daemon=True)
     reader.start()
     if stdin is not None:
@@ -181,7 +181,7 @@ def run_logged(argv, log, stdin=None, cwd=None, env=None, timeout=None, on_timeo
     log.parent.mkdir(parents=True, exist_ok=True)
     note = f"\n[bug-age: {dropped[0]} bytes of output not kept]\n".encode() if dropped[0] else b""
     stop = f"\n[bug-age: stopped after the {timeout} s step limit]\n".encode() if timed_out else b""
-    log.write_bytes(f"$ {shlex.join(argv)}\n".encode() + bytes(head) + note + b"".join(tail) + stop)
+    log.write_bytes(f"$ {shlex.join(argv)}\n".encode() + bytes(head) + note + bytes(tail) + stop)
     if timed_out:
         return TIMED_OUT, seconds
     return (proc.returncode if proc.returncode >= 0 else -1), seconds

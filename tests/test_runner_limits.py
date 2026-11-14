@@ -45,6 +45,19 @@ class Limits(unittest.TestCase):
         self.assertTrue(text.rstrip().endswith(b"END"))
         self.assertIn(b"bytes of output not kept", text)
 
+    def test_cap_is_exact_for_sizes_that_do_not_fit_read_chunks(self):
+        """The kept output is exactly min(size, LOG_CAP) bytes; only the command line and one notice are added."""
+        for size in (8 * 1024 * 1024 + 1, 9_000_001, 12_345_678, 20_000_003, 33_554_431, 1000):
+            with self.subTest(size=size):
+                log = self.d / f"{size}.log"
+                runner.run_logged(["sh", "-c", f"head -c {size} /dev/zero | tr '\\0' x"], log)
+                text = log.read_bytes()
+                header, _, rest = text.partition(b"\n")
+                kept = rest.replace(f"\n[bug-age: {max(0, size - runner.LOG_CAP)} bytes of output not kept]\n".encode(), b"")
+                self.assertEqual(len(kept), min(size, runner.LOG_CAP))
+                self.assertEqual(set(kept), {ord("x")})
+                self.assertLessEqual(len(text), runner.LOG_CAP + len(header) + 1 + 64)
+
     def test_hanging_test_is_a_failure_with_the_reason(self):
         """In a sweep, a test that hangs fails at --step-timeout and the reason names the limit."""
         repo = self.d / "repo"
