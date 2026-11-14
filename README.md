@@ -260,4 +260,4 @@ Keep the rules in [Rigor rules](#rigor-rules): numbers come from scripts, unrun 
 
 ## License
 
-MIT OR Apache-2.0, as declared in `Cargo.toml`.
+Licensed under either of [Apache License, Version 2.0](LICENSE-APACHE) or [MIT License](LICENSE-MIT), at your option, as declared in `Cargo.toml`.
