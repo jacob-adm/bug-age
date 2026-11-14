@@ -7,13 +7,17 @@ against a time-travel index, and build/test run with `--network none`. `Local` u
 toolchain in a git worktree; it exists so the sweep logic can be tested end to end without Docker,
 and is not hermetic.
 """
+import collections
 import os
 import re
 import shlex
 import shutil
+import signal
 import subprocess
 import sys
+import threading
 import time
+import uuid
 from pathlib import Path
 
 from ._compat import lines, round1, trim
@@ -56,11 +60,12 @@ def overlay_files(overlay):
 class Spec:
     """What to test: repository, crate path, overlay, build and test commands, repeats and directories."""
 
-    def __init__(self, repo, crate_path, overlay, build, test, repeats, scratch, logs):
+    def __init__(self, repo, crate_path, overlay, build, test, repeats, scratch, logs, step_timeout=3600):
         self.repo, self.crate_path, self.overlay = Path(repo), check_path(crate_path, "crate path"), Path(overlay)
         self.overlay_files = overlay_files(self.overlay)
         self.build, self.test, self.repeats = build, test, repeats
         self.scratch, self.logs = Path(scratch), Path(logs)
+        self.step_timeout = step_timeout  # seconds a fetch, build or test step may run
 
 
 def toolchain_for(commit_unix, rust_version=None):
@@ -114,22 +119,72 @@ def has_lockfile(repo, sha, crate_path):
                for obj in (f"{sha}:{crate_path}/Cargo.lock", f"{sha}:Cargo.lock"))
 
 
-def run_logged(argv, log, stdin=None, cwd=None, env=None):
+TIMED_OUT = -2           # exit recorded for a step stopped at its time limit (-1 is a signal, as in 1.x)
+LOG_CAP = 8 * 1024 * 1024  # bytes of output kept per step: the first and the last half
+
+
+def run_logged(argv, log, stdin=None, cwd=None, env=None, timeout=None, on_timeout=None):
     """Run a command, write `$ command` plus its output to `log`; return (exit code, seconds to 0.1).
 
-    A process killed by a signal reports -1, as Rust's `status.code().unwrap_or(-1)`.
+    A process killed by a signal reports -1, as Rust's `status.code().unwrap_or(-1)`. With
+    `timeout` (seconds), the command's whole process group is killed when it runs longer, then
+    `on_timeout()` runs (to stop work outside the group, e.g. a container), and the exit is
+    TIMED_OUT. Output is streamed and capped at LOG_CAP bytes: the first and the last half are
+    kept and the number of bytes dropped is noted, so an endless writer cannot fill memory or disk.
     """
     t0 = time.monotonic()
     try:
-        out = subprocess.run(argv, input=stdin, stdin=None if stdin is not None else subprocess.DEVNULL,
-                             capture_output=True, cwd=cwd, env=env)
+        proc = subprocess.Popen(argv, stdin=subprocess.PIPE if stdin is not None else subprocess.DEVNULL,
+                                stdout=subprocess.PIPE, stderr=subprocess.STDOUT, cwd=cwd, env=env,
+                                start_new_session=True)
     except OSError as exc:
         raise RunnerError(f"spawn failed: {exc}") from exc
+    head, tail, dropped = bytearray(), collections.deque(), [0]
+    tail_size = [0]
+
+    def read():
+        # Keep the first half of the cap, then a rolling window of the last half.
+        for chunk in iter(lambda: proc.stdout.read(65536), b""):
+            room = LOG_CAP // 2 - len(head)
+            if room > 0:
+                head.extend(chunk[:room])
+                chunk = chunk[room:]
+            if chunk:
+                tail.append(chunk)
+                tail_size[0] += len(chunk)
+                while tail_size[0] - len(tail[0]) >= LOG_CAP // 2:
+                    tail_size[0] -= len(tail[0])
+                    dropped[0] += len(tail.popleft())
+    reader = threading.Thread(target=read, daemon=True)
+    reader.start()
+    if stdin is not None:
+        try:
+            proc.stdin.write(stdin)
+        except BrokenPipeError:
+            pass
+        proc.stdin.close()
+    timed_out = False
+    try:
+        proc.wait(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        timed_out = True
+        try:
+            os.killpg(proc.pid, signal.SIGKILL)
+        except (ProcessLookupError, PermissionError):
+            pass
+        proc.wait()
+        if on_timeout is not None:
+            on_timeout()
+    reader.join(timeout=10)
     seconds = round1(time.monotonic() - t0)
     log = Path(log)
     log.parent.mkdir(parents=True, exist_ok=True)
-    log.write_bytes(f"$ {shlex.join(argv)}\n".encode() + out.stdout + out.stderr)
-    return (out.returncode if out.returncode >= 0 else -1), seconds
+    note = f"\n[bug-age: {dropped[0]} bytes of output not kept]\n".encode() if dropped[0] else b""
+    stop = f"\n[bug-age: stopped after the {timeout} s step limit]\n".encode() if timed_out else b""
+    log.write_bytes(f"$ {shlex.join(argv)}\n".encode() + bytes(head) + note + b"".join(tail) + stop)
+    if timed_out:
+        return TIMED_OUT, seconds
+    return (proc.returncode if proc.returncode >= 0 else -1), seconds
 
 
 def place_overlay(spec, root):
@@ -186,7 +241,7 @@ class Local:
         """Run `cmd` with sh in the crate directory of the worktree."""
         # The full caller environment, as the Rust runner passed it, plus the cargo settings.
         env = dict(os.environ, CARGO_TARGET_DIR=str(spec.scratch / "local-target"), CARGO_TERM_COLOR="never")
-        return run_logged(["sh", "-c", cmd], log, cwd=self.wt / spec.crate_path, env=env)
+        return run_logged(["sh", "-c", cmd], log, cwd=self.wt / spec.crate_path, env=env, timeout=spec.step_timeout)
 
     def fallback_toolchain(self, spec, log):
         """The host toolchain has no fallback."""
@@ -354,4 +409,9 @@ class Docker:
                  "-v", f"{self.target_volume(self.toolchain)}:/target", "-v", f"bugage-rustup:/rustup{ro}",
                  "-v", f"{self.v('bugage-cargo')}:/cargo{ro}", "-e", "CARGO_TARGET_DIR=/target", "-e", "CARGO_TERM_COLOR=never",
                  "-e", f"RUSTUP_TOOLCHAIN={self.toolchain}", "-w", f"/{SRC}/{spec.crate_path}", self.image, "sh", "-c", cmd]
-        return self.docker(args, None, log)
+        # A named container, so a step over its time limit can be removed: killing the docker client
+        # alone would leave the container running.
+        name = f"bugage-step-{uuid.uuid4().hex[:12]}"
+        args[2:2] = ["--name", name]
+        return run_logged(["docker", *args], log, timeout=spec.step_timeout,
+                          on_timeout=lambda: subprocess.run(["docker", "rm", "-f", name], capture_output=True))
