@@ -148,6 +148,8 @@ def run(runner, spec, fix, start=None, exhaustive=False):
         sweep["verdict"] = "repro-invalid"
         sweep["reason"] = f"expected FAIL on fix^ and PASS on fix, got {DEBUG[op]} / {DEBUG[of]}"
         return _finish(sweep, probe)
+    if exhaustive:
+        return _exhaustive(sweep, probe, spec, commits, f, p)
     # Frontier: the first commit where the test builds, assuming build-ability is monotonic.
     if probe.outcome(0) != UNTESTABLE:
         frontier = 0
@@ -162,14 +164,7 @@ def run(runner, spec, fix, start=None, exhaustive=False):
         frontier = testable
     sweep["frontier"] = commits[frontier]
     lo, hi = frontier - 1, p
-    if exhaustive:
-        # Every commit from the frontier to the fix's parent: the first FAIL is the true boundary.
-        for i in range(frontier, p + 1):
-            probe.outcome(i)
-        hi = min(i for i in range(frontier, p + 1) if probe.seen[i]["outcome"] == FAIL)
-        passes = [i for i in range(frontier, hi) if probe.seen[i]["outcome"] == PASS]
-        lo = passes[-1] if passes else frontier - 1
-    elif probe.outcome(frontier) == PASS:
+    if probe.outcome(frontier) == PASS:
         lo = frontier
         while hi - lo > 1:
             found = probe.testable_near((lo + hi) // 2, lo, hi)
@@ -193,9 +188,7 @@ def run(runner, spec, fix, start=None, exhaustive=False):
     sweep["first_failing"] = commits[hi]
     sweep["last_passing"] = commits[lo] if testable_lo else None
     sweep["untestable_between"] = hi - lo - 1 if testable_lo else 0
-    if testable_lo and hi - lo == 1 and exhaustive:
-        sweep["verdict"], sweep["reason"] = "located", "adjacent last PASS and first FAIL; every commit in the range tested"
-    elif testable_lo and hi - lo == 1:
+    if testable_lo and hi - lo == 1:
         sweep["verdict"] = "boundary"
         sweep["reason"] = ("adjacent last PASS and first FAIL among the commits tested; bisection does not rule out "
                            "an earlier failure, so the age is a lower bound")
@@ -209,6 +202,50 @@ def run(runner, spec, fix, start=None, exhaustive=False):
         sweep["verdict"] = "censored-by-testability"
         sweep["reason"] = (f"test already fails at {commits[frontier][:10]}, the first commit where it compiles "
                            "(build-ability assumed monotonic)")
+    return _finish(sweep, probe)
+
+
+def _exhaustive(sweep, probe, spec, commits, f, p):
+    """Test every commit of the range and classify from what was observed before the first failure.
+
+    Nothing is assumed about commits that were not observed: exact (`located`) only when every
+    commit before the first FAIL passed, the one just before it included.
+    """
+    for i in range(p + 1):
+        probe.outcome(i)
+    seen = [probe.seen[i]["outcome"] for i in range(p + 1)]
+    hi = seen.index(FAIL)                      # the fix's parent fails, so there is one
+    passes = [i for i in range(hi) if seen[i] == PASS]
+    lo = passes[-1] if passes else -1
+    testable = [i for i in range(p + 1) if seen[i] != UNTESTABLE]
+    sweep["frontier"] = commits[testable[0]]
+    # Commits before the last PASS that could not be tested or were flaky could hide a failure.
+    unseen_before = sum(1 for i in range(max(lo, 0)) if seen[i] != PASS)
+    decisive = [f, p, hi] + ([lo] if lo >= 0 else [])
+    unstable = [c for c in (probe.confirm(i) for i in decisive) if c is not None]
+    sweep["confirmation"] = (f"decisive commits confirmed x{spec.repeats}" if not unstable
+                             else f"UNSTABLE on confirmation: {'; '.join(unstable)}")
+    sweep["first_failing"] = commits[hi]
+    sweep["last_passing"] = commits[lo] if lo >= 0 else None
+    sweep["untestable_between"] = hi - lo - 1 if lo >= 0 else 0
+    if hi == 0:
+        sweep["verdict"], sweep["reason"] = "left-censored", "test fails from the first commit of the range"
+    elif lo < 0:
+        sweep["verdict"] = "censored-by-testability"
+        sweep["reason"] = (f"no commit before the first failure at {commits[hi][:10]} passed: every one was untestable "
+                           "or flaky, so the bug may be older")
+    elif unseen_before:
+        sweep["verdict"] = "boundary"
+        sweep["reason"] = (f"every commit tested; the last PASS is followed by the first FAIL, but {unseen_before} "
+                           "earlier commit(s) could not be tested or were flaky, so an earlier failure is not ruled out "
+                           "and the age is a lower bound")
+    elif hi - lo == 1:
+        sweep["verdict"] = "located"
+        sweep["reason"] = "every commit tested; every commit before the first FAIL passed, the one just before it included"
+    else:
+        sweep["verdict"] = "interval"
+        sweep["reason"] = (f"every commit tested; the bug was introduced within the {sweep['untestable_between']} "
+                           "untestable or flaky commit(s) between the last PASS and the first FAIL; all earlier commits passed")
     return _finish(sweep, probe)
 
 

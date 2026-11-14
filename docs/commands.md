@@ -10,7 +10,7 @@ Every command accepts only its own options: an unknown, repeated or valueless op
 |---|---|
 | `catalog` | Lists the fix commits that touch a crate and records why each other commit was excluded (docs, lint, release, and so on) |
 | `szz` | Method A: names a likely introducing commit for each fix in the catalog |
-| `sweep` | Method B: binary-searches for the first commit where the test compiles, then bisects PASS/FAIL above it. Decisive commits are re-run `--repeats` times and flagged UNSTABLE if the result changes. Bisection tests a sample, so its result is a `boundary`, a lower bound: an earlier failure is not ruled out. `--search exhaustive` tests every commit in the range and is the only way to get `located` |
+| `sweep` | Method B: binary-searches for the first commit where the test compiles, then bisects PASS/FAIL above it. Decisive commits are re-run `--repeats` times and flagged UNSTABLE if the result changes. Bisection tests a sample, so its result is a `boundary`, a lower bound: an earlier failure is not ruled out. `--search exhaustive` tests every commit in the range, assumes nothing about commits it could not test, and is the only way to get `located` |
 | `probe` | Runs the same test at a fixed list of commits, with no search |
 | `bundle` | Builds `bundle.json` (validated against [`bug_age/data/bundle.schema.json`](../bug_age/data/bundle.schema.json)), `bundle.js`, and `receipt.json` (sha256 hashes and sizes) |
 | `explorer` | Builds an explorer: a static viewer page for the listed bundles, with one data file per repository; fails over 8 MB. It reads reports and adds no results. |

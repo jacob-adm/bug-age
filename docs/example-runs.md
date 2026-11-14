@@ -36,8 +36,12 @@ Verdicts are honest about what could not be tested:
 
 | Verdict | Meaning |
 |---|---|
-| `located` | The exact first failing commit was found |
-| `censored-by-testability` | The bug is present at the first commit where the test compiles, so its age is a lower bound (`≥`) |
+| `located` | Exact. Only from `--search exhaustive`: every commit in the range was tested, every commit before the first failure passed, and the commit just before it passed |
+| `boundary` | Lower bound (`≥`). The test passes at one commit and fails at the next, but an earlier failure is not ruled out: bisection tested only a sample, or an exhaustive search met untestable or flaky commits before the failure |
+| `interval` | The bug started within a run of untestable commits between the last PASS and the first FAIL. Exact to that run only when the search was exhaustive and every earlier commit passed |
+| `censored-by-testability` | The bug is present at the first commit where the test could be run (or, exhaustively, no earlier commit passed), so its age is a lower bound (`≥`) |
 | `left-censored` | The bug is already present at the start of the sweep range (3 years before the fix), so its age is a lower bound |
+
+A bisected sweep (the default) assumes that once the test builds it keeps building and that once it fails it keeps failing; `--search exhaustive` assumes neither and tests every commit.
 
 The feasibility check, which measures toolchain and dependency drift across history, is in `spike/results/` for tokenizers and `results/rust-sdk/spike/` for rust-sdk.

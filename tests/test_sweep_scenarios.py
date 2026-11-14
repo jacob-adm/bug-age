@@ -86,12 +86,28 @@ class Scenarios(unittest.TestCase):
         self.assertEqual((r["verdict"], s.index(r["first_failing"]), s.index(r["last_passing"])), ("located", 2, 1))
         self.assertIs(r["non_monotonic"], True)
         self.assertEqual((r["search"], r["commits_tested"]), ("exhaustive", 17))
-        # A monotone history: only the exhaustive search may say located.
-        r, s = self.run_scenario([NONE, OK, OK, BUG, BUG, BUG, OK], None, exhaustive=True)
+        # A monotone, fully testable history: only the exhaustive search may say located.
+        r, s = self.run_scenario([OK, OK, OK, BUG, BUG, BUG, OK], None, exhaustive=True)
         self.assertEqual((r["verdict"], s.index(r["first_failing"]), r["non_monotonic"]), ("located", 3, False))
+        # The same with an untestable first commit: an earlier failure could hide there, so a boundary.
+        r, s = self.run_scenario([NONE, OK, OK, BUG, BUG, BUG, OK], None, exhaustive=True)
+        self.assertEqual((r["verdict"], s.index(r["first_failing"])), ("boundary", 3))
         # Untestable commits between the last PASS and the first FAIL: an interval, even when exhaustive.
         r, s = self.run_scenario([OK, OK, OK, NONE, NONE, NONE, BUG, BUG, OK], None, exhaustive=True)
         self.assertEqual((r["verdict"], r["untestable_between"]), ("interval", 3))
+        # The follow-up audit's history: build-ability is not monotonic. Every commit is tested, the true
+        # first failure (2) is found, and an untestable commit before it rules out an exact claim.
+        audit2 = [NONE, OK, BUG] + [NONE] * 6 + [OK] * 5 + [BUG, BUG, OK]
+        r, s = self.run_scenario(audit2, None, exhaustive=True)
+        self.assertEqual(r["commits_tested"], 17)
+        self.assertEqual((r["verdict"], s.index(r["first_failing"]), r["non_monotonic"]), ("boundary", 2, True))
+        self.assertIn("1 earlier commit(s) could not be tested", r["reason"])
+        # Bisection on the same history is unchanged: a boundary found by sampling.
+        r, s = self.run_scenario(audit2, None)
+        self.assertEqual(r["verdict"], "boundary")
+        # Only untestable commits before the first failure: censored, not located.
+        r, _ = self.run_scenario([NONE, NONE, BUG, BUG, OK], None, exhaustive=True)
+        self.assertEqual(r["verdict"], "censored-by-testability")
         # Failing from the first commit: left-censored either way.
         r, _ = self.run_scenario([BUG, BUG, BUG, OK], None, exhaustive=True)
         self.assertEqual(r["verdict"], "left-censored")
