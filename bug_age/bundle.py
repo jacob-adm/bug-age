@@ -17,7 +17,7 @@ from ._compat import as_f64, dumps, get, lines, loads, round1, total_order, trim
 from .catalog import sanitize_subject
 from .git import commit_time, git, is_ancestor
 
-SCHEMA_VERSION = "1.1.0"
+SCHEMA_VERSION = "1.2.0"
 REDACTED = "[redacted]"
 _PLAIN = re.compile(r"[A-Za-z0-9_./:=,@+\-~]+")
 
@@ -239,6 +239,10 @@ def method_b(repo, d, szz):
         nominee = get(a_bug, "nominees", 0, "sha") if a_bug is not None else None
         nominee = nominee if isinstance(nominee, str) else None
         verdict = get(s, "verdict") if isinstance(get(s, "verdict"), str) else ""
+        # Sweeps recorded before the search was recorded were bisections: their "located" is a boundary.
+        search = get(s, "search") if get(s, "search") in ("bisection", "exhaustive") else "bisection"
+        if verdict == "located" and search != "exhaustive":
+            verdict = "boundary"
         first = get(s, "first_failing") if isinstance(get(s, "first_failing"), str) else None
         b_days = _days_between(repo, first, fix) if first is not None else None
         if (entry / "acheck.json").is_file():
@@ -265,7 +269,10 @@ def method_b(repo, d, szz):
             "id": name,
             "fix": fix,
             "verdict": verdict,
-            "reason": get(s, "reason"),
+            "search": search,
+            "reason": get(s, "reason") if verdict == get(s, "verdict") else
+            "adjacent last PASS and first FAIL among the commits tested; bisection does not rule out an earlier "
+            "failure, so the age is a lower bound",
             "first_failing": first,
             "last_passing": get(s, "last_passing"),
             "days": b_days,

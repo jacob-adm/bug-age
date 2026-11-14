@@ -73,10 +73,10 @@ class Sweep(unittest.TestCase):
             args += ["--start", s[start]]
         return json.loads(cli(*args).stdout)["report"], s
 
-    def test_locates_exact_introducing_commit(self):
-        """Adjacent last PASS and first FAIL: located."""
+    def test_bisection_reports_a_boundary(self):
+        """Adjacent last PASS and first FAIL found by bisection: a boundary (a lower bound), not located."""
         r, s = self.sweep([NONE, OK, OK, BUG, BUG, BUG, OK], 6)
-        self.assertEqual(r["verdict"], "located", r)
+        self.assertEqual((r["verdict"], r["search"]), ("boundary", "bisection"), r)
         self.assertEqual((r["last_passing"], r["first_failing"]), (s[2], s[3]))
         self.assertEqual(r["untestable_between"], 0)
         self.assertIs(r["non_monotonic"], False)
@@ -98,7 +98,7 @@ class Sweep(unittest.TestCase):
     def test_long_untestable_history_costs_a_bounded_number_of_builds(self):
         """40 untestable commits do not cost 40 builds."""
         r, s = self.sweep([NONE] * 40 + [OK, OK, BUG, BUG, OK], 44)
-        self.assertEqual(r["verdict"], "located", r)
+        self.assertEqual(r["verdict"], "boundary", r)
         self.assertEqual(r["first_failing"], s[42])
         self.assertLessEqual(r["commits_tested"], 25)
 
@@ -111,7 +111,7 @@ class Sweep(unittest.TestCase):
     def test_decisive_commits_are_confirmed_with_full_repeats(self):
         """The fix, its parent and the boundary are re-run with --repeats."""
         r, s = self.sweep([OK, OK, BUG, BUG, OK], 4)
-        self.assertEqual(r["verdict"], "located", r)
+        self.assertEqual(r["verdict"], "boundary", r)
         self.assertEqual(r["confirmation"], "decisive commits confirmed x2")
         fix = next(c for c in r["results"] if c["sha"] == s[4])
         self.assertEqual(sum(1 for st in fix["steps"] if st["name"].startswith("test_")), 2)

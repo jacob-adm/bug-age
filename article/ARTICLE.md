@@ -32,7 +32,7 @@ Before trusting either method, I checked whether history can be built at all. Wi
 
 ![Lifespan of every traced tokenizers bug, from nominated introducer to fix](figures/timeline-tokenizers.png)
 
-**Where blame and behaviour disagree.** I wrote regression tests for 6 tokenizers bugs and swept each one. One sweep found the exact first failing commit: "Fix stripping strings containing Unicode characters (#707)". Blame said that bug was 462.4 days old. The sweep says 278.2 days. Running the test at blame's nominee showed it passed there, so the nominee did not introduce the bug.
+**Where blame and behaviour disagree.** I wrote regression tests for 6 tokenizers bugs and swept each one. One sweep found where its test goes from passing to failing: "Fix stripping strings containing Unicode characters (#707)". Blame said that bug was 462.4 days old. The sweep says at least 278.2 days: it bisected, so it tested a sample of commits and cannot rule out an earlier failure. Running the test at blame's nominee showed it passed there, so the nominee did not introduce the bug.
 
 For 4 other bugs, the test already failed at the oldest commit where it could compile, so their ages are lower bounds. One bug, "Fix off-by-one error in tokenizer::normalizer::Range::len (#1638)", was already present at the start of the swept range: at least 1033.7 days old.
 

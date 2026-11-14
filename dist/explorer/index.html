@@ -441,7 +441,7 @@ function renderOverview() {
     ["Median releases shipped", a.releases_shipped_bug ? fmt(a.releases_shipped_bug.median) : "—", st(a.releases_shipped_bug), "method_a.releases_shipped_bug"],
     ["Fixes traced", `${a.with_introducer} / ${a.fixes}`, "with a nominated introducer", "method_a.with_introducer"],
     ["Old commits that build", f.baseline_share == null ? "NOT TESTED" : Math.round(f.baseline_share * 100) + "%", f.time_travel_share == null ? "time-travel: not run" : `with dated deps: ${Math.round(f.time_travel_share * 100)}%`, "feasibility.baseline_share"],
-    ["Behavioural sweeps", b.swept ? `${b.located} / ${b.swept}` : "NOT TESTED", b.swept ? "located exactly" : "no regression tests yet", "method_b.swept"],
+    ["Behavioural sweeps", b.swept ? `${b.located} / ${b.swept}` : "NOT TESTED", b.swept ? "located exactly (all commits tested)" : "no regression tests yet", "method_b.swept"],
   ];
   $("tiles").replaceChildren(...tiles.map(([k, v, sub, path]) => el("button", { class: "tile", type: "button", onclick: () => openDrawer(k, evidenceForCheck(path)) },
     el("span", { class: "k" }, k), el("span", { class: "v" }, v), el("span", { class: "s" }, sub))));
@@ -571,7 +571,8 @@ function renderHeatmap() {
 const LOCKS = {
   rule: "tests/test_method_a.py · test_classify_rules, test_catalog_admits_fix_and_records_exclusion_rule",
   nominate: "tests/test_method_a.py · test_szz_nominates_planting_commit_with_scripted_lifetime",
-  located: "tests/test_sweep.py · test_locates_exact_introducing_commit",
+  located: "tests/test_sweep_scenarios.py · test_exhaustive_scenarios",
+  boundary: "tests/test_sweep.py · test_bisection_reports_a_boundary",
   "censored-by-testability": "tests/test_sweep.py · test_censored_by_testability_when_bug_predates_compilable_test",
   "left-censored": "tests/test_sweep.py · test_left_censored_when_range_starts_inside_the_bug",
   "repro-invalid": "tests/test_sweep.py · test_rejects_a_repro_that_does_not_fail_before_the_fix",
@@ -583,7 +584,8 @@ const FLAG_TEXT = {
   "committer-dates-compressed": "A rebase squeezed committer dates together, so author dates are used for the age.",
 };
 const VERDICT_TEXT = {
-  located: "The sweep found the exact commit where the regression test starts failing.",
+  located: "Every commit in the range was tested: this is the exact commit where the regression test starts failing.",
+  boundary: "Bisection found where the test goes from passing to failing among the commits it tested; an earlier failure is not ruled out, so the age is a lower bound.",
   interval: "The bug started somewhere in a range of commits that could not be narrowed further.",
   "censored-by-testability": "The test already fails at the oldest commit where it compiles; the true age is at least this long.",
   "left-censored": "The test fails at the start of the swept range; the bug is older than the range.",
