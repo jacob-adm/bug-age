@@ -1,6 +1,6 @@
 # bug-age
 
-Measures how long bugs lived in a git repository, using real repository data. For each fixed bug it reports commits elapsed, calendar days, releases shipped, and churn between the commit that introduced it and the fix.
+Measures how long fixed bugs lived in a git repository, using only its history. A bug counts only when the commit that fixed it says so in its message (*fix*, *bug*, *hotfix*); a bug fixed under any other message, or never fixed, is not counted. For each counted bug it reports commits elapsed, calendar days, releases shipped, and churn between the commit that introduced it and the fix.
 
 It uses two independent methods and compares them:
 
@@ -27,7 +27,7 @@ To see the output first, [open the live example](https://claude.ai/artifact/UDw6
 
 ## How it works
 
-1. **Find the fixes.** bug-age reads the commit history and lists every commit whose message says it fixes a bug.
+1. **Find the fixes.** bug-age reads the commit history and lists every commit whose message says it fixes a bug (*fix*, *bug*, *hotfix*). A fix whose message doesn't say so is not counted.
 2. **Find where each bug came from.** For each fix, git shows which earlier commit last wrote the lines the fix changed. That commit is the likely cause (Method A).
 3. **Count how long it lived.** From that commit to the fix, bug-age counts the days, the commits and the releases that shipped with the bug.
 4. **Check with a test, if you want.** Write a test that fails before the fix and passes after it. bug-age runs it at older commits, in Docker, to see where it starts failing (Method B).
