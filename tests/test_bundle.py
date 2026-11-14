@@ -10,7 +10,7 @@ import unittest
 from pathlib import Path
 
 from bug_age import bundle, schema
-from helpers import ROOT, clean_env
+from helpers import ROOT, clean_env, cli
 
 
 def load(rel):
@@ -156,6 +156,39 @@ class Partial(unittest.TestCase):
             self.assertEqual(b["summary"]["method_b"]["swept"], 0)
         finally:
             shutil.rmtree(d, ignore_errors=True)
+
+
+class SchemaGate(unittest.TestCase):
+    """bug-age bundle writes nothing that its own schema rejects."""
+
+    def test_malformed_feasibility_report_is_refused_and_nothing_written(self):
+        """A share that is not a number fails the schema: exit 1, no bundle, no receipt."""
+        d = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, d, True)
+        repo, results, spike, out = d / "repo", d / "results", d / "spike", d / "out"
+        for x in (repo, results, spike / "results"):
+            x.mkdir(parents=True)
+        env = dict(clean_env(), GIT_AUTHOR_NAME="t", GIT_AUTHOR_EMAIL="t@t", GIT_COMMITTER_NAME="t", GIT_COMMITTER_EMAIL="t@t")
+        git = lambda *a: subprocess.run(["git", *a], cwd=repo, env=env, check=True, capture_output=True, text=True).stdout.strip()
+        git("init", "-q")
+        (repo / "a.rs").write_text("fn main() {}\n")
+        git("add", ".")
+        git("commit", "-q", "-m", "initial")
+        (results / "catalog.json").write_text(json.dumps({"include_rule": "fix", "scanned": 1, "excluded": [], "fixes": []}))
+        (results / "szz.json").write_text(json.dumps({"head": git("rev-parse", "HEAD"), "path": ".", "bugs": [],
+                                                      "summary": {"fixes": 0, "with_introducer": 0}}))
+        (spike / "results" / "report.json").write_text(json.dumps({"verdict": "GO", "built_and_tested_share": "high",
+                                                                   "counts": {}, "method": {}, "results": []}))
+        run = cli("bundle", "--repo", repo, "--results", results, "--repo-url", "https://example.org/r",
+                  "--out", out, "--spike", spike, check=False)
+        self.assertEqual(run.returncode, 1, run.stderr)
+        self.assertIn("bundle fails its schema", run.stderr)
+        self.assertFalse(out.exists() and any(out.iterdir()), "nothing may be written")
+        # The same inputs with a valid report build and record the schema check.
+        (spike / "results" / "report.json").write_text(json.dumps({"verdict": "GO", "built_and_tested_share": 0.9,
+                                                                   "counts": {}, "method": {}, "results": []}))
+        cli("bundle", "--repo", repo, "--results", results, "--repo-url", "https://example.org/r", "--out", out, "--spike", spike)
+        self.assertEqual(json.loads((out / "receipt.json").read_text())["schema_check"], "PASS")
 
 
 class Commands(unittest.TestCase):

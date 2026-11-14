@@ -11,7 +11,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from . import __version__, bundle, catalog, explorer, mcp, szz
+from . import __version__, bundle, catalog, explorer, mcp, schema, szz
 from ._compat import dumps, get, lines, loads
 
 USAGE = """usage: bug-age [--version | --help]
@@ -178,6 +178,10 @@ def cmd_bundle(f):
         built, warnings = bundle.build(repo, Path(need(f, "results")), spike, need(f, "repo-url"), oos)
     except bundle.BundleError as exc:
         raise Failure(str(exc)) from exc
+    # Nothing is written unless the bundle satisfies the schema shipped with this package.
+    problems = schema.errors(built, loads((Path(__file__).parent / "data" / "bundle.schema.json").read_text(encoding="utf-8")))
+    if problems:
+        raise Failure(f"bundle fails its schema ({len(problems)} errors), first: {'; '.join(problems[:3])}")
     text = dumps(built)
     js = f"window.BUG_AGE_BUNDLE = {text};\n"
     if len(js.encode()) > MAX_BYTES:
@@ -189,6 +193,7 @@ def cmd_bundle(f):
         "command": command_line(),
         "schema_version": bundle.SCHEMA_VERSION,
         "blameless_gate": "PASS",
+        "schema_check": "PASS",
         "size": {"bundle_json_bytes": len(text.encode()), "bundle_js_bytes": len(js.encode()),
                  "warn_over_8mb": len(js.encode()) > WARN_BYTES},
         "outputs": {"bundle.json": sha256(text), "bundle.js": sha256(js)},
