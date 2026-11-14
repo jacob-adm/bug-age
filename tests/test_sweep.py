@@ -134,14 +134,14 @@ class Sweep(unittest.TestCase):
 class DockerSweep(unittest.TestCase):
     """The hermetic runner, opt-in because it needs Docker and network for toolchains."""
 
-    def test_docker_runner_locates_exact_introducing_commit(self):
-        """Located in Docker, with build and test steps offline, and the image id in the receipt."""
+    def test_docker_runner_finds_the_boundary(self):
+        """The boundary in Docker, with build and test steps offline, and the image id in the receipt."""
         root, repo, scratch, s = toy_repo([NONE, OK, OK, BUG, BUG, BUG, OK])
         try:
             v = json.loads(cli("sweep", *sweep_args(repo, scratch, overlay(root, 6), runner="docker"), "--fix", s[6],
-                               "--time-travel-script", ROOT / "spike" / "timetravel.py").stdout)
+                               "--time-travel-script", ROOT / "bug_age" / "timetravel.py").stdout)
             r = v["report"]
-            self.assertEqual(r["verdict"], "located", r)
+            self.assertEqual(r["verdict"], "boundary", r)
             self.assertEqual((r["first_failing"], r["last_passing"]), (s[3], s[2]))
             for c in r["results"]:
                 for st in c["steps"]:
