@@ -27,6 +27,14 @@ jobs:
       # Unit, contract and end-to-end tests; --locked fails if Cargo.lock is out of date.
       - name: cargo test
         run: cargo test --workspace --locked
+      # The example runs' clones, so the oracle test can regenerate them (full history: blame and tags).
+      - name: clone example targets
+        run: |
+          git clone -q https://github.com/huggingface/tokenizers work/tokenizers
+          git clone -q https://github.com/modelcontextprotocol/rust-sdk work/rust-sdk
+      # Python port: unit tests, and the oracle that regenerates both runs and compares byte for byte.
+      - name: python tests
+        run: python3 -m unittest discover -s tests
       # Fails if any number in the article is not a reference into a committed bundle.
       - name: article numbers trace to the bundle
         run: python3 scripts/article.py article/ARTICLE.tmpl.md --bundle tokenizers=dist/tokenizers/bundle.json --bundle rust-sdk=dist/rust-sdk/bundle.json

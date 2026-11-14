@@ -1,7 +1,7 @@
 //! Offline replay of a recorded MCP session against the committed tokenizers bundle.
 //! Re-record after a bundle or tool change:
 //!   target/debug/bug-age mcp --bundles tokenizers=dist/tokenizers/bundle.json \
-//!     < crates/bug-age/tests/fixtures/mcp/requests.jsonl > crates/bug-age/tests/fixtures/mcp/responses.jsonl
+//!     < tests/fixtures/mcp/requests.jsonl > tests/fixtures/mcp/responses.jsonl
 
 use serde_json::Value;
 use std::io::Write;
@@ -31,7 +31,7 @@ fn serve(requests: &str) -> Vec<Value> {
 
 /// Reads a file from the recorded-session fixture directory.
 fn fixture(name: &str) -> String {
-    std::fs::read_to_string(root().join("crates/bug-age/tests/fixtures/mcp").join(name)).unwrap()
+    std::fs::read_to_string(root().join("tests/fixtures/mcp").join(name)).unwrap()
 }
 
 /// Replies match the recorded session exactly, including errors and the silent notification.
