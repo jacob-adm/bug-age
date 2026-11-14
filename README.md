@@ -287,6 +287,13 @@ git clone --branch v1.0.2 https://github.com/jacob-adm/bug-age
 example runs it reproduces every output of 1.0.2 byte for byte; the only difference in a bundle is
 the `generator` string that names the version.
 
+2.1.0 fixes an independent audit's findings. Method B no longer calls a bisected result exact: it
+is a `boundary` (a lower bound), and only `--search exhaustive` reports `located`; the published
+tokenizers sweep that said `located` now says `boundary`, with the same numbers (schema 1.2.0).
+It also supports SHA-256 repositories, rejects unknown options (exit 2), binds reused pipeline
+outputs to their inputs, stages overlays without following symlinks, mounts the shared caches
+read-only for test code, bounds every step in time and log size, and always finishes redaction.
+
 ## License
 
 Licensed under either of [Apache License, Version 2.0](LICENSE-APACHE) or [MIT License](LICENSE-MIT), at your option, as declared in `pyproject.toml`.
