@@ -52,8 +52,8 @@ def tools():
          "inputSchema": {"type": "object", "properties": {"target": _target_arg(), "query": {"type": "string"},
                          "limit": {"type": "integer", "minimum": 1, "maximum": 200, "default": 20}}, "required": ["target"]},
          "annotations": ro},
-        {"name": "get_fix", "description": "One fix by full SHA or unique prefix (7+ hex chars): its Method A row, its Method B sweep if any (else null), and the subject/date of every SHA referenced.",
-         "inputSchema": {"type": "object", "properties": {"target": _target_arg(), "sha": {"type": "string", "pattern": "^[0-9a-f]{7,40}$"}}, "required": ["target", "sha"]},
+        {"name": "get_fix", "description": "One fix by full SHA (40 or 64 hex chars) or unique prefix (7+ hex chars): its Method A row, its Method B sweep if any (else null), and the subject/date of every SHA referenced.",
+         "inputSchema": {"type": "object", "properties": {"target": _target_arg(), "sha": {"type": "string", "pattern": "^[0-9a-f]{7,64}$"}}, "required": ["target", "sha"]},
          "annotations": ro},
     ]
 
@@ -120,8 +120,8 @@ def _get_fix(t, args):
     sha = get(args, "sha")
     if not isinstance(sha, str):
         raise ToolError("missing argument: sha")
-    if not 7 <= len(sha.encode()) <= 40 or not all(c in "0123456789abcdef" for c in sha):
-        raise ToolError("sha must be 7 to 40 lowercase hex characters")
+    if not 7 <= len(sha.encode()) <= 64 or not all(c in "0123456789abcdef" for c in sha):
+        raise ToolError("sha must be 7 to 64 lowercase hex characters")
     rows = get(t.bundle, "method_a")
     if not isinstance(rows, list):
         raise ToolError("bundle has no method_a array")

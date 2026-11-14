@@ -4,7 +4,7 @@
   "outputs": {
     "data/rust-sdk.js": "457d853a0a879023bb02e8be42a08af6b57e5029dd0fa4d05efd47ac0e6e3511",
     "data/tokenizers.js": "ed23fd1ef404f9ae6f8609a35ab8c96472a1a87660a9c52c13ffb4350f9371ca",
-    "index.html": "31a25998dcc574ce1642c3622cdc7aeacc9d727efddff09baba15407c70ab568"
+    "index.html": "fa030f755d66208e2ab81f3d12b9d4090f431a3fc9312789267af52849e0af67"
   },
   "size_gate": "PASS",
   "total_bytes": 512790

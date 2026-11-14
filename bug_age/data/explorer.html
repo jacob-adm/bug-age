@@ -653,7 +653,7 @@ function search(q) {
   if (q === ":longest") return rows.filter(r => aDays(r) != null).sort((a, b) => aDays(b) - aDays(a)).slice(0, 15);
   if (q === ":releases") return rows.sort((a, b) => rel(b) - rel(a)).slice(0, 15);
   if (q === ":recent") return [...B.method_a].sort((a, b) => b.fix_date.localeCompare(a.fix_date)).slice(0, 15);
-  const terms = words(q), hex = (q.match(/\b[0-9a-f]{4,40}\b/g) || []);
+  const terms = words(q), hex = (q.match(/\b[0-9a-f]{4,64}\b/g) || []);
   return B.method_a.map(r => {
     const s = subj(r.fix).toLowerCase(); let score = 0;
     for (const t of terms) if (s.includes(t)) score += 2;
@@ -688,7 +688,7 @@ function sliceFor(rows) {
       releases_shipped: r.lifetime && r.lifetime.releases_spanned ? r.lifetime.releases_spanned.length : null, nominees: r.nominees.map(n => n.sha), flags: r.flags })),
   };
 }
-const HEX = /\b[0-9a-f]{7,40}\b/g;
+const HEX = /\b[0-9a-f]{7,64}\b/g;
 /** Every number in a string, normalized (e.g. "07" -> "7"). */
 function numbersIn(s) { return (s.match(/\d+(?:\.\d+)?/g) || []).map(x => String(Number(x))); }
 // Mechanical checks; returns a list of problems (empty = accepted).
@@ -699,7 +699,7 @@ function verifyAnswer(ans, slice, question) {
   const shas = slice.rows.flatMap(r => [r.fix, ...r.nominees]).concat(slice.head);
   const known = h => shas.some(s => s.startsWith(h));
   if (!ans.citations.length) problems.push("The answer cites no SHA.");
-  for (const c of ans.citations) if (typeof c !== "string" || !/^[0-9a-f]{7,40}$/.test(c) || !known(c)) problems.push(`Cited SHA ${String(c).slice(0, 40)} is not in the rows that were sent.`);
+  for (const c of ans.citations) if (typeof c !== "string" || !/^[0-9a-f]{7,64}$/.test(c) || !known(c)) problems.push(`Cited SHA ${String(c).slice(0, 40)} is not in the rows that were sent.`);
   for (const h of ans.answer.match(HEX) || []) if (/[a-f]/.test(h) && !known(h)) problems.push(`The answer mentions ${h}, which is not in the rows that were sent.`);
   const allowed = new Set([...numbersIn(JSON.stringify(slice)), ...numbersIn(question || "")]);
   for (const n of numbersIn(ans.answer.replace(HEX, m => /[a-f]/.test(m) ? " " : m))) if (!allowed.has(n)) problems.push(`The number ${n} does not appear in the rows that were sent.`);

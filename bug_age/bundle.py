@@ -361,7 +361,8 @@ def build(repo, results, spike, repo_url, out_of_scope):
     shas = set()
 
     def add(v):
-        if isinstance(v, str) and len(v.encode()) == 40:
+        # Full commit ids only: 40 hex digits (SHA-1) or 64 (SHA-256).
+        if isinstance(v, str) and len(v.encode()) in (40, 64):
             shas.add(v)
     for bug in _items(get(szz, "bugs")):
         add(get(bug, "fix"))
