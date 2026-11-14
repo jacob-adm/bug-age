@@ -6,7 +6,7 @@
 #   make explorer      rebuild the explorer page for every bundled target
 #   make article       render the article and recapture its figures (needs Chrome)
 #   make history-scan  blameless check over all git history (run before publishing)
-#   make timings       regenerate results/TIMINGS.md and the README timing table from run records
+#   make timings       regenerate results/TIMINGS.md and the timing table in docs/timings.md from run records
 #   make sweep         long Method B sweeps, detached:  make sweep ARGS="results/bench work/tokenizers tokenizers"
 
 .PHONY: sweep test bundle pipeline explorer article history-scan timings

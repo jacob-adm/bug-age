@@ -9,7 +9,7 @@ Reads the step durations already recorded by real runs, and nothing else:
   - results/<target>/repros/*/sweep.json       per-step time of every commit a Method B sweep tested
 
 Writes results/TIMINGS.md (full tables) and rewrites the block between the timing markers in
-README.md. With --check, exits 1 if either file is out of date (used in CI).
+docs/timings.md. With --check, exits 1 if either file is out of date (used in CI).
 
 Step times cover fetch, build and test commands only. They exclude container staging, toolchain
 installs and time-travel index builds, which the runs did not record, so real wall time is longer.
@@ -136,7 +136,7 @@ def render():
         fast.setdefault(r["stage"].split(" (")[0], []).append(r["seconds"])
     readme = [BEGIN, "",
               "Measured on " + host() + ". Figures come from committed run records via `scripts/timings.py`; "
-              "full tables in [`results/TIMINGS.md`](results/TIMINGS.md). Step time excludes container staging "
+              "full tables in [`results/TIMINGS.md`](../results/TIMINGS.md). Step time excludes container staging "
               "and toolchain installs, so expect wall time to be longer.", "",
               "| Stage | What was measured | Time |", "|---|---|---|"]
     for stage, secs in fast.items():
@@ -168,13 +168,13 @@ def render():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--check", action="store_true", help="fail if TIMINGS.md or the README block is stale")
+    ap.add_argument("--check", action="store_true", help="fail if TIMINGS.md or the docs/timings.md block is stale")
     a = ap.parse_args()
     timings, block = render()
-    out, readme = ROOT / "results" / "TIMINGS.md", ROOT / "README.md"
+    out, readme = ROOT / "results" / "TIMINGS.md", ROOT / "docs" / "timings.md"
     text = readme.read_text()
     if BEGIN not in text or END not in text:
-        print("README.md has no timing markers", file=sys.stderr)
+        print("docs/timings.md has no timing markers", file=sys.stderr)
         return 1
     new_readme = text[:text.index(BEGIN)] + block + text[text.index(END) + len(END):]
     if a.check:
@@ -185,7 +185,7 @@ def main():
         return 0
     out.write_text(timings)
     readme.write_text(new_readme)
-    print("timings: wrote results/TIMINGS.md and the README block", file=sys.stderr)
+    print("timings: wrote results/TIMINGS.md and the docs/timings.md block", file=sys.stderr)
     return 0
 
 
