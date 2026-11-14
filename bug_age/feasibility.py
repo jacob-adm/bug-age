@@ -2,8 +2,8 @@
 """BUGAGE-1 feasibility spike: can the target crate be built and tested at historical commits?
 
 Throwaway evidence script (stdlib only). Every number in the report is produced here; nothing is
-hand-entered. Usage:  python3 spike/feasibility.py [--config targets/NAME.toml] [--samples 20] [--time-travel]
-Needs: git, docker (image built from spike/Dockerfile as bug-age-spike:4), network for clone/fetch.
+hand-entered. Usage:  python3 -m bug_age.feasibility [--config targets/NAME.toml] [--samples 20] [--time-travel]
+Needs: git, docker (image built from `bug-age dockerfile` as bug-age-spike:4), network for clone/fetch.
 Build and test steps run in a Linux container with --network none. A native macOS run was abandoned:
 the current Xcode linker rejects rlibs from old toolchains (see results/smoke-native-macos.*).
 """
@@ -12,7 +12,7 @@ from __future__ import annotations
 import argparse, datetime as dt, hashlib, json, os, platform, re, subprocess, sys, time
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = Path.cwd()  # paths in a target config are relative to the directory bug-age runs in
 WORK = ROOT / "work"
 REPO = WORK / "tokenizers"
 REPO_URL = "https://github.com/huggingface/tokenizers.git"
@@ -29,7 +29,7 @@ SCRATCH = Path(os.environ.get("BUG_AGE_SCRATCH", Path.home() / ".cache" / "bug-a
 # and no commit is FLAKY.
 GO_MIN_SHARE = 0.70                          # GO needs at least this share of samples built and tested
 TEST_REPEATS = 2                             # unit tests run twice; disagreement marks the commit FLAKY
-IMAGE = "bug-age-spike:4"                    # container image built from spike/Dockerfile
+IMAGE = "bug-age-spike:4"                    # container image built from `bug-age dockerfile`
 SCOPE = ["--all"]                            # cargo package selection; a config `package` narrows it to one crate
 TARGET_VOLUME = "bugage-target"               # wiped before every commit
 SRC_VOLUME = "bugage-src"                     # commit tree, copied in with git archive; wiped per commit
@@ -318,8 +318,8 @@ def write_outputs(results, head, history_len, n, reclassified=False) -> int:
     tool = lambda *c: subprocess.run(c, capture_output=True, text=True).stdout.strip().splitlines()[0]
     receipt = {
         "ticket": TICKET, "generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
-        "command": "python3 spike/feasibility.py --samples %d%s" % (n, " --time-travel" if TIME_TRAVEL else ""),
-        **({"post_processing": "python3 spike/feasibility.py --reclassify%s" % (" --time-travel" if TIME_TRAVEL else "")}
+        "command": "python3 -m bug_age.feasibility --samples %d%s" % (n, " --time-travel" if TIME_TRAVEL else ""),
+        **({"post_processing": "python3 -m bug_age.feasibility --reclassify%s" % (" --time-travel" if TIME_TRAVEL else "")}
            if reclassified else {}),
         "inputs": {"repo": REPO_URL, "head": head, "sampled_shas": [r["sha"] for r in results]},
         "versions": {"python": platform.python_version(), "git": tool("git", "--version"),

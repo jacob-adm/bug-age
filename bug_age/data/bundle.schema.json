@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bug-age.invalid/schema/bundle-1.0.0.json",
+  "title": "bug-age bundle",
+  "description": "Canonical data for one target repository. Every number is produced by bug-age scripts; nothing is hand-entered. Blameless: no names or emails (enforced by the build gate).",
+  "type": "object",
+  "required": ["schema_version", "generator", "subject", "summary", "catalog", "method_a", "method_b", "feasibility", "coverage", "commits"],
+  "additionalProperties": false,
+  "$defs": {
+    "sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "sha_or_null": {"anyOf": [{"$ref": "#/$defs/sha"}, {"type": "null"}]},
+    "stat": {
+      "description": "Distribution over bugs: median, 90th percentile, maximum, sample size.",
+      "anyOf": [{"type": "null"}, {"type": "object", "required": ["median", "p90", "max", "n"],
+        "properties": {"median": {"type": "number"}, "p90": {"type": "number"}, "max": {"type": "number"}, "n": {"type": "integer", "minimum": 0}}}]
+    },
+    "outcome": {"enum": ["PASS", "FAIL", "UNTESTABLE", "FLAKY"]},
+    "feasibility_run": {
+      "type": "object",
+      "required": ["verdict", "built_and_tested_share", "counts", "method", "samples"],
+      "properties": {
+        "verdict": {"enum": ["GO", "NO-GO"]},
+        "built_and_tested_share": {"type": "number", "minimum": 0, "maximum": 1},
+        "counts": {"type": "object", "additionalProperties": {"type": "integer"}},
+        "method": {"type": "object"},
+        "samples": {"type": "array", "items": {"type": "object", "required": ["sha", "date", "toolchain", "status", "reason", "lockfile_committed"],
+          "properties": {"sha": {"$ref": "#/$defs/sha"}, "status": {"enum": ["BUILT_AND_TESTED", "BUILD_FAILED", "TESTS_FAILED", "NOT_TESTED", "FLAKY"]}}}}
+      }
+    }
+  },
+  "properties": {
+    "schema_version": {"const": "1.1.0"},
+    "generator": {"type": "string", "description": "bug-age version that built the bundle"},
+    "subject": {"type": "object", "required": ["repo_url", "crate_path", "head"],
+      "properties": {"repo_url": {"type": "string"}, "crate_path": {"type": "string"}, "head": {"$ref": "#/$defs/sha"}}},
+    "summary": {
+      "description": "Headline metrics. The explorer page recomputes them from the rows below as a self-check.",
+      "type": "object", "required": ["method_a", "method_b", "feasibility"],
+      "properties": {
+        "method_a": {"type": "object", "required": ["fixes", "with_introducer", "calendar_days", "commits_elapsed", "releases_shipped_bug"],
+          "properties": {"fixes": {"type": "integer"}, "with_introducer": {"type": "integer"},
+            "calendar_days": {"$ref": "#/$defs/stat"}, "commits_elapsed": {"$ref": "#/$defs/stat"}, "releases_shipped_bug": {"$ref": "#/$defs/stat"}}},
+        "method_b": {"type": "object", "required": ["swept", "located", "a_refuted", "verdicts"]},
+        "feasibility": {"type": "object", "required": ["baseline_share", "time_travel_share"]}
+      }
+    },
+    "catalog": {"type": "object", "required": ["include_rule", "scanned", "excluded"],
+      "properties": {"excluded": {"type": "array", "items": {"type": "object", "required": ["sha", "rule"],
+        "properties": {"sha": {"$ref": "#/$defs/sha"}, "rule": {"type": "string", "pattern": "^exclude:"}}}}}},
+    "method_a": {
+      "description": "One entry per catalogued fix (SZZ-style). days = committer days, or author days when the flag committer-dates-compressed is set.",
+      "type": "array",
+      "items": {"type": "object", "required": ["fix", "fix_date", "nominees", "flags", "days"],
+        "not": {"required": ["subject"]},
+        "properties": {"fix": {"$ref": "#/$defs/sha"}, "days": {"type": ["number", "null"]},
+          "nominees": {"type": "array", "items": {"type": "object", "required": ["sha", "date", "blamed_lines"], "properties": {"sha": {"$ref": "#/$defs/sha"}}}},
+          "flags": {"type": "array", "items": {"type": "string"}}}}
+    },
+    "method_b": {
+      "description": "One entry per behavioural sweep. days is exact only when verdict is located; otherwise a lower bound (days_is_lower_bound).",
+      "type": "array",
+      "items": {"type": "object",
+        "required": ["id", "fix", "verdict", "first_failing", "last_passing", "days", "days_is_lower_bound", "method_a_nominee", "a_check", "results", "repro_test"],
+        "properties": {
+          "fix": {"$ref": "#/$defs/sha"},
+          "verdict": {"enum": ["located", "interval", "censored-by-testability", "left-censored", "repro-invalid"]},
+          "first_failing": {"$ref": "#/$defs/sha_or_null"},
+          "last_passing": {"$ref": "#/$defs/sha_or_null"},
+          "days_is_lower_bound": {"type": "boolean"},
+          "a_check": {"type": "object", "required": ["label", "outcomes"],
+            "properties": {"label": {"enum": ["confirmed", "too-late", "refuted", "plausible", "untested", "inconclusive", "not-run"]}}},
+          "results": {"type": "array", "items": {"type": "object", "required": ["sha", "outcome", "steps"],
+            "properties": {"sha": {"$ref": "#/$defs/sha"}, "outcome": {"$ref": "#/$defs/outcome"}}}}
+        }}
+    },
+    "feasibility": {"type": "object", "required": ["baseline", "time_travel"],
+      "description": "null = that feasibility run did not happen for this target",
+      "properties": {"baseline": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/feasibility_run"}]}, "time_travel": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/feasibility_run"}]}}},
+    "coverage": {"type": "array", "items": {"type": "object", "required": ["stage", "status", "evidence", "proves", "does_not_prove"],
+      "properties": {"status": {"enum": ["COVERED", "PARTIAL", "NOT TESTED"]}}}},
+    "commits": {
+      "description": "Every SHA referenced anywhere in the bundle: committer date and a short, redacted subject. No author or committer identity.",
+      "type": "object",
+      "propertyNames": {"pattern": "^[0-9a-f]{40}$"},
+      "additionalProperties": {"type": "object", "required": ["date", "subject"], "additionalProperties": false,
+        "properties": {"date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"}, "subject": {"type": "string", "maxLength": 100}}}
+    }
+  }
+}

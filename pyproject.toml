@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: MIT OR Apache-2.0
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bug-age"
+version = "2.0.0"
+description = "Measure how long fixed bugs lived in a git repository, from repository data only."
+readme = "README.md"
+license = { text = "MIT OR Apache-2.0" }
+requires-python = ">=3.11"
+dependencies = []
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Environment :: Console",
+    "Topic :: Software Development :: Quality Assurance",
+    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: Apache Software License",
+]
+
+[project.urls]
+Source = "https://github.com/jacob-adm/bug-age"
+
+[project.scripts]
+bug-age = "bug_age.cli:main"
+
+[tool.setuptools]
+packages = ["bug_age"]
+
+[tool.setuptools.package-data]
+bug_age = ["data/Dockerfile", "data/bundle.schema.json"]

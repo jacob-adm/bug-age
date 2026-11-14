@@ -24,7 +24,9 @@ USAGE = """usage: bug-age [--version | --help]
        bug-age probe --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]
        bug-age bundle --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR] [--out-of-scope 'STAGE|EVIDENCE|DOES_NOT_PROVE']
        bug-age explorer --page FILE --targets NAME=DIR,NAME=DIR --out DIR   (DIR = a bundle output dir)
-       bug-age mcp --bundles NAME=FILE,NAME=FILE   (read-only MCP server on stdio over bundle.json files)"""
+       bug-age mcp --bundles NAME=FILE,NAME=FILE   (read-only MCP server on stdio over bundle.json files)
+       bug-age pipeline TARGET.toml [--fresh] [--skip-feasibility]   (every stage for one target)
+       bug-age dockerfile   (print the Method B image's Dockerfile: bug-age dockerfile | docker build -t bug-age-spike:4 -)"""
 
 WARN_BYTES = 8 * 1024 * 1024
 MAX_BYTES = 16 * 1024 * 1024
@@ -244,6 +246,12 @@ def main(argv=None):
         return 0
     if first in (None, "--help", "-h"):
         print(USAGE)
+        return 0
+    if first == "pipeline":
+        from .pipeline import main as pipeline
+        return pipeline(args[1:])
+    if first == "dockerfile":
+        sys.stdout.write((Path(__file__).parent / "data" / "Dockerfile").read_text(encoding="utf-8"))
         return 0
     if first not in COMMANDS:
         print(f"bug-age: unknown argument '{first}'\n{USAGE}", file=sys.stderr)
