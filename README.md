@@ -258,6 +258,19 @@ Changes reach `main` only through pull requests.
 
 Keep the rules in [Rigor rules](#rigor-rules): numbers come from scripts, unrun stages are NOT TESTED, and bundles stay blameless.
 
+## Versions
+
+1.0.2 is the last version written in Rust. It measures Rust crates: Method A needs git and a
+Rust 1.86 toolchain to build the CLI (`cargo build`), and Method B needs Docker. It is the version
+that produced the tokenizers and rust-sdk example runs. To use it, check out its tag:
+
+```sh
+git clone --branch v1.0.2 https://github.com/jacob-adm/bug-age
+```
+
+Later versions are a Python port of the same tool, installed with pip and producing the same
+numbers for these runs.
+
 ## License
 
 Licensed under either of [Apache License, Version 2.0](LICENSE-APACHE) or [MIT License](LICENSE-MIT), at your option, as declared in `Cargo.toml`.
