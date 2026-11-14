@@ -41,7 +41,7 @@ One command runs every stage:
 bug-age pipeline targets/rust-sdk.toml            # or, in a clone: make pipeline TARGET=targets/rust-sdk.toml
 ```
 
-An existing feasibility report is reused only if its receipt names this repository and pinned head, and an existing sweep only if its regression test is unchanged and its fix is in the pinned history; anything else stops the stage as stale (`--fresh` reruns it). The bundle reads only the outputs this run produced or verified, so a skipped or stale stage adds no data.
+An existing feasibility report is reused only if every material input recorded in its receipt matches this run: repository, pinned head, sample count, time-travel or not, package scope and the Method B image recipe, and the report still has the hash its receipt recorded. An existing sweep is reused only if its regression test is unchanged, its fix is in the pinned history, its build and test commands, repeats, runner, search and range start are what this run would use, and the file still has its recorded hash. Anything else stops the stage as stale and names the differing input (`--fresh` reruns it). Receipts made before 2.1.1 do not record the image recipe; they are reused, and the stage report says so. The bundle reads only the outputs this run produced or verified, so a skipped or stale stage adds no data.
 
 The stages are clone at the pinned head, feasibility (baseline and time-travel dependencies), catalog, Method A, Method B for every repro under `<results_dir>/repros/<fix>/overlay`, and bundle.
 
