@@ -4474,6 +4474,7 @@
   "summary": {
     "fixes": 109,
     "in_window": 4,
+    "release_tags": "v[0-9]*",
     "window_start": "2025-03-13",
     "with_introducer": 93
   }
