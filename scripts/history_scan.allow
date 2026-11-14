@@ -22,3 +22,7 @@ person	dist/rust-sdk/bundle.json	marco
 person	results/rust-sdk/catalog.json	marco
 person	results/rust-sdk/szz.json	marco
 person	commit: BUGAGE-16: version 1.0.0	marco
+email	tests/test_bundle.py	123+ghopper@users.noreply.github.com
+email	tests/test_bundle.py	ada@example.org
+email	tests/helpers.py	test@example.invalid
+email	tests/test_sweep.py	t@example.invalid

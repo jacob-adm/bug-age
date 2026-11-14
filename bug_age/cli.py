@@ -23,7 +23,7 @@ USAGE = """usage: bug-age [--version | --help]
              [--namespace NAME] [--bucket N (toolchain minor rounding, default 4; 0 = exact)]
        bug-age probe --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]
        bug-age bundle --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR] [--out-of-scope 'STAGE|EVIDENCE|DOES_NOT_PROVE']
-       bug-age explorer --page FILE --targets NAME=DIR,NAME=DIR --out DIR   (DIR = a bundle output dir)
+       bug-age explorer [--page FILE] --targets NAME=DIR,NAME=DIR --out DIR   (DIR = a bundle output dir)
        bug-age mcp --bundles NAME=FILE,NAME=FILE   (read-only MCP server on stdio over bundle.json files)
        bug-age pipeline TARGET.toml [--fresh] [--skip-feasibility]   (every stage for one target)
        bug-age dockerfile   (print the Method B image's Dockerfile: bug-age dockerfile | docker build -t bug-age-spike:4 -)"""
@@ -177,7 +177,8 @@ def cmd_bundle(f):
 
 def cmd_explorer(f):
     """`explorer`: the static explorer page with one data file per target."""
-    page_path = need(f, "page")
+    # The page shipped with the package unless another is given.
+    page_path = f.get("page", str(Path(__file__).parent / "data" / "explorer.html"))
     try:
         page = Path(page_path).read_text(encoding="utf-8")
     except (OSError, UnicodeDecodeError) as exc:

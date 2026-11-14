@@ -17,7 +17,7 @@ def load(rel):
     return json.loads((ROOT / rel).read_text(encoding="utf-8"))
 
 
-SCHEMA = load("schema/bundle.schema.json")
+SCHEMA = load("bug_age/data/bundle.schema.json")
 
 
 class Schema(unittest.TestCase):

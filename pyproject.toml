@@ -29,4 +29,4 @@ bug-age = "bug_age.cli:main"
 packages = ["bug_age"]
 
 [tool.setuptools.package-data]
-bug_age = ["data/Dockerfile", "data/bundle.schema.json"]
+bug_age = ["data/Dockerfile", "data/bundle.schema.json", "data/explorer.html"]

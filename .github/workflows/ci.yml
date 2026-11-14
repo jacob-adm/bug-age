@@ -20,23 +20,33 @@ jobs:
         os: [ubuntu-24.04, macos-15]
     steps:
       - uses: actions/checkout@v4
+      # cargo builds the toy crate in the Method B tests (the rust profile); bug-age itself is Python.
       - uses: dtolnay/rust-toolchain@1.86.0
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      # Unit, contract and end-to-end tests; --locked fails if Cargo.lock is out of date.
-      - name: cargo test
-        run: cargo test --workspace --locked
       # The example runs' clones, so the oracle test can regenerate them (full history: blame and tags).
       - name: clone example targets
         run: |
           git clone -q https://github.com/huggingface/tokenizers work/tokenizers
           git clone -q https://github.com/modelcontextprotocol/rust-sdk work/rust-sdk
-      # Python port: unit tests, and the oracle that regenerates both runs and compares byte for byte.
-      - name: python tests
-        run: python3 -m unittest discover -s tests
+      # Oldest and newest supported Python, one after the other, so the required check names stay one per OS.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: python 3.11 tests
+        run: python -m unittest discover -s tests
         env:
           BUG_AGE_FRESH_CLONES: "1"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: python 3.13 tests
+        run: python -m unittest discover -s tests
+        env:
+          BUG_AGE_FRESH_CLONES: "1"
+      # The package installs and runs with no dependencies.
+      - name: install
+        run: |
+          python -m pip install .
+          bug-age --version
       # Fails if any number in the article is not a reference into a committed bundle.
       - name: article numbers trace to the bundle
         run: python3 scripts/article.py article/ARTICLE.tmpl.md --bundle tokenizers=dist/tokenizers/bundle.json --bundle rust-sdk=dist/rust-sdk/bundle.json
