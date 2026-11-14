@@ -220,7 +220,7 @@ def _spec_and_runner(f, tag):
     if kind == "local":
         return spec, Local(spec)
     if kind == "docker":
-        tt = f.get("time-travel-script", "spike/timetravel.py")
+        tt = f.get("time-travel-script", str(Path(__file__).with_name("timetravel.py")))
         return spec, Docker(f.get("image", "bug-age-spike:4"), None if tt == "none" else Path(tt),
                             f"-{f['namespace']}" if "namespace" in f else "", number("bucket", "4", signed=True))
     raise Failure(f"unknown runner '{kind}'")

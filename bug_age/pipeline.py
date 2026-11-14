@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run the bug-age pipeline for one target from its config file.
 
-Usage: python3 scripts/pipeline.py targets/NAME.toml [--fresh] [--skip-feasibility]
+Usage: bug-age pipeline targets/NAME.toml [--fresh] [--skip-feasibility]
 
 Stages: clone -> feasibility (baseline, time-travel) -> catalog -> szz -> repros -> bundle.
 A stage whose output already exists is REUSED unless --fresh (the expensive Docker stages
@@ -11,8 +11,8 @@ continues with whatever does not depend on it. Writes <results_dir>/PIPELINE.md 
 import datetime as dt, hashlib, json, subprocess, sys, time, tomllib
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent       # repository root; all stages run from here
-BIN = ROOT / "target" / "debug" / "bug-age"        # CLI built by `cargo build`
+ROOT = Path.cwd()                                   # config paths are relative to the working directory
+BIN = [sys.executable, "-m", "bug_age"]             # this package's CLI, same interpreter
 
 
 def sha256(p):
@@ -34,10 +34,14 @@ def tail(log, n=3):
     return text[:300]
 
 
-def main():
+def main(argv=None):
     """Load the target config, run each stage in order, and write the stage report."""
-    cfg_path = Path(sys.argv[1])
-    fresh, skip_feas = "--fresh" in sys.argv, "--skip-feasibility" in sys.argv
+    argv = sys.argv[1:] if argv is None else argv
+    if not argv or argv[0].startswith("--"):
+        print("usage: bug-age pipeline TARGET.toml [--fresh] [--skip-feasibility]", file=sys.stderr)
+        return 2
+    cfg_path = Path(argv[0])
+    fresh, skip_feas = "--fresh" in argv, "--skip-feasibility" in argv
     c = tomllib.loads(cfg_path.read_text())
     repo, res, spike, dist = (ROOT / c[k] for k in ("work_dir", "results_dir", "spike_dir", "dist_dir"))
     res.mkdir(parents=True, exist_ok=True)
@@ -81,7 +85,7 @@ def main():
                 return "NOT TESTED", "skipped (--skip-feasibility)"
             if out.is_file() and not fresh:
                 return "REUSED", "existing report (pass --fresh to rerun)"
-            cmd = [sys.executable, "spike/feasibility.py", "--config", cfg_path, "--samples", c.get("samples", 20)]
+            cmd = [sys.executable, "-m", "bug_age.feasibility", "--config", cfg_path, "--samples", c.get("samples", 20)]
             if run(cmd + (["--time-travel"] if tt else []), log) or not out.is_file():
                 return "FAILED", tail(log)
             r = json.loads(out.read_text())
@@ -92,7 +96,7 @@ def main():
         """Return a stage function that runs one bug-age subcommand writing to `out`."""
         def fn():
             """Stage body; returns (status, reason)."""
-            if run([BIN, name, *args, "--out", out], log):
+            if run([*BIN, name, *args, "--out", out], log):
                 return "FAILED", tail(log)
             return "OK", tail(log, 1)
         return fn
@@ -104,12 +108,10 @@ def main():
             return "NOT TESTED", "no regression tests written for this target (results_dir/repros/<fix>/overlay)"
         if all((o.parent / "sweep.json").is_file() for o in overlays) and not fresh:
             return "REUSED", f"{len(overlays)} existing sweeps (pass --fresh to rerun)"
-        if run([sys.executable, "results/run_repros.py", res, repo, c["crate_path"]], log):
+        if run([sys.executable, "-m", "bug_age.repros", res, repo, c["crate_path"]], log):
             return "FAILED", tail(log)
         return "OK", f"{len(overlays)} repros swept"
 
-    if run(["cargo", "build", "-q"], log):
-        print("cargo build failed; see", log); return 1
     if not stage("clone", None, clone):
         return finish(c, res, stages)
     for tt in (False, True):
