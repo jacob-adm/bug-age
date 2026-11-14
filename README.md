@@ -17,6 +17,53 @@ What you get, and the three names this README uses for it:
 
 To see the output first, [open the live example](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb).
 
+## Requirements
+
+- Python 3.11 or later, standard library only.
+- git.
+- Docker, only for the feasibility check and Method B.
+- Linux or macOS, both tested in CI.
+- It measures Rust crates today; other languages are planned.
+
+## How it works
+
+1. **Find the fixes.** bug-age reads the commit history and lists every commit whose message says it fixes a bug.
+2. **Find where each bug came from.** For each fix, git shows which earlier commit last wrote the lines the fix changed. That commit is the likely cause (Method A).
+3. **Count how long it lived.** From that commit to the fix, bug-age counts the days, the commits and the releases that shipped with the bug.
+4. **Check with a test, if you want.** Write a test that fails before the fix and passes after it. bug-age runs it at older commits, in Docker, to see where it starts failing (Method B).
+5. **Write one report.** Everything goes into one file, `bundle.json`, with every name and email removed.
+
+## Commands
+
+```
+bug-age catalog --repo DIR --path CRATE [--head REV] [--out FILE]
+bug-age szz     --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--out FILE]
+bug-age sweep   --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD
+                [--build CMD] [--start SHA] [--runner docker|local] [--repeats N] [--image IMG]
+                [--time-travel-script FILE|none] [--scratch DIR] [--logs DIR] [--out FILE]
+                [--namespace NAME] [--bucket N]
+bug-age probe   --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]
+bug-age bundle  --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR]
+bug-age explorer [--page FILE] --targets NAME=DIR,... --out DIR
+bug-age mcp     --bundles NAME=FILE,...
+bug-age pipeline TARGET.toml [--fresh] [--skip-feasibility]
+bug-age dockerfile
+```
+
+Every command accepts only its own options: an unknown, repeated or valueless option exits 2 with the usage text, and `--repeats` must be at least 1.
+
+| Command | What it does |
+|---|---|
+| `catalog` | Lists the fix commits that touch a crate and records why each other commit was excluded (docs, lint, release, and so on) |
+| `szz` | Method A: names a likely introducing commit for each fix in the catalog |
+| `sweep` | Method B: binary-searches for the first commit where the test compiles, then bisects PASS/FAIL above it. Decisive commits are re-run `--repeats` times and flagged UNSTABLE if the result changes. Bisection tests a sample, so its result is a `boundary`, a lower bound: an earlier failure is not ruled out. `--search exhaustive` tests every commit in the range and is the only way to get `located` |
+| `probe` | Runs the same test at a fixed list of commits, with no search |
+| `bundle` | Builds `bundle.json` (validated against [`bug_age/data/bundle.schema.json`](bug_age/data/bundle.schema.json)), `bundle.js`, and `receipt.json` (sha256 hashes and sizes) |
+| `explorer` | Builds an explorer: a static viewer page for the listed bundles, with one data file per repository; fails over 8 MB. It reads reports and adds no results. |
+| `mcp` | Read-only MCP server on stdio answering bundle queries; see [`dist/agent/AGENTS.md`](dist/agent/AGENTS.md) |
+| `pipeline` | Runs every stage for one target config; paths in the config are relative to the current directory |
+| `dockerfile` | Prints the Dockerfile of the Method B image |
+
 ## Get started
 
 Point bug-age at your own repository in six steps. A first run with Method A only needs git and Python; Docker is needed only for the feasibility check and Method B.
@@ -164,37 +211,6 @@ Method B dominates: each bug needs a regression test, and the current search bui
 | Article prose (`article/ARTICLE.tmpl.md`) | Drafted with AI | Every number is a bundle reference; the check fails on anything else. |
 | "Ask Claude" in the explorer (optional) | Claude answers a question on the viewer's own account, from the rows the search found | The answer is shown only if every cited SHA and every number appears in those rows. It runs only when the viewer clicks, and is hidden where unavailable. |
 | The code | Written with an AI coding agent (Claude Code) and reviewed by the maintainer | Each change merged through a pull request after `cargo test`; commits carry a `Co-Authored-By` line. |
-
-## CLI
-
-```
-bug-age catalog --repo DIR --path CRATE [--head REV] [--out FILE]
-bug-age szz     --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--out FILE]
-bug-age sweep   --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD
-                [--build CMD] [--start SHA] [--runner docker|local] [--repeats N] [--image IMG]
-                [--time-travel-script FILE|none] [--scratch DIR] [--logs DIR] [--out FILE]
-                [--namespace NAME] [--bucket N]
-bug-age probe   --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]
-bug-age bundle  --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR]
-bug-age explorer [--page FILE] --targets NAME=DIR,... --out DIR
-bug-age mcp     --bundles NAME=FILE,...
-bug-age pipeline TARGET.toml [--fresh] [--skip-feasibility]
-bug-age dockerfile
-```
-
-Every command accepts only its own options: an unknown, repeated or valueless option exits 2 with the usage text, and `--repeats` must be at least 1.
-
-| Command | What it does |
-|---|---|
-| `catalog` | Lists the fix commits that touch a crate and records why each other commit was excluded (docs, lint, release, and so on) |
-| `szz` | Method A: names a likely introducing commit for each fix in the catalog |
-| `sweep` | Method B: binary-searches for the first commit where the test compiles, then bisects PASS/FAIL above it. Decisive commits are re-run `--repeats` times and flagged UNSTABLE if the result changes. Bisection tests a sample, so its result is a `boundary`, a lower bound: an earlier failure is not ruled out. `--search exhaustive` tests every commit in the range and is the only way to get `located` |
-| `probe` | Runs the same test at a fixed list of commits, with no search |
-| `bundle` | Builds `bundle.json` (validated against [`bug_age/data/bundle.schema.json`](bug_age/data/bundle.schema.json)), `bundle.js`, and `receipt.json` (sha256 hashes and sizes) |
-| `explorer` | Builds an explorer: a static viewer page for the listed bundles, with one data file per repository; fails over 8 MB. It reads reports and adds no results. |
-| `mcp` | Read-only MCP server on stdio answering bundle queries; see [`dist/agent/AGENTS.md`](dist/agent/AGENTS.md) |
-| `pipeline` | Runs every stage for one target config; paths in the config are relative to the current directory |
-| `dockerfile` | Prints the Dockerfile of the Method B image |
 
 ## Pipeline reference
 
