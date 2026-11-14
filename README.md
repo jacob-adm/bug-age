@@ -219,6 +219,8 @@ One command runs every stage:
 bug-age pipeline targets/rust-sdk.toml            # or, in a clone: make pipeline TARGET=targets/rust-sdk.toml
 ```
 
+An existing feasibility report is reused only if its receipt names this repository and pinned head, and an existing sweep only if its regression test is unchanged and its fix is in the pinned history; anything else stops the stage as stale (`--fresh` reruns it). The bundle reads only the outputs this run produced or verified, so a skipped or stale stage adds no data.
+
 The stages are clone at the pinned head, feasibility (baseline and time-travel dependencies), catalog, Method A, Method B for every repro under `<results_dir>/repros/<fix>/overlay`, and bundle.
 
 - A stage whose output already exists is REUSED, so the expensive Docker stages are never redone silently. Pass `--fresh` to rerun them.
