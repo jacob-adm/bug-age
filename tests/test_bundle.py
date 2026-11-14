@@ -3,6 +3,7 @@
 import copy
 import json
 import shutil
+import signal
 import subprocess
 import tempfile
 import unittest
@@ -76,6 +77,54 @@ class Gate(unittest.TestCase):
             shutil.rmtree(d, ignore_errors=True)
 
 
+def old_redact(names, text, limit=50):
+    """The 1.x redaction (boundary-consuming pattern, repeated until no match); None if it does not settle."""
+    import re as _re
+    pat = _re.compile(r"(?i)(^|[^\w])(" + "|".join(_re.escape(n) for n in names) + r")(\Z|[^\w])")
+    for _ in range(limit):
+        if not pat.search(text):
+            return text
+        text = pat.sub(lambda m: m.group(1) + bundle.REDACTED + m.group(3), text)
+    return None
+
+
+class Redaction(unittest.TestCase):
+    """Redaction terminates on any input and removes the same names as 1.x did."""
+
+    def setUp(self):
+        """Fail any test that runs longer than five seconds (a hang is the defect under test)."""
+        signal.signal(signal.SIGALRM, lambda *a: (_ for _ in ()).throw(TimeoutError("redaction did not finish")))
+        signal.alarm(5)
+        self.addCleanup(signal.alarm, 0)
+
+    def test_terminates_when_a_name_is_the_placeholder_word(self):
+        """A contributor called "redacted" no longer makes redaction loop forever."""
+        ids = bundle.Identities(["redacted"])
+        self.assertEqual(ids.redact("redacted"), "[redacted]")
+        self.assertEqual(ids.redact("fix by redacted and [redacted]"), "fix by [redacted] and [[redacted]]")
+        self.assertEqual(bundle.scan("[redacted]", ids), [], "the placeholder is not a person")
+
+    def test_same_result_as_the_old_loop_wherever_it_settled(self):
+        """Adjacent, overlapping and repeated names give exactly the 1.x output."""
+        names = ["ada lovelace", "lovelace", "ada", "bob-x", "c.d"]
+        texts = ["Ada Lovelace", "ada ada ada", "ada,ada.ada", "lovelace ada lovelace", "bob-x/ada", "xada adax ada_",
+                 "c.d c.dx (ada)", "ADA-bob-x", "", "nothing here", "ada\nada"]
+        ids = bundle.Identities(names)
+        for t in texts:
+            with self.subTest(text=t):
+                self.assertEqual(ids.redact(t), old_redact(names, t))
+
+    def test_user_names_warn_and_full_names_fail(self):
+        """An email user name in the bundle is a warning; a full name or an email still fails the gate."""
+        ids = bundle.Identities(["grace hopper", "ghopper", "hello"], user_names={"ghopper", "hello"})
+        found = []
+        self.assertEqual(bundle.scan({"a": "assert_eq!(out, vec![\"hello\"])"}, ids, found), [])
+        self.assertEqual(found, ["hello"])
+        self.assertNotEqual(bundle.scan({"a": "thanks Grace Hopper"}, ids, []), [])
+        self.assertNotEqual(bundle.scan({"a": "mail hello@example.org"}, ids, []), [])
+        self.assertEqual(ids.redact("fix from ghopper"), "fix from [redacted]", "user names are still redacted")
+
+
 class Partial(unittest.TestCase):
     """Stages that did not run are reported, not hidden."""
 
@@ -96,7 +145,7 @@ class Partial(unittest.TestCase):
             (results / "catalog.json").write_text(json.dumps({"include_rule": "fix", "scanned": 1, "excluded": [], "fixes": []}))
             (results / "szz.json").write_text(json.dumps({"head": head, "path": ".", "bugs": [],
                                                           "summary": {"fixes": 0, "with_introducer": 0}}))
-            b = bundle.build(repo, results, d / "no-spike", "https://example.org/r", ("Bindings", "out of scope", "binding behaviour"))
+            b, _ = bundle.build(repo, results, d / "no-spike", "https://example.org/r", ("Bindings", "out of scope", "binding behaviour"))
             self.assertEqual(schema.errors(b, SCHEMA), [])
             self.assertIsNone(b["feasibility"]["baseline"])
             self.assertIsNone(b["feasibility"]["time_travel"])

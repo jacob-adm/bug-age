@@ -48,15 +48,17 @@ def public_command(args, cwd, home):
     return " ".join(out)
 
 
-def people(repo):
-    """Every author/committer name and email in the history, lowercased, longest first."""
+def people_and_user_names(repo):
+    """Every author/committer name and email in the history, lowercased, longest first; and the
+    subset that are only the user part of an email address (`hello` from hello@example.org)."""
     log = git(repo, ["log", "--all", "--format=%an%n%ae%n%cn%n%ce"])
-    found = set()
+    found, full = set(), set()
     for line in (trim(l) for l in lines(log)):
         # Lengths are UTF-8 bytes, as Rust measures them.
         if len(line.encode()) < 3:
             continue
         found.add(line.lower())
+        full.add(line.lower())
         local, at, _ = line.partition("@")
         if at:
             user = local.rsplit("+", 1)[-1]
@@ -66,37 +68,65 @@ def people(repo):
         found.discard(generic)
     # Byte order first (as a BTreeSet), then longest first, so full names win over their parts.
     ordered = sorted(found, key=lambda s: s.encode())
-    return sorted(ordered, key=lambda s: -len(s.encode()))
+    return sorted(ordered, key=lambda s: -len(s.encode())), found - full
+
+
+def people(repo):
+    """Every author/committer name, email and email user name in the history, longest first."""
+    return people_and_user_names(repo)[0]
 
 
 class Identities:
     """Name, email and @handle patterns for redaction and for the blameless gate."""
 
-    def __init__(self, names):
-        # Rust's `$` matches only at the very end; Python's also before a final newline, hence \Z.
+    def __init__(self, names, user_names=()):
+        user_names = set(user_names)
+        # Redaction keeps 1.x's pattern, which consumes the character on each side of a name, so
+        # adjacent names take more than one pass (see redact). Rust's `$` matches only at the very
+        # end; Python's also before a final newline, hence \Z.
         alternation = [re.escape(p) for p in names]
         self.names = re.compile(r"(?i)(^|[^\w])(" + "|".join(alternation) + r")(\Z|[^\w])") if alternation else None
+
+        # Gate patterns only search, so zero-width boundaries suffice.
+        def pattern(words):
+            words = [re.escape(w) for w in words]
+            return re.compile(r"(?i)(?<!\w)(" + "|".join(words) + r")(?!\w)") if words else None
+        # Gate: full names fail it; email user names (often ordinary words) are reported for review.
+        self.strong = pattern([n for n in names if n not in user_names])
+        self.weak = pattern([n for n in names if n in user_names])
         self.email = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
         self.handle = re.compile(r"(^|\s)@[A-Za-z0-9][A-Za-z0-9_-]+")
 
     def redact(self, text):
-        """Replace every known name in `text`, repeating until none is left (matches can overlap)."""
+        """Replace every known name in `text`, exactly as 1.x did, but always terminating.
+
+        Passes repeat until no name matches, as in 1.x. During the passes a match is replaced by NUL,
+        which no git identity can contain, so a replacement can never match again and each pass
+        removes name text: the loop ends. 1.x wrote "[redacted]" at once and never ended when a
+        contributor's name occurred in it. Where 1.x ended, the result is the same.
+        """
         if self.names is None:
             return text
         while self.names.search(text):
-            text = self.names.sub(lambda m: m.group(1) + REDACTED + m.group(3), text)
-        return text
+            text = self.names.sub(lambda m: m.group(1) + "\0" + m.group(3), text)
+        return text.replace("\0", REDACTED)
 
     def hit(self, s):
-        """A description of the first identity found in `s`, or None."""
+        """A description of the first identity that fails the gate in `s`, or None."""
         if self.email.search(s) or self.handle.search(s):
             return f"email/handle in {s!r}"
-        m = self.names.search(s) if self.names else None
-        return f"person {m.group(2)!r} in {s!r}" if m else None
+        # The placeholder is not a name, even when a contributor is called "redacted".
+        m = self.strong.search(s.replace(REDACTED, " ")) if self.strong else None
+        return f"person {m.group(1)!r} in {s!r}" if m else None
+
+    def user_name(self, s):
+        """The first email user name found in `s` (a warning, not a gate failure), or None."""
+        m = self.weak.search(s.replace(REDACTED, " ")) if self.weak else None
+        return m.group(1).lower() if m else None
 
 
-def scan(value, ids):
-    """Every identity hit in every string of `value`."""
+def scan(value, ids, warnings=None):
+    """Every identity hit in every string of `value`; email user names found go to `warnings`."""
     hits, stack = [], [value]
     while stack:
         x = stack.pop()
@@ -104,6 +134,9 @@ def scan(value, ids):
             h = ids.hit(x)
             if h:
                 hits.append(h)
+            u = ids.user_name(x) if warnings is not None else None
+            if u and u not in warnings:
+                warnings.append(u)
         elif isinstance(x, list):
             stack.extend(x)
         elif isinstance(x, dict):
@@ -323,7 +356,8 @@ def build(repo, results, spike, repo_url, out_of_scope):
     tt = feasibility(spike / "results-timetravel" / "report.json")
     a_summary = method_a_summary(szz)
     b = method_b(repo, results / "repros", szz)
-    ids = Identities(people(repo))
+    names, user_names = people_and_user_names(repo)
+    ids = Identities(names, user_names)
     shas = set()
 
     def add(v):
@@ -375,7 +409,9 @@ def build(repo, results, spike, repo_url, out_of_scope):
         "coverage": coverage(a_summary, b, feas, tt, out_of_scope),
         "commits": commits,
     }
-    hits = scan(bundle, ids)
+    found = []
+    hits = scan(bundle, ids, found)
     if hits:
         raise BundleError(f"blameless gate failed ({len(hits)} hits), first: {hits[0]}")
-    return bundle
+    # Email user names left in the bundle (e.g. an ordinary word in a repro test) are listed for review.
+    return bundle, [f"email user name {u!r} appears in the bundle; review it" for u in sorted(found)]
