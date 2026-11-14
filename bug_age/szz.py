@@ -11,7 +11,8 @@ import re
 from ._compat import lines, round1, split_whitespace, trim
 from .git import GitError, author_time, commit_date, commit_time, git
 
-_HEX40 = re.compile(r"[0-9a-fA-F]{40}")
+# A commit id: 40 hex digits in a SHA-1 repository, 64 in a SHA-256 one.
+_OID = re.compile(r"[0-9a-fA-F]{40}|[0-9a-fA-F]{64}")
 
 
 def in_scope(file, path):
@@ -49,7 +50,7 @@ def blame_counts(porcelain, counts):
     """Count blamed lines per commit from `git blame --porcelain` output into `counts`."""
     for line in lines(porcelain):
         parts = line.split(" ")
-        if len(parts) >= 3 and _HEX40.fullmatch(parts[0]):
+        if len(parts) >= 3 and _OID.fullmatch(parts[0]):
             counts[parts[0]] = counts.get(parts[0], 0) + 1
 
 

@@ -11,8 +11,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 
 # A fixed identity and no user or system config, so every fixture commit is reproducible.
-_ENV = {"GIT_AUTHOR_NAME": "Test", "GIT_AUTHOR_EMAIL": "test@example.invalid",
-        "GIT_COMMITTER_NAME": "Test", "GIT_COMMITTER_EMAIL": "test@example.invalid",
+_ENV = {"GIT_AUTHOR_NAME": "Fixture Author", "GIT_AUTHOR_EMAIL": "fixture-author@example.invalid",
+        "GIT_COMMITTER_NAME": "Fixture Author", "GIT_COMMITTER_EMAIL": "fixture-author@example.invalid",
         "GIT_CONFIG_GLOBAL": os.devnull, "GIT_CONFIG_NOSYSTEM": "1"}
 
 
@@ -51,10 +51,10 @@ class SyntheticRepo:
     Tags: v0.1.0 and core-v0.1.0 on main; v0.1.1 (before the fix) and v0.1.2 (after) on a release branch.
     """
 
-    def __init__(self):
+    def __init__(self, object_format="sha1"):
         self._tmp = tempfile.mkdtemp(prefix="bug-age-test-")
         d = self.dir = Path(self._tmp)
-        run_git(d, ["init", "-q"], "2025-01-01T00:00:00Z")
+        run_git(d, ["init", "-q", f"--object-format={object_format}"], "2025-01-01T00:00:00Z")
         lib = "core/src/lib.rs"
         commit(d, lib, "pub fn add(a: i32, b: i32) -> i32 { a + b }\n", "init", "2025-01-01T00:00:00Z")
         self.intro = commit(d, lib, "pub fn add(a: i32, b: i32) -> i32 { a + b }\npub fn mul(a: i32, b: i32) -> i32 { a + b }\n",

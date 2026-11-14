@@ -26,3 +26,4 @@ email	tests/test_bundle.py	123+ghopper@users.noreply.github.com
 email	tests/test_bundle.py	ada@example.org
 email	tests/helpers.py	test@example.invalid
 email	tests/test_sweep.py	t@example.invalid
+email	tests/helpers.py	fixture-author@example.invalid

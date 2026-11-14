@@ -4,7 +4,7 @@ import unittest
 
 from bug_age.catalog import classify, sanitize_subject
 from bug_age.szz import in_scope, removed_ranges
-from helpers import SyntheticRepo, cli, cli_json, clean_env, head
+from helpers import ROOT, SyntheticRepo, cli, cli_json, clean_env, head
 
 
 class MethodA(unittest.TestCase):
@@ -65,6 +65,36 @@ class MethodA(unittest.TestCase):
             self.assertEqual(head(decoy.dir), before, "decoy repository must be untouched")
         finally:
             decoy.cleanup()
+
+
+class Sha256(unittest.TestCase):
+    """A SHA-256 repository gives the same Method A results and a valid bundle, with 64-digit ids."""
+
+    def test_same_results_as_sha1_apart_from_ids(self):
+        """Catalog and szz agree with the SHA-1 copy of the history, ids aside; the bundle validates."""
+        import json
+        from bug_age import bundle, schema
+        out = {}
+        for fmt in ("sha1", "sha256"):
+            r = SyntheticRepo(fmt)
+            self.addCleanup(r.cleanup)
+            cat = r.dir / "catalog.json"
+            cli("catalog", "--repo", r.dir, "--path", "core", "--out", cat)
+            res = cli_json("szz", "--repo", r.dir, "--catalog", cat, "--window-start", "2025-01-02")
+            bug = res["bugs"][0]
+            self.assertEqual(len(bug["fix"]), 40 if fmt == "sha1" else 64)
+            self.assertEqual(bug["nominees"][0]["sha"], r.intro, fmt)
+            (r.dir / "szz.json").write_text(json.dumps(res))
+            b, _ = bundle.build(r.dir, r.dir, r.dir / "no-spike", "https://example.org/r", None)
+            self.assertEqual(schema.errors(b, json.loads((ROOT / "bug_age" / "data" / "bundle.schema.json").read_text())), [])
+            self.assertIn(r.fix, b["commits"])
+            ids = {r.intro: "INTRO", r.fix: "FIX"}
+            out[fmt] = json.loads(json.dumps(res["bugs"]).replace(r.intro, "INTRO").replace(r.fix, "FIX"))
+            for n in out[fmt][0]["nominees"]:
+                n["sha"] = ids.get(n["sha"], "OTHER")
+            for n in out[fmt]:
+                n.pop("fix", None)
+        self.assertEqual(out["sha1"], out["sha256"])
 
 
 class Helpers(unittest.TestCase):
