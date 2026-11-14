@@ -259,6 +259,10 @@ BUG_AGE_DOCKER_TESTS=1 python3 -m unittest discover -s tests   # adds the Docker
 The oracle test regenerates both example runs from clones in `work/` and compares every output
 with the committed files byte for byte. The sweep tests build a toy crate, so they need cargo.
 
+## Security
+
+Method B runs the analysed repository's code. [SECURITY.md](SECURITY.md) states what the local and Docker runners isolate and what they do not; every step has a time limit (`--step-timeout`, default 3600 s) and a capped log.
+
 ## Contributing
 
 Changes reach `main` only through pull requests.

@@ -21,6 +21,7 @@ USAGE = """usage: bug-age [--version | --help]
              [--build CMD] [--start SHA] [--runner docker|local] [--repeats N] [--image IMG]
              [--time-travel-script FILE|none] [--scratch DIR] [--logs DIR] [--out FILE]
              [--namespace NAME] [--bucket N (toolchain minor rounding, default 4; 0 = exact)]
+             [--step-timeout SECONDS (per fetch, build or test step; default 3600)]
              [--search bisection|exhaustive (exhaustive tests every commit; only it can report located)]
        bug-age probe --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]
        bug-age bundle --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR] [--out-of-scope 'STAGE|EVIDENCE|DOES_NOT_PROVE']
@@ -44,7 +45,7 @@ class UsageError(Exception):
 # The options each subcommand accepts. Anything else is a usage error, so a typo such as --hed can
 # never fall back to a default and silently change what is measured.
 _SWEEP = {"repo", "path", "overlay", "test", "build", "runner", "repeats", "image", "time-travel-script",
-          "scratch", "logs", "out", "namespace", "bucket"}
+          "scratch", "logs", "out", "namespace", "bucket", "step-timeout"}
 OPTIONS = {
     "catalog": {"repo", "path", "head", "out"},
     "szz": {"repo", "catalog", "window-start", "release-tags", "out"},

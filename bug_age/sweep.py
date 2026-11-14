@@ -19,7 +19,7 @@ from pathlib import Path
 from . import __version__
 from ._compat import dumps, lines, trim
 from .git import GitError, git
-from .runner import DEBUG, FAIL, FLAKY, PASS, UNTESTABLE, Docker, Local, RunnerError, Spec
+from .runner import DEBUG, FAIL, FLAKY, PASS, TIMED_OUT, UNTESTABLE, Docker, Local, RunnerError, Spec
 
 SKIP_RADIUS = 2      # how far either side of a midpoint to look for a testable commit
 SEARCH_REPEATS = 1   # test runs per commit while searching; decisive commits get --repeats
@@ -49,7 +49,10 @@ def evaluate(runner, spec, sha, repeats):
 
     if runner.name == "docker" and step("fetch", "cargo fetch", True) != 0:
         return result(UNTESTABLE, "dependency fetch failed", toolchain)
-    if step("build", spec.build, False) != 0:
+    build = step("build", spec.build, False)
+    if build == TIMED_OUT:
+        return result(UNTESTABLE, f"test build stopped at the {spec.step_timeout} s step limit", toolchain)
+    if build != 0:
         try:
             log = (logs / "build.log").read_text(encoding="utf-8")
         except (OSError, UnicodeDecodeError):
@@ -67,11 +70,14 @@ def evaluate(runner, spec, sha, repeats):
             return result(UNTESTABLE, "test build failed (overlay does not compile here)", toolchain)
     exits = [step(f"test_{i}", spec.test, False) for i in range(1, repeats + 1)]
     passed, failed = sum(1 for e in exits if e == 0), sum(1 for e in exits if e != 0)
+    # A test stopped at the step limit counts as failing, and the reason says so.
+    late = sum(1 for e in exits if e == TIMED_OUT)
+    note = f" ({late} stopped at the {spec.step_timeout} s step limit)" if late else ""
     if failed == 0:
         return result(PASS, f"passed {passed}x", toolchain)
     if passed == 0:
-        return result(FAIL, f"failed {failed}x", toolchain)
-    return result(FLAKY, f"{passed} pass / {failed} fail", toolchain)
+        return result(FAIL, f"failed {failed}x{note}", toolchain)
+    return result(FLAKY, f"{passed} pass / {failed} fail{note}", toolchain)
 
 
 class Probe:
@@ -236,10 +242,13 @@ def _spec_and_runner(f, tag):
     repeats = number("repeats", "3")
     if repeats < 1:
         raise UsageError("--repeats must be at least 1")
+    step_timeout = number("step-timeout", "3600")
+    if step_timeout < 1:
+        raise UsageError("--step-timeout must be at least 1 second")
     try:
         spec = Spec(need(f, "repo"), need(f, "path"), need(f, "overlay"), f.get("build", "cargo test --no-run"),
                     need(f, "test"), repeats, f.get("scratch", f"{home}/.cache/bug-age"),
-                    f.get("logs", f"work/sweep-logs/{tag}"))
+                    f.get("logs", f"work/sweep-logs/{tag}"), step_timeout)
     except ValueError as exc:  # an unsafe crate path or overlay entry: refused before any work
         raise UsageError(str(exc)) from None
     kind = f.get("runner", "docker")
