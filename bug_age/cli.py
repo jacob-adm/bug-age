@@ -151,7 +151,7 @@ def cmd_bundle(f):
             raise Failure("--out-of-scope must be 'STAGE|EVIDENCE|DOES_NOT_PROVE'")
         oos = tuple(parts)
     try:
-        built = bundle.build(repo, Path(need(f, "results")), spike, need(f, "repo-url"), oos)
+        built, warnings = bundle.build(repo, Path(need(f, "results")), spike, need(f, "repo-url"), oos)
     except bundle.BundleError as exc:
         raise Failure(str(exc)) from exc
     text = dumps(built)
@@ -169,7 +169,7 @@ def cmd_bundle(f):
                  "warn_over_8mb": len(js.encode()) > WARN_BYTES},
         "outputs": {"bundle.json": sha256(text), "bundle.js": sha256(js)},
         "versions": {"bug-age": __version__, "git": tool_version("git", ["--version"])},
-        "warnings": [],
+        "warnings": warnings,
     }
     print(f"bundle: {len(text.encode())} bytes, sha256 {sha256(text)}, blameless gate PASS", file=sys.stderr)
     emit(receipt, out / "receipt.json")
