@@ -402,7 +402,8 @@ def build(repo, results, spike, repo_url, out_of_scope):
     bundle = {
         "schema_version": SCHEMA_VERSION,
         "generator": f"bug-age {__version__}",
-        "subject": {"repo_url": repo_url, "crate_path": get(szz, "path"), "head": get(szz, "head")},
+        "subject": {"repo_url": repo_url, "crate_path": get(szz, "path"), "head": get(szz, "head")}
+        | ({"profile": get(szz, "profile")} if get(szz, "profile") is not None else {}),
         "summary": {"method_a": a_summary,
                     "method_b": {"swept": len(b), "located": sum(1 for s in b if s["verdict"] == "located"),
                                  "a_refuted": sum(1 for s in b if s["a_check"]["label"] == "refuted"),

@@ -226,7 +226,8 @@ def main() -> int:
     spike_dir, logs = ROOT / "spike", WORK / "logs"
     if args.config:
         import tomllib
-        cfg = tomllib.loads(Path(args.config).read_text())
+        from .profiles import target
+        cfg = target(tomllib.loads(Path(args.config).read_text()))
         REPO_URL, CRATE, REPO = cfg["repo_url"], cfg["crate_path"], ROOT / cfg["work_dir"]
         spike_dir, logs = ROOT / cfg["spike_dir"], WORK / f"logs-{cfg['name']}"
         OUT, LOGS, TICKET = spike_dir / "results", logs, cfg.get("ticket", TICKET)

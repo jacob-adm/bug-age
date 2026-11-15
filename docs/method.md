@@ -22,8 +22,8 @@ What this means for the numbers:
 
 | Part | How it works |
 |---|---|
-| Fix catalog | Regular-expression rules over commit subjects, plus exclusion rules (docs, lint, release, ...). Locked by `classify_rules`. |
-| Method A | `git blame` on the lines each fix changed; days, commits, releases and churn computed from git. |
+| Fix catalog | Regular-expression rules over commit subjects, plus exclusion rules (docs, lint, release, ...). The `python` profile adds lint-tool names (mypy, flake8, pylint, ruff, isort, pep8). Locked by `classify_rules`. |
+| Method A | `git blame` on the lines each fix changed, in the profile's source files only (`rust`: `.rs` outside `tests/` and `benches/`; `python`: `.py` outside test directories, `test_*.py`, `*_test.py` and `conftest.py`); days, commits, releases and churn computed from git. |
 | Buildability and Method B sweeps | Each commit built and tested in Docker with no network and a date-matched toolchain. PASS or FAIL comes from the test's exit status, and decisive commits are re-run. |
 | Bundle and summary | Medians, 90th percentiles, counts and coverage computed by the CLI; the blameless gate rejects names and emails. |
 | Explorer (viewer) | Displays the bundles it was built from as they are, recomputes the headline numbers in the browser, and ranks search results with fixed rules. |

@@ -9,6 +9,7 @@ rule that admitted or rejected it, so the catalog can be audited and re-derived.
 """
 import re
 
+from . import profiles
 from ._compat import split_whitespace, trim
 from .git import git
 
@@ -29,6 +30,7 @@ EXCLUDE = (
 
 _INCLUDE = re.compile(INCLUDE)
 _EXCLUDE = tuple((name, re.compile(pat)) for name, pat in EXCLUDE)
+_EXTRA = {p: tuple((name, re.compile(pat)) for name, pat in rules) for p, rules in profiles.EXTRA_EXCLUDE.items()}
 _FROM = re.compile(r"\s+from\s+\S+/\S+")
 _HANDLE = re.compile(r"@[A-Za-z0-9][A-Za-z0-9_-]*")
 
@@ -38,18 +40,22 @@ def sanitize_subject(subject):
     return trim(_HANDLE.sub("", _FROM.sub("", subject)))[:100]
 
 
-def classify(subject):
-    """None if the subject is not a fix candidate; else "include" or "exclude:<rule>"."""
+def classify(subject, profile="rust"):
+    """None if the subject is not a fix candidate; else "include" or "exclude:<rule>".
+
+    The shared rules come first; a profile's extra rules (lint and formatter names) follow."""
     if not _INCLUDE.search(subject):
         return None
-    for name, pat in _EXCLUDE:
+    for name, pat in _EXCLUDE + _EXTRA[profiles.check(profile)]:
         if pat.search(subject):
             return f"exclude:{name}"
     return "include"
 
 
-def build(repo, head, path):
-    """Scan first-parent history of `head` touching `path`; return the catalog as a dict."""
+def build(repo, head, path, profile="rust"):
+    """Scan first-parent history of `head` touching `path`; return the catalog as a dict.
+
+    A non-rust catalog records its profile, so Method A blames that language's files."""
     log = git(repo, ["log", "--first-parent", "--format=%H%x1f%P%x1f%cs%x1f%s%x1e", head, "--", path])
     fixes, excluded, scanned = [], [], 0
     for rec in (trim(r) for r in log.split("\x1e")):
@@ -57,12 +63,14 @@ def build(repo, head, path):
             continue
         scanned += 1
         f = rec.split("\x1f")
-        rule = classify(f[3])
+        rule = classify(f[3], profile)
         if rule is None:
             continue
         entry = {"sha": f[0], "parents": split_whitespace(f[1]), "date": f[2],
                  "subject": sanitize_subject(f[3]), "rule": rule}
         (fixes if rule == "include" else excluded).append(entry)
     head = trim(git(repo, ["rev-parse", head]))
-    return {"head": head, "path": path, "scanned": scanned, "include_rule": INCLUDE,
-            "fixes": fixes, "excluded": excluded}
+    out = {"head": head, "path": path}
+    if profile != "rust":
+        out["profile"] = profile
+    return {**out, "scanned": scanned, "include_rule": INCLUDE, "fixes": fixes, "excluded": excluded}

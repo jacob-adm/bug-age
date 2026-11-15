@@ -11,11 +11,11 @@ import subprocess
 import sys
 from pathlib import Path
 
-from . import __version__, bundle, catalog, explorer, mcp, schema, szz
+from . import __version__, bundle, catalog, explorer, mcp, profiles, schema, szz
 from ._compat import dumps, get, lines, loads
 
 USAGE = """usage: bug-age [--version | --help]
-       bug-age catalog --repo DIR --path CRATE [--head REV] [--out FILE]
+       bug-age catalog --repo DIR --path DIR [--profile rust|python (default rust)] [--head REV] [--out FILE]
        bug-age szz --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--release-tags GLOB] [--out FILE]
        bug-age sweep --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD
              [--build CMD] [--start SHA] [--runner docker|local] [--repeats N] [--image IMG]
@@ -47,7 +47,7 @@ class UsageError(Exception):
 _SWEEP = {"repo", "path", "overlay", "test", "build", "runner", "repeats", "image", "time-travel-script",
           "scratch", "logs", "out", "namespace", "bucket", "step-timeout"}
 OPTIONS = {
-    "catalog": {"repo", "path", "head", "out"},
+    "catalog": {"repo", "path", "profile", "head", "out"},
     "szz": {"repo", "catalog", "window-start", "release-tags", "out"},
     "sweep": _SWEEP | {"fix", "start", "search"},
     "probe": _SWEEP | {"commits"},
@@ -130,7 +130,11 @@ def read_json(path):
 
 def cmd_catalog(f):
     """`catalog`: rule-based list of fix commits."""
-    cat = catalog.build(Path(need(f, "repo")), f.get("head", "HEAD"), need(f, "path"))
+    try:
+        profile = profiles.check(f.get("profile", "rust"))
+    except ValueError as exc:
+        raise UsageError(str(exc)) from exc
+    cat = catalog.build(Path(need(f, "repo")), f.get("head", "HEAD"), need(f, "path"), profile)
     print(f"catalog: {len(cat['fixes'])} fixes, {len(cat['excluded'])} excluded, {cat['scanned']} commits scanned",
           file=sys.stderr)
     emit(cat, f.get("out"))
@@ -143,6 +147,9 @@ def cmd_szz(f):
     path = get(cat, "path")
     if not isinstance(path, str):
         raise Failure("catalog has no path")
+    profile = get(cat, "profile") if get(cat, "profile") is not None else "rust"
+    if profile not in profiles.NAMES:
+        raise Failure(f"catalog has an unknown profile: {profile!r}")
     window = f.get("window-start")
     release_tags = f.get("release-tags", "v[0-9]*")
     fixes = get(cat, "fixes")
@@ -156,14 +163,15 @@ def cmd_szz(f):
         parents = get(e, "parents")
         entry = {"sha": text("sha"), "date": text("date"), "subject": text("subject"), "rule": text("rule"),
                  "parents": [p for p in parents if isinstance(p, str)] if isinstance(parents, list) else []}
-        bugs.append(szz.analyze(repo, entry, path, window, release_tags))
+        bugs.append(szz.analyze(repo, entry, path, window, release_tags, profile))
     with_intro = sum(1 for b in bugs if b["lifetime"] is not None)
     in_window = sum(1 for b in bugs if b["in_window"] is True)
     print(f"szz: {len(bugs)} fixes, {with_intro} with a nominated introducer, {in_window} in window", file=sys.stderr)
     summary = {"fixes": len(bugs), "with_introducer": with_intro, "in_window": in_window if window is not None else None,
                "window_start": window, "release_tags": release_tags}
-    emit({"head": get(cat, "head"), "path": path, "method": "A (SZZ-style, git blame -w on first parent)",
-          "summary": summary, "bugs": bugs}, f.get("out"))
+    head = {"head": get(cat, "head"), "path": path} | ({} if profile == "rust" else {"profile": profile})
+    emit({**head, "method": "A (SZZ-style, git blame -w on first parent)", "summary": summary, "bugs": bugs},
+         f.get("out"))
 
 
 def cmd_bundle(f):

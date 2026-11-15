@@ -36,7 +36,7 @@ To see the output first, [open the live example](https://claude.ai/artifact/UDw6
 ## Commands
 
 ```
-bug-age catalog --repo DIR --path CRATE [--head REV] [--out FILE]
+bug-age catalog --repo DIR --path DIR [--profile rust|python (default rust)] [--head REV] [--out FILE]
 bug-age szz --repo DIR --catalog FILE [--window-start YYYY-MM-DD] [--release-tags GLOB] [--out FILE]
 bug-age sweep --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD
       [--build CMD] [--start SHA] [--runner docker|local] [--repeats N] [--image IMG]

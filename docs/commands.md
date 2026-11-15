@@ -8,7 +8,7 @@ Every command accepts only its own options: an unknown, repeated or valueless op
 
 | Command | What it does |
 |---|---|
-| `catalog` | Lists the fix commits that touch a crate and records why each other commit was excluded (docs, lint, release, and so on) |
+| `catalog` | Lists the fix commits that touch a path and records why each other commit was excluded (docs, lint, release, and so on). `--profile python` adds Python lint-tool exclusions and makes Method A blame `.py` files |
 | `szz` | Method A: names a likely introducing commit for each fix in the catalog |
 | `sweep` | Method B: binary-searches for the first commit where the test compiles, then bisects PASS/FAIL above it. Decisive commits are re-run `--repeats` times and flagged UNSTABLE if the result changes. Bisection tests a sample, so its result is a `boundary`, a lower bound: an earlier failure is not ruled out. `--search exhaustive` tests every commit in the range, assumes nothing about commits it could not test, and is the only way to get `located` |
 | `probe` | Runs the same test at a fixed list of commits, with no search |

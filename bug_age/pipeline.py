@@ -11,6 +11,7 @@ continues with whatever does not depend on it. Writes <results_dir>/PIPELINE.md 
 import datetime as dt, hashlib, json, re, shutil, subprocess, sys, time, tomllib
 from pathlib import Path
 
+from . import profiles
 from .repros import BUILD, TEST, range_start
 from .sweep import _overlay_listing as overlay_listing
 
@@ -48,7 +49,12 @@ def main(argv=None):
         return 2
     cfg_path = Path(argv[0])
     fresh, skip_feas = "--fresh" in argv, "--skip-feasibility" in argv
-    c = tomllib.loads(cfg_path.read_text())
+    try:
+        c = profiles.target(tomllib.loads(cfg_path.read_text()))
+    except ValueError as exc:
+        print(f"bug-age pipeline: {cfg_path}: {exc}", file=sys.stderr)
+        return 2
+    rust = c["profile"] == "rust"
     repo, res, spike, dist = (ROOT / c[k] for k in ("work_dir", "results_dir", "spike_dir", "dist_dir"))
     res.mkdir(parents=True, exist_ok=True)
     log = ROOT / "work" / f"pipeline-{c['name']}.log"
@@ -90,6 +96,8 @@ def main(argv=None):
             """Stage body; returns (status, reason)."""
             if skip_feas:
                 return "NOT TESTED", "skipped (--skip-feasibility)"
+            if not rust:
+                return "NOT TESTED", f"no feasibility spike for profile {c['profile']} in this version"
             if out.is_file() and not fresh:
                 # Reuse only a report made for this repository at this pinned head.
                 notes = []
@@ -117,6 +125,8 @@ def main(argv=None):
 
     def repros():
         """Sweep the target's regression tests if it has any; otherwise report Method B as NOT TESTED."""
+        if not rust:
+            return "NOT TESTED", f"no Method B runner for profile {c['profile']} in this version"
         overlays = sorted((res / "repros").glob("*/overlay")) if (res / "repros").is_dir() else []
         if not overlays:
             return "NOT TESTED", "no regression tests written for this target (results_dir/repros/<fix>/overlay)"
@@ -227,7 +237,8 @@ def main(argv=None):
         out, fn = feasibility(tt)
         stage("feasibility (time-travel)" if tt else "feasibility (baseline)", out, fn)
     cat = res / "catalog.json"
-    if stage("catalog (rule-based fixes)", cat, cli("catalog", ["--repo", repo, "--path", c["crate_path"], "--head", c["head"]], cat)):
+    if stage("catalog (rule-based fixes)", cat, cli("catalog", ["--repo", repo, "--path", c["crate_path"], "--head", c["head"]]
+                                                       + ([] if rust else ["--profile", c["profile"]]), cat)):
         szz_args = ["--repo", repo, "--catalog", cat] + (["--window-start", c["szz_window_start"]] if "szz_window_start" in c else []) \
             + (["--release-tags", c["release_tag_glob"]] if "release_tag_glob" in c else [])
         szz_ok = stage("Method A (szz)", res / "szz.json", cli("szz", szz_args, res / "szz.json"))
@@ -248,7 +259,7 @@ def finish(c, res, stages):
     """Write pipeline.json and PIPELINE.md, and return a non-zero exit code if any stage failed."""
     failed = [s for s in stages if s["status"] == "FAILED"]
     doc = {"target": c["name"], "repo_url": c["repo_url"], "head": c["head"], "crate_path": c["crate_path"],
-           "generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "stages": stages}
+           **({} if c["profile"] == "rust" else {"profile": c["profile"]}), "generated_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "stages": stages}
     (res / "pipeline.json").write_text(json.dumps(doc, indent=2) + "\n")
     md = [f"# Pipeline: {c['name']}", "", f"- subject: {c['repo_url']} `{c['crate_path']}` at `{c['head']}`",
           f"- generated: {doc['generated_utc']}", "", "| Stage | Status | Reason | Output sha256 |", "|---|---|---|---|"]
