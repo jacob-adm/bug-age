@@ -8,7 +8,7 @@
    "sha": "<first>",
    "steps": [
     {
-     "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --exclude-newer 2020-05-01T00:00:00Z '.[test]' pytest pytest-mock",
+     "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2020-05-01T00:00:00Z '.[test]' pytest pytest-mock",
      "exit": 0,
      "name": "fetch",
      "network": true,
@@ -37,7 +37,7 @@
    "sha": "<second>",
    "steps": [
     {
-     "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --exclude-newer 2021-12-01T00:00:00Z '.[test]' pytest pytest-mock",
+     "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2021-12-01T00:00:00Z '.[test]' pytest pytest-mock",
      "exit": 0,
      "name": "fetch",
      "network": true,
@@ -142,7 +142,7 @@ bugage-uvcache:/root/.cache/uv
 bug-age-python:3.8-<recipe>
 sh
 -c
-uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --exclude-newer 2020-05-01T00:00:00Z '.[test]' pytest pytest-mock
+uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2020-05-01T00:00:00Z '.[test]' pytest pytest-mock
 --
 run
 --rm
@@ -267,7 +267,7 @@ bugage-uvcache:/root/.cache/uv
 bug-age-python:3.11-<recipe>
 sh
 -c
-uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --exclude-newer 2021-12-01T00:00:00Z '.[test]' pytest pytest-mock
+uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2021-12-01T00:00:00Z '.[test]' pytest pytest-mock
 --
 run
 --rm

@@ -252,6 +252,7 @@ class Local:
 
 
 KEEP_TARGETS = 2
+RESET_TRIES = 20  # attempts, 0.5 s apart, to remove a volume a just-finished container may still hold
 SRC = "bugage-src"
 INDEX = "bugage-index"
 
@@ -291,10 +292,24 @@ class DockerSource:
                              env=dict(os.environ, COPYFILE_DISABLE="1"))
         return out.stdout
 
+    def reset_volume(self, volume, log):
+        """Remove a volume so the next commit starts empty; raise if it cannot be removed.
+
+        `docker run --rm` returns before the daemon has removed the container, so a removal right
+        after a step can find the volume still in use. Staging over the old contents would leave
+        files the new commit deleted, so this retries for a few seconds and then refuses.
+        """
+        for _ in range(RESET_TRIES):
+            code, _ = self.docker(["volume", "rm", "-f", self.v(volume)], None, log)
+            if code == 0:
+                return
+            time.sleep(0.5)
+        raise RunnerError(f"harness: volume {self.v(volume)} is still in use (see {log}); not staging over its old contents")
+
     def stage_source(self, spec, sha):
         """Fill the source volume with `sha`'s tree and the overlay; return the commit's log directory."""
         logs = spec.logs / sha[:12]
-        self.docker(["volume", "rm", "-f", self.v(SRC)], None, logs / "stage-reset.log")
+        self.reset_volume(SRC, logs / "stage-reset.log")
         archive = git_run(spec.repo, ["archive", "--format=tar", sha], check=False)
         if archive.returncode != 0:
             raise RunnerError(f"harness: git archive {sha} failed")
@@ -521,11 +536,13 @@ class PythonDocker(DockerSource):
         self.python = python_for(ct, requires_python(spec.repo, sha, spec.crate_path))
         self.image = self.image_for(self.python, logs / "stage-image.log")
         self.stage_source(spec, sha)
-        self.docker(["volume", "rm", "-f", self.v(VENV)], None, logs / "stage-venv-reset.log")
+        self.reset_volume(VENV, logs / "stage-venv-reset.log")
         cutoff = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(ct))
         # The fetch step: a fresh environment, then the project and its test dependencies as of the commit.
+        # --compile-bytecode matches pip, which compiled at install time: otherwise an old dependency's
+        # compile-time warnings surface at import, and a project testing with warnings as errors fails.
         self.fetch_cmd = (f"uv venv -q --python /usr/local/bin/python /{VENV} && uv pip install -q --python /{VENV}/bin/python "
-                          f"--exclude-newer {cutoff} {shlex.join([self.install_spec, *self.test_deps])}")
+                          f"--compile-bytecode --exclude-newer {cutoff} {shlex.join([self.install_spec, *self.test_deps])}")
         return f"python{self.python}"
 
     def exec(self, spec, cmd, network, log):
