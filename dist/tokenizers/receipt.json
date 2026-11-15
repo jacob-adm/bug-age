@@ -2,8 +2,8 @@
   "blameless_gate": "PASS",
   "command": "bug_age/__main__.py bundle --repo work/tokenizers --results results/tokenizers --repo-url https://github.com/huggingface/tokenizers --out dist/tokenizers --spike spike --out-of-scope 'Bindings (Python/Node), benches|out of scope for the Rust core crate|binding behaviour'",
   "outputs": {
-    "bundle.js": "ffd6f0bac47e8d861124770473d2000212f926d238ba6390f35c4536916a9d21",
-    "bundle.json": "bb7c0441ce86eafa7474a19aa2debb5f4b8b09e208f078f951eb66b082666f2d"
+    "bundle.js": "f0cc7469c4444786bad4184f74799c3de104c443d48357526ae034822754c03d",
+    "bundle.json": "99fe573069a70c4a011a21d5e117a2e5ce10ce98d71aef2df44c5a88e8ab70b7"
   },
   "schema_check": "PASS",
   "schema_version": "1.2.0",
@@ -13,7 +13,7 @@
     "warn_over_8mb": false
   },
   "versions": {
-    "bug-age": "2.1.0",
+    "bug-age": "2.1.1",
     "git": "git version 2.50.1 (Apple Git-155)"
   },
   "warnings": []

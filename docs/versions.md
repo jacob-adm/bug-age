@@ -22,3 +22,12 @@ tokenizers sweep that said `located` now says `boundary`, with the same numbers 
 It also supports SHA-256 repositories, rejects unknown options (exit 2), binds reused pipeline
 outputs to their inputs, stages overlays without following symlinks, mounts the shared caches
 read-only for test code, bounds every step in time and log size, and always finishes redaction.
+
+2.1.1 fixes a follow-up audit's findings. `--search exhaustive` now tests every commit in the range
+instead of bisecting to the first testable one, and reports `located` only when every earlier commit
+was tested and passed; an untested or flaky earlier commit makes it a `boundary`. The pipeline
+reuses a stored feasibility report or sweep only when every recorded input matches what it would run
+(samples, time-travel, package scope, build, test, repeats, search, start, overlay, Docker recipe
+and the output's hash); measurements made before 2.1.1 do not record the Docker recipe, and reusing
+one says so. Step logs keep at most exactly 8 MiB of output. Bisection results and the example runs'
+numbers are unchanged.
