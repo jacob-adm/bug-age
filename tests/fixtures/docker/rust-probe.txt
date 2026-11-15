@@ -1,0 +1,1002 @@
+== no-time-travel: report
+{
+ "repeats": 2,
+ "results": [
+  {
+   "outcome": "PASS",
+   "reason": "passed 2x",
+   "sha": "<intro>",
+   "steps": [
+    {
+     "cmd": "cargo fetch",
+     "exit": 0,
+     "name": "fetch",
+     "network": true,
+     "seconds": 0
+    },
+    {
+     "cmd": "cargo test --no-run",
+     "exit": 0,
+     "name": "build",
+     "network": false,
+     "seconds": 0
+    },
+    {
+     "cmd": "cargo test --test bugage_repro",
+     "exit": 0,
+     "name": "test_1",
+     "network": false,
+     "seconds": 0
+    },
+    {
+     "cmd": "cargo test --test bugage_repro",
+     "exit": 0,
+     "name": "test_2",
+     "network": false,
+     "seconds": 0
+    }
+   ],
+   "toolchain": "1.84"
+  },
+  {
+   "outcome": "PASS",
+   "reason": "passed 2x",
+   "sha": "<fix>",
+   "steps": [
+    {
+     "cmd": "cargo fetch",
+     "exit": 0,
+     "name": "fetch",
+     "network": true,
+     "seconds": 0
+    },
+    {
+     "cmd": "cargo test --no-run",
+     "exit": 0,
+     "name": "build",
+     "network": false,
+     "seconds": 0
+    },
+    {
+     "cmd": "cargo test --test bugage_repro",
+     "exit": 0,
+     "name": "test_1",
+     "network": false,
+     "seconds": 0
+    },
+    {
+     "cmd": "cargo test --test bugage_repro",
+     "exit": 0,
+     "name": "test_2",
+     "network": false,
+     "seconds": 0
+    }
+   ],
+   "toolchain": "1.84"
+  }
+ ],
+ "runner": "docker",
+ "test": "cargo test --test bugage_repro"
+}
+== no-time-travel: docker
+volume
+rm
+-f
+bugage-src
+--
+run
+-i
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-spike:4
+sh
+-c
+mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"
+sh
+/bugage-src
+--
+run
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-spike:4
+sh
+-c
+root=$1; shift; set -f; IFS=/; for rel in "$@"; do p=$root; for part in $rel; do p=$p/$part; if [ -L "$p" ]; then echo "symlink on the overlay path: ${p#$root/}"; exit 3; fi; done; done
+sh
+/bugage-src
+core/tests/bugage_repro.rs
+--
+run
+-i
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-spike:4
+sh
+-c
+mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"
+sh
+/bugage-src/core
+--
+volume
+ls
+-q
+--filter
+name=bugage-target-
+--
+run
+--rm
+--name
+bugage-step-<id>
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup
+-v
+bugage-cargo:/cargo
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+flock /rustup/.bug-age-install.lock rustup toolchain install 1.84 --profile minimal --no-self-update
+--
+run
+--rm
+--name
+bugage-step-<id>
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup
+-v
+bugage-cargo:/cargo
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo fetch
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-e
+CARGO_NET_OFFLINE=true
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup:ro
+-v
+bugage-cargo:/cargo:ro
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo test --no-run
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-e
+CARGO_NET_OFFLINE=true
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup:ro
+-v
+bugage-cargo:/cargo:ro
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo test --test bugage_repro
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-e
+CARGO_NET_OFFLINE=true
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup:ro
+-v
+bugage-cargo:/cargo:ro
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo test --test bugage_repro
+--
+volume
+rm
+-f
+bugage-src
+--
+run
+-i
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-spike:4
+sh
+-c
+mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"
+sh
+/bugage-src
+--
+run
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-spike:4
+sh
+-c
+root=$1; shift; set -f; IFS=/; for rel in "$@"; do p=$root; for part in $rel; do p=$p/$part; if [ -L "$p" ]; then echo "symlink on the overlay path: ${p#$root/}"; exit 3; fi; done; done
+sh
+/bugage-src
+core/tests/bugage_repro.rs
+--
+run
+-i
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-spike:4
+sh
+-c
+mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"
+sh
+/bugage-src/core
+--
+volume
+ls
+-q
+--filter
+name=bugage-target-
+--
+run
+--rm
+--name
+bugage-step-<id>
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup
+-v
+bugage-cargo:/cargo
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+flock /rustup/.bug-age-install.lock rustup toolchain install 1.84 --profile minimal --no-self-update
+--
+run
+--rm
+--name
+bugage-step-<id>
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup
+-v
+bugage-cargo:/cargo
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo fetch
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-e
+CARGO_NET_OFFLINE=true
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup:ro
+-v
+bugage-cargo:/cargo:ro
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo test --no-run
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-e
+CARGO_NET_OFFLINE=true
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup:ro
+-v
+bugage-cargo:/cargo:ro
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo test --test bugage_repro
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-e
+CARGO_NET_OFFLINE=true
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup:ro
+-v
+bugage-cargo:/cargo:ro
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo test --test bugage_repro
+--
+== time-travel: report
+{
+ "repeats": 2,
+ "results": [
+  {
+   "outcome": "PASS",
+   "reason": "passed 2x",
+   "sha": "<intro>",
+   "steps": [
+    {
+     "cmd": "cargo fetch",
+     "exit": 0,
+     "name": "fetch",
+     "network": true,
+     "seconds": 0
+    },
+    {
+     "cmd": "cargo test --no-run",
+     "exit": 0,
+     "name": "build",
+     "network": false,
+     "seconds": 0
+    },
+    {
+     "cmd": "cargo test --test bugage_repro",
+     "exit": 0,
+     "name": "test_1",
+     "network": false,
+     "seconds": 0
+    },
+    {
+     "cmd": "cargo test --test bugage_repro",
+     "exit": 0,
+     "name": "test_2",
+     "network": false,
+     "seconds": 0
+    }
+   ],
+   "toolchain": "1.84"
+  },
+  {
+   "outcome": "PASS",
+   "reason": "passed 2x",
+   "sha": "<fix>",
+   "steps": [
+    {
+     "cmd": "cargo fetch",
+     "exit": 0,
+     "name": "fetch",
+     "network": true,
+     "seconds": 0
+    },
+    {
+     "cmd": "cargo test --no-run",
+     "exit": 0,
+     "name": "build",
+     "network": false,
+     "seconds": 0
+    },
+    {
+     "cmd": "cargo test --test bugage_repro",
+     "exit": 0,
+     "name": "test_1",
+     "network": false,
+     "seconds": 0
+    },
+    {
+     "cmd": "cargo test --test bugage_repro",
+     "exit": 0,
+     "name": "test_2",
+     "network": false,
+     "seconds": 0
+    }
+   ],
+   "toolchain": "1.84"
+  }
+ ],
+ "runner": "docker",
+ "test": "cargo test --test bugage_repro"
+}
+== time-travel: docker
+volume
+rm
+-f
+bugage-src
+--
+run
+-i
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-spike:4
+sh
+-c
+mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"
+sh
+/bugage-src
+--
+run
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-spike:4
+sh
+-c
+root=$1; shift; set -f; IFS=/; for rel in "$@"; do p=$root; for part in $rel; do p=$p/$part; if [ -L "$p" ]; then echo "symlink on the overlay path: ${p#$root/}"; exit 3; fi; done; done
+sh
+/bugage-src
+core/tests/bugage_repro.rs
+--
+run
+-i
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-spike:4
+sh
+-c
+mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"
+sh
+/bugage-src/core
+--
+run
+--rm
+-v
+bugage-index:/bugage-index
+-v
+bugage-cargo:/cargo
+bug-age-spike:4
+sh
+-c
+rm -rf /bugage-index/current && mkdir -p /cargo/registry/index && find /cargo/registry/index -mindepth 1 -maxdepth 1 ! -name 'github.com-*' ! -name 'index.crates.io-*' -exec rm -rf {} +
+--
+run
+-i
+--rm
+-v
+bugage-index:/bugage-index
+bug-age-spike:4
+sh
+-c
+mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"
+sh
+/bugage-index/current
+--
+run
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-spike:4
+sh
+-c
+mkdir -p /bugage-src/.cargo && printf "[source.crates-io]\nreplace-with = \"tt\"\n[source.tt]\nregistry = \"file:///bugage-index/current\"\n" > /bugage-src/.cargo/config
+--
+volume
+ls
+-q
+--filter
+name=bugage-target-
+--
+run
+--rm
+--name
+bugage-step-<id>
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup
+-v
+bugage-cargo:/cargo
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+flock /rustup/.bug-age-install.lock rustup toolchain install 1.84 --profile minimal --no-self-update
+--
+run
+--rm
+--name
+bugage-step-<id>
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup
+-v
+bugage-cargo:/cargo
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo fetch
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-e
+CARGO_NET_OFFLINE=true
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup:ro
+-v
+bugage-cargo:/cargo:ro
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo test --no-run
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-e
+CARGO_NET_OFFLINE=true
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup:ro
+-v
+bugage-cargo:/cargo:ro
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo test --test bugage_repro
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-e
+CARGO_NET_OFFLINE=true
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup:ro
+-v
+bugage-cargo:/cargo:ro
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo test --test bugage_repro
+--
+volume
+rm
+-f
+bugage-src
+--
+run
+-i
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-spike:4
+sh
+-c
+mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"
+sh
+/bugage-src
+--
+run
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-spike:4
+sh
+-c
+root=$1; shift; set -f; IFS=/; for rel in "$@"; do p=$root; for part in $rel; do p=$p/$part; if [ -L "$p" ]; then echo "symlink on the overlay path: ${p#$root/}"; exit 3; fi; done; done
+sh
+/bugage-src
+core/tests/bugage_repro.rs
+--
+run
+-i
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-spike:4
+sh
+-c
+mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"
+sh
+/bugage-src/core
+--
+run
+--rm
+-v
+bugage-index:/bugage-index
+-v
+bugage-cargo:/cargo
+bug-age-spike:4
+sh
+-c
+rm -rf /bugage-index/current && mkdir -p /cargo/registry/index && find /cargo/registry/index -mindepth 1 -maxdepth 1 ! -name 'github.com-*' ! -name 'index.crates.io-*' -exec rm -rf {} +
+--
+run
+-i
+--rm
+-v
+bugage-index:/bugage-index
+bug-age-spike:4
+sh
+-c
+mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"
+sh
+/bugage-index/current
+--
+run
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-spike:4
+sh
+-c
+mkdir -p /bugage-src/.cargo && printf "[source.crates-io]\nreplace-with = \"tt\"\n[source.tt]\nregistry = \"file:///bugage-index/current\"\n" > /bugage-src/.cargo/config
+--
+volume
+ls
+-q
+--filter
+name=bugage-target-
+--
+run
+--rm
+--name
+bugage-step-<id>
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup
+-v
+bugage-cargo:/cargo
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+flock /rustup/.bug-age-install.lock rustup toolchain install 1.84 --profile minimal --no-self-update
+--
+run
+--rm
+--name
+bugage-step-<id>
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup
+-v
+bugage-cargo:/cargo
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo fetch
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-e
+CARGO_NET_OFFLINE=true
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup:ro
+-v
+bugage-cargo:/cargo:ro
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo test --no-run
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-e
+CARGO_NET_OFFLINE=true
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup:ro
+-v
+bugage-cargo:/cargo:ro
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo test --test bugage_repro
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-e
+CARGO_NET_OFFLINE=true
+-v
+bugage-src:/bugage-src
+-v
+bugage-index:/bugage-index
+-v
+bugage-target-1.84:/target
+-v
+bugage-rustup:/rustup:ro
+-v
+bugage-cargo:/cargo:ro
+-e
+CARGO_TARGET_DIR=/target
+-e
+CARGO_TERM_COLOR=never
+-e
+RUSTUP_TOOLCHAIN=1.84
+-w
+/bugage-src/core
+bug-age-spike:4
+sh
+-c
+cargo test --test bugage_repro
+--
