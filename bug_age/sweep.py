@@ -19,7 +19,7 @@ from pathlib import Path
 from . import __version__
 from ._compat import dumps, lines, trim
 from .git import GitError, git
-from .runner import DEBUG, FAIL, FLAKY, PASS, TIMED_OUT, UNTESTABLE, Docker, Local, RunnerError, Spec
+from .runner import DEBUG, FAIL, FLAKY, PASS, TIMED_OUT, UNTESTABLE, Docker, Local, PythonDocker, RunnerError, Spec
 
 SKIP_RADIUS = 2      # how far either side of a midpoint to look for a testable commit
 SEARCH_REPEATS = 1   # test runs per commit while searching; decisive commits get --repeats
@@ -263,6 +263,12 @@ def _finish(sweep, probe):
 
 # ---------------------------------------------------------------- commands
 
+# Default build step per profile: compile (rust) or collect (python) the regression test only, so a
+# test that cannot even load at a commit makes that commit UNTESTABLE rather than FAIL.
+BUILD = {"rust": "cargo test --no-run",
+         "python": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py"}
+OVERLAY_TEST = {"rust": "bugage_repro.rs", "python": "bugage_repro_test.py"}
+
 
 def _spec_and_runner(f, tag):
     """The test spec and runner from the sweep/probe flags."""
@@ -283,15 +289,29 @@ def _spec_and_runner(f, tag):
     step_timeout = number("step-timeout", "3600")
     if step_timeout < 1:
         raise UsageError("--step-timeout must be at least 1 second")
+    profile = f.get("profile", "rust")
+    if profile not in BUILD:
+        raise UsageError(f"--profile must be one of {', '.join(BUILD)}")
+    # Options that only one profile reads are refused for the other, so none is silently ignored.
+    only = {"rust": ("image", "time-travel-script", "bucket"), "python": ("install", "test-deps")}
+    for other, keys in only.items():
+        given = [k for k in keys if k in f]
+        if other != profile and given:
+            raise UsageError(f"--{given[0]} applies to --profile {other} only")
     try:
-        spec = Spec(need(f, "repo"), need(f, "path"), need(f, "overlay"), f.get("build", "cargo test --no-run"),
+        spec = Spec(need(f, "repo"), need(f, "path"), need(f, "overlay"), f.get("build", BUILD[profile]),
                     need(f, "test"), repeats, f.get("scratch", f"{home}/.cache/bug-age"),
                     f.get("logs", f"work/sweep-logs/{tag}"), step_timeout)
     except ValueError as exc:  # an unsafe crate path or overlay entry: refused before any work
         raise UsageError(str(exc)) from None
     kind = f.get("runner", "docker")
     if kind == "local":
-        return spec, Local(spec)
+        runner = Local(spec)
+        runner.overlay_marker = OVERLAY_TEST[profile]
+        return spec, runner
+    if kind == "docker" and profile == "python":
+        deps = [d.strip() for d in f.get("test-deps", "pytest").split(",") if d.strip()]
+        return spec, PythonDocker(f"-{f['namespace']}" if "namespace" in f else "", f.get("install", "."), deps)
     if kind == "docker":
         tt = f.get("time-travel-script", str(Path(__file__).with_name("timetravel.py")))
         return spec, Docker(f.get("image", "bug-age-spike:4"), None if tt == "none" else Path(tt),
@@ -323,7 +343,12 @@ def cmd_sweep(f):
           f"commits tested)", file=sys.stderr)
     report = dumps(result, pretty=True) + "\n"
     versions = {"bug-age": __version__, "git": tool_version("git", ["--version"])}
-    if result["runner"] == "docker":
+    if isinstance(runner, PythonDocker):
+        versions["docker"] = tool_version("docker", ["version", "--format", "{{.Server.Version}} {{.Server.Arch}}"])
+        versions["images"] = dict(sorted(runner.images.items()))
+        versions["image_recipe"] = runner.recipe_sha
+        versions["uv_exclude_newer"] = "commit time"
+    elif result["runner"] == "docker":
         versions["docker"] = tool_version("docker", ["version", "--format", "{{.Server.Version}} {{.Server.Arch}}"])
         versions["image"] = tool_version("docker", ["image", "inspect", f.get("image", "bug-age-spike:4"),
                                                     "--format", "{{.Id}}"])

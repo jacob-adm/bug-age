@@ -23,6 +23,7 @@ USAGE = """usage: bug-age [--version | --help]
              [--namespace NAME] [--bucket N (toolchain minor rounding, default 4; 0 = exact)]
              [--step-timeout SECONDS (per fetch, build or test step; default 3600)]
              [--search bisection|exhaustive (exhaustive tests every commit; only it can report located)]
+             [--profile rust|python] [--install SPEC (python; default .)] [--test-deps A,B (python; default pytest)]
        bug-age probe --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]
        bug-age bundle --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR] [--out-of-scope 'STAGE|EVIDENCE|DOES_NOT_PROVE']
        bug-age explorer [--page FILE] --targets NAME=DIR,NAME=DIR --out DIR   (DIR = a bundle output dir)
@@ -45,7 +46,7 @@ class UsageError(Exception):
 # The options each subcommand accepts. Anything else is a usage error, so a typo such as --hed can
 # never fall back to a default and silently change what is measured.
 _SWEEP = {"repo", "path", "overlay", "test", "build", "runner", "repeats", "image", "time-travel-script",
-          "scratch", "logs", "out", "namespace", "bucket", "step-timeout"}
+          "scratch", "logs", "out", "namespace", "bucket", "step-timeout", "profile", "install", "test-deps"}
 OPTIONS = {
     "catalog": {"repo", "path", "profile", "head", "out"},
     "szz": {"repo", "catalog", "window-start", "release-tags", "out"},

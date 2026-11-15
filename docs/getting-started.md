@@ -28,7 +28,12 @@ mkdir -p targets && mv rust-sdk.toml targets/myrepo.toml
 | `repo_url` | yes | Clone URL of the repository. |
 | `head` | yes | Full SHA of the commit to analyse up to. Pinning it makes the run reproducible. |
 | `path` | yes | Directory to measure inside the repository (`.` for the root). Only history under this path is analysed. The older name `crate_path` is still accepted. |
-| `profile` | no | Language of the code under `path`: `rust` (default) or `python`. It decides which files Method A blames and which lint-tool fixes the catalog leaves out. Feasibility and Method B are Rust only in this version; for `python` they are listed as NOT TESTED. |
+| `profile` | no | Language of the code under `path`: `rust` (default) or `python`. It decides which files Method A blames, which lint-tool fixes the catalog leaves out, and how feasibility and Method B install and test each commit. |
+| `import` | python | Module to import as the build check, e.g. `requests`. |
+| `test` | python | Test command for feasibility, run offline, e.g. `python -m pytest -q -p no:cacheprovider tests`. Deselect tests that need the internet or today's date here, and say so in `not_covered`. |
+| `install` | no | What uv installs from the checkout (python). Default `.`; e.g. `.[socks]` for extras. |
+| `test_deps` | no | Test dependencies installed with the project at every commit (python). Default `["pytest"]`. |
+| `not_covered` | no | One line naming the tests the `test` command leaves out (python); published in the bundle's coverage. |
 | `work_dir`, `results_dir`, `spike_dir`, `dist_dir` | yes | Where the clone, results, feasibility reports and bundle go, relative to this repository. Follow the pattern `work/<name>`, `results/<name>`, `results/<name>/spike`, `dist/<name>`. |
 | `release_tag_glob` | no | Pattern matching your release tags, for release counts. Default `v[0-9]*`. Set it if your tags look different, e.g. `mycrate-v[0-9]*`, or every release count will be 0. |
 | `package` | no | Cargo package to build and test in a workspace. Default: the whole workspace. |

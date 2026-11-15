@@ -11,6 +11,7 @@ test. It verifies A behaviourally where the test compiles; it never changes Meth
 
 Usage: python3 -m bug_age.repros results/tokenizers work/tokenizers tokenizers
        [--only ID ...] [--render-only] [--acheck-only]
+       [--profile python --install SPEC --test-deps A,B]   (python targets; rust is the default)
 """
 import datetime as dt, hashlib, json, subprocess, sys
 from pathlib import Path
@@ -20,6 +21,15 @@ ROOT = Path.cwd()  # working directory; stripped from recorded paths
 WINDOW_DAYS = 3 * 365                                # sweep range: at most three years before the fix
 BUILD = "cargo test --test bugage_repro --no-run"   # compile the regression test only
 TEST = "cargo test --test bugage_repro"             # run the regression test
+# The python profile's regression test is tests/bugage_repro_test.py under the measured path.
+PY_BUILD = "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py"
+PY_TEST = "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py"
+PROFILE_ARGS = []   # extra sweep/probe options for a non-rust profile, set from the command line
+
+
+def commands():
+    """(build, test) for the profile in PROFILE_ARGS."""
+    return (PY_BUILD, PY_TEST) if "python" in PROFILE_ARGS else (BUILD, TEST)
 
 
 def git(repo, *args):
@@ -44,8 +54,8 @@ def sweep(res, repo, crate, rid, worker="w0"):
     out = res / "repros" / rid / "sweep.json"
     cmd = [sys.executable, "-m", "bug_age", "sweep", "--repo", str(repo), "--path", crate, "--fix", fix,
            "--start", range_start(repo, fix), "--overlay", str(res / "repros" / rid / "overlay"),
-           "--runner", "docker", "--repeats", "3", "--build", BUILD, "--test", TEST,
-           "--logs", f"work/sweep-logs/{rid}", "--out", str(out), "--namespace", worker]
+           "--runner", "docker", "--repeats", "3", "--build", commands()[0], "--test", commands()[1],
+           "--logs", f"work/sweep-logs/{rid}", "--out", str(out), "--namespace", worker, *PROFILE_ARGS]
     print(f"== {rid}: {' '.join(cmd[4:])}", flush=True)
     p = subprocess.run(cmd, stderr=subprocess.PIPE, text=True)
     (res / "repros" / rid / "sweep.stderr.log").write_text(p.stderr.replace(f"{ROOT}/", "").replace(str(Path.home()), "~"))
@@ -65,7 +75,8 @@ def acheck(res, repo, crate, rid):
     out = res / "repros" / rid / "acheck.json"
     cmd = [sys.executable, "-m", "bug_age", "probe", "--repo", str(repo), "--path", crate, "--commits", f"{a}^,{a}",
            "--overlay", str(res / "repros" / rid / "overlay"), "--runner", "docker", "--repeats", "3",
-           "--build", BUILD, "--test", TEST, "--logs", f"work/sweep-logs/acheck-{rid}", "--out", str(out)]
+           "--build", commands()[0], "--test", commands()[1], "--logs", f"work/sweep-logs/acheck-{rid}", "--out", str(out),
+           *PROFILE_ARGS]
     print(f"== A-check {rid}: nominee {a[:10]} and parent", flush=True)
     p = subprocess.run(cmd, stderr=subprocess.PIPE, text=True)
     if p.returncode != 0:
@@ -165,6 +176,9 @@ def render(res, repo):
 
 if __name__ == "__main__":
     res, repo, crate = Path(sys.argv[1]), Path(sys.argv[2]), sys.argv[3]
+    for key in ("--profile", "--install", "--test-deps"):
+        if key in sys.argv:
+            PROFILE_ARGS += [key, sys.argv[sys.argv.index(key) + 1]]
     only = [a for a in sys.argv[sys.argv.index("--only") + 1:] if not a.startswith("--")] if "--only" in sys.argv else None
     ids = [d.name for d in sorted((res / "repros").iterdir()) if only is None or d.name in only]
     workers = int(sys.argv[sys.argv.index("--workers") + 1]) if "--workers" in sys.argv else 2

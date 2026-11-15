@@ -73,5 +73,46 @@ class RustDockerCommands(unittest.TestCase):
         self.assertEqual(text, GOLDEN.read_text())
 
 
+class PythonDockerCommands(unittest.TestCase):
+    """The python profile's docker commands for a two-commit probe, recorded the same way."""
+
+    def test_commands_match_the_golden_trace(self):
+        """Image per CPython minor, fresh environment per commit, install as of the commit time, offline test."""
+        from helpers import commit, run_git
+        d = Path(tempfile.mkdtemp(prefix="bug-age-pytrace-"))
+        self.addCleanup(shutil.rmtree, d, True)
+        repo = d / "repo"
+        repo.mkdir()
+        run_git(repo, ["init", "-q"], "2020-05-01T00:00:00Z")
+        first = commit(repo, "pkg/calc.py", "def mul(a, b):\n    return a + b\n", "init", "2020-05-01T00:00:00Z")
+        second = commit(repo, "pyproject.toml", '[project]\nname = "calc"\nrequires-python = ">=3.11"\n', "require 3.11",
+                        "2021-12-01T00:00:00Z")
+        (d / "bin").mkdir()
+        (d / "bin" / "docker").write_text(FAKE_DOCKER)
+        (d / "bin" / "docker").chmod(0o755)
+        overlay = d / "overlay" / "tests"
+        overlay.mkdir(parents=True)
+        (overlay / "bugage_repro_test.py").write_text("def test_x():\n    pass\n")
+        trace = d / "trace.txt"
+        env = dict(clean_env(), PATH=f"{d / 'bin'}{os.pathsep}{os.environ['PATH']}", BUG_AGE_DOCKER_TRACE=str(trace))
+        out = cli("probe", "--profile", "python", "--repo", repo, "--path", ".", "--commits", f"{first},{second}",
+                  "--overlay", d / "overlay", "--test", "python -m pytest -q tests/bugage_repro_test.py",
+                  "--install", ".[test]", "--test-deps", "pytest,pytest-mock", "--repeats", "1",
+                  "--scratch", d / "scratch", "--logs", d / "logs", env=env)
+        report = json.loads(out.stdout)
+        for r in report["results"]:
+            for s in r["steps"]:
+                s["seconds"] = 0
+        text = f"== report\n{json.dumps(report, indent=1, sort_keys=True)}\n== docker\n{trace.read_text()}"
+        text = text.replace(str(d), "<tmp>").replace(first, "<first>").replace(second, "<second>") \
+            .replace(first[:12], "<first12>").replace(second[:12], "<second12>")
+        text = re.sub(r"bugage-step-[0-9a-f]{12}", "bugage-step-<id>", text)
+        text = re.sub(r"bug-age-python:(3\.\d+)-[0-9a-f]{12}", r"bug-age-python:\1-<recipe>", text)
+        golden = GOLDEN.with_name("python-probe.txt")
+        if os.environ.get("BUG_AGE_WRITE_GOLDEN") == "1":
+            golden.write_text(text)
+        self.assertEqual(text, golden.read_text())
+
+
 if __name__ == "__main__":
     unittest.main()

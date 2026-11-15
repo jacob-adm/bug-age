@@ -44,6 +44,7 @@ bug-age sweep --repo DIR --path CRATE --fix SHA --overlay DIR --test CMD
       [--namespace NAME] [--bucket N (toolchain minor rounding, default 4; 0 = exact)]
       [--step-timeout SECONDS (per fetch, build or test step; default 3600)]
       [--search bisection|exhaustive (exhaustive tests every commit; only it can report located)]
+      [--profile rust|python] [--install SPEC (python; default .)] [--test-deps A,B (python; default pytest)]
 bug-age probe --repo DIR --path CRATE --commits SHA,SHA,... --overlay DIR --test CMD [same options]
 bug-age bundle --repo DIR --results DIR --repo-url URL --out DIR [--spike DIR] [--out-of-scope 'STAGE|EVIDENCE|DOES_NOT_PROVE']
 bug-age explorer [--page FILE] --targets NAME=DIR,NAME=DIR --out DIR   (DIR = a bundle output dir)
