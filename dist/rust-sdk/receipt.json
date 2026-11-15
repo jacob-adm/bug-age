@@ -1,9 +1,9 @@
 {
   "blameless_gate": "PASS",
-  "command": "bug_age/__main__.py bundle --repo work/rust-sdk --results results/rust-sdk --repo-url https://github.com/modelcontextprotocol/rust-sdk --out dist/rust-sdk --spike results/rust-sdk/spike --out-of-scope 'rmcp-macros, examples, conformance|out of scope for the rmcp crate|behaviour of the other workspace crates'",
+  "command": "bug_age/__main__.py bundle --repo work/rust-sdk --results work/pipeline-inputs-rust-sdk/results --repo-url https://github.com/modelcontextprotocol/rust-sdk --spike work/pipeline-inputs-rust-sdk/spike --out-of-scope 'rmcp-macros, examples, conformance|out of scope for the rmcp crate|behaviour of the other workspace crates' --out dist/rust-sdk",
   "outputs": {
-    "bundle.js": "51c86b8fb5b2240f8cd7713f22931cbab731e7c5af5a5153952a57b9793e76d4",
-    "bundle.json": "199a2154f1364cf300517e07d6c042a23a5ca716c25dfd94646b43437d9873e2"
+    "bundle.js": "b32612de70af5bc511739cf6850164239ed967c88f56c3f95d4ae3771d3775f1",
+    "bundle.json": "ebdbfc655494a185a5d448ebbd0e2911c3e952b4b2e699b0830ce461e359f888"
   },
   "schema_check": "PASS",
   "schema_version": "1.2.0",
@@ -13,7 +13,7 @@
     "warn_over_8mb": false
   },
   "versions": {
-    "bug-age": "2.1.1",
+    "bug-age": "2.2.0",
     "git": "git version 2.50.1 (Apple Git-155)"
   },
   "warnings": []

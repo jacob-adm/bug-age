@@ -10,4 +10,4 @@ bug-age does not discover new bugs. It starts from bugs the project already fixe
    commit where the bug's behaviour appears.
 4. `bundle` assembles everything into one blameless, schema-checked JSON file.
 """
-__version__ = "2.1.1"
+__version__ = "2.2.0"
