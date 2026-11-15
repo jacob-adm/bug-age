@@ -31,3 +31,12 @@ reuses a stored feasibility report or sweep only when every recorded input match
 and the output's hash); measurements made before 2.1.1 do not record the Docker recipe, and reusing
 one says so. Step logs keep at most exactly 8 MiB of output. Bisection results and the example runs'
 numbers are unchanged.
+
+2.2.0 measures Python projects as well as Rust crates. A target config chooses its language with
+`profile = "python"` (the default, `rust`, behaves exactly as before). For Python, Method A blames
+`.py` files outside the tests, and Method B and the feasibility check install the project with uv
+in Docker, using the CPython release current at each commit's date and, with time-travel, only
+packages published by then; tests run without network. Example runs on psf/requests and
+pallets/flask are in `results/`. A source volume that Docker had not yet released could be reused
+with the previous commit's files; staging now waits for it or marks the commit untestable. The
+Rust example runs' numbers are unchanged.
