@@ -225,6 +225,8 @@ class Local:
     """Host runner: checks commits out in a git worktree and uses the host toolchain. Not hermetic."""
 
     name = "local"
+    fetch_cmd = None                    # the host's dependencies are used as they are
+    overlay_marker = "bugage_repro.rs"  # a build error naming this file means the overlay does not compile
 
     def __init__(self, spec):
         self.wt = spec.scratch / "local-wt"
@@ -253,36 +255,25 @@ SRC = "bugage-src"
 INDEX = "bugage-index"
 
 
-class Docker:
-    """Hermetic runner: per-commit source volume, date-matched toolchain, offline build and test."""
+class DockerSource:
+    """Language-neutral part of the Docker runner: the per-commit source volume and the overlay.
+
+    A profile's runner subclasses it and adds what its language needs (toolchain, dependencies,
+    step environment); every profile stages source the same way and runs steps in named containers.
+    """
 
     name = "docker"
 
-    def __init__(self, image, time_travel_script=None, namespace="", bucket=0):
-        self.image, self.time_travel_script = image, time_travel_script
-        self.namespace, self.bucket = namespace, bucket
-        self.toolchain = self.exact_toolchain = ""
-        self.recent, self.unavailable = [], []
+    def __init__(self, image, namespace=""):
+        self.image, self.namespace = image, namespace
 
     def v(self, base):
         """Volume name in this runner's namespace."""
         return f"{base}{self.namespace}"
 
-    def target_volume(self, toolchain):
-        """Build-cache volume for one toolchain."""
-        return f"bugage-target{self.namespace}-{toolchain}"
-
     def docker(self, args, stdin, log):
         """Run docker with `args`, logged."""
         return run_logged(["docker", *args], log, stdin=stdin)
-
-    def install(self, spec, log):
-        """Install the current toolchain (serialised across parallel sweeps by a lock file)."""
-        cmd = (f"flock /rustup/.bug-age-install.lock rustup toolchain install {self.toolchain} "
-               f"--profile minimal --no-self-update")
-        code, _ = self.exec(spec, cmd, True, log)
-        if code != 0:
-            raise RunnerError(f"toolchain {self.toolchain} could not be installed")
 
     def untar_into(self, volume, d, tar, log):
         """Extract a tar stream into directory `d` of a volume."""
@@ -292,6 +283,71 @@ class Docker:
                                'mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"', "sh", d], tar, log)
         if code != 0:
             raise RunnerError(f"harness: untar into {volume}:{d} failed (see {log})")
+
+    def _tar_dir(self, d):
+        """A tar stream of directory `d`, without macOS extended attributes."""
+        out = subprocess.run(["tar", "--no-xattrs", "-C", str(d), "-cf", "-", "."], capture_output=True,
+                             env=dict(os.environ, COPYFILE_DISABLE="1"))
+        return out.stdout
+
+    def stage_source(self, spec, sha):
+        """Fill the source volume with `sha`'s tree and the overlay; return the commit's log directory."""
+        logs = spec.logs / sha[:12]
+        self.docker(["volume", "rm", "-f", self.v(SRC)], None, logs / "stage-reset.log")
+        archive = git_run(spec.repo, ["archive", "--format=tar", sha], check=False)
+        if archive.returncode != 0:
+            raise RunnerError(f"harness: git archive {sha} failed")
+        self.untar_into(SRC, f"/{SRC}", archive.stdout, logs / "stage-src.log")
+        # Refuse a commit whose tree puts a symlink on any overlay path before extracting into it.
+        check = ('root=$1; shift; set -f; IFS=/; for rel in "$@"; do p=$root; for part in $rel; do p=$p/$part; '
+                 'if [ -L "$p" ]; then echo "symlink on the overlay path: ${p#$root/}"; exit 3; fi; done; done')
+        crate = "" if spec.crate_path == "." else spec.crate_path + "/"
+        code, _ = self.docker(["run", "--rm", "-v", f"{self.v(SRC)}:/{SRC}", self.image, "sh", "-c", check, "sh", f"/{SRC}",
+                               *(crate + rel for rel in spec.overlay_files)], None, logs / "stage-overlay-check.log")
+        if code == 3:
+            raise RunnerError("overlay path goes through a symlink in this commit (see stage-overlay-check.log)")
+        if code != 0:
+            raise RunnerError(f"harness: overlay check failed (see {logs / 'stage-overlay-check.log'})")
+        self.untar_into(SRC, f"/{SRC}/{spec.crate_path}", self._tar_dir(spec.overlay), logs / "stage-overlay.log")
+        return logs
+
+    def run_step(self, spec, options, cmd, log):
+        """Run `cmd` with sh in the measured path of the source volume, in a named container.
+
+        `options` are the profile's `docker run` options (network, mounts, environment). The
+        container is named so a step over its time limit can be removed: killing the docker client
+        alone would leave the container running.
+        """
+        name = f"bugage-step-{uuid.uuid4().hex[:12]}"
+        args = ["run", "--rm", "--name", name, *options, "-w", f"/{SRC}/{spec.crate_path}", self.image, "sh", "-c", cmd]
+        return run_logged(["docker", *args], log, timeout=spec.step_timeout,
+                          on_timeout=lambda: subprocess.run(["docker", "rm", "-f", name], capture_output=True))
+
+
+class Docker(DockerSource):
+    """Rust profile: date-matched toolchain, crates.io as of the commit date when there is no
+    Cargo.lock, `cargo fetch` with network, then offline build and test."""
+
+    fetch_cmd = "cargo fetch"
+    overlay_marker = "bugage_repro.rs"
+
+    def __init__(self, image, time_travel_script=None, namespace="", bucket=0):
+        super().__init__(image, namespace)
+        self.time_travel_script, self.bucket = time_travel_script, bucket
+        self.toolchain = self.exact_toolchain = ""
+        self.recent, self.unavailable = [], []
+
+    def target_volume(self, toolchain):
+        """Build-cache volume for one toolchain."""
+        return f"bugage-target{self.namespace}-{toolchain}"
+
+    def install(self, spec, log):
+        """Install the current toolchain (serialised across parallel sweeps by a lock file)."""
+        cmd = (f"flock /rustup/.bug-age-install.lock rustup toolchain install {self.toolchain} "
+               f"--profile minimal --no-self-update")
+        code, _ = self.exec(spec, cmd, True, log)
+        if code != 0:
+            raise RunnerError(f"toolchain {self.toolchain} could not be installed")
 
     def evict_build_caches(self, logs):
         """Keep the build caches of the two most recent toolchains; remove the others."""
@@ -308,12 +364,6 @@ class Docker:
                  if v.startswith(prefix) and v[len(prefix):].startswith("1.") and v not in keep]
         if stale:
             self.docker(["volume", "rm", "-f", *stale], None, Path(logs) / "stage-evict.log")
-
-    def _tar_dir(self, d):
-        """A tar stream of directory `d`, without macOS extended attributes."""
-        out = subprocess.run(["tar", "--no-xattrs", "-C", str(d), "-cf", "-", "."], capture_output=True,
-                             env=dict(os.environ, COPYFILE_DISABLE="1"))
-        return out.stdout
 
     def time_travel(self, spec, sha, script):
         """Build a registry index as of the commit's date and point cargo at it."""
@@ -359,23 +409,7 @@ class Docker:
 
     def stage(self, spec, sha):
         """Prepare the source volume for `sha` with the overlay, dependencies and toolchain."""
-        logs = spec.logs / sha[:12]
-        self.docker(["volume", "rm", "-f", self.v(SRC)], None, logs / "stage-reset.log")
-        archive = git_run(spec.repo, ["archive", "--format=tar", sha], check=False)
-        if archive.returncode != 0:
-            raise RunnerError(f"harness: git archive {sha} failed")
-        self.untar_into(SRC, f"/{SRC}", archive.stdout, logs / "stage-src.log")
-        # Refuse a commit whose tree puts a symlink on any overlay path before extracting into it.
-        check = ('root=$1; shift; set -f; IFS=/; for rel in "$@"; do p=$root; for part in $rel; do p=$p/$part; '
-                 'if [ -L "$p" ]; then echo "symlink on the overlay path: ${p#$root/}"; exit 3; fi; done; done')
-        crate = "" if spec.crate_path == "." else spec.crate_path + "/"
-        code, _ = self.docker(["run", "--rm", "-v", f"{self.v(SRC)}:/{SRC}", self.image, "sh", "-c", check, "sh", f"/{SRC}",
-                               *(crate + rel for rel in spec.overlay_files)], None, logs / "stage-overlay-check.log")
-        if code == 3:
-            raise RunnerError("overlay path goes through a symlink in this commit (see stage-overlay-check.log)")
-        if code != 0:
-            raise RunnerError(f"harness: overlay check failed (see {logs / 'stage-overlay-check.log'})")
-        self.untar_into(SRC, f"/{SRC}/{spec.crate_path}", self._tar_dir(spec.overlay), logs / "stage-overlay.log")
+        logs = self.stage_source(spec, sha)
         if not has_lockfile(spec.repo, sha, spec.crate_path) and self.time_travel_script is not None:
             self.time_travel(spec, sha, self.time_travel_script)
         ct = int(trim(git(spec.repo, ["show", "-s", "--format=%ct", sha])))
@@ -399,19 +433,12 @@ class Docker:
 
     def exec(self, spec, cmd, network, log):
         """Run `cmd` in the crate directory of the source volume; offline unless `network`."""
-        args = ["run", "--rm"]
-        if not network:
-            args += ["--network", "none", "-e", "CARGO_NET_OFFLINE=true"]
+        options = [] if network else ["--network", "none", "-e", "CARGO_NET_OFFLINE=true"]
         # Build and test run the repository's code offline; they get the shared toolchain and cargo
         # caches read-only, so that code cannot change what later commits are tested with.
         ro = "" if network else ":ro"
-        args += ["-v", f"{self.v(SRC)}:/{SRC}", "-v", f"{self.v(INDEX)}:/{INDEX}",
-                 "-v", f"{self.target_volume(self.toolchain)}:/target", "-v", f"bugage-rustup:/rustup{ro}",
-                 "-v", f"{self.v('bugage-cargo')}:/cargo{ro}", "-e", "CARGO_TARGET_DIR=/target", "-e", "CARGO_TERM_COLOR=never",
-                 "-e", f"RUSTUP_TOOLCHAIN={self.toolchain}", "-w", f"/{SRC}/{spec.crate_path}", self.image, "sh", "-c", cmd]
-        # A named container, so a step over its time limit can be removed: killing the docker client
-        # alone would leave the container running.
-        name = f"bugage-step-{uuid.uuid4().hex[:12]}"
-        args[2:2] = ["--name", name]
-        return run_logged(["docker", *args], log, timeout=spec.step_timeout,
-                          on_timeout=lambda: subprocess.run(["docker", "rm", "-f", name], capture_output=True))
+        options += ["-v", f"{self.v(SRC)}:/{SRC}", "-v", f"{self.v(INDEX)}:/{INDEX}",
+                    "-v", f"{self.target_volume(self.toolchain)}:/target", "-v", f"bugage-rustup:/rustup{ro}",
+                    "-v", f"{self.v('bugage-cargo')}:/cargo{ro}", "-e", "CARGO_TARGET_DIR=/target",
+                    "-e", "CARGO_TERM_COLOR=never", "-e", f"RUSTUP_TOOLCHAIN={self.toolchain}"]
+        return self.run_step(spec, options, cmd, log)

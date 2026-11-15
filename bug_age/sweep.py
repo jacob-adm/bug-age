@@ -47,7 +47,8 @@ def evaluate(runner, spec, sha, repeats):
         steps.append({"name": name, "cmd": cmd, "exit": code, "seconds": seconds, "network": network})
         return code
 
-    if runner.name == "docker" and step("fetch", "cargo fetch", True) != 0:
+    # The profile's dependency fetch, with network; build and test then run offline.
+    if runner.fetch_cmd is not None and step("fetch", runner.fetch_cmd, True) != 0:
         return result(UNTESTABLE, "dependency fetch failed", toolchain)
     build = step("build", spec.build, False)
     if build == TIMED_OUT:
@@ -57,14 +58,14 @@ def evaluate(runner, spec, sha, repeats):
             log = (logs / "build.log").read_text(encoding="utf-8")
         except (OSError, UnicodeDecodeError):
             log = ""
-        overlay_error = any("bugage_repro.rs" in line for line in lines(log))
+        overlay_error = any(runner.overlay_marker in line for line in lines(log))
         retried = False
         if not overlay_error:
             # A bucketed toolchain may be too new for this commit: retry once with the exact one.
             fallback = runner.fallback_toolchain(spec, logs / "toolchain-fallback.log")
             if fallback is not None:
                 toolchain = fallback
-                fetched = runner.name != "docker" or step("fetch_exact", "cargo fetch", True) == 0
+                fetched = runner.fetch_cmd is None or step("fetch_exact", runner.fetch_cmd, True) == 0
                 retried = fetched and step("build_exact", spec.build, False) == 0
         if not retried:
             return result(UNTESTABLE, "test build failed (overlay does not compile here)", toolchain)
