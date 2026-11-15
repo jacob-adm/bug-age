@@ -23,8 +23,12 @@ BEGIN, END = "<!-- timings:begin -->", "<!-- timings:end -->"
 # (compile-frontier binary search and adaptive repeats); `tokenizers` holds the first, slower run.
 LABELS = {"bench": "tokenizers, current sweep search", "tokenizers": "tokenizers, first run (older search)"}
 
+# Stages timed from pipeline.json; feasibility and Method B are timed from their own step records.
+FAST = ("catalog", "Method A", "bundle")
+
 # (target name, feasibility directory holding results/ and results-timetravel/)
-TARGETS = [("tokenizers", ROOT / "spike"), ("rust-sdk", ROOT / "results" / "rust-sdk" / "spike")]
+TARGETS = [("tokenizers", ROOT / "spike"), ("rust-sdk", ROOT / "results" / "rust-sdk" / "spike"),
+           ("requests", ROOT / "results" / "requests" / "spike"), ("flask", ROOT / "results" / "flask" / "spike")]
 
 
 def committed(pattern):
@@ -79,12 +83,12 @@ def sweep_rows():
 
 
 def pipeline_rows():
-    """Stages that actually ran (status OK) in each target's last recorded pipeline run."""
+    """Fast stages that actually ran (status OK) in each target's last recorded pipeline run."""
     rows = []
     for f in committed("results/*/pipeline.json"):
         p = json.loads(f.read_text())
         for s in p["stages"]:
-            if s["status"] == "OK" and s["stage"] != "clone":
+            if s["status"] == "OK" and s["stage"].split(" (")[0] in FAST:
                 rows.append({"target": p["target"], "stage": s["stage"], "seconds": s["seconds"],
                              "src": f.relative_to(ROOT).as_posix()})
     return rows
