@@ -9,17 +9,16 @@ and `-w` only discounts whitespace-only changes.
 import re
 
 from ._compat import lines, round1, split_whitespace, trim
+from . import profiles
 from .git import GitError, author_time, commit_date, commit_time, git
 
 # A commit id: 40 hex digits in a SHA-1 repository, 64 in a SHA-256 one.
 _OID = re.compile(r"[0-9a-fA-F]{40}|[0-9a-fA-F]{64}")
 
 
-def in_scope(file, path):
-    """Files of interest: Rust sources under `path`, outside tests/ and benches/."""
-    prefix = path.rstrip("/") + "/"
-    return ((path == "." or file.startswith(prefix)) and file.endswith(".rs")
-            and "/tests/" not in file and "/benches/" not in file)
+def in_scope(file, path, profile="rust"):
+    """Files Method A blames: the profile's sources under `path` (rust: .rs outside tests/ and benches/)."""
+    return profiles.in_scope(profile, file, path)
 
 
 def _u64(text):
@@ -28,13 +27,13 @@ def _u64(text):
     return int(t) if t and t.isascii() and t.isdigit() else None
 
 
-def removed_ranges(diff, path):
+def removed_ranges(diff, path, profile="rust"):
     """Old-side line ranges per file from `git diff -U0` output: (file, start, count)."""
     out, file = [], None
     for line in lines(diff):
         if line.startswith("--- "):
             rest = line[4:]
-            file = rest[2:] if rest.startswith("a/") and in_scope(rest[2:], path) else None
+            file = rest[2:] if rest.startswith("a/") and in_scope(rest[2:], path, profile) else None
         elif file is not None and line.startswith("@@ -"):
             words = split_whitespace(line[4:])
             old = words[0] if words else ""
@@ -99,7 +98,7 @@ def lifetime(repo, intro, fix, path, release_tags):
     }
 
 
-def analyze(repo, fix, path, window_start, release_tags):
+def analyze(repo, fix, path, window_start, release_tags, profile="rust"):
     """Method A for one catalogued fix: blame the changed lines, rank candidates, measure the lifetime."""
     bug = {"fix": fix["sha"], "fix_date": fix["date"], "subject": fix["subject"], "blamed_files": [],
            "nominees": [], "lifetime": None, "in_window": None, "flags": []}
@@ -112,7 +111,7 @@ def analyze(repo, fix, path, window_start, release_tags):
     parent = parents[0]
     diff = git(repo, ["diff", "-U0", "-w", "--no-color", "-M", parent, fix["sha"], "--", path])
     counts = {}
-    for file, start, n in removed_ranges(diff, path):
+    for file, start, n in removed_ranges(diff, path, profile):
         out = git(repo, ["blame", "-w", "--porcelain", "-L", f"{start},+{n}", parent, "--", file])
         blame_counts(out, counts)
         if file not in bug["blamed_files"]:

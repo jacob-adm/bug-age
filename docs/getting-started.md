@@ -27,7 +27,8 @@ mkdir -p targets && mv rust-sdk.toml targets/myrepo.toml
 | `name` | yes | Short name: lowercase letters, digits and `-`. Used in file names and the explorer. |
 | `repo_url` | yes | Clone URL of the repository. |
 | `head` | yes | Full SHA of the commit to analyse up to. Pinning it makes the run reproducible. |
-| `crate_path` | yes | Directory of the crate inside the repository (`.` for the root). Only history under this path is analysed. |
+| `path` | yes | Directory to measure inside the repository (`.` for the root). Only history under this path is analysed. The older name `crate_path` is still accepted. |
+| `profile` | no | Language of the code under `path`: `rust` (default) or `python`. It decides which files Method A blames and which lint-tool fixes the catalog leaves out. Feasibility and Method B are Rust only in this version; for `python` they are listed as NOT TESTED. |
 | `work_dir`, `results_dir`, `spike_dir`, `dist_dir` | yes | Where the clone, results, feasibility reports and bundle go, relative to this repository. Follow the pattern `work/<name>`, `results/<name>`, `results/<name>/spike`, `dist/<name>`. |
 | `release_tag_glob` | no | Pattern matching your release tags, for release counts. Default `v[0-9]*`. Set it if your tags look different, e.g. `mycrate-v[0-9]*`, or every release count will be 0. |
 | `package` | no | Cargo package to build and test in a workspace. Default: the whole workspace. |

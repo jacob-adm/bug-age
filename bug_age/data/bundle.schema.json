@@ -32,7 +32,8 @@
     "schema_version": {"const": "1.2.0"},
     "generator": {"type": "string", "description": "bug-age version that built the bundle"},
     "subject": {"type": "object", "required": ["repo_url", "crate_path", "head"],
-      "properties": {"repo_url": {"type": "string"}, "crate_path": {"type": "string"}, "head": {"$ref": "#/$defs/sha"}}},
+      "properties": {"repo_url": {"type": "string"}, "crate_path": {"type": "string", "description": "The measured path in the repository."}, "head": {"$ref": "#/$defs/sha"},
+        "profile": {"enum": ["python"], "description": "Language profile of the measured path; absent means rust."}}},
     "summary": {
       "description": "Headline metrics. The explorer page recomputes them from the rows below as a self-check.",
       "type": "object", "required": ["method_a", "method_b", "feasibility"],
