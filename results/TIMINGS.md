@@ -8,6 +8,12 @@ Machine: Darwin arm64, Docker 28.3.3 arm64. Step time counts fetch, build and te
 
 | Target | Stage | Time | Source |
 |---|---|---|---|
+| flask | catalog (rule-based fixes) | 0 s | `results/flask/pipeline.json` |
+| flask | Method A (szz) | 17 s | `results/flask/pipeline.json` |
+| flask | bundle | 5 s | `results/flask/pipeline.json` |
+| requests | catalog (rule-based fixes) | 0 s | `results/requests/pipeline.json` |
+| requests | Method A (szz) | 19 s | `results/requests/pipeline.json` |
+| requests | bundle | 5 s | `results/requests/pipeline.json` |
 | rust-sdk | catalog (rule-based fixes) | 4 s | `results/rust-sdk/pipeline.json` |
 | rust-sdk | Method A (szz) | 53 s | `results/rust-sdk/pipeline.json` |
 | rust-sdk | bundle | 5 s | `results/rust-sdk/pipeline.json` |
@@ -23,6 +29,10 @@ Machine: Darwin arm64, Docker 28.3.3 arm64. Step time counts fetch, build and te
 | tokenizers | dated dependencies | 20 | 7 min | 23 s | 32 s | 23 s | `spike/results-timetravel/report.json` |
 | rust-sdk | today's registry | 20 | 6 min | 17 s | 23 s | 18 s | `results/rust-sdk/spike/results/report.json` |
 | rust-sdk | dated dependencies | 20 | 6 min | 13 s | 36 s | 33 s | `results/rust-sdk/spike/results-timetravel/report.json` |
+| requests | today's registry | 20 | 71 min | 5 s | 60 min | 3 min | `results/requests/spike/results/report.json` |
+| requests | dated dependencies | 20 | 8 min | 0 s | 3 min | 3 min | `results/requests/spike/results-timetravel/report.json` |
+| flask | today's registry | 20 | 46 s | 2 s | 6 s | 6 s | `results/flask/spike/results/report.json` |
+| flask | dated dependencies | 20 | 52 s | 1 s | 14 s | 6 s | `results/flask/spike/results-timetravel/report.json` |
 
 ## Method B: one regression test swept across history
 
@@ -34,6 +44,11 @@ Machine: Darwin arm64, Docker 28.3.3 arm64. Step time counts fetch, build and te
 | tokenizers, current sweep search | a350ec3e72 | censored-by-testability | 14 / 928 | 2 min | 7 s | `results/bench/repros/a350ec3e72/sweep.json` |
 | tokenizers, current sweep search | c046da7679 | located | 23 / 960 | 4 min | 10 s | `results/bench/repros/c046da7679/sweep.json` |
 | tokenizers, current sweep search | fb837b4adb | censored-by-testability | 14 / 1008 | 2 min | 7 s | `results/bench/repros/fb837b4adb/sweep.json` |
+| flask | 05e9c6bd63 | left-censored | 5 / 154 | 32 s | 7 s | `results/flask/repros/05e9c6bd63/sweep.json` |
+| flask | 127df57a06 | left-censored | 5 / 380 | 34 s | 5 s | `results/flask/repros/127df57a06/sweep.json` |
+| requests | 47914226c2 | censored-by-testability | 12 / 144 | 78 s | 7 s | `results/requests/repros/47914226c2/sweep.json` |
+| requests | bc7dd0fc4d | censored-by-testability | 11 / 163 | 75 s | 6 s | `results/requests/repros/bc7dd0fc4d/sweep.json` |
+| requests | f0198e6dfc | censored-by-testability | 11 / 164 | 50 s | 4 s | `results/requests/repros/f0198e6dfc/sweep.json` |
 | tokenizers, first run (older search) | 8a6a8dc9d5 | censored-by-testability | 38 / 731 | 8 min | 13 s | `results/tokenizers/repros/8a6a8dc9d5/sweep.json` |
 | tokenizers, first run (older search) | 9a93c50c25 | censored-by-testability | 35 / 593 | 8 min | 16 s | `results/tokenizers/repros/9a93c50c25/sweep.json` |
 | tokenizers, first run (older search) | 9b77c054ef | left-censored | 11 / 274 | 3 min | 19 s | `results/tokenizers/repros/9b77c054ef/sweep.json` |
@@ -41,7 +56,7 @@ Machine: Darwin arm64, Docker 28.3.3 arm64. Step time counts fetch, build and te
 | tokenizers, first run (older search) | c046da7679 | located | 13 / 960 | 119 s | 6 s | `results/tokenizers/repros/c046da7679/sweep.json` |
 | tokenizers, first run (older search) | fb837b4adb | censored-by-testability | 27 / 1008 | 4 min | 4 s | `results/tokenizers/repros/fb837b4adb/sweep.json` |
 
-All sweeps: 234 commits tested, 50 min of step time.
+All sweeps: 278 commits tested, 54 min of step time.
 
 ## End-to-end wall time of unattended sweep runs
 
