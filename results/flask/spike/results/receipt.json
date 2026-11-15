@@ -1,0 +1,66 @@
+{
+  "command": "python3 -m bug_age.pyfeasibility --samples 20",
+  "generated_utc": "2026-11-15T09:49:07+00:00",
+  "inputs": {
+    "head": "49943b5a94413a530761350f04e896f76e8d620e",
+    "import": "flask",
+    "install": ". pytest asgiref greenlet python-dotenv blinker",
+    "repo": "https://github.com/pallets/flask",
+    "sampled_shas": [
+      "33850c0ebd23ae615e6823993d441f46d80b1ff0",
+      "af3b73f70d5fce72181530d384519ae31d77c772",
+      "235d693bfc5633aae310ab3dc35e86c8892a0b2b",
+      "a59dfe4a77ecfd8740cf55a719c88eedee07fb5c",
+      "164067920ba7832e587a24725384789ab92bd55f",
+      "eb6549d95a8e9c28f9e4b89c28e370124e7452b9",
+      "367b254c787c59b208899f1dfee78904c1784c73",
+      "b786eac5574e478d51314333fb6309456bff7b76",
+      "823bebf13a35f22d867bc3fdb0ef2cae20aa4cd4",
+      "05161d35844ba7cc1f46c08a51de632b5f3c5269",
+      "f6d25bbc4f95112e9f5f85096d12a61ed43b38b8",
+      "b57a076fa30f0d82c2db07c781b8be9abda6ca25",
+      "d08d96acbcabcde23307ed060f71f95ba9cb7b8d",
+      "3bf80912cf959fe860528f75031fe9e4612e3848",
+      "a3e4395a42574386a15ef6ca1afa83ff9787608f",
+      "7d2ba3e1fc55e8d04308ede674263727c85c86d2",
+      "edac7e3a560d93ac9f13bf162e677413b03a27e1",
+      "ef85270d9ada6d9b25beabb4602047fc91eef2f9",
+      "a85575601758b3fd8d1379aa2e16bf1c24ab06f3",
+      "49943b5a94413a530761350f04e896f76e8d620e"
+    ],
+    "test": "python -m pytest -q -p no:cacheprovider tests"
+  },
+  "outputs": {
+    "results/flask/spike/results/report.json": "47d3eaadec8bbfa8a57e03c88129352229b480a45e5e3fe7d374b96efd0d46e1"
+  },
+  "totals": {
+    "BUILD_FAILED": 12,
+    "BUILT_AND_TESTED": 1,
+    "NOT_TESTED": 6,
+    "TESTS_FAILED": 1
+  },
+  "verdict": "NO-GO",
+  "versions": {
+    "docker": "29.8.1 arm64",
+    "git": "git version 2.50.1 (Apple Git-155)",
+    "host": "Darwin arm64",
+    "image_recipe": "d39aa6d77a00a5d11104401bed74ad5f2f76486dfc39d9f04e6674f2a6038e57",
+    "images": {
+      "bug-age-python:3.10-d39aa6d77a00": "sha256:ddf978fca31ca755442d4c34130fbd5a8c2c61ce81373c646219951148e53309",
+      "bug-age-python:3.11-d39aa6d77a00": "sha256:796874b805db3510dd9c092aac993dc384e6c2db6c99904b98197fa249e7e8b8",
+      "bug-age-python:3.12-d39aa6d77a00": "sha256:9f81d5dc9ac371a06508f030695da6a701bc8684c1a6dc1fabbf2ece906a0a4a",
+      "bug-age-python:3.14-d39aa6d77a00": "sha256:b2ecc7195d4ca06da4e2a83c9555ef9d0ffb8666868a4adfd9265d40a9f1a216",
+      "bug-age-python:3.8-d39aa6d77a00": "sha256:019d07d8e6017f5946b29a252f00cb8ebb93838e9497a6ad5018260c4f9d6fc9",
+      "bug-age-python:3.9-d39aa6d77a00": "sha256:eb12a63a80a74500a685f9442ed3d13361cb9eada69b32d991e2af3d81e98387"
+    },
+    "python": "3.14.8",
+    "toolchains": [
+      "python3.10",
+      "python3.11",
+      "python3.12",
+      "python3.14",
+      "python3.8",
+      "python3.9"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "command": "bug_age/__main__.py sweep --repo work/flask --path . --fix 127df57a06ec7b1a8b698206b1bdefc93248de5a --start 5e378b4f28af344702a65fcce85a7d8574674860 --overlay results/flask/repros/127df57a06/overlay --runner docker --repeats 3 --build 'python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py' --test 'python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py' --logs work/sweep-logs/127df57a06 --out results/flask/repros/127df57a06/sweep.json --namespace w1 --profile python --install . --test-deps pytest,asgiref,greenlet,python-dotenv,blinker",
+  "inputs": {
+    "fix": "127df57a06ec7b1a8b698206b1bdefc93248de5a",
+    "overlay_files": [
+      "tests/bugage_repro_test.py sha256:bcdd7675b33c57eb85d6e89e92b21726dfca526e924a295dd0c648658402cb63"
+    ],
+    "repo_head": "49943b5a94413a530761350f04e896f76e8d620e",
+    "start": "5e378b4f28af344702a65fcce85a7d8574674860"
+  },
+  "report_sha256": "ab5f3c398b7be71b0727faec5a476833c5d8cf4febc6bb9f59fb2d0f6e0e9fac",
+  "verdict": "left-censored",
+  "versions": {
+    "bug-age": "2.1.1",
+    "docker": "29.8.1 arm64",
+    "git": "git version 2.50.1 (Apple Git-155)",
+    "image_recipe": "d39aa6d77a00a5d11104401bed74ad5f2f76486dfc39d9f04e6674f2a6038e57",
+    "images": {
+      "bug-age-python:3.10-d39aa6d77a00": "sha256:ddf978fca31ca755442d4c34130fbd5a8c2c61ce81373c646219951148e53309",
+      "bug-age-python:3.8-d39aa6d77a00": "sha256:019d07d8e6017f5946b29a252f00cb8ebb93838e9497a6ad5018260c4f9d6fc9"
+    },
+    "uv_exclude_newer": "commit time"
+  }
+}

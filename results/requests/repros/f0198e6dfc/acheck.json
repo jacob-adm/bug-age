@@ -1,0 +1,37 @@
+{
+  "repeats": 3,
+  "results": [
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "dependency fetch failed",
+      "sha": "80a790443e693d982296db93ceebc9135b6efb9c",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2018-01-04T05:41:41Z '.[socks]' pytest pytest-httpbin pytest-mock trustme",
+          "exit": 2,
+          "name": "fetch",
+          "network": true,
+          "seconds": 0.6
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "dependency fetch failed",
+      "sha": "cb0914407b6bb8153c8be5d52bc497e1d10b04ac",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2018-01-04T16:30:50Z '.[socks]' pytest pytest-httpbin pytest-mock trustme",
+          "exit": 2,
+          "name": "fetch",
+          "network": true,
+          "seconds": 0.7
+        }
+      ],
+      "toolchain": "python3.8"
+    }
+  ],
+  "runner": "docker",
+  "test": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py"
+}

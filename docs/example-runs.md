@@ -45,3 +45,22 @@ Verdicts are honest about what could not be tested:
 A bisected sweep (the default) assumes that once the test builds it keeps building and that once it fails it keeps failing; `--search exhaustive` assumes neither and tests every commit.
 
 The feasibility check, which measures toolchain and dependency drift across history, is in `spike/results/` for tokenizers and `results/rust-sdk/spike/` for rust-sdk.
+
+## Example runs: requests and flask (python profile)
+
+The python profile was run on [psf/requests](https://github.com/psf/requests) and [pallets/flask](https://github.com/pallets/flask), with config files alone: [`targets/requests.toml`](../targets/requests.toml) and [`targets/flask.toml`](../targets/flask.toml). Reports: [`results/requests/PIPELINE.md`](../results/requests/PIPELINE.md), [`results/flask/PIPELINE.md`](../results/flask/PIPELINE.md); bundles in `dist/requests/` and `dist/flask/`.
+
+| | requests | flask |
+|---|---|---|
+| Feasibility, today's PyPI | 1 of 20 sampled commits built and tested | 1 of 20 |
+| Feasibility, PyPI as of each commit | 3 of 20 | 2 of 20 |
+| Method A | 169 fixes, 88 with a nominated introducer | 185 fixes, 90 with a nominated introducer |
+| Method B | 3 sweeps, all `censored-by-testability` | 2 sweeps, both `left-censored` |
+
+Both runs are NO-GO on feasibility, and the reports say why, commit by commit:
+
+- **Commits before 2019 are not tested.** uv installs CPython 3.8 or later only, and those commits' build requirements fail to install there. Most of each history falls in this range.
+- **Old test suites fail on later dependencies.** Even as of the commit date, some flask commits from 2020 to 2023 install and import but fail tests; they are recorded `TESTS_FAILED`, not dropped.
+- **A fix that needs an unreleased dependency cannot be tested.** One flask regression test was left out because its fix commit needed a Werkzeug version not yet on PyPI, so the test failed at the fix as well.
+
+Method B verdicts here are lower bounds: each bug is already present at the first commit where its test could run.

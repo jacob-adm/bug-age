@@ -1,0 +1,818 @@
+{
+  "built_and_tested_share": 0.05,
+  "counts": {
+    "BUILT_AND_TESTED": 1,
+    "NOT_TESTED": 2,
+    "TESTS_FAILED": 17
+  },
+  "method": {
+    "build": "uv pip install .[socks] pytest pytest-httpbin pytest-mock trustme (network), then python -c 'import requests' in docker --network none",
+    "decision_rule": "GO iff BUILT_AND_TESTED share >= 50% and no FLAKY",
+    "dependency_resolution": "uv pip install: today's PyPI",
+    "not_covered": "tests needing the internet (connect timeouts) or a certificate valid today (test_https_warnings)",
+    "profile": "python",
+    "sampling": "20 evenly spaced first-parent commits touching ./",
+    "test": "python -m pytest -q -p no:cacheprovider tests -k 'not test_connect_timeout and not test_total_timeout_connect and not test_https_warnings' in docker --network none, environment read-only, repeated 2x",
+    "toolchain_rule": "CPython minor released >=14 days before the commit date, at least 3.8 (uv's floor), raised to requires-python; image python:<minor> with uv 0.9.2"
+  },
+  "results": [
+    {
+      "date": "2011-02-13",
+      "lockfile_committed": false,
+      "reason": "dependency install failed: error: /bugage-src does not appear to be a Python project, as neither `pyproject.toml` nor `setup.py` are present in the directory",
+      "sha": "e7615cbc6b4af5985c4e0d4848a426e2d35f79c3",
+      "status": "NOT_TESTED",
+      "steps": {
+        "install": {
+          "exit": 2,
+          "hint": "error: /bugage-src does not appear to be a Python project, as neither `pyproject.toml` nor `setup.py` are present in the directory",
+          "seconds": 0.4
+        }
+      },
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2011-12-28",
+      "lockfile_committed": false,
+      "reason": "dependency install failed: or `uv pip install cookielib` into the environment and re-run with `--no-build-isolation`.",
+      "sha": "9c0a0fbd01ce0a07cebc26f0203e17bfccf7e481",
+      "status": "NOT_TESTED",
+      "steps": {
+        "install": {
+          "exit": 2,
+          "hint": "or `uv pip install cookielib` into the environment and re-run with `--no-build-isolation`.",
+          "seconds": 1.1
+        }
+      },
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2012-02-15",
+      "lockfile_committed": false,
+      "reason": "3 warnings, 1 error in 0.16s",
+      "sha": "b5212ddc3dcde30e3d0e3daefcc49e2dd76049ff",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.4
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 2.4
+        },
+        "test_1": {
+          "exit": 2,
+          "hint": "3 warnings, 1 error in 0.16s",
+          "seconds": 0.8
+        },
+        "test_2": {
+          "exit": 2,
+          "hint": "3 warnings, 1 error in 0.18s",
+          "seconds": 1.0
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 2,
+          "failed": 1,
+          "passed": 0
+        },
+        {
+          "exit": 2,
+          "failed": 1,
+          "passed": 0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2012-05-01",
+      "lockfile_committed": false,
+      "reason": "19 warnings, 1 error in 0.17s",
+      "sha": "fdd08215ea88510ecc5ccf883f37b9d087a5c112",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.4
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 2.3
+        },
+        "test_1": {
+          "exit": 2,
+          "hint": "19 warnings, 1 error in 0.17s",
+          "seconds": 0.9
+        },
+        "test_2": {
+          "exit": 2,
+          "hint": "19 warnings, 1 error in 0.18s",
+          "seconds": 0.9
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 2,
+          "failed": 1,
+          "passed": 0
+        },
+        {
+          "exit": 2,
+          "failed": 1,
+          "passed": 0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2012-08-02",
+      "lockfile_committed": false,
+      "reason": "83 failed, 8 passed, 20 warnings in 3.78s",
+      "sha": "54842cdca9598eb5cc09c971ed50af1e1d415ae9",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.4
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 2.2
+        },
+        "test_1": {
+          "exit": 1,
+          "hint": "83 failed, 8 passed, 20 warnings in 3.78s",
+          "seconds": 4.4
+        },
+        "test_2": {
+          "exit": 1,
+          "hint": "83 failed, 8 passed, 20 warnings in 3.68s",
+          "seconds": 4.2
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 1,
+          "failed": 83,
+          "passed": 8
+        },
+        {
+          "exit": 1,
+          "failed": 83,
+          "passed": 8
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2012-12-17",
+      "lockfile_committed": false,
+      "reason": "[bug-age: stopped after the 1800 s step limit]",
+      "sha": "2b5aed78d02a3bd3090e8926bfd20d4d7edc1e88",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.4
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 2.1
+        },
+        "test_1": {
+          "exit": -2,
+          "hint": "[bug-age: stopped after the 1800 s step limit]",
+          "seconds": 1800.1
+        },
+        "test_2": {
+          "exit": -2,
+          "hint": "[bug-age: stopped after the 1800 s step limit]",
+          "seconds": 1800.1
+        }
+      },
+      "test_runs": [
+        {
+          "exit": -2,
+          "failed": 0,
+          "passed": 0
+        },
+        {
+          "exit": -2,
+          "failed": 0,
+          "passed": 0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2013-01-25",
+      "lockfile_committed": false,
+      "reason": "ERROR: file or directory not found: tests",
+      "sha": "440aeca5d4d5286e68ae050d4ab881315ba571e6",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.3
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 1.8
+        },
+        "test_1": {
+          "exit": 4,
+          "hint": "ERROR: file or directory not found: tests",
+          "seconds": 0.5
+        },
+        "test_2": {
+          "exit": 4,
+          "hint": "ERROR: file or directory not found: tests",
+          "seconds": 0.6
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 4,
+          "failed": 0,
+          "passed": 0
+        },
+        {
+          "exit": 4,
+          "failed": 0,
+          "passed": 0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2013-09-12",
+      "lockfile_committed": false,
+      "reason": "no tests ran in 0.00s",
+      "sha": "d8f2463b576bbec377f371359de360c227481033",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.3
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 1.5
+        },
+        "test_1": {
+          "exit": 4,
+          "hint": "no tests ran in 0.00s",
+          "seconds": 0.6
+        },
+        "test_2": {
+          "exit": 4,
+          "hint": "ERROR: file or directory not found: tests",
+          "seconds": 0.6
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 4,
+          "failed": 0,
+          "passed": 0
+        },
+        {
+          "exit": 4,
+          "failed": 0,
+          "passed": 0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2014-05-30",
+      "lockfile_committed": false,
+      "reason": "no tests ran in 0.00s",
+      "sha": "702283093a9a39325cc1825b2376d88b0c5cdfd2",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.3
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 1.5
+        },
+        "test_1": {
+          "exit": 4,
+          "hint": "no tests ran in 0.00s",
+          "seconds": 0.6
+        },
+        "test_2": {
+          "exit": 4,
+          "hint": "ERROR: file or directory not found: tests",
+          "seconds": 0.5
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 4,
+          "failed": 0,
+          "passed": 0
+        },
+        {
+          "exit": 4,
+          "failed": 0,
+          "passed": 0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2015-03-07",
+      "lockfile_committed": false,
+      "reason": "ERROR: file or directory not found: tests",
+      "sha": "14b653ab3c500b43a317c800dc8a85792188b402",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.4
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 1.7
+        },
+        "test_1": {
+          "exit": 4,
+          "hint": "ERROR: file or directory not found: tests",
+          "seconds": 0.7
+        },
+        "test_2": {
+          "exit": 4,
+          "hint": "ERROR: file or directory not found: tests",
+          "seconds": 0.8
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 4,
+          "failed": 0,
+          "passed": 0
+        },
+        {
+          "exit": 4,
+          "failed": 0,
+          "passed": 0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2016-02-03",
+      "lockfile_committed": false,
+      "reason": "no tests ran in 0.00s",
+      "sha": "5481db22b5e2a3ad6b957454d830fded9cf43e39",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.4
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 2.3
+        },
+        "test_1": {
+          "exit": 4,
+          "hint": "no tests ran in 0.00s",
+          "seconds": 0.7
+        },
+        "test_2": {
+          "exit": 4,
+          "hint": "ERROR: file or directory not found: tests",
+          "seconds": 0.7
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 4,
+          "failed": 0,
+          "passed": 0
+        },
+        {
+          "exit": 4,
+          "failed": 0,
+          "passed": 0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2016-07-14",
+      "lockfile_committed": false,
+      "reason": "3 deselected, 21 warnings, 1 error in 0.33s",
+      "sha": "6e54fd607ff735ca3d542949d2fff720bd095858",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.4
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 2.6
+        },
+        "test_1": {
+          "exit": 2,
+          "hint": "3 deselected, 21 warnings, 1 error in 0.33s",
+          "seconds": 1.2
+        },
+        "test_2": {
+          "exit": 2,
+          "hint": "3 deselected, 21 warnings, 1 error in 0.28s",
+          "seconds": 1.0
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 2,
+          "failed": 1,
+          "passed": 0
+        },
+        {
+          "exit": 2,
+          "failed": 1,
+          "passed": 0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2017-01-24",
+      "lockfile_committed": false,
+      "reason": "3 deselected, 17 warnings, 1 error in 0.32s",
+      "sha": "600ee2bf2b4c9e8ae7e8de11e4e999e514f9cd15",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.4
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 2.1
+        },
+        "test_1": {
+          "exit": 2,
+          "hint": "3 deselected, 17 warnings, 1 error in 0.32s",
+          "seconds": 1.1
+        },
+        "test_2": {
+          "exit": 2,
+          "hint": "3 deselected, 17 warnings, 1 error in 0.30s",
+          "seconds": 1.0
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 2,
+          "failed": 1,
+          "passed": 0
+        },
+        {
+          "exit": 2,
+          "failed": 1,
+          "passed": 0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2017-05-28",
+      "lockfile_committed": false,
+      "reason": "5 deselected, 1 error in 0.35s",
+      "sha": "c3a00771e395789b4704a7e8a01d01acb04dcde2",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.4
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 2.1
+        },
+        "test_1": {
+          "exit": 2,
+          "hint": "5 deselected, 1 error in 0.35s",
+          "seconds": 1.1
+        },
+        "test_2": {
+          "exit": 2,
+          "hint": "5 deselected, 1 error in 0.33s",
+          "seconds": 1.0
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 2,
+          "failed": 1,
+          "passed": 0
+        },
+        {
+          "exit": 2,
+          "failed": 1,
+          "passed": 0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2018-03-07",
+      "lockfile_committed": false,
+      "reason": "5 deselected, 1 error in 0.35s",
+      "sha": "c436165a2dae7980fb4283bb8dd5a1c6fde3e2e9",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.4
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 2.0
+        },
+        "test_1": {
+          "exit": 2,
+          "hint": "5 deselected, 1 error in 0.35s",
+          "seconds": 1.1
+        },
+        "test_2": {
+          "exit": 2,
+          "hint": "5 deselected, 1 error in 0.34s",
+          "seconds": 1.0
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 2,
+          "failed": 1,
+          "passed": 0
+        },
+        {
+          "exit": 2,
+          "failed": 1,
+          "passed": 0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2018-11-13",
+      "lockfile_committed": false,
+      "reason": "5 deselected, 1 error in 0.33s",
+      "sha": "3da2f10290a0dc78e34031856438ef1fed4e7435",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.4
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 2.3
+        },
+        "test_1": {
+          "exit": 2,
+          "hint": "5 deselected, 1 error in 0.33s",
+          "seconds": 1.0
+        },
+        "test_2": {
+          "exit": 2,
+          "hint": "5 deselected, 1 error in 0.34s",
+          "seconds": 1.0
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 2,
+          "failed": 1,
+          "passed": 0
+        },
+        {
+          "exit": 2,
+          "failed": 1,
+          "passed": 0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2019-09-19",
+      "lockfile_committed": false,
+      "reason": "127.0.0.1 - - [15/Nov/2026 09:26:33] \"GET /get HTTP/1.1\" 200 268",
+      "sha": "e08981ee46ebe923a8101ca8e005b3f3687a8fa4",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.4
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 2.1
+        },
+        "test_1": {
+          "exit": 1,
+          "hint": "127.0.0.1 - - [15/Nov/2026 09:26:33] \"GET /get HTTP/1.1\" 200 268",
+          "seconds": 69.0
+        },
+        "test_2": {
+          "exit": 1,
+          "hint": "127.0.0.1 - - [15/Nov/2026 09:28:11] \"GET /status/500 HTTP/1.1\" 500 0",
+          "seconds": 68.9
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 1,
+          "failed": 0,
+          "passed": 0
+        },
+        {
+          "exit": 1,
+          "failed": 0,
+          "passed": 0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "date": "2022-01-07",
+      "lockfile_committed": false,
+      "reason": "1 failed, 544 passed, 12 skipped, 5 deselected, 1 xfailed in 64.82s (0:01:04)",
+      "sha": "d718e753834b84018014a23d663369ac27d1ab9c",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.4
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 1.8
+        },
+        "test_1": {
+          "exit": 1,
+          "hint": "1 failed, 544 passed, 12 skipped, 5 deselected, 1 xfailed in 64.82s (0:01:04)",
+          "seconds": 65.6
+        },
+        "test_2": {
+          "exit": 1,
+          "hint": "1 failed, 544 passed, 12 skipped, 5 deselected, 1 xfailed in 64.73s (0:01:04)",
+          "seconds": 65.4
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 1,
+          "failed": 1,
+          "passed": 544
+        },
+        {
+          "exit": 1,
+          "failed": 1,
+          "passed": 544
+        }
+      ],
+      "toolchain": "python3.10"
+    },
+    {
+      "date": "2025-02-20",
+      "lockfile_committed": false,
+      "reason": "1 failed, 585 passed, 14 skipped, 5 deselected, 1 xfailed, 18 warnings in 72.24s (0:01:12)",
+      "sha": "1764cc938efc3cc9720188dfa6c3852c45211aa0",
+      "status": "TESTS_FAILED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.5
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 1.8
+        },
+        "test_1": {
+          "exit": 1,
+          "hint": "1 failed, 585 passed, 14 skipped, 5 deselected, 1 xfailed, 18 warnings in 72.24s (0:01:12)",
+          "seconds": 73.1
+        },
+        "test_2": {
+          "exit": 1,
+          "hint": "1 failed, 585 passed, 14 skipped, 5 deselected, 1 xfailed, 18 warnings in 72.13s (0:01:12)",
+          "seconds": 72.9
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 1,
+          "failed": 1,
+          "passed": 585
+        },
+        {
+          "exit": 1,
+          "failed": 1,
+          "passed": 585
+        }
+      ],
+      "toolchain": "python3.13"
+    },
+    {
+      "date": "2026-10-26",
+      "lockfile_committed": false,
+      "reason": "615 tests passed x2",
+      "sha": "3c7baaa05ab4aa49cc819ce3a819d260de19c157",
+      "status": "BUILT_AND_TESTED",
+      "steps": {
+        "import": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 0.5
+        },
+        "install": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 2.2
+        },
+        "test_1": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 78.8
+        },
+        "test_2": {
+          "exit": 0,
+          "hint": "",
+          "seconds": 78.6
+        }
+      },
+      "test_runs": [
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 615
+        },
+        {
+          "exit": 0,
+          "failed": 0,
+          "passed": 615
+        }
+      ],
+      "toolchain": "python3.14"
+    }
+  ],
+  "subject": {
+    "crate_path": ".",
+    "first_parent_commits_touching_crate": 2651,
+    "head": "3c7baaa05ab4aa49cc819ce3a819d260de19c157",
+    "history_window": [
+      "2011-02-13",
+      "2026-10-26"
+    ],
+    "repo": "https://github.com/psf/requests"
+  },
+  "ticket": null,
+  "verdict": "NO-GO"
+}

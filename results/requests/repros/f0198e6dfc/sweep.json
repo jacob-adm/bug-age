@@ -1,0 +1,354 @@
+{
+  "build": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+  "commits_tested": 11,
+  "confirmation": "decisive commits confirmed x3",
+  "first_failing": "9439fad03848d882f68710fdb3d69eaf02ef21ca",
+  "fix": "f0198e6dfc431a2293dc16e1b1e8fcddc910a7f3",
+  "frontier": "9439fad03848d882f68710fdb3d69eaf02ef21ca",
+  "last_passing": null,
+  "non_monotonic": false,
+  "range_commits": 164,
+  "reason": "test already fails at 9439fad038, the first commit where it compiles (build-ability assumed monotonic)",
+  "repeats": 3,
+  "results": [
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "26bea1e498d6e234fbc9ce8e07c0389bac73810b",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2023-04-22T23:32:51Z '.[socks]' pytest pytest-httpbin pytest-mock trustme",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.6
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "build",
+          "network": false,
+          "seconds": 0.7
+        }
+      ],
+      "toolchain": "python3.11"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "839a8edec37c81a18ac8332cfbd44f44e1ae6206",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2023-10-18T06:08:52Z '.[socks]' pytest pytest-httpbin pytest-mock trustme",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.6
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "build",
+          "network": false,
+          "seconds": 0.7
+        }
+      ],
+      "toolchain": "python3.12"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "1396eb6f7a1116d49f1f0df0ddf895343f84af64",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2023-12-20T06:17:55Z '.[socks]' pytest pytest-httpbin pytest-mock trustme",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.6
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "build",
+          "network": false,
+          "seconds": 0.6
+        }
+      ],
+      "toolchain": "python3.12"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "46c1a3d8c83754167280e3479bc3ac43b4900ba6",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2024-02-20T20:04:33Z '.[socks]' pytest pytest-httpbin pytest-mock trustme",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.5
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "build",
+          "network": false,
+          "seconds": 0.6
+        }
+      ],
+      "toolchain": "python3.12"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 3x",
+      "sha": "9439fad03848d882f68710fdb3d69eaf02ef21ca",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2024-02-20T23:32:57Z '.[socks]' pytest pytest-httpbin pytest-mock trustme",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.6
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 0.8
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.8
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_2",
+          "network": false,
+          "seconds": 1.0
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_3",
+          "network": false,
+          "seconds": 0.9
+        }
+      ],
+      "toolchain": "python3.12"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 1x",
+      "sha": "7a13c041dbef42f9f3feb14110f02626f6892e9a",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2024-02-20T23:44:43Z '.[socks]' pytest pytest-httpbin pytest-mock trustme",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.6
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 0.8
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.9
+        }
+      ],
+      "toolchain": "python3.12"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 1x",
+      "sha": "382fc2c0c6c0ef0874bc65bc1175f97c073e5086",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2024-02-22T20:27:37Z '.[socks]' pytest pytest-httpbin pytest-mock trustme",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.5
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 0.8
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.9
+        }
+      ],
+      "toolchain": "python3.12"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 1x",
+      "sha": "b8be93a721792deeadd2f498b8f77cf610e7765f",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2024-02-23T00:53:25Z '.[socks]' pytest pytest-httpbin pytest-mock trustme",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.5
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 0.8
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.8
+        }
+      ],
+      "toolchain": "python3.12"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 1x",
+      "sha": "15e1f17bb6f3f978787dd23da0268388148bc3d5",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2024-07-29T13:49:17Z '.[socks]' pytest pytest-httpbin pytest-mock trustme",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.8
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 0.8
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.8
+        }
+      ],
+      "toolchain": "python3.12"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 3x",
+      "sha": "bc7dd0fc4d56e808bcdd85ac2d797b3107c89259",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2026-03-30T15:24:49Z '.[socks]' pytest pytest-httpbin pytest-mock trustme",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.9
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 1.1
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_1",
+          "network": false,
+          "seconds": 1.1
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_2",
+          "network": false,
+          "seconds": 1.0
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_3",
+          "network": false,
+          "seconds": 1.0
+        }
+      ],
+      "toolchain": "python3.14"
+    },
+    {
+      "outcome": "PASS",
+      "reason": "passed 3x",
+      "sha": "f0198e6dfc431a2293dc16e1b1e8fcddc910a7f3",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2026-03-30T15:27:35Z '.[socks]' pytest pytest-httpbin pytest-mock trustme",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.9
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 1.0
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "test_1",
+          "network": false,
+          "seconds": 1.0
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "test_2",
+          "network": false,
+          "seconds": 1.0
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "test_3",
+          "network": false,
+          "seconds": 1.0
+        }
+      ],
+      "toolchain": "python3.14"
+    }
+  ],
+  "runner": "docker",
+  "search": "bisection",
+  "start": "26bea1e498d6e234fbc9ce8e07c0389bac73810b",
+  "test": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+  "untestable_between": 0,
+  "verdict": "censored-by-testability"
+}

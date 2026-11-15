@@ -1,0 +1,60 @@
+{
+  "command": "python3 -m bug_age.pyfeasibility --samples 20 --time-travel",
+  "generated_utc": "2026-11-15T09:44:01+00:00",
+  "inputs": {
+    "head": "3c7baaa05ab4aa49cc819ce3a819d260de19c157",
+    "import": "requests",
+    "install": ".[socks] pytest pytest-httpbin pytest-mock trustme",
+    "repo": "https://github.com/psf/requests",
+    "sampled_shas": [
+      "e7615cbc6b4af5985c4e0d4848a426e2d35f79c3",
+      "9c0a0fbd01ce0a07cebc26f0203e17bfccf7e481",
+      "b5212ddc3dcde30e3d0e3daefcc49e2dd76049ff",
+      "fdd08215ea88510ecc5ccf883f37b9d087a5c112",
+      "54842cdca9598eb5cc09c971ed50af1e1d415ae9",
+      "2b5aed78d02a3bd3090e8926bfd20d4d7edc1e88",
+      "440aeca5d4d5286e68ae050d4ab881315ba571e6",
+      "d8f2463b576bbec377f371359de360c227481033",
+      "702283093a9a39325cc1825b2376d88b0c5cdfd2",
+      "14b653ab3c500b43a317c800dc8a85792188b402",
+      "5481db22b5e2a3ad6b957454d830fded9cf43e39",
+      "6e54fd607ff735ca3d542949d2fff720bd095858",
+      "600ee2bf2b4c9e8ae7e8de11e4e999e514f9cd15",
+      "c3a00771e395789b4704a7e8a01d01acb04dcde2",
+      "c436165a2dae7980fb4283bb8dd5a1c6fde3e2e9",
+      "3da2f10290a0dc78e34031856438ef1fed4e7435",
+      "e08981ee46ebe923a8101ca8e005b3f3687a8fa4",
+      "d718e753834b84018014a23d663369ac27d1ab9c",
+      "1764cc938efc3cc9720188dfa6c3852c45211aa0",
+      "3c7baaa05ab4aa49cc819ce3a819d260de19c157"
+    ],
+    "test": "python -m pytest -q -p no:cacheprovider tests -k 'not test_connect_timeout and not test_total_timeout_connect and not test_https_warnings'"
+  },
+  "outputs": {
+    "results/requests/spike/results-timetravel/report.json": "06ee4378ec40a6dc63737c6ff2a6eb9d4b8bb08182097fca6857da4c75a36aa8"
+  },
+  "totals": {
+    "BUILT_AND_TESTED": 3,
+    "NOT_TESTED": 17
+  },
+  "verdict": "NO-GO",
+  "versions": {
+    "docker": "29.8.1 arm64",
+    "git": "git version 2.50.1 (Apple Git-155)",
+    "host": "Darwin arm64",
+    "image_recipe": "d39aa6d77a00a5d11104401bed74ad5f2f76486dfc39d9f04e6674f2a6038e57",
+    "images": {
+      "bug-age-python:3.10-d39aa6d77a00": "sha256:ddf978fca31ca755442d4c34130fbd5a8c2c61ce81373c646219951148e53309",
+      "bug-age-python:3.13-d39aa6d77a00": "sha256:78a1c8a3d4a4875c2fa1d82d43df317f264a20d2d4a01a4eadb484a4223ada3b",
+      "bug-age-python:3.14-d39aa6d77a00": "sha256:b2ecc7195d4ca06da4e2a83c9555ef9d0ffb8666868a4adfd9265d40a9f1a216",
+      "bug-age-python:3.8-d39aa6d77a00": "sha256:019d07d8e6017f5946b29a252f00cb8ebb93838e9497a6ad5018260c4f9d6fc9"
+    },
+    "python": "3.14.8",
+    "toolchains": [
+      "python3.10",
+      "python3.13",
+      "python3.14",
+      "python3.8"
+    ]
+  }
+}

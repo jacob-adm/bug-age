@@ -1,0 +1,17 @@
+# psf/requests, the whole repository with the python profile (any-language example).
+name = "requests"
+repo_url = "https://github.com/psf/requests"
+head = "3c7baaa05ab4aa49cc819ce3a819d260de19c157"
+path = "."
+profile = "python"
+import = "requests"
+install = ".[socks]"
+test_deps = ["pytest", "pytest-httpbin", "pytest-mock", "trustme"]
+test = "python -m pytest -q -p no:cacheprovider tests -k 'not test_connect_timeout and not test_total_timeout_connect and not test_https_warnings'"
+not_covered = "tests needing the internet (connect timeouts) or a certificate valid today (test_https_warnings)"
+work_dir = "work/requests"
+results_dir = "results/requests"
+spike_dir = "results/requests/spike"
+dist_dir = "dist/requests"
+samples = 20
+out_of_scope = "Documentation and packaging scripts|.py files outside the requests package are blamed with it; no separate scope|which files outside the package changed behaviour"

@@ -1,0 +1,25 @@
+{
+  "command": "bug_age/__main__.py sweep --repo work/requests --path . --fix bc7dd0fc4d56e808bcdd85ac2d797b3107c89259 --start 26bea1e498d6e234fbc9ce8e07c0389bac73810b --overlay results/requests/repros/bc7dd0fc4d/overlay --runner docker --repeats 3 --build 'python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py' --test 'python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py' --logs work/sweep-logs/bc7dd0fc4d --out results/requests/repros/bc7dd0fc4d/sweep.json --namespace w1 --profile python --install '.[socks]' --test-deps pytest,pytest-httpbin,pytest-mock,trustme",
+  "inputs": {
+    "fix": "bc7dd0fc4d56e808bcdd85ac2d797b3107c89259",
+    "overlay_files": [
+      "tests/bugage_repro_test.py sha256:ce6bccb0013fbe5e39d69be22751133903dbf09cc68a1265f6d8efe3a0952fec"
+    ],
+    "repo_head": "3c7baaa05ab4aa49cc819ce3a819d260de19c157",
+    "start": "26bea1e498d6e234fbc9ce8e07c0389bac73810b"
+  },
+  "report_sha256": "cb2cfe23140e8e4ad5be24d2e5cf2f845c2f2de9fda732fb837486345dcae5a5",
+  "verdict": "censored-by-testability",
+  "versions": {
+    "bug-age": "2.1.1",
+    "docker": "29.8.1 arm64",
+    "git": "git version 2.50.1 (Apple Git-155)",
+    "image_recipe": "d39aa6d77a00a5d11104401bed74ad5f2f76486dfc39d9f04e6674f2a6038e57",
+    "images": {
+      "bug-age-python:3.11-d39aa6d77a00": "sha256:796874b805db3510dd9c092aac993dc384e6c2db6c99904b98197fa249e7e8b8",
+      "bug-age-python:3.12-d39aa6d77a00": "sha256:9f81d5dc9ac371a06508f030695da6a701bc8684c1a6dc1fabbf2ece906a0a4a",
+      "bug-age-python:3.14-d39aa6d77a00": "sha256:b2ecc7195d4ca06da4e2a83c9555ef9d0ffb8666868a4adfd9265d40a9f1a216"
+    },
+    "uv_exclude_newer": "commit time"
+  }
+}
