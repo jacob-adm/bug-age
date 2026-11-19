@@ -7,6 +7,7 @@ import subprocess
 import tempfile
 import time
 import unittest
+import warnings
 from pathlib import Path
 
 from bug_age import runner
@@ -80,6 +81,15 @@ class Limits(unittest.TestCase):
         self.assertEqual(r["outcome"], "FAIL")
         self.assertIn("stopped at the 1 s step limit", r["reason"])
         self.assertEqual(r["steps"][-1]["exit"], runner.TIMED_OUT)
+
+    def test_output_pipe_is_closed_when_the_step_returns(self):
+        """Neither a finished nor a stopped step leaves its output pipe for the garbage collector."""
+        for name, cmd, timeout in (("done", "echo out", None), ("stopped", "echo out; sleep 5", 1)):
+            with self.subTest(name), warnings.catch_warnings(record=True) as caught:
+                warnings.simplefilter("always", ResourceWarning)
+                runner.run_logged(["sh", "-c", cmd], self.d / f"{name}.log", timeout=timeout)
+                leaks = [str(w.message) for w in caught if issubclass(w.category, ResourceWarning)]
+                self.assertEqual(leaks, [])
 
     def test_step_timeout_must_be_positive(self):
         """--step-timeout 0 is a usage error."""
