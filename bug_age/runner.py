@@ -177,6 +177,8 @@ def run_logged(argv, log, stdin=None, cwd=None, env=None, timeout=None, on_timeo
         if on_timeout is not None:
             on_timeout()
     reader.join(timeout=10)
+    if not reader.is_alive():
+        proc.stdout.close()
     seconds = round1(time.monotonic() - t0)
     log = Path(log)
     log.parent.mkdir(parents=True, exist_ok=True)
