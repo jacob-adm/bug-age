@@ -1,0 +1,66 @@
+{
+  "target": "requests",
+  "repo_url": "https://github.com/psf/requests",
+  "head": "3c7baaa05ab4aa49cc819ce3a819d260de19c157",
+  "crate_path": ".",
+  "profile": "python",
+  "generated_utc": "2026-11-15T09:48:02+00:00",
+  "stages": [
+    {
+      "stage": "clone",
+      "status": "OK",
+      "reason": "at pinned head 3c7baaa05a",
+      "seconds": 0,
+      "output": null,
+      "sha256": null
+    },
+    {
+      "stage": "feasibility (baseline)",
+      "status": "OK",
+      "reason": "NO-GO, built+tested share 0.05",
+      "seconds": 5104,
+      "output": "results/requests/spike/results/report.json",
+      "sha256": "a5d297ba34f4d80b2028472927956411c140f9fe198c25fc4048018f1c6707d0"
+    },
+    {
+      "stage": "feasibility (time-travel)",
+      "status": "OK",
+      "reason": "NO-GO, built+tested share 0.15",
+      "seconds": 485,
+      "output": "results/requests/spike/results-timetravel/report.json",
+      "sha256": "06ee4378ec40a6dc63737c6ff2a6eb9d4b8bb08182097fca6857da4c75a36aa8"
+    },
+    {
+      "stage": "catalog (rule-based fixes)",
+      "status": "OK",
+      "reason": "catalog: 169 fixes, 40 excluded, 2651 commits scanned",
+      "seconds": 0,
+      "output": "results/requests/catalog.json",
+      "sha256": "860bb159ee367d8bfe3809d499e801b3ad886a89baf0c5779a92ac70ff02b8eb"
+    },
+    {
+      "stage": "Method A (szz)",
+      "status": "OK",
+      "reason": "szz: 169 fixes, 88 with a nominated introducer, 0 in window",
+      "seconds": 19,
+      "output": "results/requests/szz.json",
+      "sha256": "013f4b0b8662fc501e887305d2b2bf4be2008ddd7b41a8c2dcf6960e6b8d9d02"
+    },
+    {
+      "stage": "Method B (repro sweeps)",
+      "status": "OK",
+      "reason": "3 repros swept",
+      "seconds": 217,
+      "output": null,
+      "sha256": null
+    },
+    {
+      "stage": "bundle",
+      "status": "OK",
+      "reason": "bundle: 150453 bytes, sha256 da1766a376f05e5b3255db58eafd923ba39e895ccfba939c60694f8eac5f02f5, blameless gate PASS",
+      "seconds": 5,
+      "output": "dist/requests/bundle.json",
+      "sha256": "da1766a376f05e5b3255db58eafd923ba39e895ccfba939c60694f8eac5f02f5"
+    }
+  ]
+}

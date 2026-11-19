@@ -1,0 +1,51 @@
+{
+  "repeats": 3,
+  "results": [
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "60865f21aea4eb319d5b916adcc76de10c64e506",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2022-06-08T16:12:53Z '.[socks]' pytest pytest-httpbin pytest-mock trustme",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 4.1
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "build",
+          "network": false,
+          "seconds": 0.6
+        }
+      ],
+      "toolchain": "python3.10"
+    },
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "e36f34597ca96c40dbb81d63a8fe9ac0860b8dc3",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2022-06-08T18:03:56Z '.[socks]' pytest pytest-httpbin pytest-mock trustme",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 4.1
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "build",
+          "network": false,
+          "seconds": 0.6
+        }
+      ],
+      "toolchain": "python3.10"
+    }
+  ],
+  "runner": "docker",
+  "test": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py"
+}

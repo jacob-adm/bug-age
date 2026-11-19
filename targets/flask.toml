@@ -1,0 +1,17 @@
+# pallets/flask, the whole repository with the python profile (any-language example).
+name = "flask"
+repo_url = "https://github.com/pallets/flask"
+head = "49943b5a94413a530761350f04e896f76e8d620e"
+path = "."
+profile = "python"
+import = "flask"
+install = "."
+test_deps = ["pytest", "asgiref", "greenlet", "python-dotenv", "blinker"]
+test = "python -m pytest -q -p no:cacheprovider tests"
+not_covered = "examples and docs tests; type checks"
+work_dir = "work/flask"
+results_dir = "results/flask"
+spike_dir = "results/flask/spike"
+dist_dir = "dist/flask"
+samples = 20
+out_of_scope = "Documentation and examples|.py files outside the flask package are blamed with it; no separate scope|which files outside the package changed behaviour"

@@ -1,0 +1,208 @@
+{
+  "build": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+  "commits_tested": 5,
+  "confirmation": "decisive commits confirmed x3",
+  "first_failing": "5e378b4f28af344702a65fcce85a7d8574674860",
+  "fix": "127df57a06ec7b1a8b698206b1bdefc93248de5a",
+  "frontier": "5e378b4f28af344702a65fcce85a7d8574674860",
+  "last_passing": null,
+  "non_monotonic": false,
+  "range_commits": 380,
+  "reason": "test fails from the first commit of the range",
+  "repeats": 3,
+  "results": [
+    {
+      "outcome": "FAIL",
+      "reason": "failed 3x",
+      "sha": "5e378b4f28af344702a65fcce85a7d8574674860",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2019-05-06T17:46:38Z . pytest asgiref greenlet python-dotenv blinker",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 2.0
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 0.5
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.7
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_2",
+          "network": false,
+          "seconds": 0.7
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_3",
+          "network": false,
+          "seconds": 0.7
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 1x",
+      "sha": "819368a52dc9eb0ba4e20195783f2807872dabad",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2019-05-06T19:23:35Z . pytest asgiref greenlet python-dotenv blinker",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 3.1
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 0.9
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_1",
+          "network": false,
+          "seconds": 1.0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 1x",
+      "sha": "1dda032b00cb4f7a783e018a7c370ee88f15e797",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2019-05-06T20:34:46Z . pytest asgiref greenlet python-dotenv blinker",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 3.3
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 0.9
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_1",
+          "network": false,
+          "seconds": 1.0
+        }
+      ],
+      "toolchain": "python3.8"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 3x",
+      "sha": "f976d5bb88216e921a96998f767df31d7039e4ef",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2022-04-28T17:48:05Z . pytest asgiref greenlet python-dotenv blinker",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 4.9
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 0.9
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_1",
+          "network": false,
+          "seconds": 1.1
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_2",
+          "network": false,
+          "seconds": 1.1
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_3",
+          "network": false,
+          "seconds": 0.8
+        }
+      ],
+      "toolchain": "python3.10"
+    },
+    {
+      "outcome": "PASS",
+      "reason": "passed 3x",
+      "sha": "127df57a06ec7b1a8b698206b1bdefc93248de5a",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2022-05-03T17:56:11Z . pytest asgiref greenlet python-dotenv blinker",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 6.2
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 0.9
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.9
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "test_2",
+          "network": false,
+          "seconds": 1.0
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "test_3",
+          "network": false,
+          "seconds": 1.0
+        }
+      ],
+      "toolchain": "python3.10"
+    }
+  ],
+  "runner": "docker",
+  "search": "bisection",
+  "start": "5e378b4f28af344702a65fcce85a7d8574674860",
+  "test": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+  "untestable_between": 0,
+  "verdict": "left-censored"
+}

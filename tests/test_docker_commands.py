@@ -114,5 +114,45 @@ class PythonDockerCommands(unittest.TestCase):
         self.assertEqual(text, golden.read_text())
 
 
+class SourceReset(unittest.TestCase):
+    """A source volume that cannot be removed is never staged over."""
+
+    def probe(self, fail_removals):
+        """Probe one commit with a docker that refuses the first `fail_removals` volume removals."""
+        repo = SyntheticRepo()
+        self.addCleanup(repo.cleanup)
+        d = Path(tempfile.mkdtemp(prefix="bug-age-reset-"))
+        self.addCleanup(shutil.rmtree, d, True)
+        (d / "bin").mkdir()
+        refusing = FAKE_DOCKER.replace("exit 0\n", f"""if [ "$1 $2" = "volume rm" ]; then
+  n=$(cat "$BUG_AGE_DOCKER_TRACE.rm" 2>/dev/null || echo 0); echo $((n + 1)) > "$BUG_AGE_DOCKER_TRACE.rm"
+  [ "$n" -lt {fail_removals} ] && {{ echo "volume is in use" >&2; exit 1; }}
+fi
+exit 0
+""")
+        (d / "bin" / "docker").write_text(refusing)
+        (d / "bin" / "docker").chmod(0o755)
+        (d / "overlay" / "tests").mkdir(parents=True)
+        (d / "overlay" / "tests" / "bugage_repro.rs").write_text("#[test]\nfn repro() {}\n")
+        env = dict(clean_env(), PATH=f"{d / 'bin'}{os.pathsep}{os.environ['PATH']}", BUG_AGE_DOCKER_TRACE=str(d / "t"))
+        out = cli("probe", "--repo", repo.dir, "--path", "core", "--commits", repo.fix, "--overlay", d / "overlay",
+                  "--test", "true", "--runner", "docker", "--repeats", "1", "--time-travel-script", "none",
+                  "--scratch", d / "scratch", "--logs", d / "logs", env=env)
+        return json.loads(out.stdout)["results"][0], int((d / "t.rm").read_text())
+
+    def test_a_volume_released_late_is_retried(self):
+        """Two refusals, then success: the commit is tested normally."""
+        r, removals = self.probe(2)
+        self.assertEqual(r["outcome"], "PASS")
+        self.assertGreaterEqual(removals, 3)
+
+    def test_a_volume_never_released_makes_the_commit_untestable(self):
+        """Removal never succeeds: UNTESTABLE with the reason, and nothing staged over the old tree."""
+        r, _ = self.probe(1000)
+        self.assertEqual(r["outcome"], "UNTESTABLE")
+        self.assertIn("still in use", r["reason"])
+        self.assertEqual(r["steps"], [])
+
+
 if __name__ == "__main__":
     unittest.main()

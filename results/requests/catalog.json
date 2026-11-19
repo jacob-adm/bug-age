@@ -1,0 +1,1974 @@
+{
+  "excluded": [
+    {
+      "date": "2026-05-09",
+      "parents": [
+        "eb173bc819c72580deed2d54190d340cc769e529"
+      ],
+      "rule": "exclude:docs",
+      "sha": "e8d2c015eecda8273612dd4562425e00cd164ba5",
+      "subject": "docs: Fix missing hook output in docs example (#7421)"
+    },
+    {
+      "date": "2026-04-30",
+      "parents": [
+        "6ec76b4a36fba4a32fb72f5f9ba04e632635e477"
+      ],
+      "rule": "exclude:typo",
+      "sha": "27e0981962d355b9532256f4dcb3d42f64b04d9c",
+      "subject": "Fix remaining typos (#7395)"
+    },
+    {
+      "date": "2026-04-19",
+      "parents": [
+        "514c1623fefff760bfa15a693aa38e474aba8560"
+      ],
+      "rule": "exclude:typo",
+      "sha": "5f3ff9b9e4d3d44960467e7877e06e9efa22f20b",
+      "subject": "Fix typos discovered by codespell (#7371)"
+    },
+    {
+      "date": "2026-03-24",
+      "parents": [
+        "774a0b837a194ee885d4fdd9ca947900cc3daf71"
+      ],
+      "rule": "exclude:docs",
+      "sha": "753fd08c5eacce0aa0df73fe47e49525c67e0a29",
+      "subject": "docs: fix FAQ grammar in httplib2 example"
+    },
+    {
+      "date": "2026-01-30",
+      "parents": [
+        "70298332899f25826e35e42f8d83425124f755a5"
+      ],
+      "rule": "exclude:ci",
+      "sha": "f8bec2f7ca9d7c03981a12ff8866a9b3923f1699",
+      "subject": "Fix CI and build failures (#7190)"
+    },
+    {
+      "date": "2025-06-09",
+      "parents": [
+        "e57b5bf05c4e39281b5547b1bd05a5074dc96df3"
+      ],
+      "rule": "exclude:typo",
+      "sha": "3f07f990ac74f1e1691ba17ef8c14007f05846ab",
+      "subject": "Fix typo in documentation for verify"
+    },
+    {
+      "date": "2023-12-23",
+      "parents": [
+        "f3f978441916389abcb2f2a72522955d551326e9",
+        "25939d8784dc8bec784b8129152efa4443daa82f"
+      ],
+      "rule": "exclude:docs",
+      "sha": "72eccc8dd8b7c272e520f22b0256386c80864e94",
+      "subject": "Merge pull request #6612"
+    },
+    {
+      "date": "2023-11-22",
+      "parents": [
+        "c6de5a14e55588d2d3ff5726eaf92824ab1be4dc",
+        "15849947ec4b8b7c3c136a47e950499edfd36921"
+      ],
+      "rule": "exclude:typo",
+      "sha": "0b4d494192de489701d3a2e32acef8fb5d3f042e",
+      "subject": "Merge pull request #6581"
+    },
+    {
+      "date": "2023-08-18",
+      "parents": [
+        "89f0eb91b396619db6695b64e368950e36bdbe7f"
+      ],
+      "rule": "exclude:docs",
+      "sha": "2ee5b0b01c9e7c14217a536886b337d6f08b9aac",
+      "subject": "Fix documentation monthly download badge (#6508)"
+    },
+    {
+      "date": "2023-06-26",
+      "parents": [
+        "6e5b15d542a4e85945fd72066bb6cecbc3a82191"
+      ],
+      "rule": "exclude:typo",
+      "sha": "22db55a8896b69e53d0a3cc2764c27b832c81478",
+      "subject": "Fix doc typo (#6467)"
+    },
+    {
+      "date": "2023-05-22",
+      "parents": [
+        "147c8511ddbfa5e8f71bbf5c18ede0c4ceb3bba4"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "6e5b15d542a4e85945fd72066bb6cecbc3a82191",
+      "subject": "Fix linting issues"
+    },
+    {
+      "date": "2023-05-09",
+      "parents": [
+        "2ad18e0e10e7d7ecd5384c378f25ec8821a10a29"
+      ],
+      "rule": "exclude:typo",
+      "sha": "d3d504436ef0c2ac7ec8af13738b04dcc8c694be",
+      "subject": "Fixed a small typo (#6452)"
+    },
+    {
+      "date": "2022-06-29",
+      "parents": [
+        "4d394574f5555a8ddcc38f707e0c9f57f55d9a3b"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "bda7f0171f8bba17989d3a2c28dfa9a9261b1b65",
+      "subject": "Fixed warnings message to suggest using secure protocol. (#6188)"
+    },
+    {
+      "date": "2022-01-02",
+      "parents": [
+        "17e6e27a93131b7295165408e69b4cadb098b0d7"
+      ],
+      "rule": "exclude:docs",
+      "sha": "e50dc12b0f620ff80a0d2026b5b0a5282894bfd4",
+      "subject": "Fix doc link"
+    },
+    {
+      "date": "2021-09-15",
+      "parents": [
+        "1e5fad7433772b648fcbc921e2a79de5c4c6be8b"
+      ],
+      "rule": "exclude:typo",
+      "sha": "fc106ab586b9bfeca37c54780387b24b5d2b13b4",
+      "subject": "fix minor typos (#5934)"
+    },
+    {
+      "date": "2021-02-24",
+      "parents": [
+        "bdc00eb0978dd3cdd43f7cd1f95ced7aa75fab39"
+      ],
+      "rule": "exclude:typo",
+      "sha": "913880c45a3a8c3bf6b298e9c38709cd95a9c97c",
+      "subject": "Fix typo"
+    },
+    {
+      "date": "2021-01-22",
+      "parents": [
+        "083aa67a0d3309ebe37eafbe7bfd96c235a019cf"
+      ],
+      "rule": "exclude:typo",
+      "sha": "74b72800490901bfa21620b46ed25ac72b2e94b5",
+      "subject": "Fix typo request -> requests"
+    },
+    {
+      "date": "2020-06-15",
+      "parents": [
+        "2b3436e0e7831676044b57f6f2cc9eb7c188293e"
+      ],
+      "rule": "exclude:typo",
+      "sha": "8ac5929ae199164f3a96a6f7a53c177a87018f43",
+      "subject": "Fix typo in README (#5468)"
+    },
+    {
+      "date": "2020-05-08",
+      "parents": [
+        "427e8eb1e7559ac4739c04069310be18ddbb734f"
+      ],
+      "rule": "exclude:docs",
+      "sha": "9ed5db8ed28e816b597dafd328b342ec95466afa",
+      "subject": "fix raise_for_status docstring (#5293)"
+    },
+    {
+      "date": "2020-04-03",
+      "parents": [
+        "bebf5250b0df1b922ff534e987a4481cc4dde99d"
+      ],
+      "rule": "exclude:typo",
+      "sha": "c577eb8d5fa39eb4acdc64eb2e957a2c1b261c9b",
+      "subject": "fix README typo"
+    },
+    {
+      "date": "2019-07-23",
+      "parents": [
+        "9a2e5df000691ad28613524ca7f80aa28a94a8d5",
+        "5f576ad22f5510f3f13dc866542b63664624b16a"
+      ],
+      "rule": "exclude:typo",
+      "sha": "589a82256759018a7e5e289302898dae32544949",
+      "subject": "Merge pull request #5141"
+    },
+    {
+      "date": "2018-06-26",
+      "parents": [
+        "9fc639d0306a8068057c9f5bcd34adf5f20fb083",
+        "5d9063828150c349dcafffefbd952b194817ba05"
+      ],
+      "rule": "exclude:docs",
+      "sha": "ef88b9faa6d73bc83a07ddebc424c551d2ee671c",
+      "subject": "Merge pull request #4713"
+    },
+    {
+      "date": "2017-05-27",
+      "parents": [
+        "d42556a936fc3d56299d1462adfa48614f3f9712"
+      ],
+      "rule": "exclude:lint-tool",
+      "sha": "03dd91093bfa4a0eae23824c3ad98a052da16cfa",
+      "subject": "pep8 fix"
+    },
+    {
+      "date": "2017-04-08",
+      "parents": [
+        "f061fb7e28a480e911cc49de7d41f9ec0ff5215b",
+        "1cd173a82c6a88d53340775d85a5620bc50955bc"
+      ],
+      "rule": "exclude:typo",
+      "sha": "84a60407628e83c004e3ea24a2d856a55d7a5c59",
+      "subject": "Merge pull request #3958"
+    },
+    {
+      "date": "2017-01-17",
+      "parents": [
+        "d374a182d997d6c07e519328ccdb8f2fec3ef7a6"
+      ],
+      "rule": "exclude:build-only",
+      "sha": "65fb2a50c839ca5ae6496498efb0548054481d1e",
+      "subject": "further fix the build"
+    },
+    {
+      "date": "2017-01-17",
+      "parents": [
+        "115b438e6a3b4e3d29c932cbf3da160b07591020"
+      ],
+      "rule": "exclude:build-only",
+      "sha": "d374a182d997d6c07e519328ccdb8f2fec3ef7a6",
+      "subject": "fixing build"
+    },
+    {
+      "date": "2016-12-21",
+      "parents": [
+        "bc8b29099e67e7ce3b96739de0f5ba855aa6fba5"
+      ],
+      "rule": "exclude:docs",
+      "sha": "5aa66615870beeb7b0ed3af27457f689db262ab3",
+      "subject": "fix urllib3 documentation link (#3785)"
+    },
+    {
+      "date": "2016-11-15",
+      "parents": [
+        "512a78173a2d6b96d1131d20b52e9650203fc780",
+        "87b7914bb23d63d57729c134b5c2511d1203a8cb"
+      ],
+      "rule": "exclude:docs",
+      "sha": "9a0a6cab55711c01942b14e9a73a610954b6dd08",
+      "subject": "Merge pull request #3688"
+    },
+    {
+      "date": "2016-04-29",
+      "parents": [
+        "efb4af01271c8c0ddf49457c7096a5bc91edbdad"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "296928f36f9e6a1041769ebe3d15f322bff51206",
+      "subject": "fixed date formatting"
+    },
+    {
+      "date": "2016-02-03",
+      "parents": [
+        "87f04e2a3233639e0d394a0add24772054bec1da"
+      ],
+      "rule": "exclude:docs",
+      "sha": "20290e3f2c55037dfced04e91550b2a213dcfa65",
+      "subject": "docs fix"
+    },
+    {
+      "date": "2016-01-22",
+      "parents": [
+        "d76f30446226ed4667da4b944d8e2f9b4c5b3b01",
+        "75c7e5f1c310b19a0b66f75be5e72f4a0ef5821f"
+      ],
+      "rule": "exclude:docs",
+      "sha": "00fa5f171c9366c9b61d633aa1218b5bcb866f99",
+      "subject": "Merge pull request #2976"
+    },
+    {
+      "date": "2015-08-15",
+      "parents": [
+        "3cf4ec41b916b354f49121fe2f54bffba9b11cef",
+        "7197afa8874a3751a3dfafffc715c598e3be55ca"
+      ],
+      "rule": "exclude:docs",
+      "sha": "c7c26fb8eb60a181795c9a39c41519bc0263b8a1",
+      "subject": "Merge pull request #2730"
+    },
+    {
+      "date": "2015-08-15",
+      "parents": [
+        "98a59e4894ce68f4aced0e39e70baa3bf874fc02",
+        "f40bd0f7074ccda6be66c77f39442770d7669af0"
+      ],
+      "rule": "exclude:docs",
+      "sha": "fdc76f12e53d06ace9565dc1a960f939f2c21006",
+      "subject": "Merge pull request #2728"
+    },
+    {
+      "date": "2014-10-05",
+      "parents": [
+        "90dc467fc0b1f4f1b7472acb5708e3017a53fa70"
+      ],
+      "rule": "exclude:docs",
+      "sha": "79f56e2e7e9cf1828da8287735751a998269a5f1",
+      "subject": "fix documentation for utils.get_unicode_from_response() :)"
+    },
+    {
+      "date": "2014-09-23",
+      "parents": [
+        "d28d45af915adcc964f1621e8115b40b2db0cbba",
+        "671ba85d410febab91ac580eab8282a485c89108"
+      ],
+      "rule": "exclude:docs",
+      "sha": "e0d88c2814f24e7da11b03351934bd1df5e27476",
+      "subject": "Merge pull request #2245"
+    },
+    {
+      "date": "2013-10-17",
+      "parents": [
+        "011f6dac820a644a9a09c8751f4aea374f5567c6"
+      ],
+      "rule": "exclude:build-only",
+      "sha": "ab8e43a19677dd04f86d51250770efe65987b914",
+      "subject": "fix unprotected build status link"
+    },
+    {
+      "date": "2013-09-24",
+      "parents": [
+        "4f463e897afb15db253994829af24928cf4f4535"
+      ],
+      "rule": "exclude:docs",
+      "sha": "b8a88351518ada5d3da4629143e2c98d3a406d5a",
+      "subject": "readme fix"
+    },
+    {
+      "date": "2013-07-22",
+      "parents": [
+        "e5597dfcce0dbb82b906e7ac4e72541fd0eff0ec",
+        "4f64938ff02438bf6b1e379371f5182d48397c32"
+      ],
+      "rule": "exclude:lint-or-format",
+      "sha": "66de6b528d268816d8c4e21a29939b75e8e5c369",
+      "subject": "Merge pull request #1479"
+    },
+    {
+      "date": "2013-03-02",
+      "parents": [
+        "07441c89510753eee7a300c16b93ad7b1f65c2d0",
+        "057f32924a3d90216760fbe09a3e3a96870f69fc"
+      ],
+      "rule": "exclude:typo",
+      "sha": "76c4b68e4af1abb917bc89594271ff45b18d13ff",
+      "subject": "Merge pull request #1226"
+    },
+    {
+      "date": "2013-03-02",
+      "parents": [
+        "08cab484319d5ce162147654483be38838f1f61e",
+        "38f2581d6ff4d7ca8011929685917b931f256b77"
+      ],
+      "rule": "exclude:docs",
+      "sha": "98ff29f793ed1f7a7bbc533dcd7abec1ce76da77",
+      "subject": "Merge pull request #1230"
+    }
+  ],
+  "fixes": [
+    {
+      "date": "2026-07-09",
+      "parents": [
+        "4c800e9aea2059660b8306b0fc8f9e9a4232cb3e"
+      ],
+      "rule": "include",
+      "sha": "d38495c90653496c3c81f31e8f9bef162b400b44",
+      "subject": "Fix link to AI Policy in CONTRIBUTING.md (#7576)"
+    },
+    {
+      "date": "2026-06-08",
+      "parents": [
+        "661970d171d9c3e12e4c789c4768db647d8c4da0"
+      ],
+      "rule": "include",
+      "sha": "6f205ff422bccd5e4c4fc0b64c5f3e7df5181db6",
+      "subject": "Fix `_encode_files` detection for `__getattr__`-based file wrappers (#7502)"
+    },
+    {
+      "date": "2026-05-13",
+      "parents": [
+        "5691f596134c2feb121e595c77a0178921fcce61"
+      ],
+      "rule": "include",
+      "sha": "e511bc72777a94c45d004e010c597925092e1efe",
+      "subject": "Fix mutability issues with headers input types (#7431)"
+    },
+    {
+      "date": "2026-05-12",
+      "parents": [
+        "0b401c76b6e80a4eecf3c690085b2553f6e261ca"
+      ],
+      "rule": "include",
+      "sha": "6404f345e562d962abe6700a1c357ec1e7e18232",
+      "subject": "Fix `prepare_body` stream detection for `__getattr__`-based file wrappers (#7433)"
+    },
+    {
+      "date": "2026-05-11",
+      "parents": [
+        "dc9dbdfb3434c6e58d48fd102f93e5342308817e"
+      ],
+      "rule": "include",
+      "sha": "b684dcb9bbf3aa557d1238e72062c4a29737dd1c",
+      "subject": "sessions: fix hooks type (#7425)"
+    },
+    {
+      "date": "2026-03-30",
+      "parents": [
+        "bc7dd0fc4d56e808bcdd85ac2d797b3107c89259"
+      ],
+      "rule": "include",
+      "sha": "f0198e6dfc431a2293dc16e1b1e8fcddc910a7f3",
+      "subject": "Fix malformed value parsing for Content-Type (#7309)"
+    },
+    {
+      "date": "2026-03-30",
+      "parents": [
+        "4443b1a847b190010c2972a658924b98b5db6360"
+      ],
+      "rule": "include",
+      "sha": "bc7dd0fc4d56e808bcdd85ac2d797b3107c89259",
+      "subject": "Fix cosmetic header validity parsing regex (#7308)"
+    },
+    {
+      "date": "2026-03-30",
+      "parents": [
+        "389eea58dfb2f2ee096421a812e3af29c0298951"
+      ],
+      "rule": "include",
+      "sha": "4443b1a847b190010c2972a658924b98b5db6360",
+      "subject": "Fix unintended test extra (#7306)"
+    },
+    {
+      "date": "2026-02-12",
+      "parents": [
+        "1b40fdd004bfc8ba5301bcf8a6908264e9b6b877"
+      ],
+      "rule": "include",
+      "sha": "47914226c2968802f2cdee3f6f0f6e06e4472f64",
+      "subject": "Fix empty netrc entry usage (#7205)"
+    },
+    {
+      "date": "2025-02-17",
+      "parents": [
+        "1b7c37ef4e3db003cc52f09da9ab6b947054e245",
+        "9ebebdef98a6aacfbedcf2ca61ba0eaecc2563f4"
+      ],
+      "rule": "include",
+      "sha": "8ba805fa93c3f0fc958b48bc136ed565d7c82872",
+      "subject": "Merge pull request #6897"
+    },
+    {
+      "date": "2024-05-24",
+      "parents": [
+        "88dce9d854797c05d0ff296b70e0430535ef8aaf",
+        "b1d73ddb509a3a2d3e10744e85f9cdebdbde90f0"
+      ],
+      "rule": "include",
+      "sha": "145b5399486b56e00250204f033441f3fdf2f3c9",
+      "subject": "Merge pull request #6716"
+    },
+    {
+      "date": "2024-03-14",
+      "parents": [
+        "a58d7f2ffb4d00b46dca2d70a3932a0b37e22fac",
+        "a94e9b5308ffcc3d2913ab873e9810a6601a67da"
+      ],
+      "rule": "include",
+      "sha": "eeafb6ab3a54ab01cbf864d452ea30f5fdb67ce8",
+      "subject": "Merge pull request #6662"
+    },
+    {
+      "date": "2024-03-11",
+      "parents": [
+        "eea3bbf9ac635f465ee6c9903dc57c677952dafd",
+        "c0813a2d910ea6b4f8438b91d315b8d181302356"
+      ],
+      "rule": "include",
+      "sha": "a58d7f2ffb4d00b46dca2d70a3932a0b37e22fac",
+      "subject": "Merge pull request #6655"
+    },
+    {
+      "date": "2024-02-23",
+      "parents": [
+        "b8be93a721792deeadd2f498b8f77cf610e7765f",
+        "a0e79bad059f2d0e6d3c00a2a7311acb2bef4d67"
+      ],
+      "rule": "include",
+      "sha": "f3f2611d832e762423f55e08899c64224902dad1",
+      "subject": "Merge pull request #6583"
+    },
+    {
+      "date": "2024-02-22",
+      "parents": [
+        "382fc2c0c6c0ef0874bc65bc1175f97c073e5086",
+        "60389df6d69ce833164696dcf36cbb43336d3426"
+      ],
+      "rule": "include",
+      "sha": "3587a5f869ea7ae2ba6b20d281d810b65aa2418e",
+      "subject": "Merge pull request #6644"
+    },
+    {
+      "date": "2024-02-22",
+      "parents": [
+        "7a13c041dbef42f9f3feb14110f02626f6892e9a",
+        "3ff3ff21dd45957c9e143cd500291959bb15f690"
+      ],
+      "rule": "include",
+      "sha": "382fc2c0c6c0ef0874bc65bc1175f97c073e5086",
+      "subject": "Merge pull request #6629"
+    },
+    {
+      "date": "2023-12-19",
+      "parents": [
+        "e4c821a24778c3a33beec2aa86f3d58e3d94b58c",
+        "1447bccc057e7fbffdfecd75cd4922702489a14b"
+      ],
+      "rule": "include",
+      "sha": "1396eb6f7a1116d49f1f0df0ddf895343f84af64",
+      "subject": "Merge pull request #6605"
+    },
+    {
+      "date": "2023-12-16",
+      "parents": [
+        "1ddf014f477c322197400c365aef9fab56e25e40",
+        "ec84f2c539d952499e0207849dfd3f73e2c11324"
+      ],
+      "rule": "include",
+      "sha": "3b5978fc5d1c121d70e83ddf59379cf36418b4ce",
+      "subject": "Merge pull request #6592"
+    },
+    {
+      "date": "2023-12-01",
+      "parents": [
+        "0b4d494192de489701d3a2e32acef8fb5d3f042e",
+        "d6ffd868ee3730f4e5c7d1595da37e2027a93eb8"
+      ],
+      "rule": "include",
+      "sha": "769bc3ae5cc8cb42242e4505b310dd10889cb54c",
+      "subject": "Merge pull request #6596"
+    },
+    {
+      "date": "2023-10-06",
+      "parents": [
+        "ee93fac6b2f715151f1aa9a1a06ddba9f7dcc59a"
+      ],
+      "rule": "include",
+      "sha": "f5a7aefc2dc123c65ec1c6d3e83949999b03876b",
+      "subject": "Fix urllib3 pin in setup.cfg (#6545)"
+    },
+    {
+      "date": "2023-08-16",
+      "parents": [
+        "005571d1180835eb5266a3fdbdbe8fdae57d90c2"
+      ],
+      "rule": "include",
+      "sha": "89f0eb91b396619db6695b64e368950e36bdbe7f",
+      "subject": "fix monthly download badge (#6507)"
+    },
+    {
+      "date": "2023-01-18",
+      "parents": [
+        "61c324da43dd8b775d3930d76265538b3ca27bc1"
+      ],
+      "rule": "include",
+      "sha": "16a17a3ca7134b0a56c49653165ef37cb6acfece",
+      "subject": "fix: Remove '<4' from python_requires (#6333)"
+    },
+    {
+      "date": "2022-06-08",
+      "parents": [
+        "0f358eabe6f8e4c472a5030d9cd513965868bd6c"
+      ],
+      "rule": "include",
+      "sha": "3af2f456d8c0a90bd6609f2205cd0b2d0f7f800e",
+      "subject": "Fix output of test_lowlevel tests in case of timeout (#6136)"
+    },
+    {
+      "date": "2022-05-13",
+      "parents": [
+        "cb233a101d6333cf1895e3f46bde11874fcaba07"
+      ],
+      "rule": "include",
+      "sha": "79f2ec3acc4e24fef6e6ce31ad7b1d4e2f77be31",
+      "subject": "Grammar fix (#6133)"
+    },
+    {
+      "date": "2022-05-10",
+      "parents": [
+        "40956723f27daf5e0d9759208ca69cef236ab339"
+      ],
+      "rule": "include",
+      "sha": "cb233a101d6333cf1895e3f46bde11874fcaba07",
+      "subject": "Fix several ResourceWarnings in test_requests.py (#4766)"
+    },
+    {
+      "date": "2022-03-28",
+      "parents": [
+        "8bce583b9547c7b82d44c8e97f37cf9a16cbe758"
+      ],
+      "rule": "include",
+      "sha": "2d5517682b3b38547634d153cea43d48fbc8cdb5",
+      "subject": "Fix inconsistent exception for JSONDecode error (#6097)"
+    },
+    {
+      "date": "2022-01-17",
+      "parents": [
+        "fa1b0a367abc8488542f7ce7c02a3614ad8aa09d"
+      ],
+      "rule": "include",
+      "sha": "24dfbfde552bb8ce48eec415714cbe793cfa95bd",
+      "subject": "Update quickstart.rst : fixing brotlicffi link (#6044)"
+    },
+    {
+      "date": "2021-11-29",
+      "parents": [
+        "2d2447e210cf0b9e8c7484bfc6f158de9b24c171",
+        "4ab2550d667651e11229cf7e0489755fe6d998cc"
+      ],
+      "rule": "include",
+      "sha": "7556ea421387e7738464b88e0a8c67e0d953ea11",
+      "subject": "Merge pull request #5391"
+    },
+    {
+      "date": "2021-08-25",
+      "parents": [
+        "8ea90a5ce7b085449a2b5c61743574bf911733ee"
+      ],
+      "rule": "include",
+      "sha": "70a13e2a263983ac3a3e93591e8cebcf8a2169b1",
+      "subject": "Fix syntax error in lock action (#5912)"
+    },
+    {
+      "date": "2021-08-03",
+      "parents": [
+        "d8829f9f242149174e50f45e021ffb81fbbced70"
+      ],
+      "rule": "include",
+      "sha": "b0e025ade7ed30ed53ab61f542779af7e024932e",
+      "subject": "Fix broken link to adapters essay (#5899)"
+    },
+    {
+      "date": "2021-08-02",
+      "parents": [
+        "b227e3cb82c8d42ea27790d615ecafe12528d3bc"
+      ],
+      "rule": "include",
+      "sha": "d8829f9f242149174e50f45e021ffb81fbbced70",
+      "subject": "Fix extract_zipped_paths infinite loop when provided invalid unc path (#5851)"
+    },
+    {
+      "date": "2021-07-28",
+      "parents": [
+        "db575eeedcfdb03bf31285afd3033e301df8b685"
+      ],
+      "rule": "include",
+      "sha": "b227e3cb82c8d42ea27790d615ecafe12528d3bc",
+      "subject": "Fix creating non-listening sockets in tests on some platforms (#5890)"
+    },
+    {
+      "date": "2021-07-26",
+      "parents": [
+        "941a77f2b86a801aff9bda17c65b9f7e56f2c68a"
+      ],
+      "rule": "include",
+      "sha": "db575eeedcfdb03bf31285afd3033e301df8b685",
+      "subject": "Fix inconsistent exception type in response.json() method (#5856)"
+    },
+    {
+      "date": "2021-07-06",
+      "parents": [
+        "1466ad713cf84738cd28f1224a7ab4a19e50e361"
+      ],
+      "rule": "include",
+      "sha": "33d448eb21bbbf643cc1f61493b0b606d8352aea",
+      "subject": "Pin Flask to <2.0 to fix the test suite"
+    },
+    {
+      "date": "2021-05-31",
+      "parents": [
+        "f6d43b03fbb9a1e75ed63a9aa15738a8fce99b50"
+      ],
+      "rule": "include",
+      "sha": "1466ad713cf84738cd28f1224a7ab4a19e50e361",
+      "subject": "Fix GitHub links (#5835)"
+    },
+    {
+      "date": "2021-04-11",
+      "parents": [
+        "2c2138e811487b13020eb331482fb991fd399d4e"
+      ],
+      "rule": "include",
+      "sha": "c45a4dfe6bfc6017d4ea7e9f051d6cc30972b310",
+      "subject": "grammar fix (#5791)"
+    },
+    {
+      "date": "2020-11-28",
+      "parents": [
+        "9ce669e3ae71f63f064224093c3e21d9c57871ce"
+      ],
+      "rule": "include",
+      "sha": "d0359c9460eb83759734dd898b1dd633f5477b89",
+      "subject": "Fix broken link"
+    },
+    {
+      "date": "2020-05-08",
+      "parents": [
+        "251f73f65d46ff5de64b8ae2e6c6fe38c1a28808"
+      ],
+      "rule": "include",
+      "sha": "427e8eb1e7559ac4739c04069310be18ddbb734f",
+      "subject": "Fix test_conflicting_post_params to work on pytest 5 (#5305)"
+    },
+    {
+      "date": "2020-04-03",
+      "parents": [
+        "c577eb8d5fa39eb4acdc64eb2e957a2c1b261c9b"
+      ],
+      "rule": "include",
+      "sha": "9ea85109a51d6573caab6d6811c503dfec456ea7",
+      "subject": "fixing rst markup"
+    },
+    {
+      "date": "2020-02-18",
+      "parents": [
+        "24bcb9eab60d2db5e71979ea391b3e5675daff1f"
+      ],
+      "rule": "include",
+      "sha": "fd13816d015c4c90ee65297fa996caea6a094ed1",
+      "subject": "Revert \"Fix for response with UTF-8 BOM #4976\""
+    },
+    {
+      "date": "2020-02-18",
+      "parents": [
+        "80011a7917afe2cd6a5fa8359e7ea90203880b3c"
+      ],
+      "rule": "include",
+      "sha": "b15056d1d3c4ca3546c88b9fe390f0721b198c2e",
+      "subject": "Revert \"#4965 fix: Accessing response.content twice removes forgets read error.\""
+    },
+    {
+      "date": "2020-02-17",
+      "parents": [
+        "23f6faa7cd36a95aa08da7885ad0adf41dd94ec0"
+      ],
+      "rule": "include",
+      "sha": "e11302018b72679505503241c9276a46c163e14a",
+      "subject": "Fix the syntax highlighting in the example (#5276)"
+    },
+    {
+      "date": "2019-04-20",
+      "parents": [
+        "2d120e32dbb511bcabee02277d31d26fa986f576"
+      ],
+      "rule": "include",
+      "sha": "5d0635473446121afeea34d109504a44be14d4e0",
+      "subject": "fix"
+    },
+    {
+      "date": "2019-04-20",
+      "parents": [
+        "69856f3052037e47113c59c5c22cc48d20a6f6b0"
+      ],
+      "rule": "include",
+      "sha": "2d120e32dbb511bcabee02277d31d26fa986f576",
+      "subject": "fix"
+    },
+    {
+      "date": "2018-11-13",
+      "parents": [
+        "398d1105b4c25740687baf0c5635b9c8ce00f632"
+      ],
+      "rule": "include",
+      "sha": "ce52825d125f7b58a426b0c88c619af21b71ed0d",
+      "subject": "fix coverage"
+    },
+    {
+      "date": "2018-11-13",
+      "parents": [
+        "7d4fc04a6fe64a524c2db9b177ed4758c01bd3fd"
+      ],
+      "rule": "include",
+      "sha": "398d1105b4c25740687baf0c5635b9c8ce00f632",
+      "subject": "fix coverage"
+    },
+    {
+      "date": "2018-10-18",
+      "parents": [
+        "75bdc998e2d430a35d869b2abf1779bd0d34890e"
+      ],
+      "rule": "include",
+      "sha": "a1f4e62aa4724bffbc3e35b960afc26302442af1",
+      "subject": "fix broken HISTORY.md reference"
+    },
+    {
+      "date": "2018-08-13",
+      "parents": [
+        "dffd5d435e2d51958af1ccc9fd5e0f8f9df2fdfe",
+        "8023a01dba6f7d6c2ae0336c59a368929ef26ac3"
+      ],
+      "rule": "include",
+      "sha": "9cfd292da33f3b8324ce2c20e01db0e2f8b9210b",
+      "subject": "Merge pull request #4723"
+    },
+    {
+      "date": "2018-03-07",
+      "parents": [
+        "f21fd19ac55595fa6699c734399970b603978a59"
+      ],
+      "rule": "include",
+      "sha": "665bb2a6874bcbbfc864c100490b4dcb47a3aad9",
+      "subject": "fix"
+    },
+    {
+      "date": "2018-03-07",
+      "parents": [
+        "773eeff1a2531904a7e7ba4dd95e58428c5fc26c"
+      ],
+      "rule": "include",
+      "sha": "f51c489d38f7a1152be43ad103b3468db91cdd9c",
+      "subject": "fix"
+    },
+    {
+      "date": "2018-03-07",
+      "parents": [
+        "a4f313a0e53c9fba64b8488a2034a7c249f9db86"
+      ],
+      "rule": "include",
+      "sha": "ac0a7ed152d370a2cc25d86cdb9ef4925ad13982",
+      "subject": "fix"
+    },
+    {
+      "date": "2018-03-07",
+      "parents": [
+        "c78c5002b5b48123a2ed15bdf7ab036daeab745b"
+      ],
+      "rule": "include",
+      "sha": "7fb1d70b8677d8da14110489784ed3fb724d2696",
+      "subject": "fix fix fix"
+    },
+    {
+      "date": "2018-03-07",
+      "parents": [
+        "8ad24ad430f96c21c6143fc21e75b755e7ac5b69"
+      ],
+      "rule": "include",
+      "sha": "d123e9fe78e7d76d407d7a46b0b5a70be5adecd5",
+      "subject": "fix broken things"
+    },
+    {
+      "date": "2017-11-20",
+      "parents": [
+        "e4fc3539b43416f9e9ba6837d73b1b7392d4b242"
+      ],
+      "rule": "include",
+      "sha": "acd2645444d280ac0c5d2d227fdd222cb1ac609c",
+      "subject": "#4373, fix possible winreg value type difference (#4377)"
+    },
+    {
+      "date": "2017-11-15",
+      "parents": [
+        "234f80af88ff2aab39bbd65a3131ae93e1917c25",
+        "9a8a826f226e6973d72914b4a4fc806e0b5036f4"
+      ],
+      "rule": "include",
+      "sha": "d55de2d391d1350766221ce0aa36e670dc2a0169",
+      "subject": "Merge pull request #4356"
+    },
+    {
+      "date": "2017-08-27",
+      "parents": [
+        "5dcbdb50fc9652cbeffeec22a21d1196e938bfca",
+        "3a2ea9debac665fed6f5bdac0f1084067e3f0060"
+      ],
+      "rule": "include",
+      "sha": "f09e4621657da47044ef95ed071fca4f136e4ff6",
+      "subject": "Merge pull request #4261"
+    },
+    {
+      "date": "2017-05-29",
+      "parents": [
+        "008ab18a7702fa158607595e56ff9e64143c6031"
+      ],
+      "rule": "include",
+      "sha": "ba509635a3cbf5a55bf7ed7db658411cde9469f8",
+      "subject": "fix sidebars"
+    },
+    {
+      "date": "2017-05-29",
+      "parents": [
+        "35f2e55308fc37647132cf350cfd131bcdba4023"
+      ],
+      "rule": "include",
+      "sha": "0f57faba7007eede15a0207907c51cc954df5295",
+      "subject": "fix github stars"
+    },
+    {
+      "date": "2017-05-29",
+      "parents": [
+        "916d171f2bf01155f2c115159ec475e8d76a690b"
+      ],
+      "rule": "include",
+      "sha": "2daf1cbad990f9baa86028500c229c9bb18fba51",
+      "subject": "fix manifest file"
+    },
+    {
+      "date": "2017-05-27",
+      "parents": [
+        "6af910610f67d35d70856b8a1257afc875c9d7f0"
+      ],
+      "rule": "include",
+      "sha": "276024b170a249c0d8b551697db552cd0905b542",
+      "subject": "fix tests"
+    },
+    {
+      "date": "2017-05-27",
+      "parents": [
+        "908c3b01ee1a3c5d44865b1ba5c1731c4086b7c0"
+      ],
+      "rule": "include",
+      "sha": "ecaa10543fafd295e1354185a0f4e25751f3770d",
+      "subject": "fix setup.py"
+    },
+    {
+      "date": "2017-05-27",
+      "parents": [
+        "e9ca4b39b4c2c27e67c6ae78b659d5fd8fe43f90"
+      ],
+      "rule": "include",
+      "sha": "cceceecb68d6ee51c3d2c504a49fabc6138502b9",
+      "subject": "fix history"
+    },
+    {
+      "date": "2017-05-26",
+      "parents": [
+        "60b9fb17af46c8a2d7367ce101f223abb3a21d0c"
+      ],
+      "rule": "include",
+      "sha": "8c2a36140b32975034c8ed20d034900dc4904f96",
+      "subject": "fix for python 3"
+    },
+    {
+      "date": "2017-05-26",
+      "parents": [
+        "bf53ace6f80a852b35bdd513cac81d060e78cb33"
+      ],
+      "rule": "include",
+      "sha": "0aee4834970714c399f1375830400ff66104bd92",
+      "subject": "fix setup.py"
+    },
+    {
+      "date": "2017-05-25",
+      "parents": [
+        "733ff4b8a47b84c81a380b5c746783fc55c48cf7"
+      ],
+      "rule": "include",
+      "sha": "1001bc671af1bcd4778c821a1d987be78626106e",
+      "subject": "fix imports"
+    },
+    {
+      "date": "2017-05-24",
+      "parents": [
+        "dbb67a13109edef8d02addf5b3fbc8c6f319f4aa",
+        "f3d310b299af587d668493f09d82c84c197d00fd"
+      ],
+      "rule": "include",
+      "sha": "037108178c1fcc4484f5ccb16e390636ef02a7e6",
+      "subject": "Merge pull request #4056"
+    },
+    {
+      "date": "2017-05-21",
+      "parents": [
+        "2772413f3d7b0ac046257c6c67c684dda2f0903f"
+      ],
+      "rule": "include",
+      "sha": "6fb9b1ce53e2b5b047d875a916cfae8c468649dc",
+      "subject": "fix lack of taste"
+    },
+    {
+      "date": "2017-05-03",
+      "parents": [
+        "84099eea9f99168b73ff48270dcab24e5a1ee959",
+        "fcc3b7d7b1c50dadaa385526a27f338fce9c3890"
+      ],
+      "rule": "include",
+      "sha": "eae38b8d131e8b51c3daf3583e69879d1c02f9a4",
+      "subject": "Merge pull request #3988"
+    },
+    {
+      "date": "2017-02-11",
+      "parents": [
+        "f2fe7358469cf844bce04bf04478b8f95fd634f9"
+      ],
+      "rule": "include",
+      "sha": "6cbebf782a4309010eef3bba088867a206f617b4",
+      "subject": "fixes"
+    },
+    {
+      "date": "2017-02-11",
+      "parents": [
+        "e7b7574cfe0df12c19193757c0493582818cf5fb"
+      ],
+      "rule": "include",
+      "sha": "f2fe7358469cf844bce04bf04478b8f95fd634f9",
+      "subject": "fixes"
+    },
+    {
+      "date": "2017-01-24",
+      "parents": [
+        "cf07efa534e150241a097f4300bb8cf5f78970fc"
+      ],
+      "rule": "include",
+      "sha": "1da52c04d47bf1339f563203b01719ac1875ea5e",
+      "subject": "attempted fix for travis"
+    },
+    {
+      "date": "2017-01-24",
+      "parents": [
+        "efa030eae3cfa1eccb292a75ed958e00bb231631"
+      ],
+      "rule": "include",
+      "sha": "9e681a4a9f4e85083ce76e763eef55b0e1f3185c",
+      "subject": "fix makefle"
+    },
+    {
+      "date": "2017-01-21",
+      "parents": [
+        "ed9004f30eb9a521ac10fcdae75a2748a1efba3b"
+      ],
+      "rule": "include",
+      "sha": "97b5bc21d1f95bf31d12bfe52267e62f88f82f9b",
+      "subject": "fix broken tests"
+    },
+    {
+      "date": "2016-11-15",
+      "parents": [
+        "72d69d7b62c7c644001c72f065bd91cedb682dd6"
+      ],
+      "rule": "include",
+      "sha": "2d211d59a02accf250f50ddf8cf4dc2d5eeb16d7",
+      "subject": "Fix tests for new urllib3 exception text."
+    },
+    {
+      "date": "2016-10-14",
+      "parents": [
+        "c13e313f5af86773fd417b3b70f6666f73d03402",
+        "f19d30a67092515349e358e011ada34d852401df"
+      ],
+      "rule": "include",
+      "sha": "b8f4c7c7ff82dc4a2d32b1fedd6339d332ac5e90",
+      "subject": "Merge pull request #3621"
+    },
+    {
+      "date": "2016-09-06",
+      "parents": [
+        "87f96936fe827a9ca0dcdb1fbb55843d0b6c61a1",
+        "42d4eaf6eaad8b43e1048b8ac06aec760c2285ab"
+      ],
+      "rule": "include",
+      "sha": "2041adbe4d86539825a35860246ec0f465b7df3d",
+      "subject": "Merge pull request #3557"
+    },
+    {
+      "date": "2016-08-23",
+      "parents": [
+        "3314259185360468056974769d65435f85b6641e",
+        "7c80222afa17e3c02a41eb465f886699dfd56687"
+      ],
+      "rule": "include",
+      "sha": "52b15f811f8ef52a144c96b8b742d734dd39d693",
+      "subject": "Merge pull request #3530"
+    },
+    {
+      "date": "2016-08-21",
+      "parents": [
+        "d3567aacc91476ccb94279f72f93dcb7ceaa9014",
+        "77b068bb9eb4364ad8c30bedf7654a0d77ebf9ff"
+      ],
+      "rule": "include",
+      "sha": "3314259185360468056974769d65435f85b6641e",
+      "subject": "Merge pull request #3526"
+    },
+    {
+      "date": "2016-07-30",
+      "parents": [
+        "f40764c01b76730e556f64dcc4d18aeab7125fcc",
+        "c69e3eed312404e469dae250592ea6c5b20ebc64"
+      ],
+      "rule": "include",
+      "sha": "be12b27d7120b9f3e56dbaa889661abf6f5ff7f2",
+      "subject": "Merge pull request #3462"
+    },
+    {
+      "date": "2016-07-02",
+      "parents": [
+        "bd9e8f22715448258a3cf21d3bdf3bcb72573b8b"
+      ],
+      "rule": "include",
+      "sha": "71050e9ab97dda08ca32b2b4754b6d145680c48e",
+      "subject": "adding in slice_length fix and test for chunk_size=None (#3370)"
+    },
+    {
+      "date": "2016-06-01",
+      "parents": [
+        "9e9d2c6521e37e1c4f35e04f95a910ad47e28958",
+        "de4c75bbadeaf68a01bb14e25dd6c86b75404fd6"
+      ],
+      "rule": "include",
+      "sha": "bca205e9bf60adbf578ef15958c872bfedcbdc60",
+      "subject": "Merge pull request #3251"
+    },
+    {
+      "date": "2016-04-29",
+      "parents": [
+        "252bfa7885e5e9f131f89daae2daec317789dd26",
+        "abe02ed89fa7f575877a882cb5ba337290eb27d1"
+      ],
+      "rule": "include",
+      "sha": "ecebf337ed51a8078e6b2af482d3976c7fe440cc",
+      "subject": "Merge pull request #3139"
+    },
+    {
+      "date": "2016-02-03",
+      "parents": [
+        "7461371361a718e497bdfc63641d0916904e3f04",
+        "1c5c6eeb7a82d3825b538b077fb42803c37359ab"
+      ],
+      "rule": "include",
+      "sha": "6143b7eebc96016a5c613b76c44e744e4551b2af",
+      "subject": "Merge pull request #2994"
+    },
+    {
+      "date": "2015-12-18",
+      "parents": [
+        "b32c3bc10f0fb4075b6a282b283418f5290e812a",
+        "96a068b58e14e77633f24168072e405ea60e58b2"
+      ],
+      "rule": "include",
+      "sha": "f7cb7962417f6e106a8ead214fb556e63bb71014",
+      "subject": "Merge branch 'fix-1859'"
+    },
+    {
+      "date": "2015-11-11",
+      "parents": [
+        "4e89ba707714e3b58a46c2ed9e220cff8b7f1e6a",
+        "5397ef71b37ebe1fdf8af95a9a3b561baffe9dd8"
+      ],
+      "rule": "include",
+      "sha": "6d0017ee6a242433b2a05e78ae57ae0b84ad4b13",
+      "subject": "Merge pull request #2873"
+    },
+    {
+      "date": "2015-10-23",
+      "parents": [
+        "13ea7394ccad31ca2bfde77ff3efb1cad9657d98",
+        "edc68a0ac899785cd89a726e3da258e880d641dd"
+      ],
+      "rule": "include",
+      "sha": "1dff6c9153448213cd5ed957409de5c809447eba",
+      "subject": "Merge pull request #2845"
+    },
+    {
+      "date": "2015-10-16",
+      "parents": [
+        "58b20d671c67b0c74f0b1c0fe27ce886b9965191",
+        "b675377dc2a0b5552877dce523d375fc4cb17b76"
+      ],
+      "rule": "include",
+      "sha": "13ea7394ccad31ca2bfde77ff3efb1cad9657d98",
+      "subject": "Merge pull request #2831"
+    },
+    {
+      "date": "2015-08-25",
+      "parents": [
+        "767cc9d2dcb07c23ed105eaa250a6c24dc707f67",
+        "66567e037b5805dc81b80745bf2468a568aa04f3"
+      ],
+      "rule": "include",
+      "sha": "e57925223fc2424bca34aa60dc1d0f047ed56f6a",
+      "subject": "Merge pull request #2743"
+    },
+    {
+      "date": "2015-08-15",
+      "parents": [
+        "fdc76f12e53d06ace9565dc1a960f939f2c21006",
+        "276202f51ee9967969eafc1880c4785c80d63d3b"
+      ],
+      "rule": "include",
+      "sha": "53ea23128e375ef84511fd2b22b740eca15d0854",
+      "subject": "Merge pull request #2706"
+    },
+    {
+      "date": "2015-07-18",
+      "parents": [
+        "d0aecb271f38f42246dedcfc0baa816ea4036b5b",
+        "b8a297baab501f5818a8041ca6dac15b1d29dafd"
+      ],
+      "rule": "include",
+      "sha": "b4c1feac436f9efb5960124901cca01a0648f877",
+      "subject": "Merge pull request #2679"
+    },
+    {
+      "date": "2015-07-15",
+      "parents": [
+        "2b26489f74c48ca5fdac330409b056ef8d5864a3",
+        "beaa7e4180ad6679424dda3d6bbd0368591ada17"
+      ],
+      "rule": "include",
+      "sha": "0be38a0c37c59c4b66ce908731da15b401655113",
+      "subject": "Merge pull request #2672"
+    },
+    {
+      "date": "2015-05-06",
+      "parents": [
+        "16eeee14367550680d9c3cd084b9d4addd743755"
+      ],
+      "rule": "include",
+      "sha": "3475399a472ad0813a18d0b1fbeaec773f6cdeab",
+      "subject": "fix captilization"
+    },
+    {
+      "date": "2015-04-16",
+      "parents": [
+        "5a799dd0f505e6c6c2ff67e227f6a3d25c086342",
+        "587eb193ddbc2dfc10c2bdbf1718cd2267a0e77f"
+      ],
+      "rule": "include",
+      "sha": "a0d9e0bc57c971823811de38e5733b4b85e575ae",
+      "subject": "Merge pull request #2504"
+    },
+    {
+      "date": "2015-04-06",
+      "parents": [
+        "956ec8321a76f0b5a9f5bcb591cf6e77d773f819",
+        "dacf69a16df787c4a4c4b4185b86e597b2414445"
+      ],
+      "rule": "include",
+      "sha": "a57c87a459d51c5b17d20285109e901b8aa95752",
+      "subject": "Merge pull request #2535"
+    },
+    {
+      "date": "2015-04-06",
+      "parents": [
+        "1ff9a05181fce368b2b39d79d16431f3fdeb3fd3",
+        "1b5bfe681b4c0a987e97ae78b2034db7b7ce3d01"
+      ],
+      "rule": "include",
+      "sha": "0581f2c7d2066d5c17ce401a56778b022a9e7e1e",
+      "subject": "Merge pull request #2533"
+    },
+    {
+      "date": "2015-04-06",
+      "parents": [
+        "18e678c1f897d5bcc934f0b1d5788afee9c37ada",
+        "36093e69c70b9b24dd1e007befa35ad891313f51"
+      ],
+      "rule": "include",
+      "sha": "1ff9a05181fce368b2b39d79d16431f3fdeb3fd3",
+      "subject": "Merge pull request #2534"
+    },
+    {
+      "date": "2015-03-14",
+      "parents": [
+        "76f7ce8a249e57df5ed1f2331a43e635895bdbba",
+        "1acc4992d42950b54a7be1b0dcacdaac35d32436"
+      ],
+      "rule": "include",
+      "sha": "8a2fd7ce6d3c543d224bace94c2222e2c24cc58d",
+      "subject": "Merge pull request #2486"
+    },
+    {
+      "date": "2015-03-12",
+      "parents": [
+        "9adaae6785a3526319e6aabab5ed551062636970",
+        "c4bd6ea1501ee24a7e45d3e888f11d2a52e41469"
+      ],
+      "rule": "include",
+      "sha": "bc746e158cebf034a5010c2d130a19be94702cf8",
+      "subject": "Merge pull request #2485"
+    },
+    {
+      "date": "2015-03-04",
+      "parents": [
+        "61f4faae704e6b07ac70c9c26d97c5023156edf6",
+        "2669f0c0b1e98c9ea36d2614d48b07ad150ea276"
+      ],
+      "rule": "include",
+      "sha": "39e49e5fb906d23fcc81197cfec85ca71b1a36d9",
+      "subject": "Merge pull request #2466"
+    },
+    {
+      "date": "2015-01-27",
+      "parents": [
+        "383b20b02324e5c5d1970dd3ab0ba29bd991d2b2",
+        "751b35c346e1cf373fcf4b2f19683ebfbd9dae3d"
+      ],
+      "rule": "include",
+      "sha": "b137472936cbe6a6acabab538c1d05ed4c7da638",
+      "subject": "Merge pull request #2393"
+    },
+    {
+      "date": "2015-01-27",
+      "parents": [
+        "cf3a7f4945c2f8ace6f946b5d225856e032e86fe",
+        "eec44dbbb1a0ce0427bf5151aa32ad5fcd1898e5"
+      ],
+      "rule": "include",
+      "sha": "3314eb9a627a62cdaf0dbdcda623273ce253f715",
+      "subject": "Merge pull request #2413"
+    },
+    {
+      "date": "2015-01-27",
+      "parents": [
+        "2f7f6a57f35f204685840eb57d29ef454e45ba30",
+        "677bbe30d7b26b006d8b38107e1db9cbd429ac2f"
+      ],
+      "rule": "include",
+      "sha": "cf3a7f4945c2f8ace6f946b5d225856e032e86fe",
+      "subject": "Merge pull request #2415"
+    },
+    {
+      "date": "2015-01-09",
+      "parents": [
+        "b176ccd481eb0c327e6b55254f580b59b3aecce4",
+        "da82fb4b1d287caff3a2a99692be111eccbd1347"
+      ],
+      "rule": "include",
+      "sha": "a57eacf080ac6c441dc85eb62340fb188003c479",
+      "subject": "Merge pull request #2375"
+    },
+    {
+      "date": "2014-12-23",
+      "parents": [
+        "bd3cf95e34aa49c8d764c899672048df107e0d70",
+        "86c3ecfd341e4e86977317f03ae344d363c63e3a"
+      ],
+      "rule": "include",
+      "sha": "eccbf4a4125199d353ec53e11dea56592270041a",
+      "subject": "Merge pull request #2389"
+    },
+    {
+      "date": "2014-12-16",
+      "parents": [
+        "386c589ba0832eed62aef91a30adaed3d5648d1c"
+      ],
+      "rule": "include",
+      "sha": "bd3cf95e34aa49c8d764c899672048df107e0d70",
+      "subject": "Fix error handling on Python 3"
+    },
+    {
+      "date": "2014-12-02",
+      "parents": [
+        "f172b30356d821d180fa4ecfa3e71c7274a32de4",
+        "cf82d4406be55c71983d05d7f6e18917540b5c69"
+      ],
+      "rule": "include",
+      "sha": "4e90aa7bd0c8051fe4894971fb77c72a26a92728",
+      "subject": "Merge pull request #2363"
+    },
+    {
+      "date": "2014-11-30",
+      "parents": [
+        "8ae4d02d73dc3506f77a0b139c974097729dffa8",
+        "c8baf881257ff3194879ad79bef81c27007b4dcf"
+      ],
+      "rule": "include",
+      "sha": "53d02381e22436b6d0757eb305eb1a960f82d361",
+      "subject": "Merge pull request #2349"
+    },
+    {
+      "date": "2014-11-12",
+      "parents": [
+        "e4ddca0f8b5f61a7cc5f3c1e46174ac05f8f6920",
+        "ee50afef59ca47879144448ae056a2836f3d4534"
+      ],
+      "rule": "include",
+      "sha": "45ef1f8eeb866fc2791b74332e001ae82bf49ae2",
+      "subject": "Merge pull request #2332"
+    },
+    {
+      "date": "2014-11-01",
+      "parents": [
+        "091991be0da19de9108dbe5e3752917fea3d7fdc",
+        "29ef1081583115c8bb2c8a592b883dc7c835240c"
+      ],
+      "rule": "include",
+      "sha": "124c0940e969cab670a92964e39d212bc6f0afc5",
+      "subject": "Merge pull request #2317"
+    },
+    {
+      "date": "2014-10-26",
+      "parents": [
+        "be805f942ea5286e4b6b5c899d96e8cb9e76e66c",
+        "583859b8204a1e9dd8a337f1ca06e31e8f79b5f8"
+      ],
+      "rule": "include",
+      "sha": "091991be0da19de9108dbe5e3752917fea3d7fdc",
+      "subject": "Merge pull request #2306"
+    },
+    {
+      "date": "2014-10-19",
+      "parents": [
+        "e1e1855b85e4a416d9fe0cc6a97f766a6067306b",
+        "96efb5ec9638f2a057e0206db62ee673a3e610dc"
+      ],
+      "rule": "include",
+      "sha": "6b58a359e8af882eb3fd89a54e0a4db38c9afa2e",
+      "subject": "Merge pull request #2290"
+    },
+    {
+      "date": "2014-10-19",
+      "parents": [
+        "f7ecad843bb5a0e2898a441a1664126877d0e721",
+        "3a6348dbb9af4b811def72c67637bba04706916e"
+      ],
+      "rule": "include",
+      "sha": "e1e1855b85e4a416d9fe0cc6a97f766a6067306b",
+      "subject": "Merge pull request #2289"
+    },
+    {
+      "date": "2014-10-10",
+      "parents": [
+        "46d646064ca0836a7d7b4d50ea2c762d12ff8ce1",
+        "8339b60fd5bbe0ef9dae1764b3964f515364a54f"
+      ],
+      "rule": "include",
+      "sha": "2ac771b35edeb75ff47dfeca9859abb869a0ec60",
+      "subject": "Merge pull request #2271"
+    },
+    {
+      "date": "2014-10-06",
+      "parents": [
+        "4ec26da2f7ab6a0e5f66fcb945145657e3f9bed1",
+        "0e4efab270780726fbf4f8b6704f8f22741399d6"
+      ],
+      "rule": "include",
+      "sha": "6da438dabd6f5aeed23f77fd663d4092506ec8b3",
+      "subject": "Merge pull request #2268"
+    },
+    {
+      "date": "2014-09-24",
+      "parents": [
+        "e0d88c2814f24e7da11b03351934bd1df5e27476",
+        "ac44b482971d93cf5e7d4985a0b3fff52b3d2059"
+      ],
+      "rule": "include",
+      "sha": "de76fbeefbeae0974725e9470105347804d07349",
+      "subject": "Merge pull request #2244"
+    },
+    {
+      "date": "2014-09-12",
+      "parents": [
+        "9e8702d3d54a532f01334f47e68eb90e22a6ab7a",
+        "d3566ee1b053b6f24c4bf657ca36e6cb4698a44f"
+      ],
+      "rule": "include",
+      "sha": "1a44a99f175d831487fe82985d1d4a4820cc355c",
+      "subject": "Merge pull request #2222"
+    },
+    {
+      "date": "2014-09-09",
+      "parents": [
+        "2416e2343aa6e06dc75f36b51a7e9bfa7bd28d85",
+        "27c83f71770a2a64d56b7d53f9cc67f53cf70ccd"
+      ],
+      "rule": "include",
+      "sha": "5e94c81e98168e79cb4e46e27a7630e94e785cec",
+      "subject": "Merge pull request #2210"
+    },
+    {
+      "date": "2014-09-04",
+      "parents": [
+        "209a871b638f85e2c61966f82e547377ed4260d9",
+        "9354855648cedbec3a91a9391e067f56e8414814"
+      ],
+      "rule": "include",
+      "sha": "1324ca1a0f6e4fc48a7edf5dd1766d528e557520",
+      "subject": "Merge pull request #2193"
+    },
+    {
+      "date": "2014-07-16",
+      "parents": [
+        "d21916c0ff213ed548fc3f8cd5d63293384c77fe",
+        "2a6303e018ab2d0e5925c0afc44d529419bcc9d5"
+      ],
+      "rule": "include",
+      "sha": "e25fbc879e9ff67c1f139c450eb78d61015fdf28",
+      "subject": "Merge pull request #2135"
+    },
+    {
+      "date": "2014-07-03",
+      "parents": [
+        "538a41e70d6114a43fd6af70715c9881f7252464",
+        "3957b0befb063ecea1c9cb3dc67b2c385ddad58e"
+      ],
+      "rule": "include",
+      "sha": "39f0c66cbe5c02684812a5c795ad55eaf61dc3a0",
+      "subject": "Merge pull request #2115"
+    },
+    {
+      "date": "2014-07-02",
+      "parents": [
+        "de2cd2e9c8d4af72a83bde576dbaddd0d88dda5d",
+        "d25280dc20d93446f1f66b069932c0c7adaf6515"
+      ],
+      "rule": "include",
+      "sha": "538a41e70d6114a43fd6af70715c9881f7252464",
+      "subject": "Merge pull request #2116"
+    },
+    {
+      "date": "2014-05-29",
+      "parents": [
+        "785e4ab3606be275f6887aab718ab7cda4a8938d",
+        "5ab79e2514b663ac8e0a82981efe0a5e69efe01c"
+      ],
+      "rule": "include",
+      "sha": "69996114d90e5c59cb1bc087d46b21ca3f38bbde",
+      "subject": "Merge pull request #2072"
+    },
+    {
+      "date": "2014-04-18",
+      "parents": [
+        "229c4d8f7cbf286bee3657fa234e02d29fabb7c0",
+        "e56cc117575ae31937f9fe19ebcf9d1a35eccae8"
+      ],
+      "rule": "include",
+      "sha": "35d20b2168d6ee00b5291a2ab2f23b42c0cae2f7",
+      "subject": "Merge pull request #2009"
+    },
+    {
+      "date": "2014-01-09",
+      "parents": [
+        "0db1d3d6753d6a1e5bee25b874b4eed757009425"
+      ],
+      "rule": "include",
+      "sha": "1720e4bb87f5db29e9d9f42da1b0cbb1f52a7171",
+      "subject": "fix rst syntax bugs"
+    },
+    {
+      "date": "2014-01-08",
+      "parents": [
+        "1500632b602be698bfce682daeb01a2d64fc2d39",
+        "b17cad65cf27646f0680954914ab31abd4f626c9"
+      ],
+      "rule": "include",
+      "sha": "df1c2335c82165b961b8a0361d0176cdb298e513",
+      "subject": "Merge branch 'master' into fix-pickling-adapters"
+    },
+    {
+      "date": "2013-12-13",
+      "parents": [
+        "cac2077c36ca841bdee8b2978677325e0754eaec"
+      ],
+      "rule": "include",
+      "sha": "16f9798208f2ef78e3ba91fc03584a522dd258a9",
+      "subject": "Fixed pickle support for requests.adapters.HTTPAdapter by adding 'proxy_manager' when unpickling."
+    },
+    {
+      "date": "2013-12-03",
+      "parents": [
+        "8b88549bb78350b6918e13af5df8a03a2572bee7",
+        "a4605fe32426bcc404ab1eb4ea4b0dde9238a3e8"
+      ],
+      "rule": "include",
+      "sha": "5c915451e70963eb3a468bf9752f853696f0023b",
+      "subject": "Merge pull request #1657"
+    },
+    {
+      "date": "2013-11-25",
+      "parents": [
+        "e5b9ae1f8e02604fd5732631d6d3ba62e6851d3b",
+        "3a9d9f22791dfe8947d9b08ff83c80a5ed49bd95"
+      ],
+      "rule": "include",
+      "sha": "340b2459031feb421d678c3c75865c3b11c07938",
+      "subject": "Merge pull request #1760"
+    },
+    {
+      "date": "2013-10-28",
+      "parents": [
+        "25f86f13476e5fc2394dd0ef5152d34c62252042"
+      ],
+      "rule": "include",
+      "sha": "2c1f51be0e840ea18ff1fee7998b16b961c0b412",
+      "subject": "fix 's lack of taste :)"
+    },
+    {
+      "date": "2013-07-23",
+      "parents": [
+        "47f5a0db647e89cb6aae510ae29b54887c4c5924",
+        "9e771aa79cc3cdf2b625b31148247c05efdf4edd"
+      ],
+      "rule": "include",
+      "sha": "f71bff12266e14ec451e4448b33cb1204a69e0df",
+      "subject": "Merge pull request #1482"
+    },
+    {
+      "date": "2013-04-02",
+      "parents": [
+        "cdb700737b64d44353a01bc4effff083577925b8"
+      ],
+      "rule": "include",
+      "sha": "54ed5ed469ff04351bfe550a6c8d49e62c535e6c",
+      "subject": "Revert \"Fix for the issue https://github.com/kennethreitz/requests/issues/1280\""
+    },
+    {
+      "date": "2013-03-31",
+      "parents": [
+        "bd6b981d12cb9979b530dd367726f570d4b9c424"
+      ],
+      "rule": "include",
+      "sha": "75703d57e66544ff1e6c7cbd54648b051928b1a9",
+      "subject": "fix syntax error"
+    },
+    {
+      "date": "2013-03-22",
+      "parents": [
+        "03a3ca500491ed55c90255398fa514be017efe10"
+      ],
+      "rule": "include",
+      "sha": "030b9763b5dd24bbde7938d5aafb63f411d75b6a",
+      "subject": "fix get_auth_from_url"
+    },
+    {
+      "date": "2013-03-20",
+      "parents": [
+        "db90d85a8df8b0c53ce6ae3d992ab7a078e34798",
+        "120a2f385a4d1b652451e6a6d8dc618437f72529"
+      ],
+      "rule": "include",
+      "sha": "cb2116dccefca091ed9db225f09ee690cb710739",
+      "subject": "Merge pull request #1239"
+    },
+    {
+      "date": "2012-12-17",
+      "parents": [
+        "27c6dc373508917da38ccca4e796b16e4f6c228f"
+      ],
+      "rule": "include",
+      "sha": "5152c98223d46c76cb7e88cb833b0087daf83d54",
+      "subject": "fix for #1017"
+    },
+    {
+      "date": "2012-12-17",
+      "parents": [
+        "9bb332fee12a43c49661beabea8ea4809755036b"
+      ],
+      "rule": "include",
+      "sha": "910b2312d644aa3edf5d03f5dc760474a949b71d",
+      "subject": "fix verify bug"
+    },
+    {
+      "date": "2012-12-17",
+      "parents": [
+        "42b029552190f6639642d0f62d27abcd1ceed51e"
+      ],
+      "rule": "include",
+      "sha": "899c9a9522e963be6153da78937babf85b07857f",
+      "subject": "fix cookies"
+    },
+    {
+      "date": "2012-12-17",
+      "parents": [
+        "def20cdb0cf1d4fcc3aa4cd3164602d6c4029ac3"
+      ],
+      "rule": "include",
+      "sha": "a776e7cb3e57e56a2d9974b730e6f5e7776751a4",
+      "subject": "fix params support"
+    },
+    {
+      "date": "2012-12-01",
+      "parents": [
+        "a5cb6355edd67e25a4a213a3559f9da4ba8d44fc"
+      ],
+      "rule": "include",
+      "sha": "2eb63be19ae9496193fd6d70aef09442f1840c74",
+      "subject": "chardet fixes!"
+    },
+    {
+      "date": "2012-11-27",
+      "parents": [
+        "0af19a05ce54bbb9e306771710e6eac15506d4c3"
+      ],
+      "rule": "include",
+      "sha": "ccd14ddc81bbc23afa33c10643e24dfa07513f2e",
+      "subject": "fixes for python2"
+    },
+    {
+      "date": "2012-11-27",
+      "parents": [
+        "f553857beb4424786f8d665019686551905483d6"
+      ],
+      "rule": "include",
+      "sha": "0af19a05ce54bbb9e306771710e6eac15506d4c3",
+      "subject": "fix chardet import"
+    },
+    {
+      "date": "2012-11-27",
+      "parents": [
+        "4d06e4019f3a30a38fbdc3f59156f08f74d6c76e"
+      ],
+      "rule": "include",
+      "sha": "ad18d9ddd6b6534421905845dfcbd51c369b4277",
+      "subject": "fix setup.py for oauth removal"
+    },
+    {
+      "date": "2012-10-02",
+      "parents": [
+        "f1ffe19506654e735b684f0a33171967ae9bf0a1"
+      ],
+      "rule": "include",
+      "sha": "ed5c728c529864e7fbf19b50cb4e69d8bd88c1ef",
+      "subject": "order fix"
+    },
+    {
+      "date": "2012-09-24",
+      "parents": [
+        "1b70385d4ae7540084ef82886df3d943733db0d2"
+      ],
+      "rule": "include",
+      "sha": "5ce25688e0a88a892d33cdb23ff6e097ff6829d9",
+      "subject": "Revert \"Fix SSL3 error on Ubuntu 12.04\""
+    },
+    {
+      "date": "2012-08-21",
+      "parents": [
+        "0841940aea32da8211fba50a04f844840b8d8c09"
+      ],
+      "rule": "include",
+      "sha": "d8dcd35316621df0691ab5fc3fe1d5f3d76f71bb",
+      "subject": "Fixes #711!"
+    },
+    {
+      "date": "2012-06-07",
+      "parents": [
+        "32941fdd2039f48c705d90a2e8bf536097e544ae"
+      ],
+      "rule": "include",
+      "sha": "10d23981736e0cd7d864b12cd8d12edd9a4d8b6d",
+      "subject": "fix test for python3"
+    },
+    {
+      "date": "2012-06-07",
+      "parents": [
+        "8bfbfdfc79224fa51775351efb4f937e1c9f0437"
+      ],
+      "rule": "include",
+      "sha": "fadcf799def168cc2ac3c2f09c865745813fd043",
+      "subject": "fix unicode literal for python 3"
+    },
+    {
+      "date": "2012-05-16",
+      "parents": [
+        "4cf31b0b864bbca32cde96ddf3fc503c34727caf"
+      ],
+      "rule": "include",
+      "sha": "3c144351095c7849753e477da0482c044d36f1c4",
+      "subject": "fix test for 2.6's unittest"
+    },
+    {
+      "date": "2012-05-02",
+      "parents": [
+        "9324c2a9b4ed2e324047f067428ee238b15880b5"
+      ],
+      "rule": "include",
+      "sha": "373a34a1443b3137b062a699d39cf91e78a892a3",
+      "subject": "date fix"
+    },
+    {
+      "date": "2012-05-01",
+      "parents": [
+        "7b819852b93300beaa38a3ec264e742889d55193"
+      ],
+      "rule": "include",
+      "sha": "906fcd732889d9c4c0672cd0f98026b9e1b74273",
+      "subject": "Fix order of return values from OAuth Client.sign()"
+    },
+    {
+      "date": "2012-05-01",
+      "parents": [
+        "9217a2523d7d4fafeebb259884276fc349a376b1"
+      ],
+      "rule": "include",
+      "sha": "7b819852b93300beaa38a3ec264e742889d55193",
+      "subject": "Fix Content-Type validation in OAuth1 callable"
+    },
+    {
+      "date": "2012-04-02",
+      "parents": [
+        "a36439561266d7648566fd118bb75a2af34210a2"
+      ],
+      "rule": "include",
+      "sha": "03ae9bee74fbfb0a389be1ee3bd59e691f7017d4",
+      "subject": "Fixed typoe (s/repsonses/responses/)"
+    },
+    {
+      "date": "2012-03-30",
+      "parents": [
+        "e831947be43bc97b39d6e6e573cb0842b67fea80"
+      ],
+      "rule": "include",
+      "sha": "fff5269d1a9eb3c07acbbb0d995b689d674123c8",
+      "subject": "Fix app engine error for #498"
+    },
+    {
+      "date": "2012-03-09",
+      "parents": [
+        "253cba373bc393526a15da38aa364ac10631e53c"
+      ],
+      "rule": "include",
+      "sha": "9f55f503b1c5a2b5146792613eb17ba4cad47b68",
+      "subject": "merge conflict and fixes for python3"
+    },
+    {
+      "date": "2012-03-09",
+      "parents": [
+        "98cbde132477f058d355148f3bc612134ec6e3ff",
+        "228c5e68aedc7d5d1e4b5bcc49aa4ae4811fbecd"
+      ],
+      "rule": "include",
+      "sha": "c7f165ae6f7bad00721330bf089e6eb745fb3776",
+      "subject": "Merge branch 'iter_lines-fix' of https://github.com/fawek/requests into develop"
+    },
+    {
+      "date": "2012-02-24",
+      "parents": [
+        "83b4081e854f5ee803e41a66f7f5e4002330ed97"
+      ],
+      "rule": "include",
+      "sha": "ea1d5f36480c7f9ba9d15aebd94d3df7db95dd72",
+      "subject": "Fix content-length: 0"
+    },
+    {
+      "date": "2012-02-24",
+      "parents": [
+        "7234c7240acfa60562f8ba49ac63f1b2461eb1a6"
+      ],
+      "rule": "include",
+      "sha": "e18e79d8202a58186d7376d491a2a922e2a9454f",
+      "subject": "python3 fix"
+    },
+    {
+      "date": "2012-02-15",
+      "parents": [
+        "e663c77e70a24fb1fc409326a5989728855ec4a9"
+      ],
+      "rule": "include",
+      "sha": "dacaae520a84d2a2e373ca2fc3b7a77d44dd9dc2",
+      "subject": "bytes data fix for python3"
+    },
+    {
+      "date": "2012-02-15",
+      "parents": [
+        "ec109c9ac89bf945715a429010706539a262e502"
+      ],
+      "rule": "include",
+      "sha": "e663c77e70a24fb1fc409326a5989728855ec4a9",
+      "subject": "fix bytes"
+    },
+    {
+      "date": "2012-02-15",
+      "parents": [
+        "0b9a2a158135c1d8214f0562af14164ecd96b540"
+      ],
+      "rule": "include",
+      "sha": "ec109c9ac89bf945715a429010706539a262e502",
+      "subject": "path fixes"
+    },
+    {
+      "date": "2012-02-15",
+      "parents": [
+        "ab4c03adc343a7e97575bd02e57bdbf82cea9d86"
+      ],
+      "rule": "include",
+      "sha": "0d8c08cd22018bbda2ba4eef07af49f42d5b9006",
+      "subject": "binary data upload bug test"
+    },
+    {
+      "date": "2012-01-23",
+      "parents": [
+        "c4eb9301bb1ad1616e2affa4dc2dc1da82169c36"
+      ],
+      "rule": "include",
+      "sha": "4493acc5eec9707957ad18f3ccffb3910e8ee50c",
+      "subject": "fix 26"
+    },
+    {
+      "date": "2012-01-23",
+      "parents": [
+        "9fd2d07c1dac17805ada0da0dd1bc735d487b895"
+      ],
+      "rule": "include",
+      "sha": "18b5ee7d5bdedf2a2aac0c92910ced5e2479218e",
+      "subject": "fixes"
+    },
+    {
+      "date": "2012-01-23",
+      "parents": [
+        "e7bcc3b33219afc4084ef4b163df9279aa40e8b6"
+      ],
+      "rule": "include",
+      "sha": "9fd2d07c1dac17805ada0da0dd1bc735d487b895",
+      "subject": "reqs fixes"
+    },
+    {
+      "date": "2011-02-19",
+      "parents": [
+        "d2cdefa7df40e8b9cb98e831dc70bcefa71467c5",
+        "5c4aa1f4b7ef64845b523494dbf652e6c24c10ee"
+      ],
+      "rule": "include",
+      "sha": "8b3c4da2c7003a8d60e64ec4275cffe229621cad",
+      "subject": "Merge branch 'hotfix/date'"
+    },
+    {
+      "date": "2011-02-14",
+      "parents": [
+        "d6e7e19100f9f2ccbb95cb98ec2c261a293802f2"
+      ],
+      "rule": "include",
+      "sha": "8fd480df3fc0665c90ed9e9c18d0ca4eeab349bd",
+      "subject": "Fix NameError in example"
+    },
+    {
+      "date": "2011-02-14",
+      "parents": [
+        "88b64d271f2f58caadabfa9e5e45ff85c77d3944"
+      ],
+      "rule": "include",
+      "sha": "8cca789ba5df5d31f3c923001ee6dc9fcf7f1b1b",
+      "subject": "Fix it"
+    },
+    {
+      "date": "2011-02-13",
+      "parents": [
+        "71df02df2c9ab37a8ee40b31f5e28742d1a6cee8"
+      ],
+      "rule": "include",
+      "sha": "3c32045da05cda554e65d3b943bb1128b2482c7f",
+      "subject": "FIXED"
+    },
+    {
+      "date": "2011-02-13",
+      "parents": [
+        "ef9bae8d9f2dc605d4fbcdf24256b6cc82612a2d"
+      ],
+      "rule": "include",
+      "sha": "32cc197a81502c30715c9e164006dce6debcd1bf",
+      "subject": "fixes"
+    }
+  ],
+  "head": "3c7baaa05ab4aa49cc819ce3a819d260de19c157",
+  "include_rule": "(?i)\\b(fix(e[sd]|ing)?|bugs?|hotfix)\\b",
+  "path": ".",
+  "profile": "python",
+  "scanned": 2651
+}

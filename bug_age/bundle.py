@@ -293,6 +293,18 @@ def method_b(repo, d, szz):
     return out
 
 
+def fit(subject, limit=100):
+    """`subject` cut to the schema's `limit` after redaction ("[redacted]" can be longer than the
+    name it replaced); a placeholder the cut would split is dropped rather than left half-written."""
+    if len(subject) <= limit:
+        return subject
+    cut = subject[:limit]
+    i = cut.rfind("[")
+    if i >= 0 and REDACTED.startswith(cut[i:]):
+        cut = cut[:i].rstrip()
+    return cut
+
+
 def feasibility(path):
     """The fields of a feasibility report the bundle publishes, or None when it was not run."""
     if not Path(path).is_file():
@@ -393,7 +405,7 @@ def build(repo, results, spike, repo_url, out_of_scope):
         date, sep, subject = trim(line).partition("\x1f")
         if not sep:
             date, subject = "", ""
-        commits[sha] = {"date": date, "subject": ids.redact(sanitize_subject(subject))}
+        commits[sha] = {"date": date, "subject": fit(ids.redact(sanitize_subject(subject)))}
     method_a = []
     for bug in _items(get(szz, "bugs")):
         row = dict(bug)

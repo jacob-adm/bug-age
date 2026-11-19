@@ -1,0 +1,4007 @@
+{
+  "bugs": [
+    {
+      "blamed_files": [
+        "src/flask/sansio/app.py"
+      ],
+      "fix": "d086db856be187255b8ec61ef409357393020f32",
+      "fix_date": "2026-10-07",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 994.8,
+        "calendar_days_author": 1027.9,
+        "churn_deletions": 3234,
+        "churn_files": 143,
+        "churn_insertions": 5336,
+        "commits_elapsed": 373,
+        "commits_elapsed_first_parent": 143,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2024-01-16",
+          "sha": "6000e80acf931b05b4911c3fa7f3ba33e2b80e64"
+        }
+      ],
+      "subject": "fix typing"
+    },
+    {
+      "blamed_files": [
+        "src/flask/app.py"
+      ],
+      "fix": "329c32b916938d33fec41f40eb7ed854bf0b3e2b",
+      "fix_date": "2026-10-07",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 1144.9,
+        "calendar_days_author": 1214.0,
+        "churn_deletions": 3484,
+        "churn_files": 148,
+        "churn_insertions": 5828,
+        "commits_elapsed": 414,
+        "commits_elapsed_first_parent": 154,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 4,
+          "date": "2023-08-19",
+          "sha": "0ec7f713d679ceed2c605e62ac5d38d579f29fa0"
+        }
+      ],
+      "subject": "fix dev"
+    },
+    {
+      "blamed_files": [],
+      "fix": "41cb747cd5a9b43da43bf809ad974722542603db",
+      "fix_date": "2026-10-07",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "fix link"
+    },
+    {
+      "blamed_files": [
+        "src/flask/app.py",
+        "src/flask/testing.py"
+      ],
+      "fix": "05e9c6bd630ecf4ec0ec884b1fc7901663737bc7",
+      "fix_date": "2026-08-11",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 1088.1,
+        "calendar_days_author": 1157.2,
+        "churn_deletions": 3443,
+        "churn_files": 146,
+        "churn_insertions": 6143,
+        "commits_elapsed": 404,
+        "commits_elapsed_first_parent": 146,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 4,
+          "date": "2023-08-19",
+          "sha": "0ec7f713d679ceed2c605e62ac5d38d579f29fa0"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2023-05-01",
+          "sha": "e1aedecdc689cc9a79131851dbdabf6c3bc49c9e"
+        }
+      ],
+      "subject": "Fix `.partition(\":\")` usage on potential IPv6 addresses (#6096)"
+    },
+    {
+      "blamed_files": [
+        "src/flask/app.py"
+      ],
+      "fix": "7b0088693ece1bd3a9238a6fdf56ed8df7a4d43b",
+      "fix_date": "2026-02-19",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.6,
+        "calendar_days_author": 0.6,
+        "churn_deletions": 2237,
+        "churn_files": 55,
+        "churn_insertions": 1759,
+        "commits_elapsed": 53,
+        "commits_elapsed_first_parent": 41,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2026-02-18",
+          "sha": "c17f379390731543eea33a570a47bd4ef76a54fa"
+        }
+      ],
+      "subject": "fix typing"
+    },
+    {
+      "blamed_files": [
+        "src/flask/sansio/app.py"
+      ],
+      "fix": "12e95c93b488725f80753f34b2e0d24838ca4646",
+      "fix_date": "2026-02-12",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 5327.4,
+        "calendar_days_author": 5327.4,
+        "churn_deletions": 14658,
+        "churn_files": 331,
+        "churn_insertions": 33266,
+        "commits_elapsed": 4721,
+        "commits_elapsed_first_parent": 1614,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 4,
+          "date": "2011-07-14",
+          "sha": "3b31df81aeccb889810b4b49ce6e608e67ebeeea"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-12",
+          "sha": "5e1b1030e8edecb0c9652f2a406933c049ea2397"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2024-06-07",
+          "sha": "d718ecf6d3dfc4656d262154c59672437c1ea075"
+        }
+      ],
+      "subject": "fix provide_automatic_options override (#5917)"
+    },
+    {
+      "blamed_files": [],
+      "fix": "976459f7cb35c8c3abc3a6e6a2728d76d1a0a5f2",
+      "fix_date": "2026-02-03",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "fix editable werkzeug"
+    },
+    {
+      "blamed_files": [],
+      "fix": "9b74a90dd3c47f792734823e8793ac36f38bc4dd",
+      "fix_date": "2026-01-24",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "fix codespell findings"
+    },
+    {
+      "blamed_files": [
+        "src/flask/app.py",
+        "src/flask/blueprints.py",
+        "src/flask/cli.py",
+        "src/flask/helpers.py",
+        "src/flask/sansio/app.py",
+        "src/flask/testing.py",
+        "src/flask/views.py",
+        "src/flask/wrappers.py"
+      ],
+      "fix": "e8b91cd38aadafdf733558bbcea4810fa65bb849",
+      "fix_date": "2024-10-24",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 1998.1,
+        "calendar_days_author": 1998.1,
+        "churn_deletions": 17059,
+        "churn_files": 270,
+        "churn_insertions": 18057,
+        "commits_elapsed": 1825,
+        "commits_elapsed_first_parent": 615,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2019-05-06",
+          "sha": "025589ee766249652e2e097da05808fe64911ddc"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2024-01-16",
+          "sha": "6000e80acf931b05b4911c3fa7f3ba33e2b80e64"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2023-08-19",
+          "sha": "0ec7f713d679ceed2c605e62ac5d38d579f29fa0"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2024-07-10",
+          "sha": "28d5a4d71824ff5823ae310e3fd014b48b33d583"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2022-03-23",
+          "sha": "6578b493c8c8d5d9b4135cb964dbbc43318cfb12"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2022-05-23",
+          "sha": "1232d698600e11dcb83bb5dc349ca785eae02d2f"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2017-06-14",
+          "sha": "4fc48200a58907ffdf136961b84ef7d19192e6ef"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2022-06-06",
+          "sha": "6e23239567efde1c2e272db87c53444d6c22a1bb"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2017-05-28",
+          "sha": "a37f675ccb766c2d6050b5c812aa8aef71d85646"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2022-11-25",
+          "sha": "d178653b5f7a5ee2ba15e215ce60caeeb9ed82e1"
+        }
+      ],
+      "subject": "fix pyright type errors (#5620)"
+    },
+    {
+      "blamed_files": [],
+      "fix": "b7c1290528f907c9f41afcdfd33a2227c73e26d3",
+      "fix_date": "2023-09-24",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix wrong spelling of JS method .innerHTML"
+    },
+    {
+      "blamed_files": [],
+      "fix": "2c7877123880d44f5d964c7370ed5dd4dbc45ad2",
+      "fix_date": "2022-09-14",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix missing assignment in MethodView example (#4815)"
+    },
+    {
+      "blamed_files": [
+        "src/flask/ctx.py"
+      ],
+      "fix": "095651be9eec58ddb0c2eb6158318b1c703c67c5",
+      "fix_date": "2022-07-25",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 16.1,
+        "calendar_days_author": 16.1,
+        "churn_deletions": 535,
+        "churn_files": 24,
+        "churn_insertions": 916,
+        "commits_elapsed": 26,
+        "commits_elapsed_first_parent": 10,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2022-07-09",
+          "sha": "91044c4d769efa7f20455e1b70457a7da95c26d8"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2022-07-08",
+          "sha": "d597db67ded68d4aedf42b9d1d4570573fb79cd6"
+        }
+      ],
+      "subject": "fix has_app_context and has_request_context"
+    },
+    {
+      "blamed_files": [],
+      "fix": "979e0adbacfb3c5cc1ac678b4ef5373dadde83d3",
+      "fix_date": "2022-07-08",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "fix pr link"
+    },
+    {
+      "blamed_files": [
+        "src/flask/app.py"
+      ],
+      "fix": "3635583ce27f70a3d9efd1e2212d5efc1d256333",
+      "fix_date": "2022-06-29",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 14.4,
+        "calendar_days_author": 14.4,
+        "churn_deletions": 712,
+        "churn_files": 31,
+        "churn_insertions": 641,
+        "commits_elapsed": 14,
+        "commits_elapsed_first_parent": 6,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2022-06-15",
+          "sha": "4f03a769d44f6740490dd4ddf70e094c12a6090c"
+        }
+      ],
+      "subject": "Merge pull request #4662"
+    },
+    {
+      "blamed_files": [
+        "src/flask/scaffold.py"
+      ],
+      "fix": "127df57a06ec7b1a8b698206b1bdefc93248de5a",
+      "fix_date": "2022-05-03",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 640.1,
+        "calendar_days_author": 650.0,
+        "churn_deletions": 3849,
+        "churn_files": 119,
+        "churn_insertions": 5887,
+        "commits_elapsed": 640,
+        "commits_elapsed_first_parent": 212,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 17,
+          "date": "2020-08-01",
+          "sha": "b146a13f633b0e2e26e3b8383b3db0feb563bc83"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2021-10-01",
+          "sha": "6a4bf9eec13e035cf10ecc16e462049b4c967e41"
+        }
+      ],
+      "subject": "Merge pull request #4560"
+    },
+    {
+      "blamed_files": [
+        "src/flask/scaffold.py"
+      ],
+      "fix": "aa1d34dc51fc63dabc46f388822ba73b15d3ef97",
+      "fix_date": "2021-09-22",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 195.9,
+        "calendar_days_author": 197.8,
+        "churn_deletions": 1100,
+        "churn_files": 74,
+        "churn_insertions": 2524,
+        "commits_elapsed": 279,
+        "commits_elapsed_first_parent": 77,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2021-03-10",
+          "sha": "7029674775023c076a1dc03367214d178423809a"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2020-08-01",
+          "sha": "b146a13f633b0e2e26e3b8383b3db0feb563bc83"
+        }
+      ],
+      "subject": "Fix grammatical error (#4268)"
+    },
+    {
+      "blamed_files": [],
+      "fix": "39887ee4dfafb172312ba7db8c60728dd7181f9f",
+      "fix_date": "2021-04-16",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Merge pull request #3964"
+    },
+    {
+      "blamed_files": [
+        "src/flask/app.py"
+      ],
+      "fix": "85dce2c836fe03aefc07b7f4e0aec575e170f1cd",
+      "fix_date": "2021-04-12",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 5.8,
+        "calendar_days_author": 18.9,
+        "churn_deletions": 69,
+        "churn_files": 11,
+        "churn_insertions": 130,
+        "commits_elapsed": 9,
+        "commits_elapsed_first_parent": 4,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2021-04-06",
+          "sha": "00f5a3e55ca3b6dd4e98044ab76f055dc74997ac"
+        }
+      ],
+      "subject": "Merge pull request #3957"
+    },
+    {
+      "blamed_files": [
+        "src/flask/json/__init__.py"
+      ],
+      "fix": "4846e25e92638a1db5aa2b41f65eed7585366109",
+      "fix_date": "2021-02-25",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 1351.9,
+        "calendar_days_author": 1352.0,
+        "churn_deletions": 15480,
+        "churn_files": 312,
+        "churn_insertions": 17034,
+        "commits_elapsed": 1124,
+        "commits_elapsed_first_parent": 437,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2017-06-14",
+          "sha": "d41e2e6a5db3211ecd3c3f3f55934474406ffac2"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2019-06-01",
+          "sha": "43483683b2bc8da85f00ccccdfb8d9d5c77a6bb3"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2015-01-23",
+          "sha": "61263e08f9c763a6c2b3fec6428c972dea2f7cad"
+        }
+      ],
+      "subject": "Merge pull request #3917"
+    },
+    {
+      "blamed_files": [],
+      "fix": "c676c2c4f381e8eec3932d8bd53fdbafda70aef7",
+      "fix_date": "2021-01-06",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Merge pull request #3861"
+    },
+    {
+      "blamed_files": [],
+      "fix": "598c56c4983b33cbd9178f28516ebee33dd10fdd",
+      "fix_date": "2020-09-28",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "fix grammar (#3769)"
+    },
+    {
+      "blamed_files": [],
+      "fix": "fe55f92cdc575d00204a134b2d556c1053e1ed4e",
+      "fix_date": "2020-08-23",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix pre-commit cache key in GitHub Actions. (#3740)"
+    },
+    {
+      "blamed_files": [
+        "docs/conf.py"
+      ],
+      "fix": "fd0f89ebf3ef44fd40372db48f25009bdad6d162",
+      "fix_date": "2020-08-07",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 317.9,
+        "calendar_days_author": 317.9,
+        "churn_deletions": 14770,
+        "churn_files": 281,
+        "churn_insertions": 19024,
+        "commits_elapsed": 1328,
+        "commits_elapsed_first_parent": 415,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2019-09-24",
+          "sha": "4ed20657c61c3e64aba4652e1f053bae65ebc821"
+        }
+      ],
+      "subject": "Merge pull request #3723"
+    },
+    {
+      "blamed_files": [
+        "src/flask/cli.py"
+      ],
+      "fix": "a40c381ffdc4c28a19a0910c4da8ec54e3ae63cf",
+      "fix_date": "2020-07-18",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 1097.9,
+        "calendar_days_author": 1099.5,
+        "churn_deletions": 13278,
+        "churn_files": 289,
+        "churn_insertions": 15049,
+        "commits_elapsed": 902,
+        "commits_elapsed_first_parent": 333,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 7,
+          "date": "2017-07-16",
+          "sha": "491d331e6e0a7915c9e6d9b3287688ac7a3f56ca"
+        }
+      ],
+      "subject": "Merge pull request #3560"
+    },
+    {
+      "blamed_files": [],
+      "fix": "941bc9ff6019117c9aa341f809bef7e0e54d0ebf",
+      "fix_date": "2019-10-06",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix link to header in CONTRIBUTING (#3382)"
+    },
+    {
+      "blamed_files": [
+        "flask/app.py",
+        "flask/ctx.py",
+        "flask/helpers.py"
+      ],
+      "fix": "cd4023d9d2ab630ce4f95856f065072ef8badb2b",
+      "fix_date": "2019-05-31",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 505.7,
+        "calendar_days_author": 505.8,
+        "churn_deletions": 7953,
+        "churn_files": 240,
+        "churn_insertions": 10836,
+        "commits_elapsed": 478,
+        "commits_elapsed_first_parent": 162,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 16,
+          "date": "2018-01-10",
+          "sha": "87c2e121e0bf32f5234eabbf4773a82f9d5523d2"
+        },
+        {
+          "blamed_lines": 7,
+          "date": "2017-06-14",
+          "sha": "4fc48200a58907ffdf136961b84ef7d19192e6ef"
+        },
+        {
+          "blamed_lines": 5,
+          "date": "2012-12-21",
+          "sha": "1949c4a9abc174bf29620f6dd8ceab9ed3ace2eb"
+        },
+        {
+          "blamed_lines": 4,
+          "date": "2011-05-29",
+          "sha": "7a08331ac062ee1e2ae3c7547f77c2d342ddb3df"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2019-05-06",
+          "sha": "025589ee766249652e2e097da05808fe64911ddc"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2017-06-06",
+          "sha": "235c830759beca55a9d141c689f2a8c88a19f3d2"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2018-01-06",
+          "sha": "2433522d2967b8a5e46f16de587a8fac5088a47c"
+        }
+      ],
+      "subject": "Merge pull request #3237"
+    },
+    {
+      "blamed_files": [
+        "flask/cli.py"
+      ],
+      "fix": "240e398c8d2b46607f6e5c87b6e39eab50ad7796",
+      "fix_date": "2019-05-31",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 14.4,
+        "calendar_days_author": 27.7,
+        "churn_deletions": 3974,
+        "churn_files": 122,
+        "churn_insertions": 4967,
+        "commits_elapsed": 200,
+        "commits_elapsed_first_parent": 103,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2019-05-16",
+          "sha": "e2f4b53396f4676978f86492dae5d3952446df89"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2018-01-10",
+          "sha": "3738f7ff99661fa0319ebe2d8228ad8c479fb46a"
+        }
+      ],
+      "subject": "Merge pull request #3229"
+    },
+    {
+      "blamed_files": [
+        "flask/testing.py"
+      ],
+      "fix": "2c68f86336dc8729f58e8e19af0f49c269c1cfaa",
+      "fix_date": "2019-05-25",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 2800.1,
+        "calendar_days_author": 2800.1,
+        "churn_deletions": 10919,
+        "churn_files": 307,
+        "churn_insertions": 24356,
+        "commits_elapsed": 2659,
+        "commits_elapsed_first_parent": 843,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2011-09-24",
+          "sha": "c6316132b173f96a6f5a90ff3b62f706f8a62560"
+        }
+      ],
+      "subject": "Merge pull request #3157"
+    },
+    {
+      "blamed_files": [],
+      "fix": "819368a52dc9eb0ba4e20195783f2807872dabad",
+      "fix_date": "2019-05-06",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Merge pull request #3175"
+    },
+    {
+      "blamed_files": [
+        "flask/ctx.py"
+      ],
+      "fix": "e08bcf9f9700180a09f77f52604ea6de36fb83a8",
+      "fix_date": "2018-11-03",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 1999.7,
+        "calendar_days_author": 1999.7,
+        "churn_deletions": 12228,
+        "churn_files": 315,
+        "churn_insertions": 20685,
+        "commits_elapsed": 2028,
+        "commits_elapsed_first_parent": 568,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 5,
+          "date": "2013-05-14",
+          "sha": "097353695e3178a38403b204ae4889c8a32bf997"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2011-03-13",
+          "sha": "b3fc9eb36b8021ad966be57532a5fa5ae4231e13"
+        }
+      ],
+      "subject": "Fix #2935: Copy current session object in copy_current_request_context (#2936)"
+    },
+    {
+      "blamed_files": [
+        "flask/cli.py"
+      ],
+      "fix": "b2ec6a33a235dbd9f57bd6265ec54cfb675243f7",
+      "fix_date": "2018-06-14",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 83.4,
+        "calendar_days_author": 83.4,
+        "churn_deletions": 3447,
+        "churn_files": 169,
+        "churn_insertions": 5092,
+        "commits_elapsed": 152,
+        "commits_elapsed_first_parent": 54,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2018-03-23",
+          "sha": "08e61ea200d04326f8f40a3130ef613f84cd854d"
+        }
+      ],
+      "subject": "Merge pull request #2827"
+    },
+    {
+      "blamed_files": [
+        "flask/json/tag.py"
+      ],
+      "fix": "324b4ea2559f42ca710061bcf6c85960a1f2d2a9",
+      "fix_date": "2018-04-19",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 321.0,
+        "calendar_days_author": 321.0,
+        "churn_deletions": 6432,
+        "churn_files": 234,
+        "churn_insertions": 8225,
+        "commits_elapsed": 279,
+        "commits_elapsed_first_parent": 125,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2017-06-02",
+          "sha": "ca176cb903f9566be07e359791e364ce2fe0b1bc"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2017-06-01",
+          "sha": "5e1ced3c055f7eb567bf7266c98de3d44ceea1b4"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2017-06-02",
+          "sha": "9bee2500dde2976befd7e88de5d403a26d7ad675"
+        }
+      ],
+      "subject": "Merge pull request #2711"
+    },
+    {
+      "blamed_files": [],
+      "fix": "16549370fd0d47285e3bedd2ee47fca7c80b59e7",
+      "fix_date": "2018-04-18",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "fix changelog indentation"
+    },
+    {
+      "blamed_files": [],
+      "fix": "d08d96acbcabcde23307ed060f71f95ba9cb7b8d",
+      "fix_date": "2017-12-05",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix code example for HTTP Methods"
+    },
+    {
+      "blamed_files": [],
+      "fix": "777cc17de34622a7f8324a3ce42fbc589d86476b",
+      "fix_date": "2017-11-25",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix broken test"
+    },
+    {
+      "blamed_files": [
+        "docs/conf.py"
+      ],
+      "fix": "97ad0859128a1e6f2ec3efb9efc46c7c40646318",
+      "fix_date": "2017-08-01",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 400.8,
+        "calendar_days_author": 400.8,
+        "churn_deletions": 4912,
+        "churn_files": 165,
+        "churn_insertions": 7281,
+        "commits_elapsed": 529,
+        "commits_elapsed_first_parent": 75,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2016-06-26",
+          "sha": "1928f28a6863a8bac27705950ce1327d661f4d2d"
+        }
+      ],
+      "subject": "fix links"
+    },
+    {
+      "blamed_files": [],
+      "fix": "1c35b98f0bcb1a1362cdfb1663992e6526e63a67",
+      "fix_date": "2017-08-01",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "fix code block"
+    },
+    {
+      "blamed_files": [
+        "flask/cli.py"
+      ],
+      "fix": "641fdeaf989c31125289390fe62601b879d1fae1",
+      "fix_date": "2017-06-27",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 11.0,
+        "calendar_days_author": 11.0,
+        "churn_deletions": 949,
+        "churn_files": 14,
+        "churn_insertions": 74,
+        "commits_elapsed": 19,
+        "commits_elapsed_first_parent": 8,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2017-06-16",
+          "sha": "448368e226c8edd1077cf8e5a12ddaa9222b8ec9"
+        }
+      ],
+      "subject": "Merge pull request #2398"
+    },
+    {
+      "blamed_files": [],
+      "fix": "2b58e6120ceadf363d12cc12889bfc79c18d5066",
+      "fix_date": "2015-06-06",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix wording"
+    },
+    {
+      "blamed_files": [],
+      "fix": "9c1cf1bc08facb9588739466162db0a562e8fafa",
+      "fix_date": "2015-03-05",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix broken link"
+    },
+    {
+      "blamed_files": [],
+      "fix": "1158e229589f39a140829bbd02e2f721ea9b5d26",
+      "fix_date": "2015-02-06",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix test under Python 3"
+    },
+    {
+      "blamed_files": [],
+      "fix": "bd2c8b631fcdfc63adcefe0d6cc41fb6c9c21976",
+      "fix_date": "2014-12-30",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix #1298"
+    },
+    {
+      "blamed_files": [],
+      "fix": "924763afd14b05ece440c9563f87e70e5f969b48",
+      "fix_date": "2014-12-01",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Merge pull request #1263"
+    },
+    {
+      "blamed_files": [],
+      "fix": "7169f44d8801709ebf7a5819d05cfd1201d5429b",
+      "fix_date": "2014-10-08",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Various fixes for test running"
+    },
+    {
+      "blamed_files": [
+        "flask/testsuite/templating.py"
+      ],
+      "fix": "bb0084f5bef9b871a82f0451ed71131ffb7a43b3",
+      "fix_date": "2014-09-03",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.1,
+        "calendar_days_author": 0.1,
+        "churn_deletions": 2,
+        "churn_files": 2,
+        "churn_insertions": 2,
+        "commits_elapsed": 2,
+        "commits_elapsed_first_parent": 2,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2014-09-03",
+          "sha": "bafc13981002dee4610234c7c97ac176766181c1"
+        }
+      ],
+      "subject": "Fix Py3 compat bug"
+    },
+    {
+      "blamed_files": [
+        "flask/templating.py"
+      ],
+      "fix": "84f57b6bda5469a7ed1f18ad1c7b167225326796",
+      "fix_date": "2014-09-03",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 0.0,
+        "churn_deletions": 1,
+        "churn_files": 1,
+        "churn_insertions": 1,
+        "commits_elapsed": 1,
+        "commits_elapsed_first_parent": 1,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2014-09-03",
+          "sha": "bafc13981002dee4610234c7c97ac176766181c1"
+        }
+      ],
+      "subject": "Fixed a relative import"
+    },
+    {
+      "blamed_files": [
+        "flask/cli.py"
+      ],
+      "fix": "f17ad953dd2e563f91cc9ed2bca19ea23464b5dc",
+      "fix_date": "2014-09-03",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 128.1,
+        "calendar_days_author": 128.1,
+        "churn_deletions": 968,
+        "churn_files": 98,
+        "churn_insertions": 1255,
+        "commits_elapsed": 145,
+        "commits_elapsed_first_parent": 80,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2014-04-28",
+          "sha": "3bdb90f06b9d3167320180d4a5055dcd949bf72f"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2014-09-02",
+          "sha": "9eb59b0bef176aa227edc8970d4b2ac420af9293"
+        }
+      ],
+      "subject": "Fix syntax error on py3"
+    },
+    {
+      "blamed_files": [
+        "flask/cli.py"
+      ],
+      "fix": "fa6eded6f572dd4bc23b030f025156cdd1e63305",
+      "fix_date": "2014-05-08",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 10.4,
+        "calendar_days_author": 10.4,
+        "churn_deletions": 236,
+        "churn_files": 48,
+        "churn_insertions": 799,
+        "commits_elapsed": 41,
+        "commits_elapsed_first_parent": 22,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2014-04-28",
+          "sha": "3bdb90f06b9d3167320180d4a5055dcd949bf72f"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2014-05-07",
+          "sha": "81576c236a4dde33aeed13c84abed0ad2e796c2f"
+        }
+      ],
+      "subject": "Fixed the cli system failing syntax errors."
+    },
+    {
+      "blamed_files": [],
+      "fix": "2639a23b8875abb6c1dd2889728920cce5d09632",
+      "fix_date": "2014-05-07",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Updated setup.py a bit.  This fixes #1018"
+    },
+    {
+      "blamed_files": [
+        "examples/flaskr/flaskr.py",
+        "examples/minitwit/minitwit.py",
+        "flask/cli.py"
+      ],
+      "fix": "d2d8e66130f8aabf8e0e4b80a42352f8ef93c347",
+      "fix_date": "2014-05-02",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 4.0,
+        "calendar_days_author": 4.0,
+        "churn_deletions": 165,
+        "churn_files": 43,
+        "churn_insertions": 403,
+        "commits_elapsed": 29,
+        "commits_elapsed_first_parent": 12,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2014-04-28",
+          "sha": "3bdb90f06b9d3167320180d4a5055dcd949bf72f"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2014-04-29",
+          "sha": "9ab59871007c12fad03f43ac08f889e4c080e64d"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2014-04-28",
+          "sha": "a3a5075a942a321ccf67c7511822e62dc1d5858f"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-04-06",
+          "sha": "33850c0ebd23ae615e6823993d441f46d80b1ff0"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-04-14",
+          "sha": "c33675f0251071ea47ce166b81ce8c637842f091"
+        }
+      ],
+      "subject": "Fixed flask tests"
+    },
+    {
+      "blamed_files": [],
+      "fix": "42c28c3758fc1612a5a1e89a36092580344c4578",
+      "fix_date": "2014-04-21",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed intention in flask init"
+    },
+    {
+      "blamed_files": [
+        "flask/helpers.py"
+      ],
+      "fix": "a293b99b219c13ea94b33a2470a545e07c73b804",
+      "fix_date": "2014-04-11",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 0.0,
+        "churn_deletions": 2,
+        "churn_files": 1,
+        "churn_insertions": 2,
+        "commits_elapsed": 1,
+        "commits_elapsed_first_parent": 1,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2014-04-11",
+          "sha": "9554844e2ac3e50872aab6f7b54c277ff582cd13"
+        }
+      ],
+      "subject": "Fixed the last changeset."
+    },
+    {
+      "blamed_files": [],
+      "fix": "6f44ca705f277580105d8e55a7a3994802ac7e7d",
+      "fix_date": "2014-02-08",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed sqlite3 pattern.  This fixes #924"
+    },
+    {
+      "blamed_files": [
+        "flask/ctx.py"
+      ],
+      "fix": "e78961c812f0a81792bb9e1eae26fd96a10069c0",
+      "fix_date": "2014-01-26",
+      "flags": [
+        "committer-dates-compressed(use-author-days)"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 0.0,
+        "churn_deletions": 3,
+        "churn_files": 1,
+        "churn_insertions": 3,
+        "commits_elapsed": 2,
+        "commits_elapsed_first_parent": 2,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2014-01-26",
+          "sha": "6ec83e18dca497a8fbfca6caca5999984bd32f2e"
+        }
+      ],
+      "subject": "Fixed a missing import"
+    },
+    {
+      "blamed_files": [],
+      "fix": "6ec83e18dca497a8fbfca6caca5999984bd32f2e",
+      "fix_date": "2014-01-26",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Added a workaround for a pypy bug in context managers"
+    },
+    {
+      "blamed_files": [
+        "flask/testsuite/basic.py"
+      ],
+      "fix": "3e4dbf93d9ef2b64d32b291aa6f7620bdbc6576a",
+      "fix_date": "2013-07-30",
+      "flags": [
+        "committer-dates-compressed(use-author-days)"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 0.0,
+        "churn_deletions": 9,
+        "churn_files": 3,
+        "churn_insertions": 10,
+        "commits_elapsed": 6,
+        "commits_elapsed_first_parent": 2,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 4,
+          "date": "2013-07-30",
+          "sha": "d1d835c02302884b2db1cab099b3ea6a84f41d32"
+        }
+      ],
+      "subject": "Fixed a test that broke on 3.x"
+    },
+    {
+      "blamed_files": [
+        "flask/blueprints.py"
+      ],
+      "fix": "dfdcac22927f8027f393e66d78345106cdbbfae5",
+      "fix_date": "2013-06-14",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 658.7,
+        "calendar_days_author": 658.7,
+        "churn_deletions": 3800,
+        "churn_files": 177,
+        "churn_insertions": 10271,
+        "commits_elapsed": 710,
+        "commits_elapsed_first_parent": 379,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2011-08-25",
+          "sha": "03a71e022919a0e1bff6606400e9d5ae234b8244"
+        }
+      ],
+      "subject": "Fixed some embarrassing grammar"
+    },
+    {
+      "blamed_files": [],
+      "fix": "72bbeaf056ed7ee1adbadc4eeb2dfdddb705fa8c",
+      "fix_date": "2013-06-14",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Added changelog entry for the method registering fix"
+    },
+    {
+      "blamed_files": [
+        "flask/app.py"
+      ],
+      "fix": "44e39ab0713566bd91363f19ed09921df5db0196",
+      "fix_date": "2013-06-14",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 249.7,
+        "calendar_days_author": 249.7,
+        "churn_deletions": 1096,
+        "churn_files": 97,
+        "churn_insertions": 2993,
+        "commits_elapsed": 253,
+        "commits_elapsed_first_parent": 118,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2012-10-07",
+          "sha": "661ee54bc2bc1ea0763ac9c226f8e14bb0beb5b1"
+        }
+      ],
+      "subject": "Fixed class-based views support"
+    },
+    {
+      "blamed_files": [],
+      "fix": "ec5291e46dde7f697fca810ebf137e4e320b0b25",
+      "fix_date": "2013-06-13",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed invalid reference"
+    },
+    {
+      "blamed_files": [],
+      "fix": "2c9c269284aa0738d917af8f60e4552a3100d898",
+      "fix_date": "2013-06-09",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed a broken reference"
+    },
+    {
+      "blamed_files": [
+        "flask/testsuite/basic.py"
+      ],
+      "fix": "fd99abea57cfa3e72aee2116c58f962ec155a29c",
+      "fix_date": "2013-06-05",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 648.9,
+        "calendar_days_author": 648.9,
+        "churn_deletions": 2032,
+        "churn_files": 135,
+        "churn_insertions": 7373,
+        "commits_elapsed": 644,
+        "commits_elapsed_first_parent": 320,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2011-08-26",
+          "sha": "4cb6eea8f1e1edc707874f72cbca43a0f698ec7d"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2013-05-22",
+          "sha": "9f8a2075c79fec1b5481f5a5a95bb23b40bf68f2"
+        }
+      ],
+      "subject": "Fixed too strict tests for cookie setting that broke on werkzeug changes"
+    },
+    {
+      "blamed_files": [
+        "flask/ctx.py"
+      ],
+      "fix": "1b40b3b573f5d98cf9fbc453305cd535c0b2578d",
+      "fix_date": "2013-06-02",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 617.1,
+        "calendar_days_author": 617.1,
+        "churn_deletions": 1901,
+        "churn_files": 122,
+        "churn_insertions": 6164,
+        "commits_elapsed": 558,
+        "commits_elapsed_first_parent": 254,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2011-09-24",
+          "sha": "c6316132b173f96a6f5a90ff3b62f706f8a62560"
+        }
+      ],
+      "subject": "Fixed request context preservation and teardown handler interaction."
+    },
+    {
+      "blamed_files": [
+        "flask/app.py",
+        "flask/json.py"
+      ],
+      "fix": "3d9055b3b73b1d09f933bfd070f704e9e8bdff2a",
+      "fix_date": "2013-06-01",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 226.0,
+        "calendar_days_author": 226.0,
+        "churn_deletions": 843,
+        "churn_files": 81,
+        "churn_insertions": 1644,
+        "commits_elapsed": 186,
+        "commits_elapsed_first_parent": 62,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2012-10-18",
+          "sha": "8339cb35082fc93d3a9c98616aed7fe0c1c642dc"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2012-10-07",
+          "sha": "b146d8277ab90cf6d43ea54113383076e4fd0318"
+        }
+      ],
+      "subject": "Added the JSONIFY_PRETTYPRINT_REGULAR config variable.  This fixes #725"
+    },
+    {
+      "blamed_files": [],
+      "fix": "2ba37d2b85ac2c6cacb62055162e2e7b5e9cc55e",
+      "fix_date": "2013-05-14",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed some rst markup problems"
+    },
+    {
+      "blamed_files": [],
+      "fix": "6ab569b0e3791cf04db7c333bbf5b78d33255dad",
+      "fix_date": "2013-01-27",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Added note on teardown in debug mode.  Fixes #661"
+    },
+    {
+      "blamed_files": [],
+      "fix": "3b393f89f66733f7824a50b33b93eae9999812ad",
+      "fix_date": "2013-01-27",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Added template_global, fixes #657"
+    },
+    {
+      "blamed_files": [
+        "flask/app.py"
+      ],
+      "fix": "61d3bbf1d237cd8f03e37af88ad4a6b59f27d4e1",
+      "fix_date": "2013-01-21",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 0.0,
+        "churn_deletions": 6,
+        "churn_files": 2,
+        "churn_insertions": 31,
+        "commits_elapsed": 1,
+        "commits_elapsed_first_parent": 1,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 6,
+          "date": "2013-01-21",
+          "sha": "f1537a9d7a1e5ab53e38166a2a8fd7bad9278c18"
+        }
+      ],
+      "subject": "Fixed last commit and added test"
+    },
+    {
+      "blamed_files": [],
+      "fix": "61d43c7f1269d9dafb40d4483cf88c7e32e95edc",
+      "fix_date": "2012-12-19",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Removed unnecessary end-tags and fixed some broken html"
+    },
+    {
+      "blamed_files": [
+        "flask/app.py",
+        "flask/json.py"
+      ],
+      "fix": "8339cb35082fc93d3a9c98616aed7fe0c1c642dc",
+      "fix_date": "2012-10-18",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 10.1,
+        "calendar_days_author": 10.1,
+        "churn_deletions": 149,
+        "churn_files": 17,
+        "churn_insertions": 272,
+        "commits_elapsed": 10,
+        "commits_elapsed_first_parent": 7,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 4,
+          "date": "2012-10-07",
+          "sha": "05c6502cbde016f0475233faa0c6364634cccac9"
+        },
+        {
+          "blamed_lines": 4,
+          "date": "2012-10-07",
+          "sha": "b146d8277ab90cf6d43ea54113383076e4fd0318"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2012-04-09",
+          "sha": "307d1bc4e51fc35282f2d504b9df3359604b8f8a"
+        }
+      ],
+      "subject": "Added support for unicode json dumping.  This fixes #535"
+    },
+    {
+      "blamed_files": [
+        "flask/helpers.py"
+      ],
+      "fix": "3afcbf160eff2a5ab6ac35a82e0719f972df8972",
+      "fix_date": "2012-10-07",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 538.3,
+        "calendar_days_author": 552.3,
+        "churn_deletions": 3790,
+        "churn_files": 169,
+        "churn_insertions": 11900,
+        "commits_elapsed": 703,
+        "commits_elapsed_first_parent": 418,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2011-04-18",
+          "sha": "7ed3196e8d1861acd027c409c47e51cce812ba63"
+        }
+      ],
+      "subject": "Extra safety for safe_join.  Does not look exploitable but better safe than sorry.  Fixes #501"
+    },
+    {
+      "blamed_files": [
+        "flask/testsuite/basic.py"
+      ],
+      "fix": "661ee54bc2bc1ea0763ac9c226f8e14bb0beb5b1",
+      "fix_date": "2012-10-07",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 264.5,
+        "calendar_days_author": 264.5,
+        "churn_deletions": 691,
+        "churn_files": 86,
+        "churn_insertions": 3004,
+        "commits_elapsed": 271,
+        "commits_elapsed_first_parent": 112,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2012-01-16",
+          "sha": "b9907b496911d0d8676225151a36c28fe4f4b72f"
+        }
+      ],
+      "subject": "Raise exceptions if a function is overridden by a new endpoint.  This fixes #570"
+    },
+    {
+      "blamed_files": [
+        "flask/testsuite/__init__.py"
+      ],
+      "fix": "f8b6033a3b86691470a36db57eba17d996c7d5e8",
+      "fix_date": "2012-10-07",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 408.2,
+        "calendar_days_author": 408.2,
+        "churn_deletions": 1423,
+        "churn_files": 114,
+        "churn_insertions": 5518,
+        "commits_elapsed": 431,
+        "commits_elapsed_first_parent": 234,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2011-08-26",
+          "sha": "4cb6eea8f1e1edc707874f72cbca43a0f698ec7d"
+        }
+      ],
+      "subject": "Added a workaround for samefile.  This fixes #600"
+    },
+    {
+      "blamed_files": [],
+      "fix": "3c1d7758d54a5ad2c9fa1ea0933ed10b6cfeb696",
+      "fix_date": "2012-10-07",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Removed dev tag from setup.cfg.  Fixes #596"
+    },
+    {
+      "blamed_files": [],
+      "fix": "b5bb49d080475e4fb90f6a47dacab60b53470e9d",
+      "fix_date": "2012-10-07",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Added a new example for checksums on input data.  This fixes #601"
+    },
+    {
+      "blamed_files": [
+        "flask/helpers.py"
+      ],
+      "fix": "c4f2075f4c4c27856fe0af77250fb75c61c0d86b",
+      "fix_date": "2012-10-07",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 827.8,
+        "calendar_days_author": 827.8,
+        "churn_deletions": 2760,
+        "churn_files": 178,
+        "churn_insertions": 14918,
+        "commits_elapsed": 958,
+        "commits_elapsed_first_parent": 643,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2010-07-02",
+          "sha": "d0dc89ea802130e8a3a16b4fba73fa10815c09fb"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2012-08-11",
+          "sha": "c3d38a21c664440fb8284aaaf8fbcce4a1c0849f"
+        }
+      ],
+      "subject": "tojson no longer escapes script blocks in HTML5 parsers.  Fixed #605"
+    },
+    {
+      "blamed_files": [],
+      "fix": "3bec75d230507335eaf9066605d3893e185b9e11",
+      "fix_date": "2012-10-07",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Set the content-length header for sendfile.  Fixes #447"
+    },
+    {
+      "blamed_files": [
+        "flask/__init__.py"
+      ],
+      "fix": "7f8709147435bea69fa15ae0de9a2326ab5dfc41",
+      "fix_date": "2012-10-07",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 498.8,
+        "calendar_days_author": 498.8,
+        "churn_deletions": 3701,
+        "churn_files": 166,
+        "churn_insertions": 11376,
+        "commits_elapsed": 662,
+        "commits_elapsed_first_parent": 405,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2011-05-27",
+          "sha": "e71a5ff8de93801c30ed6daecac4b8502aa86813"
+        }
+      ],
+      "subject": "Added a missing exposed import.  This fixes #575"
+    },
+    {
+      "blamed_files": [
+        "flask/testsuite/templating.py"
+      ],
+      "fix": "f034d8d3451f590fca1badeac5da0230bed9b148",
+      "fix_date": "2012-10-07",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 226.2,
+        "calendar_days_author": 226.2,
+        "churn_deletions": 537,
+        "churn_files": 73,
+        "churn_insertions": 2436,
+        "commits_elapsed": 207,
+        "commits_elapsed_first_parent": 62,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2012-02-24",
+          "sha": "0b3369355dadb39ac1ce9580d95004233031a287"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2011-08-26",
+          "sha": "4cb6eea8f1e1edc707874f72cbca43a0f698ec7d"
+        }
+      ],
+      "subject": "Add () decorator for creating custom jinja2 tests, like existing () for filters.  Fixes #332"
+    },
+    {
+      "blamed_files": [
+        "flask/helpers.py"
+      ],
+      "fix": "1beb0f2e7f8c60df41cd7b198c1ed1748a0fea3d",
+      "fix_date": "2012-07-02",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 4.8,
+        "calendar_days_author": 4.8,
+        "churn_deletions": 5,
+        "churn_files": 4,
+        "churn_insertions": 5,
+        "commits_elapsed": 8,
+        "commits_elapsed_first_parent": 5,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2012-06-27",
+          "sha": "d5218997d927be869dd55ef04542e1bbc1e69653"
+        }
+      ],
+      "subject": "Fixed a syntax error"
+    },
+    {
+      "blamed_files": [
+        "flask/helpers.py"
+      ],
+      "fix": "8071f11328ab2b767608c5c63d0bad72d9408120",
+      "fix_date": "2012-06-26",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 170.7,
+        "calendar_days_author": 170.7,
+        "churn_deletions": 695,
+        "churn_files": 64,
+        "churn_insertions": 2454,
+        "commits_elapsed": 182,
+        "commits_elapsed_first_parent": 99,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2012-01-07",
+          "sha": "a3b30b7e3b026e821716be63d586e078eaa6ee7f"
+        }
+      ],
+      "subject": "Fixed an issue with the new path finding logic"
+    },
+    {
+      "blamed_files": [
+        "flask/helpers.py"
+      ],
+      "fix": "34bbd3100bbfb9a406a417a9fe4e8944aa87c629",
+      "fix_date": "2012-04-09",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 28.0,
+        "calendar_days_author": 28.0,
+        "churn_deletions": 295,
+        "churn_files": 35,
+        "churn_insertions": 852,
+        "commits_elapsed": 78,
+        "commits_elapsed_first_parent": 9,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2012-03-12",
+          "sha": "06b224676d2f6c38fbf1f486f636e81a85016d45"
+        }
+      ],
+      "subject": "Fixed a failing testcase"
+    },
+    {
+      "blamed_files": [],
+      "fix": "04bb720d3813c8cfe3ae46d2fb85dbc9a03a9b70",
+      "fix_date": "2012-02-14",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix Blueprint example with template_folder, #403."
+    },
+    {
+      "blamed_files": [
+        "flask/views.py"
+      ],
+      "fix": "a59cbd4f5256a356fcb7858bf0a5a0ad535e8e6d",
+      "fix_date": "2012-01-16",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 121.0,
+        "calendar_days_author": 81.8,
+        "churn_deletions": 352,
+        "churn_files": 55,
+        "churn_insertions": 1336,
+        "commits_elapsed": 99,
+        "commits_elapsed_first_parent": 73,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2011-09-17",
+          "sha": "32c7e43dda6600828ae9b11111d722ab92fb0594"
+        }
+      ],
+      "subject": "Minor grammar fix"
+    },
+    {
+      "blamed_files": [
+        "flask/app.py"
+      ],
+      "fix": "d628df6ab6c57b34acfb412e135d0d095636c539",
+      "fix_date": "2011-11-20",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 136.3,
+        "calendar_days_author": 136.3,
+        "churn_deletions": 2345,
+        "churn_files": 110,
+        "churn_insertions": 5543,
+        "commits_elapsed": 235,
+        "commits_elapsed_first_parent": 174,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2011-07-07",
+          "sha": "0fccfe711fda524f216f82263bb83787a75035fd"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-02",
+          "sha": "d0dc89ea802130e8a3a16b4fba73fa10815c09fb"
+        }
+      ],
+      "subject": "Store session after callbacks.  This fixes #351"
+    },
+    {
+      "blamed_files": [
+        "flask/app.py"
+      ],
+      "fix": "6dccf775468ea0a849d3c1c3965e3a1db6a36a3f",
+      "fix_date": "2011-09-25",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 450.0,
+        "calendar_days_author": 450.0,
+        "churn_deletions": 2372,
+        "churn_files": 151,
+        "churn_insertions": 11627,
+        "commits_elapsed": 621,
+        "commits_elapsed_first_parent": 481,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 9,
+          "date": "2010-07-02",
+          "sha": "d0dc89ea802130e8a3a16b4fba73fa10815c09fb"
+        }
+      ],
+      "subject": "PERMANENT_SESSION_LIFETIME can now be an integer.  This fixes #310"
+    },
+    {
+      "blamed_files": [
+        "flask/ctx.py",
+        "flask/testing.py"
+      ],
+      "fix": "c6316132b173f96a6f5a90ff3b62f706f8a62560",
+      "fix_date": "2011-09-24",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 29.2,
+        "calendar_days_author": 29.2,
+        "churn_deletions": 221,
+        "churn_files": 54,
+        "churn_insertions": 1132,
+        "commits_elapsed": 69,
+        "commits_elapsed_first_parent": 49,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 9,
+          "date": "2011-08-26",
+          "sha": "d49221bf2eeabbfa4a5be4e537b35bae1eb6d272"
+        },
+        {
+          "blamed_lines": 6,
+          "date": "2010-07-05",
+          "sha": "df3f8940c30447f28f2ddf2a5f764cf543755f0d"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2010-07-02",
+          "sha": "d0dc89ea802130e8a3a16b4fba73fa10815c09fb"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2011-05-27",
+          "sha": "e71a5ff8de93801c30ed6daecac4b8502aa86813"
+        }
+      ],
+      "subject": "Context preserving is now part of Flask and not the test client.  This fixes #326"
+    },
+    {
+      "blamed_files": [
+        "flask/ext/__init__.py"
+      ],
+      "fix": "c72ca16234e4dbea448ea43d002eb500c09f4932",
+      "fix_date": "2011-09-18",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.2,
+        "calendar_days_author": 0.2,
+        "churn_deletions": 16,
+        "churn_files": 5,
+        "churn_insertions": 89,
+        "commits_elapsed": 1,
+        "commits_elapsed_first_parent": 1,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 16,
+          "date": "2011-09-17",
+          "sha": "8f85a3b0d161876de378b35ccac42237a18a5342"
+        }
+      ],
+      "subject": "Added tests for the import hook and fixed a problem with it."
+    },
+    {
+      "blamed_files": [
+        "flask/testsuite/config.py",
+        "flask/testsuite/helpers.py"
+      ],
+      "fix": "fbd6776e68a12aa7bf7d646ca03d568cedc616f3",
+      "fix_date": "2011-08-26",
+      "flags": [
+        "multiple-candidates",
+        "committer-dates-compressed(use-author-days)"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 0.0,
+        "churn_deletions": 303,
+        "churn_files": 12,
+        "churn_insertions": 366,
+        "commits_elapsed": 6,
+        "commits_elapsed_first_parent": 6,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2011-08-26",
+          "sha": "4cb6eea8f1e1edc707874f72cbca43a0f698ec7d"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2011-08-26",
+          "sha": "fc2caa4b9c75a6ee8569495008efd1f37c27a8cb"
+        }
+      ],
+      "subject": "Fixed a bug in the testsuite that caused problems when dots where in directory names"
+    },
+    {
+      "blamed_files": [
+        "setup.py"
+      ],
+      "fix": "4cb6eea8f1e1edc707874f72cbca43a0f698ec7d",
+      "fix_date": "2011-08-26",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 451.8,
+        "calendar_days_author": 451.8,
+        "churn_deletions": 3096,
+        "churn_files": 140,
+        "churn_insertions": 12602,
+        "commits_elapsed": 606,
+        "commits_elapsed_first_parent": 483,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 7,
+          "date": "2010-05-31",
+          "sha": "707b30749daf407c07b5b265bd892564576ad80a"
+        }
+      ],
+      "subject": "Split up testsuite and moved it to flask.testsuite.  This fixes #246"
+    },
+    {
+      "blamed_files": [],
+      "fix": "f051939d8ba1c5ec585fd4db1f83237a66020c0a",
+      "fix_date": "2011-08-25",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Test that we're not leaking a request context in the testsuite, fixed a leak"
+    },
+    {
+      "blamed_files": [
+        "flask/wrappers.py"
+      ],
+      "fix": "63876614b6734e6404f17c9d3d22b71b3f43d158",
+      "fix_date": "2011-08-09",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 402.8,
+        "calendar_days_author": 402.8,
+        "churn_deletions": 1378,
+        "churn_files": 117,
+        "churn_insertions": 8619,
+        "commits_elapsed": 494,
+        "commits_elapsed_first_parent": 382,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-02",
+          "sha": "d0dc89ea802130e8a3a16b4fba73fa10815c09fb"
+        }
+      ],
+      "subject": "Removed second mention of json.  This fixes #290"
+    },
+    {
+      "blamed_files": [
+        "flask/app.py"
+      ],
+      "fix": "7155f11a723695352323d484610b9a1c6798eb69",
+      "fix_date": "2011-08-05",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 61.1,
+        "calendar_days_author": 61.1,
+        "churn_deletions": 855,
+        "churn_files": 68,
+        "churn_insertions": 2666,
+        "commits_elapsed": 160,
+        "commits_elapsed_first_parent": 113,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 5,
+          "date": "2011-06-05",
+          "sha": "f5ec9952decda8731a1f40ba788ba06d12c0229b"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-14",
+          "sha": "b1790cca55956c0cda132ac2fa6a2fb53fd2d009"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-28",
+          "sha": "dbf55de7e8bfcf7cde967aa72ea006b764d484ac"
+        }
+      ],
+      "subject": "Added HTTP exception trapping.  This should fix #294"
+    },
+    {
+      "blamed_files": [
+        "flask/templating.py"
+      ],
+      "fix": "c9a2ad2b8d079c0ecca701f4c0b15390437c4843",
+      "fix_date": "2011-07-16",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 29.1,
+        "calendar_days_author": 29.1,
+        "churn_deletions": 895,
+        "churn_files": 64,
+        "churn_insertions": 1851,
+        "commits_elapsed": 116,
+        "commits_elapsed_first_parent": 80,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2011-06-16",
+          "sha": "abe1378caec759cc8c6fc0afeaad248677c4420f"
+        }
+      ],
+      "subject": "Fixed a bug in list_templates"
+    },
+    {
+      "blamed_files": [],
+      "fix": "de3b6ab5ee6f14d8e280b7aa0f9193b265b3d6dc",
+      "fix_date": "2011-07-06",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed a broken sentence about blueprints."
+    },
+    {
+      "blamed_files": [
+        "flask/blueprints.py"
+      ],
+      "fix": "bd473c158788bd2c1153fc8fe45831aaa648824a",
+      "fix_date": "2011-07-06",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 19.3,
+        "calendar_days_author": 19.3,
+        "churn_deletions": 639,
+        "churn_files": 57,
+        "churn_insertions": 1362,
+        "commits_elapsed": 73,
+        "commits_elapsed_first_parent": 48,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2011-06-17",
+          "sha": "e17e74d3a74b5d32a622587b2b9da9840bf3a7e0"
+        }
+      ],
+      "subject": "Fixed an issue that broke url processors for blueprints.  Added testcases"
+    },
+    {
+      "blamed_files": [],
+      "fix": "8ba6673670ec58e9cf32c6525d1903bc8f9b66d9",
+      "fix_date": "2011-07-01",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed a changelog entry"
+    },
+    {
+      "blamed_files": [
+        "scripts/make-release.py"
+      ],
+      "fix": "7e1ebae3a2879b989cae4d27bb8dd1dc8a1313ee",
+      "fix_date": "2011-06-29",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 0.0,
+        "churn_deletions": 2,
+        "churn_files": 1,
+        "churn_insertions": 2,
+        "commits_elapsed": 1,
+        "commits_elapsed_first_parent": 1,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2011-06-29",
+          "sha": "21d4a054e399a42ac448814116580a5c62991fce"
+        }
+      ],
+      "subject": "Another fix for the script"
+    },
+    {
+      "blamed_files": [],
+      "fix": "a101cfc35be437ad0e4f56da0d92f14c27abda67",
+      "fix_date": "2011-06-29",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Worked around a werkzeug bug with redirects"
+    },
+    {
+      "blamed_files": [],
+      "fix": "d0821edca5a075383a98d88d2916b5991897421b",
+      "fix_date": "2011-06-28",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed link to the upgrade script.  github changed links apparently"
+    },
+    {
+      "blamed_files": [
+        "flask/app.py"
+      ],
+      "fix": "ccd5ced70e48515e222b84dccc8f21d32c864dcd",
+      "fix_date": "2011-06-27",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 356.0,
+        "calendar_days_author": 356.0,
+        "churn_deletions": 1216,
+        "churn_files": 101,
+        "churn_insertions": 6545,
+        "commits_elapsed": 337,
+        "commits_elapsed_first_parent": 258,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-06",
+          "sha": "da514b398429653dbd368c6da48c9863d3c2632f"
+        }
+      ],
+      "subject": "Chop of ports for session cookies.  This fixes #253"
+    },
+    {
+      "blamed_files": [
+        "flask/wrappers.py"
+      ],
+      "fix": "ea7a1720779ab4680304d2bc9dffcb6f5c7f2798",
+      "fix_date": "2011-06-27",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 28.7,
+        "calendar_days_author": 28.7,
+        "churn_deletions": 720,
+        "churn_files": 50,
+        "churn_insertions": 1828,
+        "commits_elapsed": 71,
+        "commits_elapsed_first_parent": 49,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2011-05-29",
+          "sha": "7a08331ac062ee1e2ae3c7547f77c2d342ddb3df"
+        }
+      ],
+      "subject": "Test that dotted names work.  This fixes #258"
+    },
+    {
+      "blamed_files": [
+        "flask/app.py"
+      ],
+      "fix": "db28217574c119b65f4a5c9dcc7922656d60f22b",
+      "fix_date": "2011-05-29",
+      "flags": [
+        "committer-dates-compressed(use-author-days)"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 0.0,
+        "churn_deletions": 1,
+        "churn_files": 3,
+        "churn_insertions": 17,
+        "commits_elapsed": 2,
+        "commits_elapsed_first_parent": 2,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2011-05-29",
+          "sha": "5da1fc22153032923b1560a34a0f346d6517a12d"
+        }
+      ],
+      "subject": "Fixed a bug, view_args not values"
+    },
+    {
+      "blamed_files": [],
+      "fix": "f58c98904f83aeff934b66d87b4e42a06ceb840d",
+      "fix_date": "2011-03-14",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "fixing some wording issues on the testing page"
+    },
+    {
+      "blamed_files": [],
+      "fix": "04e70bd5c7bd80696eabaea11afd9080d874f859",
+      "fix_date": "2011-03-14",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Add teardown_request decorator. Fixes issue #174"
+    },
+    {
+      "blamed_files": [],
+      "fix": "5764f3abd2e8e211545f9cb362e95e30a76a87d3",
+      "fix_date": "2011-03-13",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "fixing cross-referenced links on jquery patterns page"
+    },
+    {
+      "blamed_files": [],
+      "fix": "15ae22494df135b0e332aefb9abc43fb42a87d4c",
+      "fix_date": "2011-03-13",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "fixing cross-referenced links on quickstart page"
+    },
+    {
+      "blamed_files": [],
+      "fix": "4046d3bd30729324ff4548a42dfcc2d4f821bb5d",
+      "fix_date": "2011-03-13",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "fixing cross-referenced links on fileupload patterns page"
+    },
+    {
+      "blamed_files": [],
+      "fix": "6bdde49348f6c4634a42b76c3c66fad163a2e3e6",
+      "fix_date": "2011-03-13",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "fixing cross-referenced links on testing page"
+    },
+    {
+      "blamed_files": [],
+      "fix": "6562f2e152222e473d07e24f43f1cfe091675854",
+      "fix_date": "2011-02-06",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed line numbers for flask pdf"
+    },
+    {
+      "blamed_files": [
+        "flask/helpers.py"
+      ],
+      "fix": "0bf777ed81d5296fb722931d35e5db4333e3de39",
+      "fix_date": "2011-02-05",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 206.8,
+        "calendar_days_author": 206.8,
+        "churn_deletions": 438,
+        "churn_files": 77,
+        "churn_insertions": 3052,
+        "commits_elapsed": 168,
+        "commits_elapsed_first_parent": 157,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 6,
+          "date": "2010-07-13",
+          "sha": "85ff63c32e7237280bff3293481a371fb3da180c"
+        }
+      ],
+      "subject": "Do not use Date, use Last-Modified. This fixes #164"
+    },
+    {
+      "blamed_files": [
+        "flask/module.py"
+      ],
+      "fix": "9ae4eba9861bfa959bac6adfaf5842ef7d937eb6",
+      "fix_date": "2011-01-08",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 140.6,
+        "calendar_days_author": 139.3,
+        "churn_deletions": 103,
+        "churn_files": 42,
+        "churn_insertions": 428,
+        "commits_elapsed": 36,
+        "commits_elapsed_first_parent": 32,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-08-20",
+          "sha": "6fca662c841797a2006999c699a6738b20af1d4e"
+        }
+      ],
+      "subject": "fix subdomain for static rule on registering module"
+    },
+    {
+      "blamed_files": [],
+      "fix": "b92120b190e92288468d8617bc0e270dbf32ea71",
+      "fix_date": "2010-12-23",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Documented security fix in changelog"
+    },
+    {
+      "blamed_files": [
+        "flask/app.py"
+      ],
+      "fix": "4b65c7ed5a31d56e194817231eb88e1083ba285d",
+      "fix_date": "2010-12-06",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 156.3,
+        "calendar_days_author": 156.3,
+        "churn_deletions": 620,
+        "churn_files": 86,
+        "churn_insertions": 4097,
+        "commits_elapsed": 210,
+        "commits_elapsed_first_parent": 190,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2010-07-02",
+          "sha": "d0dc89ea802130e8a3a16b4fba73fa10815c09fb"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-05",
+          "sha": "df3f8940c30447f28f2ddf2a5f764cf543755f0d"
+        }
+      ],
+      "subject": "Added the ability to override the test client's class.  This fixes #148"
+    },
+    {
+      "blamed_files": [],
+      "fix": "ed517c7215fc17a46f85c2c0324d519572b67f6b",
+      "fix_date": "2010-11-19",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Minor spelling fixes"
+    },
+    {
+      "blamed_files": [],
+      "fix": "4f1b086218437870c0d36b4b9b36c5376cad9206",
+      "fix_date": "2010-11-02",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed: incorrect indentation level for session's permanent attribute"
+    },
+    {
+      "blamed_files": [],
+      "fix": "88883aa6db3b27f132000a4cf2a99c1fbbe941c9",
+      "fix_date": "2010-10-22",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fix for Flask's ticket 126. A proper environment is now built to use with `test_request_context()`."
+    },
+    {
+      "blamed_files": [],
+      "fix": "2a73bbc436041875f81aeffd5b8f13c6da8fcf19",
+      "fix_date": "2010-08-20",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Added testcase.  This fixes #108"
+    },
+    {
+      "blamed_files": [
+        "flask/module.py"
+      ],
+      "fix": "6fca662c841797a2006999c699a6738b20af1d4e",
+      "fix_date": "2010-08-20",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 46.9,
+        "calendar_days_author": 46.9,
+        "churn_deletions": 538,
+        "churn_files": 73,
+        "churn_insertions": 3482,
+        "commits_elapsed": 166,
+        "commits_elapsed_first_parent": 153,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-04",
+          "sha": "15012af70017962c2a22bc3fe670b9cc50782366"
+        }
+      ],
+      "subject": "Fix the 108th issue."
+    },
+    {
+      "blamed_files": [],
+      "fix": "d903f55e835dd143afb6e0079376525718ffb5a9",
+      "fix_date": "2010-08-18",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "s/sdist/dist/.  This fixes #106"
+    },
+    {
+      "blamed_files": [],
+      "fix": "0566abc28da9c997a9f7ac7b38066075a7a81cd8",
+      "fix_date": "2010-08-18",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed testing example"
+    },
+    {
+      "blamed_files": [
+        "flask/globals.py"
+      ],
+      "fix": "faa1c71e455a99e9b098aa9bb4667c07a1bab6aa",
+      "fix_date": "2010-08-07",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 35.7,
+        "calendar_days_author": 35.7,
+        "churn_deletions": 507,
+        "churn_files": 72,
+        "churn_insertions": 3544,
+        "commits_elapsed": 166,
+        "commits_elapsed_first_parent": 152,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 4,
+          "date": "2010-07-02",
+          "sha": "c4f64c1c475badaeef009ad46846e32a8e5c9b66"
+        }
+      ],
+      "subject": "Request local objects now fail properly with a RuntimeError.  This fixes #105"
+    },
+    {
+      "blamed_files": [],
+      "fix": "c9002569c9abfa715e491aa636555e51ddf85d50",
+      "fix_date": "2010-08-03",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Various pyflakes fixes"
+    },
+    {
+      "blamed_files": [],
+      "fix": "738c66eff30d1a5f5672c22a32a02c29d9c38a2b",
+      "fix_date": "2010-07-28",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed submodules.  Once again -.-"
+    },
+    {
+      "blamed_files": [
+        "flask/app.py"
+      ],
+      "fix": "dbf55de7e8bfcf7cde967aa72ea006b764d484ac",
+      "fix_date": "2010-07-28",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 15.1,
+        "calendar_days_author": 15.1,
+        "churn_deletions": 169,
+        "churn_files": 49,
+        "churn_insertions": 2127,
+        "commits_elapsed": 92,
+        "commits_elapsed_first_parent": 90,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2010-07-12",
+          "sha": "5e1b1030e8edecb0c9652f2a406933c049ea2397"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-25",
+          "sha": "fee5bdafe84bfcec492c2643544373c71f1e82a8"
+        }
+      ],
+      "subject": "Fixed an issue where the default `OPTIONS` response was not exposing all valid methods in the `Allow"
+    },
+    {
+      "blamed_files": [],
+      "fix": "8bd8b014a8393d4b94e6fd192b64e3a2d2f65fce",
+      "fix_date": "2010-07-26",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Small fixes in the extension tester"
+    },
+    {
+      "blamed_files": [],
+      "fix": "66c13955895c7afb849513d9d0ff0f7f8361c511",
+      "fix_date": "2010-07-23",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed wording"
+    },
+    {
+      "blamed_files": [],
+      "fix": "80268a408b981254bbf2bd318aaade9a21a281ef",
+      "fix_date": "2010-07-20",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Documented proxy fix"
+    },
+    {
+      "blamed_files": [],
+      "fix": "05519a85da1b26d73bc9215aa7f5cd357404f397",
+      "fix_date": "2010-07-17",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixing submodules"
+    },
+    {
+      "blamed_files": [
+        "docs/conf.py"
+      ],
+      "fix": "2b103134cf165ba453d5492e1a73b57b1e5bef1e",
+      "fix_date": "2010-07-17",
+      "flags": [
+        "committer-dates-compressed(use-author-days)"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 0.0,
+        "churn_deletions": 1,
+        "churn_files": 1,
+        "churn_insertions": 2,
+        "commits_elapsed": 2,
+        "commits_elapsed_first_parent": 2,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-17",
+          "sha": "97d2a198e216b29be5533dfba81525481bc9c1e5"
+        }
+      ],
+      "subject": "Fixed command"
+    },
+    {
+      "blamed_files": [],
+      "fix": "5d011c356dfc659a4c2ef66e8c847d489aef4e9c",
+      "fix_date": "2010-07-17",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed fallback"
+    },
+    {
+      "blamed_files": [
+        "flask/ctx.py"
+      ],
+      "fix": "a3a72e2d8d8df53164689fd84a5db2c6cd04f28a",
+      "fix_date": "2010-07-17",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 14.8,
+        "calendar_days_author": 14.8,
+        "churn_deletions": 349,
+        "churn_files": 51,
+        "churn_insertions": 2241,
+        "commits_elapsed": 83,
+        "commits_elapsed_first_parent": 73,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2010-07-02",
+          "sha": "d0dc89ea802130e8a3a16b4fba73fa10815c09fb"
+        }
+      ],
+      "subject": "Added middlewares to quickstart.  This fixes #88"
+    },
+    {
+      "blamed_files": [],
+      "fix": "70dc2b66a0d02a23546ad8d48b7fca1c21997ae6",
+      "fix_date": "2010-07-16",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Removed useless script reference.  This fixes #87"
+    },
+    {
+      "blamed_files": [],
+      "fix": "dbb3620792eda43d5f778c7f9019609f62ad2bb9",
+      "fix_date": "2010-07-15",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed an rst error"
+    },
+    {
+      "blamed_files": [
+        "flask/templating.py"
+      ],
+      "fix": "1202996c634b23f82421753cb7c46a5ccdf7aca2",
+      "fix_date": "2010-07-15",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 11.2,
+        "calendar_days_author": 11.2,
+        "churn_deletions": 246,
+        "churn_files": 40,
+        "churn_insertions": 1328,
+        "commits_elapsed": 54,
+        "commits_elapsed_first_parent": 48,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 4,
+          "date": "2010-07-04",
+          "sha": "a3c9494f67a0e89d44f459dac9eb9d0bc9b9025b"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2010-07-06",
+          "sha": "0a93c552cc3318396e44c6ab1282190898ce0012"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-07",
+          "sha": "16e4d5a6553ff9c89a61c44ddec7da21126b631a"
+        }
+      ],
+      "subject": "Fixed a template loading bug"
+    },
+    {
+      "blamed_files": [
+        "flask/app.py",
+        "flask/module.py"
+      ],
+      "fix": "f5b8c082847baa8a902cef22c43a5d50d7a55bdc",
+      "fix_date": "2010-07-15",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 12.8,
+        "calendar_days_author": 12.8,
+        "churn_deletions": 293,
+        "churn_files": 40,
+        "churn_insertions": 1436,
+        "commits_elapsed": 64,
+        "commits_elapsed_first_parent": 55,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 5,
+          "date": "2010-07-02",
+          "sha": "d0dc89ea802130e8a3a16b4fba73fa10815c09fb"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-04",
+          "sha": "15012af70017962c2a22bc3fe670b9cc50782366"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-04",
+          "sha": "51a89bf35ec6231d55f5caa8e12484e801f593fe"
+        }
+      ],
+      "subject": "endpoint is optional for modules.  This fixes #86"
+    },
+    {
+      "blamed_files": [
+        "flask/app.py",
+        "flask/helpers.py"
+      ],
+      "fix": "ed16ae2183ad44a7ba89aedd331a180455ed0836",
+      "fix_date": "2010-07-13",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 9.4,
+        "calendar_days_author": 9.4,
+        "churn_deletions": 272,
+        "churn_files": 38,
+        "churn_insertions": 1016,
+        "commits_elapsed": 44,
+        "commits_elapsed_first_parent": 38,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2010-07-04",
+          "sha": "a38dcd5e2bed1bcf2c1fc319fa9c3bc35e360fe0"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2010-07-04",
+          "sha": "15012af70017962c2a22bc3fe670b9cc50782366"
+        }
+      ],
+      "subject": "Always register URL rules.  This fixes #81"
+    },
+    {
+      "blamed_files": [
+        "flask/app.py"
+      ],
+      "fix": "d12d73263f5d1664a65a42f71f19158b7e07ef2c",
+      "fix_date": "2010-07-12",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 9.9,
+        "calendar_days_author": 9.9,
+        "churn_deletions": 264,
+        "churn_files": 39,
+        "churn_insertions": 1219,
+        "commits_elapsed": 53,
+        "commits_elapsed_first_parent": 46,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2010-07-02",
+          "sha": "d0dc89ea802130e8a3a16b4fba73fa10815c09fb"
+        }
+      ],
+      "subject": "Reverse order of execution of post-request handlers.  This fixes #82"
+    },
+    {
+      "blamed_files": [
+        "flask/app.py"
+      ],
+      "fix": "da514b398429653dbd368c6da48c9863d3c2632f",
+      "fix_date": "2010-07-06",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 3.6,
+        "calendar_days_author": 3.6,
+        "churn_deletions": 249,
+        "churn_files": 32,
+        "churn_insertions": 796,
+        "commits_elapsed": 39,
+        "commits_elapsed_first_parent": 35,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2010-07-02",
+          "sha": "d0dc89ea802130e8a3a16b4fba73fa10815c09fb"
+        }
+      ],
+      "subject": "Respect the domain for the session cookie.  This fixes #79"
+    },
+    {
+      "blamed_files": [
+        "flask/helpers.py"
+      ],
+      "fix": "8945a97a42d6475b1ee9fcb2689dc65dfce9828f",
+      "fix_date": "2010-07-04",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.3,
+        "calendar_days_author": 0.3,
+        "churn_deletions": 170,
+        "churn_files": 22,
+        "churn_insertions": 349,
+        "commits_elapsed": 16,
+        "commits_elapsed_first_parent": 15,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-04",
+          "sha": "15012af70017962c2a22bc3fe670b9cc50782366"
+        }
+      ],
+      "subject": "fixed possible security problem in module branch"
+    },
+    {
+      "blamed_files": [
+        "flask/helpers.py",
+        "flask/module.py",
+        "flask/wrappers.py"
+      ],
+      "fix": "51a89bf35ec6231d55f5caa8e12484e801f593fe",
+      "fix_date": "2010-07-04",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 0.0,
+        "churn_deletions": 4,
+        "churn_files": 4,
+        "churn_insertions": 9,
+        "commits_elapsed": 1,
+        "commits_elapsed_first_parent": 1,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2010-07-04",
+          "sha": "80eb6cfffc3f3fe6e448aa0e26ba1566d4c42917"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2010-07-02",
+          "sha": "c4f64c1c475badaeef009ad46846e32a8e5c9b66"
+        }
+      ],
+      "subject": "Restored 2.5 compatibility and actual fix for the json problem"
+    },
+    {
+      "blamed_files": [
+        "flask/__init__.py"
+      ],
+      "fix": "9e1111c2fbc2c7670eb489df0262a90417b96019",
+      "fix_date": "2010-07-04",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.1,
+        "calendar_days_author": 0.1,
+        "churn_deletions": 30,
+        "churn_files": 18,
+        "churn_insertions": 84,
+        "commits_elapsed": 9,
+        "commits_elapsed_first_parent": 8,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-04",
+          "sha": "a3c9494f67a0e89d44f459dac9eb9d0bc9b9025b"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-07-02",
+          "sha": "c4f64c1c475badaeef009ad46846e32a8e5c9b66"
+        }
+      ],
+      "subject": "Fixed JSON availability test.  This fixes #77"
+    },
+    {
+      "blamed_files": [],
+      "fix": "a154c87cfca3e21316552b2ec558029f9c96122a",
+      "fix_date": "2010-07-02",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Documented exception catching behaviour.  This fixes #75"
+    },
+    {
+      "blamed_files": [],
+      "fix": "3ab318a7ddca819e13d6d161b008b62b6583453e",
+      "fix_date": "2010-07-01",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Explained Flask constructor better.  This fixes #70"
+    },
+    {
+      "blamed_files": [],
+      "fix": "bc662a546ed9028d93482f79314e64beae19a1d6",
+      "fix_date": "2010-07-01",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Added a section about unicode and editors.  This fixes #74"
+    },
+    {
+      "blamed_files": [],
+      "fix": "d0357b44b02324b85af42052487eab13d0b75f81",
+      "fix_date": "2010-07-01",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Added links to Flask-WTF and Flask-SQLAlchemy.  This fixes #73"
+    },
+    {
+      "blamed_files": [],
+      "fix": "881aa3ab2dad11edcddd0d5996fea9bdc3132224",
+      "fix_date": "2010-06-29",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed an rst syntax error"
+    },
+    {
+      "blamed_files": [
+        "flask.py"
+      ],
+      "fix": "7ea1b801cc1f7d09ee18e8d70957c9d34b870700",
+      "fix_date": "2010-06-29",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 66.4,
+        "calendar_days_author": 66.4,
+        "churn_deletions": 1001,
+        "churn_files": 80,
+        "churn_insertions": 4902,
+        "commits_elapsed": 186,
+        "commits_elapsed_first_parent": 143,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-04-23",
+          "sha": "444e6425312a16589130ff36f2830b6f97fbbd4f"
+        }
+      ],
+      "subject": "Documented missing attributes.  This fixes #71"
+    },
+    {
+      "blamed_files": [],
+      "fix": "87c2c794421f8a39aa98a35f518613cfd38852d5",
+      "fix_date": "2010-06-28",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "fixed mongokit pattern to show how the flask way to configure hostname and port"
+    },
+    {
+      "blamed_files": [],
+      "fix": "b5db6bf529706da651389ef51b0fce87a89a47e8",
+      "fix_date": "2010-06-28",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "now really pushed the fix in sqlalchemy pattern"
+    },
+    {
+      "blamed_files": [],
+      "fix": "1592c53a664c82d9badac81fa0104af226cce5a7",
+      "fix_date": "2010-06-18",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed a MANIFEST issue"
+    },
+    {
+      "blamed_files": [],
+      "fix": "fe35105bec80bbb7cbba1b1d6414612fe85873cd",
+      "fix_date": "2010-06-18",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Updated design decisions.  This fixes #63"
+    },
+    {
+      "blamed_files": [],
+      "fix": "ea72e272a677365a60f1c412f91ebfac58ba13bb",
+      "fix_date": "2010-06-14",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed a broken example"
+    },
+    {
+      "blamed_files": [],
+      "fix": "52f38bbf8bee2f7b5aa4fe708dc304cb590d3a0b",
+      "fix_date": "2010-06-10",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed a broken sentence"
+    },
+    {
+      "blamed_files": [],
+      "fix": "1762ea5a2bee7539381c701c4d1534c4af9c2e37",
+      "fix_date": "2010-06-07",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed link for good"
+    },
+    {
+      "blamed_files": [],
+      "fix": "d02d01adaa5754ad694b3fee7e32aaa19a502054",
+      "fix_date": "2010-06-07",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed an rst error"
+    },
+    {
+      "blamed_files": [],
+      "fix": "235d693bfc5633aae310ab3dc35e86c8892a0b2b",
+      "fix_date": "2010-06-07",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed tabularcolumns"
+    },
+    {
+      "blamed_files": [],
+      "fix": "f5fb4576577cbedcedba9eb16d9fdace18c9292c",
+      "fix_date": "2010-06-07",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Added TESTING flag.  This fixes #58."
+    },
+    {
+      "blamed_files": [
+        "flask.py"
+      ],
+      "fix": "e67903d134039b2452b2a3806e10451491ce768d",
+      "fix_date": "2010-06-05",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 18.9,
+        "calendar_days_author": 18.4,
+        "churn_deletions": 146,
+        "churn_files": 57,
+        "churn_insertions": 2091,
+        "commits_elapsed": 61,
+        "commits_elapsed_first_parent": 53,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-05-17",
+          "sha": "e7f67e13339073007a84271cce91200bfdb81006"
+        }
+      ],
+      "subject": "Fixing another article error, in handle_http_exception."
+    },
+    {
+      "blamed_files": [
+        "flask.py"
+      ],
+      "fix": "9983e847425621b5e474ae9da6822f1af0b0cc1f",
+      "fix_date": "2010-06-03",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.9,
+        "calendar_days_author": 0.9,
+        "churn_deletions": 28,
+        "churn_files": 6,
+        "churn_insertions": 166,
+        "commits_elapsed": 5,
+        "commits_elapsed_first_parent": 4,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 4,
+          "date": "2010-06-02",
+          "sha": "33e7f2b990e3889d6aa9cffef4a4c9d7d0923698"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2010-05-17",
+          "sha": "e7f67e13339073007a84271cce91200bfdb81006"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-04-06",
+          "sha": "33850c0ebd23ae615e6823993d441f46d80b1ff0"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-05-27",
+          "sha": "35fd6eb22c4dec893770dd5720a51608a06fb8cd"
+        }
+      ],
+      "subject": "Fixed after_request handlers being called twice in some cases and improved logging system"
+    },
+    {
+      "blamed_files": [
+        "flask.py"
+      ],
+      "fix": "bc00fd1e83f23f57dd6a765b6a4bab2394584ae6",
+      "fix_date": "2010-06-03",
+      "flags": [
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 48.5,
+        "calendar_days_author": 48.5,
+        "churn_deletions": 1832,
+        "churn_files": 84,
+        "churn_insertions": 6369,
+        "commits_elapsed": 220,
+        "commits_elapsed_first_parent": 175,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2010-04-16",
+          "sha": "7b5015010bc8c2a2d56c7c50b37e5b9facdad102"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-04-06",
+          "sha": "33850c0ebd23ae615e6823993d441f46d80b1ff0"
+        }
+      ],
+      "subject": "Added support for deferred context cleanup. test_client users can now access the context locals afte"
+    },
+    {
+      "blamed_files": [],
+      "fix": "33e7f2b990e3889d6aa9cffef4a4c9d7d0923698",
+      "fix_date": "2010-06-02",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Invoke after_request on exceptions as well. This fixes #59"
+    },
+    {
+      "blamed_files": [
+        "setup.py"
+      ],
+      "fix": "707b30749daf407c07b5b265bd892564576ad80a",
+      "fix_date": "2010-05-31",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 55.2,
+        "calendar_days_author": 55.2,
+        "churn_deletions": 242,
+        "churn_files": 101,
+        "churn_insertions": 8885,
+        "commits_elapsed": 262,
+        "commits_elapsed_first_parent": 218,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-04-06",
+          "sha": "b15ad394279fc3b7f998fa56857f334a7c0156f6"
+        }
+      ],
+      "subject": "use setup.py test. This fixes #56"
+    },
+    {
+      "blamed_files": [],
+      "fix": "a6617f44c0416c6877d930b312e1f64df08eca0e",
+      "fix_date": "2010-05-31",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Documented _request_ctx_stack. This fixes #57"
+    },
+    {
+      "blamed_files": [
+        "flask.py"
+      ],
+      "fix": "6cb0855e2dd181df5353fc1be9b437c7bc92eb2f",
+      "fix_date": "2010-05-28",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 1.2,
+        "calendar_days_author": 1.1,
+        "churn_deletions": 56,
+        "churn_files": 26,
+        "churn_insertions": 247,
+        "commits_elapsed": 7,
+        "commits_elapsed_first_parent": 7,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-05-27",
+          "sha": "182ee31503ea8a9eefd0d7063bd7fbdde991e13b"
+        }
+      ],
+      "subject": "Fixed an error reporting bug with flask.Config.from_envvar"
+    },
+    {
+      "blamed_files": [
+        "examples/minitwit/minitwit.py"
+      ],
+      "fix": "e432d833b5f7b4c27e2dca5d5125bbf78a46327d",
+      "fix_date": "2010-05-27",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.9,
+        "calendar_days_author": 0.9,
+        "churn_deletions": 7,
+        "churn_files": 8,
+        "churn_insertions": 21,
+        "commits_elapsed": 7,
+        "commits_elapsed_first_parent": 5,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-05-26",
+          "sha": "9d19b77acf413de77b39ed1c6d972fb1e5fef1c3"
+        }
+      ],
+      "subject": "Fixed stuff I broke"
+    },
+    {
+      "blamed_files": [],
+      "fix": "1264c458ae808d306aa03c51f70103e52dca107b",
+      "fix_date": "2010-05-26",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Document ways to generate secret keys.  This fixes #47."
+    },
+    {
+      "blamed_files": [],
+      "fix": "9d98ad5e079b88fd9da87e47d55a11e465ab6bb0",
+      "fix_date": "2010-05-24",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Documented redirect behaviour. Fixes #42"
+    },
+    {
+      "blamed_files": [],
+      "fix": "cc8332e9d99c08b77614e5acd7bd0e6d08dc29b6",
+      "fix_date": "2010-05-24",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Added troubleshooting infos. This fixes #44"
+    },
+    {
+      "blamed_files": [],
+      "fix": "b26aeba972686b9cb9a9b111e1bc8997e1f259c8",
+      "fix_date": "2010-05-18",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed a testcase"
+    },
+    {
+      "blamed_files": [],
+      "fix": "c6e6792cd52022add8455fc792b2ca73c62d3d65",
+      "fix_date": "2010-05-17",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Added MANIFEST.in.  This fixes #39"
+    },
+    {
+      "blamed_files": [
+        "flask.py"
+      ],
+      "fix": "a921aef6c47cecbacef5173f03c07c52e6bc8fea",
+      "fix_date": "2010-05-04",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 9.8,
+        "calendar_days_author": 9.8,
+        "churn_deletions": 102,
+        "churn_files": 23,
+        "churn_insertions": 952,
+        "commits_elapsed": 40,
+        "commits_elapsed_first_parent": 15,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-04-24",
+          "sha": "67f4b0f31538832f06b9351d15e30c85f449ac7e"
+        }
+      ],
+      "subject": "Fixed late binding of url_prefix.  This fixes #29."
+    },
+    {
+      "blamed_files": [
+        "flask.py"
+      ],
+      "fix": "eeb0e949518720ff5302bcf336fc72dea44737d0",
+      "fix_date": "2010-05-02",
+      "flags": [
+        "fix-is-merge(diffed-against-first-parent)",
+        "multiple-candidates"
+      ],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 26.0,
+        "calendar_days_author": 26.0,
+        "churn_deletions": 204,
+        "churn_files": 90,
+        "churn_insertions": 7159,
+        "commits_elapsed": 174,
+        "commits_elapsed_first_parent": 151,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 2,
+          "date": "2010-04-06",
+          "sha": "33850c0ebd23ae615e6823993d441f46d80b1ff0"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2010-04-17",
+          "sha": "5310fc38227b1907cb541f4a30ea8dfef46c2e19"
+        }
+      ],
+      "subject": "Fixed merging confict"
+    },
+    {
+      "blamed_files": [
+        "flask.py"
+      ],
+      "fix": "9f6bc93e4de36fc209eb1203845e9505df1ca379",
+      "fix_date": "2010-04-20",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.6,
+        "calendar_days_author": 0.6,
+        "churn_deletions": 88,
+        "churn_files": 17,
+        "churn_insertions": 177,
+        "commits_elapsed": 9,
+        "commits_elapsed_first_parent": 9,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-04-19",
+          "sha": "06ec917ddedc618944670b39ccd5f4cb862882b2"
+        }
+      ],
+      "subject": "Fixed XSS problem by escaping all slashes in JSON."
+    },
+    {
+      "blamed_files": [],
+      "fix": "1404a85bc554f96bff5463e6eadb14662b945f2e",
+      "fix_date": "2010-04-20",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed WTForms example."
+    },
+    {
+      "blamed_files": [
+        "flask.py"
+      ],
+      "fix": "ade490514dd6d83adc7610f69f9c4cd68df47110",
+      "fix_date": "2010-04-19",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 0.1,
+        "calendar_days_author": 0.1,
+        "churn_deletions": 16,
+        "churn_files": 7,
+        "churn_insertions": 174,
+        "commits_elapsed": 5,
+        "commits_elapsed_first_parent": 5,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-04-19",
+          "sha": "6e2be6a0b3aba4ab49cf3ed1a10ac13c6b771aba"
+        }
+      ],
+      "subject": "Fixed a security problem caused by changed simplejson semantics."
+    },
+    {
+      "blamed_files": [],
+      "fix": "56675b3bade603a458d01443bda8070ca0489005",
+      "fix_date": "2010-04-19",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed indentation of an example."
+    },
+    {
+      "blamed_files": [
+        "examples/minitwit/minitwit.py"
+      ],
+      "fix": "73a47a0db1a181bb305684115d3dacded0c5a58b",
+      "fix_date": "2010-04-18",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 12.4,
+        "calendar_days_author": 12.4,
+        "churn_deletions": 176,
+        "churn_files": 74,
+        "churn_insertions": 5534,
+        "commits_elapsed": 89,
+        "commits_elapsed_first_parent": 89,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 3,
+          "date": "2010-04-06",
+          "sha": "33850c0ebd23ae615e6823993d441f46d80b1ff0"
+        }
+      ],
+      "subject": "Removed unused stuff from minitwit and fixed a bug."
+    },
+    {
+      "blamed_files": [],
+      "fix": "ab5492418694b5cc14601a953084d61f47785ea4",
+      "fix_date": "2010-04-18",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed a font name."
+    },
+    {
+      "blamed_files": [],
+      "fix": "42a46ed09b745c0560de354c0cb236295000f296",
+      "fix_date": "2010-04-18",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed homepage links"
+    },
+    {
+      "blamed_files": [],
+      "fix": "42dd94b7565052120423dbd86a5ab0f96938f8cc",
+      "fix_date": "2010-04-18",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed title."
+    },
+    {
+      "blamed_files": [],
+      "fix": "791cdb28f593d4d7649d88407fcd193834512219",
+      "fix_date": "2010-04-16",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed capitalization on website"
+    },
+    {
+      "blamed_files": [],
+      "fix": "5348eff4457a528cd605bbbd5e0152c282819962",
+      "fix_date": "2010-04-16",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "fixed headers"
+    },
+    {
+      "blamed_files": [],
+      "fix": "f54c4fd04f326d94684c7fcbf12df5cecae653c4",
+      "fix_date": "2010-04-16",
+      "flags": [
+        "no-blame-lines(addition-only-or-out-of-scope)"
+      ],
+      "in_window": null,
+      "lifetime": null,
+      "nominees": [],
+      "subject": "Fixed wording for circular imports"
+    },
+    {
+      "blamed_files": [
+        "setup.py"
+      ],
+      "fix": "574e81f9c8bbdc41958e1e7a7613633b091101f8",
+      "fix_date": "2010-04-11",
+      "flags": [],
+      "in_window": null,
+      "lifetime": {
+        "calendar_days": 4.6,
+        "calendar_days_author": 4.6,
+        "churn_deletions": 47,
+        "churn_files": 26,
+        "churn_insertions": 3046,
+        "commits_elapsed": 16,
+        "commits_elapsed_first_parent": 16,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 1,
+          "date": "2010-04-06",
+          "sha": "b15ad394279fc3b7f998fa56857f334a7c0156f6"
+        }
+      ],
+      "subject": "Fixed a bug in setup.py"
+    }
+  ],
+  "head": "49943b5a94413a530761350f04e896f76e8d620e",
+  "method": "A (SZZ-style, git blame -w on first parent)",
+  "path": ".",
+  "profile": "python",
+  "summary": {
+    "fixes": 185,
+    "in_window": null,
+    "release_tags": "v[0-9]*",
+    "window_start": null,
+    "with_introducer": 90
+  }
+}

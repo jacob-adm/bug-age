@@ -1,0 +1,72 @@
+{
+  "repeats": 3,
+  "results": [
+    {
+      "outcome": "UNTESTABLE",
+      "reason": "test build failed (overlay does not compile here)",
+      "sha": "a64588f87a2bd7ba557814ec039e3b2af2ce842d",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2023-08-19T17:35:00Z . pytest asgiref greenlet python-dotenv blinker",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 1.7
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 4,
+          "name": "build",
+          "network": false,
+          "seconds": 0.6
+        }
+      ],
+      "toolchain": "python3.11"
+    },
+    {
+      "outcome": "FAIL",
+      "reason": "failed 3x",
+      "sha": "0ec7f713d679ceed2c605e62ac5d38d579f29fa0",
+      "steps": [
+        {
+          "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --compile-bytecode --exclude-newer 2023-08-19T17:35:14Z . pytest asgiref greenlet python-dotenv blinker",
+          "exit": 0,
+          "name": "fetch",
+          "network": true,
+          "seconds": 1.6
+        },
+        {
+          "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 0,
+          "name": "build",
+          "network": false,
+          "seconds": 0.7
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_1",
+          "network": false,
+          "seconds": 0.8
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_2",
+          "network": false,
+          "seconds": 0.8
+        },
+        {
+          "cmd": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py",
+          "exit": 1,
+          "name": "test_3",
+          "network": false,
+          "seconds": 0.8
+        }
+      ],
+      "toolchain": "python3.11"
+    }
+  ],
+  "runner": "docker",
+  "test": "python -m pytest -q -p no:cacheprovider tests/bugage_repro_test.py"
+}
