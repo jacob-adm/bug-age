@@ -5,6 +5,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import unittest
 from pathlib import Path
 
@@ -145,6 +146,34 @@ class TargetConfig(unittest.TestCase):
         out = subprocess.run([sys.executable, "-m", "bug_age", "pipeline", cfg], cwd=ROOT, capture_output=True, text=True)
         self.assertEqual(out.returncode, 2)
         self.assertIn("path and crate_path disagree", out.stderr)
+
+
+class PythonVersion(unittest.TestCase):
+    """CPython chosen for a commit: date-matched, floor 3.8, raised to requires-python."""
+
+    def test_choice(self):
+        """Newest minor released at least 14 days before the commit."""
+        import calendar
+        from bug_age.runner import python_for
+        at = lambda day: calendar.timegm(time.strptime(day, "%Y-%m-%d"))
+        self.assertEqual(python_for(at("2018-05-27")), "3.8")        # before uv's floor: raised to it
+        self.assertEqual(python_for(at("2020-10-18")), "3.8")        # 3.9 is 13 days old
+        self.assertEqual(python_for(at("2020-10-19")), "3.9")        # 3.9 is 14 days old
+        self.assertEqual(python_for(at("2021-10-20"), ">=3.11"), "3.11")
+        self.assertEqual(python_for(at("2026-01-01"), ">=3.7"), "3.14")
+        self.assertEqual(python_for(at("2026-01-01"), ">=3.99"), "3.14")  # unknown minimum: keep the date match
+
+
+class SweepOptions(unittest.TestCase):
+    """Options of one profile are refused for the other, so none is silently ignored."""
+
+    def test_refusals(self):
+        """--image with python, --install with rust, and an unknown profile exit 2."""
+        base = ["probe", "--repo", ".", "--path", ".", "--commits", "HEAD", "--overlay", ".", "--test", "true"]
+        for extra in (["--profile", "python", "--image", "x"], ["--install", ".[test]"], ["--test-deps", "pytest"],
+                      ["--profile", "python", "--bucket", "0"], ["--profile", "go"]):
+            with self.subTest(extra=extra):
+                self.assertEqual(cli(*base, *extra, check=False).returncode, 2)
 
 
 if __name__ == "__main__":

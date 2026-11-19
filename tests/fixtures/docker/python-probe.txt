@@ -1,0 +1,317 @@
+== report
+{
+ "repeats": 1,
+ "results": [
+  {
+   "outcome": "PASS",
+   "reason": "passed 1x",
+   "sha": "<first>",
+   "steps": [
+    {
+     "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --exclude-newer 2020-05-01T00:00:00Z '.[test]' pytest pytest-mock",
+     "exit": 0,
+     "name": "fetch",
+     "network": true,
+     "seconds": 0
+    },
+    {
+     "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+     "exit": 0,
+     "name": "build",
+     "network": false,
+     "seconds": 0
+    },
+    {
+     "cmd": "python -m pytest -q tests/bugage_repro_test.py",
+     "exit": 0,
+     "name": "test_1",
+     "network": false,
+     "seconds": 0
+    }
+   ],
+   "toolchain": "python3.8"
+  },
+  {
+   "outcome": "PASS",
+   "reason": "passed 1x",
+   "sha": "<second>",
+   "steps": [
+    {
+     "cmd": "uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --exclude-newer 2021-12-01T00:00:00Z '.[test]' pytest pytest-mock",
+     "exit": 0,
+     "name": "fetch",
+     "network": true,
+     "seconds": 0
+    },
+    {
+     "cmd": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py",
+     "exit": 0,
+     "name": "build",
+     "network": false,
+     "seconds": 0
+    },
+    {
+     "cmd": "python -m pytest -q tests/bugage_repro_test.py",
+     "exit": 0,
+     "name": "test_1",
+     "network": false,
+     "seconds": 0
+    }
+   ],
+   "toolchain": "python3.11"
+  }
+ ],
+ "runner": "docker",
+ "test": "python -m pytest -q tests/bugage_repro_test.py"
+}
+== docker
+image
+inspect
+bug-age-python:3.8-<recipe>
+--
+image
+inspect
+bug-age-python:3.8-<recipe>
+--format
+{{.Id}}
+--
+volume
+rm
+-f
+bugage-src
+--
+run
+-i
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-python:3.8-<recipe>
+sh
+-c
+mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"
+sh
+/bugage-src
+--
+run
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-python:3.8-<recipe>
+sh
+-c
+root=$1; shift; set -f; IFS=/; for rel in "$@"; do p=$root; for part in $rel; do p=$p/$part; if [ -L "$p" ]; then echo "symlink on the overlay path: ${p#$root/}"; exit 3; fi; done; done
+sh
+/bugage-src
+tests/bugage_repro_test.py
+--
+run
+-i
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-python:3.8-<recipe>
+sh
+-c
+mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"
+sh
+/bugage-src/.
+--
+volume
+rm
+-f
+bugage-venv
+--
+run
+--rm
+--name
+bugage-step-<id>
+-v
+bugage-src:/bugage-src
+-v
+bugage-venv:/bugage-venv
+-e
+PATH=/bugage-venv/bin:/usr/local/bin:/usr/bin:/bin
+-e
+VIRTUAL_ENV=/bugage-venv
+-e
+PYTHONDONTWRITEBYTECODE=1
+-v
+bugage-uvcache:/root/.cache/uv
+-w
+/bugage-src/.
+bug-age-python:3.8-<recipe>
+sh
+-c
+uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --exclude-newer 2020-05-01T00:00:00Z '.[test]' pytest pytest-mock
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-v
+bugage-src:/bugage-src
+-v
+bugage-venv:/bugage-venv:ro
+-e
+PATH=/bugage-venv/bin:/usr/local/bin:/usr/bin:/bin
+-e
+VIRTUAL_ENV=/bugage-venv
+-e
+PYTHONDONTWRITEBYTECODE=1
+-w
+/bugage-src/.
+bug-age-python:3.8-<recipe>
+sh
+-c
+python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-v
+bugage-src:/bugage-src
+-v
+bugage-venv:/bugage-venv:ro
+-e
+PATH=/bugage-venv/bin:/usr/local/bin:/usr/bin:/bin
+-e
+VIRTUAL_ENV=/bugage-venv
+-e
+PYTHONDONTWRITEBYTECODE=1
+-w
+/bugage-src/.
+bug-age-python:3.8-<recipe>
+sh
+-c
+python -m pytest -q tests/bugage_repro_test.py
+--
+image
+inspect
+bug-age-python:3.11-<recipe>
+--
+image
+inspect
+bug-age-python:3.11-<recipe>
+--format
+{{.Id}}
+--
+volume
+rm
+-f
+bugage-src
+--
+run
+-i
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-python:3.11-<recipe>
+sh
+-c
+mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"
+sh
+/bugage-src
+--
+run
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-python:3.11-<recipe>
+sh
+-c
+root=$1; shift; set -f; IFS=/; for rel in "$@"; do p=$root; for part in $rel; do p=$p/$part; if [ -L "$p" ]; then echo "symlink on the overlay path: ${p#$root/}"; exit 3; fi; done; done
+sh
+/bugage-src
+tests/bugage_repro_test.py
+--
+run
+-i
+--rm
+-v
+bugage-src:/bugage-src
+bug-age-python:3.11-<recipe>
+sh
+-c
+mkdir -p "$1" && tar -x -m --no-same-owner -C "$1"
+sh
+/bugage-src/.
+--
+volume
+rm
+-f
+bugage-venv
+--
+run
+--rm
+--name
+bugage-step-<id>
+-v
+bugage-src:/bugage-src
+-v
+bugage-venv:/bugage-venv
+-e
+PATH=/bugage-venv/bin:/usr/local/bin:/usr/bin:/bin
+-e
+VIRTUAL_ENV=/bugage-venv
+-e
+PYTHONDONTWRITEBYTECODE=1
+-v
+bugage-uvcache:/root/.cache/uv
+-w
+/bugage-src/.
+bug-age-python:3.11-<recipe>
+sh
+-c
+uv venv -q --python /usr/local/bin/python /bugage-venv && uv pip install -q --python /bugage-venv/bin/python --exclude-newer 2021-12-01T00:00:00Z '.[test]' pytest pytest-mock
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-v
+bugage-src:/bugage-src
+-v
+bugage-venv:/bugage-venv:ro
+-e
+PATH=/bugage-venv/bin:/usr/local/bin:/usr/bin:/bin
+-e
+VIRTUAL_ENV=/bugage-venv
+-e
+PYTHONDONTWRITEBYTECODE=1
+-w
+/bugage-src/.
+bug-age-python:3.11-<recipe>
+sh
+-c
+python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py
+--
+run
+--rm
+--name
+bugage-step-<id>
+--network
+none
+-v
+bugage-src:/bugage-src
+-v
+bugage-venv:/bugage-venv:ro
+-e
+PATH=/bugage-venv/bin:/usr/local/bin:/usr/bin:/bin
+-e
+VIRTUAL_ENV=/bugage-venv
+-e
+PYTHONDONTWRITEBYTECODE=1
+-w
+/bugage-src/.
+bug-age-python:3.11-<recipe>
+sh
+-c
+python -m pytest -q tests/bugage_repro_test.py
+--

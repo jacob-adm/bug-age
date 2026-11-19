@@ -12,11 +12,12 @@ import datetime as dt, hashlib, json, re, shutil, subprocess, sys, time, tomllib
 from pathlib import Path
 
 from . import profiles
-from .repros import BUILD, TEST, range_start
+from .repros import BUILD, PY_BUILD, PY_TEST, TEST, range_start
 from .sweep import _overlay_listing as overlay_listing
 
 # The Method B image's recipe; receipts made since 2.1.1 record its hash so reuse can check it.
 RECIPE = hashlib.sha256((Path(__file__).parent / "data" / "Dockerfile").read_bytes()).hexdigest()
+PY_RECIPE = hashlib.sha256((Path(__file__).parent / "data" / "python.Dockerfile").read_bytes()).hexdigest()
 
 ROOT = Path.cwd()                                   # config paths are relative to the working directory
 BIN = [sys.executable, "-m", "bug_age"]             # this package's CLI, same interpreter
@@ -55,6 +56,13 @@ def main(argv=None):
         print(f"bug-age pipeline: {cfg_path}: {exc}", file=sys.stderr)
         return 2
     rust = c["profile"] == "rust"
+    recipe = RECIPE if rust else PY_RECIPE
+    if not rust and not all(k in c for k in ("import", "test")):
+        print(f"bug-age pipeline: {cfg_path}: a python target needs import and test", file=sys.stderr)
+        return 2
+    # What a python target installs at each commit: the project spec and its test dependencies.
+    py_args = [] if rust else ["--profile", "python", "--install", c.get("install", "."),
+                               "--test-deps", ",".join(c.get("test_deps", ["pytest"]))]
     repo, res, spike, dist = (ROOT / c[k] for k in ("work_dir", "results_dir", "spike_dir", "dist_dir"))
     res.mkdir(parents=True, exist_ok=True)
     log = ROOT / "work" / f"pipeline-{c['name']}.log"
@@ -96,8 +104,6 @@ def main(argv=None):
             """Stage body; returns (status, reason)."""
             if skip_feas:
                 return "NOT TESTED", "skipped (--skip-feasibility)"
-            if not rust:
-                return "NOT TESTED", f"no feasibility spike for profile {c['profile']} in this version"
             if out.is_file() and not fresh:
                 # Reuse only a report made for this repository at this pinned head.
                 notes = []
@@ -106,7 +112,8 @@ def main(argv=None):
                     return "FAILED", f"stale report: {stale} (pass --fresh to rerun)"
                 current.add(out)
                 return "REUSED", "existing report, every recorded input matches" + "".join(f"; {n}" for n in notes)
-            cmd = [sys.executable, "-m", "bug_age.feasibility", "--config", cfg_path, "--samples", c.get("samples", 20)]
+            module = "bug_age.feasibility" if rust else "bug_age.pyfeasibility"
+            cmd = [sys.executable, "-m", module, "--config", cfg_path, "--samples", c.get("samples", 20)]
             if run(cmd + (["--time-travel"] if tt else []), log) or not out.is_file():
                 return "FAILED", tail(log)
             r = json.loads(out.read_text())
@@ -125,8 +132,6 @@ def main(argv=None):
 
     def repros():
         """Sweep the target's regression tests if it has any; otherwise report Method B as NOT TESTED."""
-        if not rust:
-            return "NOT TESTED", f"no Method B runner for profile {c['profile']} in this version"
         overlays = sorted((res / "repros").glob("*/overlay")) if (res / "repros").is_dir() else []
         if not overlays:
             return "NOT TESTED", "no regression tests written for this target (results_dir/repros/<fix>/overlay)"
@@ -139,7 +144,7 @@ def main(argv=None):
             current.update(o.parent for o in overlays)
             note = f"; image recipe not recorded for {len(notes)} (made before 2.1.1)" if notes else ""
             return "REUSED", f"{len(overlays)} existing sweeps, every recorded input matches{note}"
-        if run([sys.executable, "-m", "bug_age.repros", res, repo, c["crate_path"]], log):
+        if run([sys.executable, "-m", "bug_age.repros", res, repo, c["crate_path"], *py_args], log):
             return "FAILED", tail(log)
         current.update(o.parent for o in overlays if (o.parent / "sweep.json").is_file() and not sweep_mismatch(o, []))
         return "OK", f"{len(overlays)} repros swept"
@@ -150,7 +155,7 @@ def main(argv=None):
         if recorded is None:
             notes.append(f"{what}: image recipe not recorded (made before 2.1.1)")
             return None
-        return None if recorded == RECIPE else "made with a different Method B image recipe"
+        return None if recorded == recipe else "made with a different Method B image recipe"
 
     def feasibility_mismatch(report, tt, notes):
         """Why a feasibility report does not match this run's material inputs, or None.
@@ -177,6 +182,13 @@ def main(argv=None):
         hashes = [v for k, v in rec.get("outputs", {}).items() if k.endswith("report.json")]
         if hashes != [sha256(report)]:
             return "report.json does not match the hash recorded in its receipt"
+        if not rust:
+            want = {"install": " ".join([c.get("install", "."), *c.get("test_deps", ["pytest"])]),
+                    "import": c["import"], "test": c["test"]}
+            for key, value in want.items():
+                if inputs.get(key) != value:
+                    return f"made with {key} {inputs.get(key)!r}, the config asks for {value!r}"
+            return image_mismatch(rec.get("versions"), "feasibility", notes)
         scope = f"--package {c['package']}" if "package" in c else "--all"
         build = str(json.loads(report.read_text()).get("method", {}).get("build", ""))
         if not build.startswith(f"cargo build {scope} "):
@@ -204,12 +216,16 @@ def main(argv=None):
         if rec.get("report_sha256") != sha256(report):
             return "sweep.json does not match the hash recorded in its receipt"
         s = json.loads(report.read_text())
-        want = {"build": BUILD, "test": TEST, "repeats": 3, "runner": "docker", "search": "bisection",
+        want = {"build": BUILD if rust else PY_BUILD, "test": TEST if rust else PY_TEST, "repeats": 3, "runner": "docker", "search": "bisection",
                 "start": range_start(repo, fix)}
         got = dict(s, search=s.get("search") or "bisection")
         for key, value in want.items():
             if got.get(key) != value:
                 return f"made with {key} {got.get(key)!r}, this run would use {value!r}"
+        command = str(rec.get("command", ""))
+        for key, value in zip(py_args[::2], py_args[1::2]):
+            if f"{key} {value}" not in command and f"{key} '{value}'" not in command:
+                return f"made without {key} {value}"
         return image_mismatch(rec.get("versions"), overlay.parent.name, notes)
 
     def bundle_inputs():

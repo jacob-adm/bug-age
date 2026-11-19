@@ -7,6 +7,7 @@ against a time-travel index, and build/test run with `--network none`. `Local` u
 toolchain in a git worktree; it exists so the sweep logic can be tested end to end without Docker,
 and is not hermetic.
 """
+import hashlib
 import os
 import re
 import shlex
@@ -444,3 +445,102 @@ class Docker(DockerSource):
                     "-v", f"{self.v('bugage-cargo')}:/cargo{ro}", "-e", "CARGO_TARGET_DIR=/target",
                     "-e", "CARGO_TERM_COLOR=never", "-e", f"RUSTUP_TOOLCHAIN={self.toolchain}"]
         return self.run_step(spec, options, cmd, log)
+
+
+# CPython minor releases with their x.y.0 dates, from 3.8: the oldest Python uv installs into.
+CPYTHON = (("3.8", "2019-10-14"), ("3.9", "2020-10-05"), ("3.10", "2021-10-04"), ("3.11", "2022-10-24"),
+           ("3.12", "2023-10-02"), ("3.13", "2024-10-07"), ("3.14", "2025-10-07"))
+PY_RECIPE = Path(__file__).parent / "data" / "python.Dockerfile"
+VENV, UV_CACHE = "bugage-venv", "bugage-uvcache"
+
+
+def _minor(version):
+    """(3, 10) for "3.10"."""
+    major, minor = version.split(".")
+    return int(major), int(minor)
+
+
+def python_for(commit_unix, requires=None):
+    """Date-matched CPython: the newest minor released >= 14 days before the commit, never older
+    than 3.8 (uv's floor), raised to the project's declared minimum (`requires-python >= 3.x`)."""
+    day = time.strftime("%Y-%m-%d", time.gmtime(commit_unix - 14 * 86400))
+    chosen = CPYTHON[0][0]
+    for version, released in CPYTHON:
+        if released <= day:
+            chosen = version
+    m = re.search(r">=\s*(3\.\d+)", requires or "")
+    if m and _minor(m.group(1)) > _minor(chosen):
+        known = [v for v, _ in CPYTHON if _minor(v) >= _minor(m.group(1))]
+        chosen = known[0] if known else chosen
+    return chosen
+
+
+def requires_python(repo, sha, path):
+    """The `requires-python` of the project at `sha` (pyproject.toml under `path`, else the root)."""
+    import tomllib
+    for obj in ([f"{sha}:{path}/pyproject.toml"] if path != "." else []) + [f"{sha}:pyproject.toml"]:
+        try:
+            doc = tomllib.loads(git(repo, ["show", obj]))
+        except (GitError, tomllib.TOMLDecodeError):
+            continue
+        value = doc.get("project", {}).get("requires-python")
+        if isinstance(value, str):
+            return value
+    return None
+
+
+class PythonDocker(DockerSource):
+    """Python profile: CPython matched to the commit date, dependencies installed by uv with
+    --exclude-newer set to the commit time (network on), then build and test offline with the
+    environment mounted read-only."""
+
+    overlay_marker = "bugage_repro_test.py"
+
+    def __init__(self, namespace="", install=".", test_deps=("pytest",)):
+        super().__init__("", namespace)
+        self.install_spec, self.test_deps = install, tuple(test_deps)
+        self.recipe = PY_RECIPE.read_text(encoding="utf-8")
+        self.recipe_sha = hashlib.sha256(self.recipe.encode()).hexdigest()
+        self.images, self.python, self.fetch_cmd = {}, "", None
+
+    def image_for(self, python, log):
+        """The image for one CPython minor, built from the packaged recipe the first time."""
+        tag = f"bug-age-python:{python}-{self.recipe_sha[:12]}"
+        if subprocess.run(["docker", "image", "inspect", tag], capture_output=True).returncode != 0:
+            code, _ = run_logged(["docker", "build", "-t", tag, "--build-arg", f"PY={python}", "-"], log,
+                                 stdin=self.recipe.encode())
+            if code != 0:
+                raise RunnerError(f"python {python} image could not be built (see {log})")
+        if tag not in self.images:
+            out = subprocess.run(["docker", "image", "inspect", tag, "--format", "{{.Id}}"], capture_output=True, text=True)
+            self.images[tag] = out.stdout.strip()
+        return tag
+
+    def stage(self, spec, sha):
+        """Choose the Python for `sha`, stage its tree and the overlay, and reset the environment."""
+        logs = spec.logs / sha[:12]
+        ct = int(trim(git(spec.repo, ["show", "-s", "--format=%ct", sha])))
+        self.python = python_for(ct, requires_python(spec.repo, sha, spec.crate_path))
+        self.image = self.image_for(self.python, logs / "stage-image.log")
+        self.stage_source(spec, sha)
+        self.docker(["volume", "rm", "-f", self.v(VENV)], None, logs / "stage-venv-reset.log")
+        cutoff = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(ct))
+        # The fetch step: a fresh environment, then the project and its test dependencies as of the commit.
+        self.fetch_cmd = (f"uv venv -q --python /usr/local/bin/python /{VENV} && uv pip install -q --python /{VENV}/bin/python "
+                          f"--exclude-newer {cutoff} {shlex.join([self.install_spec, *self.test_deps])}")
+        return f"python{self.python}"
+
+    def exec(self, spec, cmd, network, log):
+        """Run `cmd` in the measured path; offline with the environment read-only unless `network`."""
+        options = [] if network else ["--network", "none"]
+        ro = "" if network else ":ro"
+        options += ["-v", f"{self.v(SRC)}:/{SRC}", "-v", f"{self.v(VENV)}:/{VENV}{ro}",
+                    "-e", f"PATH=/{VENV}/bin:/usr/local/bin:/usr/bin:/bin", "-e", f"VIRTUAL_ENV=/{VENV}",
+                    "-e", "PYTHONDONTWRITEBYTECODE=1"]
+        if network:
+            options += ["-v", f"{UV_CACHE}:/root/.cache/uv"]
+        return self.run_step(spec, options, cmd, log)
+
+    def fallback_toolchain(self, spec, log):
+        """No second interpreter is tried."""
+        return None

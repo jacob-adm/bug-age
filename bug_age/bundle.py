@@ -330,6 +330,10 @@ def coverage(a, b, feas, tt, out_of_scope):
                                     f"{share(tt)} with time-travel dependencies",
                         "proves": "sampled commits build and pass their unit tests offline in a date-matched toolchain",
                         "does_not_prove": "that every commit builds; integration tests needing downloaded fixtures were not run"}
+        if get(first, "method", "profile") == "python":
+            buildability.update(
+                proves="sampled commits install and pass the configured tests offline in a date-matched CPython",
+                does_not_prove=f"that every commit installs; not run: {get(first, 'method', 'not_covered')}")
     if swept == 0:
         mb = {"stage": "Method B (behavioural sweep)", "status": "NOT TESTED",
               "evidence": f"0 of {fixes} fixes have a regression test", "proves": "nothing",
