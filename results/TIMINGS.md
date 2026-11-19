@@ -9,13 +9,13 @@ Machine: Darwin arm64, Docker 28.3.3 arm64. Step time counts fetch, build and te
 | Target | Stage | Time | Source |
 |---|---|---|---|
 | flask | catalog (rule-based fixes) | 0 s | `results/flask/pipeline.json` |
-| flask | Method A (szz) | 17 s | `results/flask/pipeline.json` |
+| flask | Method A (szz) | 19 s | `results/flask/pipeline.json` |
 | flask | bundle | 5 s | `results/flask/pipeline.json` |
 | requests | catalog (rule-based fixes) | 0 s | `results/requests/pipeline.json` |
-| requests | Method A (szz) | 19 s | `results/requests/pipeline.json` |
-| requests | bundle | 5 s | `results/requests/pipeline.json` |
-| rust-sdk | catalog (rule-based fixes) | 4 s | `results/rust-sdk/pipeline.json` |
-| rust-sdk | Method A (szz) | 53 s | `results/rust-sdk/pipeline.json` |
+| requests | Method A (szz) | 21 s | `results/requests/pipeline.json` |
+| requests | bundle | 6 s | `results/requests/pipeline.json` |
+| rust-sdk | catalog (rule-based fixes) | 0 s | `results/rust-sdk/pipeline.json` |
+| rust-sdk | Method A (szz) | 60 s | `results/rust-sdk/pipeline.json` |
 | rust-sdk | bundle | 5 s | `results/rust-sdk/pipeline.json` |
 | tokenizers | catalog (rule-based fixes) | 3 s | `results/tokenizers/pipeline.json` |
 | tokenizers | Method A (szz) | 27 s | `results/tokenizers/pipeline.json` |

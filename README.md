@@ -7,7 +7,7 @@ It uses two independent methods and compares them:
 - **Method A, blame-based (SZZ-style).** Runs `git blame` on the lines a fix changed and names the commit that last touched them as the likely introducer. This is fast and needs only git, but it can be wrong. Known failure cases: ghost commits, formatting-only changes, and introducers that were not the latest toucher.
 - **Method B, behavioral sweep.** Takes a regression test that fails before the fix and passes after it, then replays that test across history in a hermetic per-commit Docker environment. The result is the first failing commit, the last passing commit, and every untestable commit with a reason.
 
-Every number comes from scripts. AI helped write the code, the Method B regression tests and the article prose, but no model produces or changes a number. See [What is deterministic and what uses AI](https://github.com/jacob-adm/bug-age/blob/main/docs/method.md#what-is-deterministic-and-what-uses-ai). bug-age supports Rust crates today.
+Every number comes from scripts. AI helped write the code, the Method B regression tests and the article prose, but no model produces or changes a number. See [What is deterministic and what uses AI](https://github.com/jacob-adm/bug-age/blob/main/docs/method.md#what-is-deterministic-and-what-uses-ai). bug-age supports Rust crates and Python projects.
 
 What you get, and the three names the documentation uses for it:
 
@@ -23,7 +23,7 @@ To see the output first, [open the live example](https://claude.ai/artifact/UDw6
 - git.
 - Docker, only for the feasibility check and Method B.
 - Linux or macOS, both tested in CI.
-- It measures Rust crates today; other languages are planned.
+- It measures Rust crates and Python projects.
 
 ## How it works
 

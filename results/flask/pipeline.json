@@ -4,7 +4,7 @@
   "head": "49943b5a94413a530761350f04e896f76e8d620e",
   "crate_path": ".",
   "profile": "python",
-  "generated_utc": "2026-11-15T09:52:06+00:00",
+  "generated_utc": "2026-11-15T11:28:21+00:00",
   "stages": [
     {
       "stage": "clone",
@@ -16,17 +16,17 @@
     },
     {
       "stage": "feasibility (baseline)",
-      "status": "OK",
-      "reason": "NO-GO, built+tested share 0.05",
-      "seconds": 65,
+      "status": "REUSED",
+      "reason": "existing report, every recorded input matches",
+      "seconds": 0,
       "output": "results/flask/spike/results/report.json",
       "sha256": "47d3eaadec8bbfa8a57e03c88129352229b480a45e5e3fe7d374b96efd0d46e1"
     },
     {
       "stage": "feasibility (time-travel)",
-      "status": "OK",
-      "reason": "NO-GO, built+tested share 0.1",
-      "seconds": 73,
+      "status": "REUSED",
+      "reason": "existing report, every recorded input matches",
+      "seconds": 0,
       "output": "results/flask/spike/results-timetravel/report.json",
       "sha256": "a6d5b7b602f5017dd41f4285bfa24f1c47e3883089b5ce9cb90cdfb27751ed65"
     },
@@ -42,25 +42,25 @@
       "stage": "Method A (szz)",
       "status": "OK",
       "reason": "szz: 185 fixes, 90 with a nominated introducer, 0 in window",
-      "seconds": 17,
+      "seconds": 19,
       "output": "results/flask/szz.json",
       "sha256": "1c7af3ead8bd65122d31e6fe656315b0bbd288117a7a1c21bad6d74c81ec7b38"
     },
     {
       "stage": "Method B (repro sweeps)",
-      "status": "OK",
-      "reason": "2 repros swept",
-      "seconds": 84,
+      "status": "REUSED",
+      "reason": "2 existing sweeps, every recorded input matches",
+      "seconds": 0,
       "output": null,
       "sha256": null
     },
     {
       "stage": "bundle",
       "status": "OK",
-      "reason": "bundle: 137290 bytes, sha256 efaae1b3fd7b289ea9357fc92b05a0d05a015ef48c5e8885de7e0a3a1edf863f, blameless gate PASS",
+      "reason": "bundle: 137290 bytes, sha256 2c52bfebd23930f2bab3869723253b2867070eb76aabe0725b224cac4bb0b619, blameless gate PASS",
       "seconds": 5,
       "output": "dist/flask/bundle.json",
-      "sha256": "efaae1b3fd7b289ea9357fc92b05a0d05a015ef48c5e8885de7e0a3a1edf863f"
+      "sha256": "2c52bfebd23930f2bab3869723253b2867070eb76aabe0725b224cac4bb0b619"
     }
   ]
 }
