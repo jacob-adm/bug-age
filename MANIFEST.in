@@ -1,0 +1,7 @@
+# SPDX-License-Identifier: MIT OR Apache-2.0
+# What the test suite reads, so the sdist can run it. Tests that need the example clones,
+# cargo or Docker skip without them, as they do in a fresh checkout.
+graft tests
+graft targets
+graft dist
+global-exclude *.py[cod] __pycache__
