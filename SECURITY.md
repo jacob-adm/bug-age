@@ -9,8 +9,9 @@ code runs and what it can reach.
 - **catalog, szz, bundle, explorer, mcp** run only git and read files. They never run the analysed
   repository's code.
 - **Method B with `--runner local`** runs the repository's build and test commands **on your
-  machine, as you**, in a git worktree. It is not isolated. Use it only for repositories you would
-  build yourself.
+  machine, as you**, in a git worktree under `--scratch`. It is not isolated. Use it only for
+  repositories you would build yourself. The worktree is removed when the sweep or probe ends,
+  including on an error or Ctrl-C, which also stops the running step.
 - **Method B with `--runner docker`** (the default) runs each commit's build and test in a
   container:
   - build and test run with `--network none`;

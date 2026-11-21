@@ -364,7 +364,10 @@ def cmd_sweep(f):
     if search not in ("bisection", "exhaustive"):
         from .cli import UsageError
         raise UsageError("--search must be bisection or exhaustive")
-    result = run(runner, spec, fix, f.get("start"), exhaustive=search == "exhaustive")
+    try:
+        result = run(runner, spec, fix, f.get("start"), exhaustive=search == "exhaustive")
+    finally:
+        runner.close(spec)
     print(f"sweep: {result['verdict']} — {result['reason']} ({result['commits_tested']} of {result['range_commits']} "
           f"commits tested)", file=sys.stderr)
     report = dumps(result, pretty=True) + "\n"
@@ -402,9 +405,12 @@ def cmd_probe(f):
     commits = [trim(c) for c in need(f, "commits").split(",")]
     spec, runner = _spec_and_runner(f, f"probe-{commits[0][:12]}")
     results = []
-    for c in commits:
-        sha = trim(git(spec.repo, ["rev-parse", c]))
-        r = evaluate(runner, spec, sha, spec.repeats)
-        print(f"probe: {sha[:10]} {DEBUG[r['outcome']]} ({r['reason']})", file=sys.stderr)
-        results.append(r)
+    try:
+        for c in commits:
+            sha = trim(git(spec.repo, ["rev-parse", c]))
+            r = evaluate(runner, spec, sha, spec.repeats)
+            print(f"probe: {sha[:10]} {DEBUG[r['outcome']]} ({r['reason']})", file=sys.stderr)
+            results.append(r)
+    finally:
+        runner.close(spec)
     emit({"runner": runner.name, "test": spec.test, "repeats": spec.repeats, "results": results}, f.get("out"))

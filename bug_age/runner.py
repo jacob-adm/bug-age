@@ -167,6 +167,16 @@ def run_logged(argv, log, stdin=None, cwd=None, env=None, timeout=None, on_timeo
     timed_out = False
     try:
         proc.wait(timeout=timeout)
+    except KeyboardInterrupt:
+        # Ctrl-C reaches only bug-age (the step has its own session): stop the step before going.
+        try:
+            os.killpg(proc.pid, signal.SIGKILL)
+        except (ProcessLookupError, PermissionError):
+            pass
+        proc.wait()
+        if on_timeout is not None:
+            on_timeout()
+        raise
     except subprocess.TimeoutExpired:
         timed_out = True
         try:
@@ -253,6 +263,11 @@ class Local:
         """The host toolchain has no fallback."""
         return None
 
+    def close(self, spec):
+        """Remove the worktree this run added, so the repository keeps only the worktrees it had."""
+        git_run(spec.repo, ["worktree", "remove", "--force", str(self.wt)], check=False)
+        shutil.rmtree(self.wt, ignore_errors=True)
+
 
 KEEP_TARGETS = 2
 RESET_TRIES = 20  # attempts, 0.5 s apart, to remove a volume a just-finished container may still hold
@@ -271,6 +286,9 @@ class DockerSource:
 
     def __init__(self, image, namespace=""):
         self.image, self.namespace = image, namespace
+
+    def close(self, spec):
+        """Nothing to remove: the Docker runner adds no worktree to the repository."""
 
     def v(self, base):
         """Volume name in this runner's namespace."""
