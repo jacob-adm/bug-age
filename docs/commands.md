@@ -46,6 +46,7 @@ An existing feasibility report is reused only if every material input recorded i
 The stages are clone at the pinned head, feasibility (baseline and time-travel dependencies), catalog, Method A, Method B for every repro under `<results_dir>/repros/<fix>/overlay`, and bundle.
 
 - A stage whose output already exists is REUSED, so the expensive Docker stages are never redone silently. Pass `--fresh` to rerun them.
+- When the Method B sweeps are reused, the A-check (a Docker probe of Method A's nominee and its parent) is run again only for a regression test whose Method A nominee has changed since it was probed, and `AB.md` is re-rendered from the current `szz.json`. The stage's reason names the repros whose A-check was re-run.
 - A failing stage is recorded with its reason, and the stages that don't depend on it still run.
 - The run writes `<results_dir>/PIPELINE.md` and `pipeline.json`, listing each stage's status, reason, time taken and output sha256.
 - A stage that did not run appears in the bundle's coverage as NOT TESTED.

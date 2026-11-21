@@ -93,6 +93,29 @@ ACHECK = {("PASS", "FAIL"): "A confirmed (parent PASS, nominee FAIL)",
           ("UNTESTABLE", "UNTESTABLE"): "A untested: test cannot compile at the nominee or its parent"}
 
 
+def stale_achecks(res):
+    """Repro ids whose A-check is missing or probed a nominee other than Method A's current one.
+
+    The A-check probes the primary nominee in `szz.json`; when Method A changes and the sweeps are
+    reused, these are the A-checks to run again. A repro whose fix has no nominee needs none.
+    """
+    szz_file = res / "szz.json"
+    if not szz_file.is_file() or not (res / "repros").is_dir():
+        return []
+    bugs = json.loads(szz_file.read_text())["bugs"]
+    stale = []
+    for d in sorted(p for p in (res / "repros").iterdir() if (p / "overlay").is_dir()):
+        bug = next((b for b in bugs if b["fix"].startswith(d.name)), None)
+        if bug is None or not bug["nominees"]:
+            continue
+        nominee = bug["nominees"][0]["sha"]
+        f = d / "acheck.json"
+        probed = json.loads(f.read_text())["results"][-1].get("sha") if f.is_file() else None
+        if probed != nominee:
+            stale.append(d.name)
+    return stale
+
+
 def acheck_cell(d):
     """Describe one A-check result for the AB.md table."""
     f = d / "acheck.json"
