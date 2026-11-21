@@ -2,18 +2,18 @@
   "blameless_gate": "PASS",
   "command": "bug_age/__main__.py bundle --repo work/flask --results work/pipeline-inputs-flask/results --repo-url https://github.com/pallets/flask --spike work/pipeline-inputs-flask/spike --out-of-scope 'Documentation and examples|.py files outside the flask package are blamed with it; no separate scope|which files outside the package changed behaviour' --out dist/flask",
   "outputs": {
-    "bundle.js": "4bc855cb2f12e63d6c4fae7dcb09295f69fced1604fec1d2f5e54f51345f8a71",
-    "bundle.json": "2c52bfebd23930f2bab3869723253b2867070eb76aabe0725b224cac4bb0b619"
+    "bundle.js": "6e172c9390fbc2a0eadf8a5a901d0089f4a66ce66a476270443b78aff872d907",
+    "bundle.json": "24d679a744118c2f28132feb89368f0640ddc2dda4816e302e6cdeffe0cb14fd"
   },
   "schema_check": "PASS",
   "schema_version": "1.2.0",
   "size": {
-    "bundle_js_bytes": 137316,
-    "bundle_json_bytes": 137290,
+    "bundle_js_bytes": 140427,
+    "bundle_json_bytes": 140401,
     "warn_over_8mb": false
   },
   "versions": {
-    "bug-age": "2.2.0",
+    "bug-age": "2.2.1",
     "git": "git version 2.50.1 (Apple Git-155)"
   },
   "warnings": [
