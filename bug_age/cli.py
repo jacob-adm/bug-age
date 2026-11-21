@@ -171,7 +171,9 @@ def cmd_szz(f):
     summary = {"fixes": len(bugs), "with_introducer": with_intro, "in_window": in_window if window is not None else None,
                "window_start": window, "release_tags": release_tags}
     head = {"head": get(cat, "head"), "path": path} | ({} if profile == "rust" else {"profile": profile})
-    emit({**head, "method": "A (SZZ-style, git blame -w on first parent)", "summary": summary, "bugs": bugs},
+    method = ("A (SZZ-style, git blame -w on first parent)" if profiles.IGNORE_WHITESPACE[profile]
+              else "A (SZZ-style, git blame on first parent, whitespace kept)")
+    emit({**head, "method": method, "summary": summary, "bugs": bugs},
          f.get("out"))
 
 
