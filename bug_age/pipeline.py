@@ -5,14 +5,15 @@ Usage: bug-age pipeline targets/NAME.toml [--fresh] [--skip-feasibility]
 
 Stages: clone -> feasibility (baseline, time-travel) -> catalog -> szz -> repros -> bundle.
 A stage whose output already exists is REUSED unless --fresh (the expensive Docker stages
-are never redone silently). A failing stage is recorded with its reason and the pipeline
+are never redone silently). With reused sweeps, only the A-checks whose Method A nominee changed
+are probed again, and AB.md is re-rendered. A failing stage is recorded with its reason and the pipeline
 continues with whatever does not depend on it. Writes <results_dir>/PIPELINE.md and pipeline.json.
 """
 import datetime as dt, hashlib, json, re, shutil, subprocess, sys, time, tomllib
 from pathlib import Path
 
 from . import profiles
-from .repros import BUILD, PY_BUILD, PY_TEST, TEST, range_start
+from .repros import BUILD, PY_BUILD, PY_TEST, TEST, range_start, stale_achecks
 from .sweep import _overlay_listing as overlay_listing
 
 # The Method B image's recipe; receipts made since 2.1.1 record its hash so reuse can check it.
@@ -143,6 +144,13 @@ def main(argv=None):
                 return "FAILED", f"stale sweeps: {'; '.join(stale)} (pass --fresh to rerun)"
             current.update(o.parent for o in overlays)
             note = f"; image recipe not recorded for {len(notes)} (made before 2.1.1)" if notes else ""
+            # The sweeps do not depend on Method A, but the A-check and AB.md do: probe again any
+            # nominee that changed, then re-render AB.md from the current szz.json.
+            redo = stale_achecks(res)
+            mode = ["--acheck-only", "--only", *redo] if redo else ["--render-only"]
+            if run([sys.executable, "-m", "bug_age.repros", res, repo, c["crate_path"], *py_args, *mode], log):
+                return "FAILED", tail(log)
+            note += f"; A-check re-run for {len(redo)} changed nominee(s): {', '.join(redo)}" if redo else ""
             return "REUSED", f"{len(overlays)} existing sweeps, every recorded input matches{note}"
         if run([sys.executable, "-m", "bug_age.repros", res, repo, c["crate_path"], *py_args], log):
             return "FAILED", tail(log)
