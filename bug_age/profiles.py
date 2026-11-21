@@ -38,6 +38,15 @@ def _python_source(file, path):
 
 _SOURCE = {"rust": _rust_source, "python": _python_source}
 
+# Whether Method A ignores whitespace-only changes (git diff and git blame -w). In Python,
+# indentation is code: a fix or a bug can be an indentation change and nothing else.
+IGNORE_WHITESPACE = {"rust": True, "python": False}
+
+
+def whitespace_flags(profile):
+    """The git diff and git blame options for whitespace under `profile`: ["-w"] or []."""
+    return ["-w"] if IGNORE_WHITESPACE[profile] else []
+
 # Extra (rule name, pattern) exclusions per profile, tried after the shared rules. Tool names only:
 # a bare "style" would also drop real fixes such as "Fixed missing closing </style> tag".
 EXTRA_EXCLUDE = {

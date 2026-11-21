@@ -101,6 +101,22 @@ class PythonMethodA(unittest.TestCase):
         self.assertEqual(bug["nominees"][0]["sha"], self.intro)
         self.assertEqual(bug["lifetime"]["calendar_days"], 28.0)
 
+    def test_python_profile_counts_an_indentation_change(self):
+        """A Python bug that is only a wrong indentation is blamed on the commit that indented it."""
+        d = self.d
+        body = "def total(xs):\n    s = 0\n    for x in xs:\n        s += x\n    return s\n"
+        commit(d, "pkg/sums.py", body, "add total", "2025-04-01T00:00:00Z")
+        wrong = commit(d, "pkg/sums.py", body.replace("    return s", "        return s"),
+                       "tidy total", "2025-04-10T00:00:00Z")
+        fixed = commit(d, "pkg/sums.py", body, "Fix total returning after the first item",
+                       "2025-04-20T00:00:00Z")
+        cat, a = self.method_a("--profile", "python")
+        bug = next(b for b in a["bugs"] if b["fix"] == fixed)
+        self.assertEqual([n["sha"] for n in bug["nominees"]], [wrong])
+        self.assertEqual(a["method"], "A (SZZ-style, git blame on first parent, whitespace kept)")
+        _, rust = self.method_a()
+        self.assertEqual(rust["method"], "A (SZZ-style, git blame -w on first parent)")
+
     def test_rust_profile_finds_nothing_to_blame_and_records_no_profile(self):
         """The default profile sees no Rust sources here; its outputs carry no profile key, as before."""
         cat, a = self.method_a()

@@ -4,7 +4,8 @@
 For each fix commit, blame the lines it removed or changed in its first parent and nominate the
 commit(s) that last touched them. Known limits are flagged per bug rather than hidden:
 addition-only fixes have nothing to blame, the latest toucher is not necessarily the introducer,
-and `-w` only discounts whitespace-only changes.
+and `-w` (rust profile only) discounts whitespace-only changes. The python profile keeps them,
+as indentation is code there.
 """
 import re
 
@@ -109,10 +110,11 @@ def analyze(repo, fix, path, window_start, release_tags, profile="rust"):
     if len(parents) > 1:
         bug["flags"].append("fix-is-merge(diffed-against-first-parent)")
     parent = parents[0]
-    diff = git(repo, ["diff", "-U0", "-w", "--no-color", "-M", parent, fix["sha"], "--", path])
+    ws = profiles.whitespace_flags(profile)
+    diff = git(repo, ["diff", "-U0", *ws, "--no-color", "-M", parent, fix["sha"], "--", path])
     counts = {}
     for file, start, n in removed_ranges(diff, path, profile):
-        out = git(repo, ["blame", "-w", "--porcelain", "-L", f"{start},+{n}", parent, "--", file])
+        out = git(repo, ["blame", *ws, "--porcelain", "-L", f"{start},+{n}", parent, "--", file])
         blame_counts(out, counts)
         if file not in bug["blamed_files"]:
             bug["blamed_files"].append(file)
