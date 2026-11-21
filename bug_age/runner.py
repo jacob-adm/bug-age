@@ -230,6 +230,7 @@ class Local:
     name = "local"
     fetch_cmd = None                    # the host's dependencies are used as they are
     overlay_marker = "bugage_repro.rs"  # a build error naming this file means the overlay does not compile
+    env_markers = ()                    # build output naming a missing dependency instead
 
     def __init__(self, spec):
         self.wt = spec.scratch / "local-wt"
@@ -348,6 +349,7 @@ class Docker(DockerSource):
 
     fetch_cmd = "cargo fetch"
     overlay_marker = "bugage_repro.rs"
+    env_markers = ()
 
     def __init__(self, image, time_travel_script=None, namespace="", bucket=0):
         super().__init__(image, namespace)
@@ -510,6 +512,7 @@ class PythonDocker(DockerSource):
     environment mounted read-only."""
 
     overlay_marker = "bugage_repro_test.py"
+    env_markers = ("No module named",)
 
     def __init__(self, namespace="", install=".", test_deps=("pytest",)):
         super().__init__("", namespace)
