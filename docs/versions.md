@@ -40,3 +40,11 @@ packages published by then; tests run without network. Example runs on psf/reque
 pallets/flask are in `results/`. A source volume that Docker had not yet released could be reused
 with the previous commit's files; staging now waits for it or marks the commit untestable. The
 Rust example runs' numbers are unchanged.
+
+2.2.1 keeps whitespace changes in Method A for Python. Under the python profile, `git diff` and
+`git blame` no longer run with `-w`, because indentation is code in Python: a bug that is only an
+indentation change, or its fix, was missed. On a published oracle of developer-confirmed
+bug-introducing commits (83 Python fixes), the true introducer is now named for 58 fixes instead
+of 55. The Python example runs were regenerated: on psf/requests 9 of 169 primary nominees changed
+and one more fix has a nominee; on pallets/flask 6 of 185 changed and two more have one. The one
+regression test whose nominee changed was probed again (A-check). Rust is unchanged.

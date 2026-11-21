@@ -190,7 +190,12 @@
           "sha": "1988d9cf72c3a3a6da87968e04ad57fb32df01cb"
         },
         {
-          "blamed_lines": 2,
+          "blamed_lines": 1,
+          "date": "2022-04-29",
+          "sha": "2a6f290bc09324406708a4d404a88a45d848ddf9"
+        },
+        {
+          "blamed_lines": 1,
           "date": "2018-01-04",
           "sha": "7deee699ada6e5ec0d41c7561d9b5fa4cd80e535"
         }
@@ -259,20 +264,14 @@
       "flags": [],
       "in_window": null,
       "lifetime": {
-        "calendar_days": 5106.2,
-        "calendar_days_author": 5106.2,
-        "churn_deletions": 10561,
-        "churn_files": 177,
-        "churn_insertions": 25382,
-        "commits_elapsed": 4872,
-        "commits_elapsed_first_parent": 2273,
+        "calendar_days": 5066.8,
+        "calendar_days_author": 5066.8,
+        "churn_deletions": 10901,
+        "churn_files": 181,
+        "churn_insertions": 25352,
+        "commits_elapsed": 4733,
+        "commits_elapsed_first_parent": 2207,
         "releases_spanned": [
-          "v0.10.4",
-          "v0.10.5",
-          "v0.10.6",
-          "v0.10.7",
-          "v0.10.8",
-          "v0.11.1",
           "v0.12.0",
           "v0.12.1",
           "v0.13.0",
@@ -381,8 +380,8 @@
       "nominees": [
         {
           "blamed_lines": 1,
-          "date": "2012-02-20",
-          "sha": "b0e18650735dc667f76f6aff108877f03b729c23"
+          "date": "2012-03-31",
+          "sha": "171b370b0e3bbc0288fb0e4addcef16bf670e324"
         }
       ],
       "subject": "Fix empty netrc entry usage (#7205)"
@@ -482,62 +481,14 @@
       ],
       "in_window": null,
       "lifetime": {
-        "calendar_days": 4102.0,
-        "calendar_days_author": 4102.0,
-        "churn_deletions": 30289,
-        "churn_files": 229,
-        "churn_insertions": 23930,
-        "commits_elapsed": 3865,
-        "commits_elapsed_first_parent": 1772,
+        "calendar_days": 1988.4,
+        "calendar_days_author": 1988.4,
+        "churn_deletions": 5089,
+        "churn_files": 114,
+        "churn_insertions": 5405,
+        "commits_elapsed": 714,
+        "commits_elapsed_first_parent": 404,
         "releases_spanned": [
-          "v1.0.0",
-          "v1.0.1",
-          "v1.0.2",
-          "v1.0.3",
-          "v1.0.4",
-          "v1.1.0",
-          "v1.2.0",
-          "v1.2.1",
-          "v1.2.2",
-          "v1.2.3",
-          "v2.0",
-          "v2.0.0",
-          "v2.0.1",
-          "v2.1.0",
-          "v2.10.0",
-          "v2.11.0",
-          "v2.11.1",
-          "v2.12.0",
-          "v2.12.1",
-          "v2.12.2",
-          "v2.12.3",
-          "v2.12.4",
-          "v2.12.5",
-          "v2.13.0",
-          "v2.14.0",
-          "v2.14.1",
-          "v2.14.2",
-          "v2.15.0",
-          "v2.15.1",
-          "v2.16.0",
-          "v2.16.1",
-          "v2.16.2",
-          "v2.16.3",
-          "v2.16.4",
-          "v2.16.5",
-          "v2.17.0",
-          "v2.17.1",
-          "v2.17.2",
-          "v2.17.3",
-          "v2.18.0",
-          "v2.18.1",
-          "v2.18.2",
-          "v2.18.3",
-          "v2.18.4",
-          "v2.19.0",
-          "v2.19.1",
-          "v2.2.0",
-          "v2.2.1",
           "v2.20.0",
           "v2.20.1",
           "v2.21.0",
@@ -553,33 +504,15 @@
           "v2.28.1",
           "v2.28.2",
           "v2.29.0",
-          "v2.3.0",
           "v2.30.0",
-          "v2.31.0",
-          "v2.4.0",
-          "v2.4.1",
-          "v2.4.2",
-          "v2.4.3",
-          "v2.5.0",
-          "v2.5.1",
-          "v2.5.2",
-          "v2.5.3",
-          "v2.6.0",
-          "v2.6.1",
-          "v2.6.2",
-          "v2.7.0",
-          "v2.8.0",
-          "v2.8.1",
-          "v2.9.0",
-          "v2.9.1",
-          "v2.9.2"
+          "v2.31.0"
         ]
       },
       "nominees": [
         {
           "blamed_lines": 1,
-          "date": "2012-12-17",
-          "sha": "ca0d08eedaa9d0c79ccd9c69fedae89ed7812c53"
+          "date": "2018-09-30",
+          "sha": "bbdbcc8f0553f112ff68b0950b4128bd8af000fc"
         }
       ],
       "subject": "Merge pull request #6655"
@@ -1055,9 +988,14 @@
           "sha": "f79d1ef42f646a1835eda6b1a50c54e7afe56784"
         },
         {
-          "blamed_lines": 1,
+          "blamed_lines": 3,
           "date": "2021-05-06",
           "sha": "05a1a21593c9c8e79393d35fae12c9c27a6f7605"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2015-05-14",
+          "sha": "553907aa6b588c6006babdf746e34748d630595d"
         },
         {
           "blamed_lines": 1,
@@ -1517,13 +1455,13 @@
       "flags": [],
       "in_window": null,
       "lifetime": {
-        "calendar_days": 500.2,
-        "calendar_days_author": 500.2,
-        "churn_deletions": 24031,
-        "churn_files": 149,
-        "churn_insertions": 15224,
-        "commits_elapsed": 941,
-        "commits_elapsed_first_parent": 470,
+        "calendar_days": 465.9,
+        "calendar_days_author": 465.9,
+        "churn_deletions": 21926,
+        "churn_files": 144,
+        "churn_insertions": 12870,
+        "commits_elapsed": 868,
+        "commits_elapsed_first_parent": 413,
         "releases_spanned": [
           "v2.10.0",
           "v2.11.0",
@@ -1556,8 +1494,8 @@
       "nominees": [
         {
           "blamed_lines": 1,
-          "date": "2016-01-15",
-          "sha": "f9d5cbe5b56227d61709cb1309d6152f90df24e8"
+          "date": "2016-02-19",
+          "sha": "dbefff68214b9a65d53a6f13fc1f1e49d6c7c91f"
         }
       ],
       "subject": "fix github stars"
@@ -2616,7 +2554,7 @@
       },
       "nominees": [
         {
-          "blamed_lines": 5,
+          "blamed_lines": 6,
           "date": "2014-01-31",
           "sha": "c042c08179cae74e7b2c520b33ea19881c0ec842"
         },
@@ -2626,7 +2564,7 @@
           "sha": "a95bfd30324b59f54de7b18ae6209aecfe5c87fc"
         },
         {
-          "blamed_lines": 2,
+          "blamed_lines": 1,
           "date": "2013-03-12",
           "sha": "120a2f385a4d1b652451e6a6d8dc618437f72529"
         }
@@ -3014,7 +2952,7 @@
       },
       "nominees": [
         {
-          "blamed_lines": 2,
+          "blamed_lines": 3,
           "date": "2012-02-14",
           "sha": "fcac1c3746b72777b8b25f78b9abff0d3e283389"
         },
@@ -3785,19 +3723,14 @@
       ],
       "in_window": null,
       "lifetime": {
-        "calendar_days": 530.3,
-        "calendar_days_author": 530.3,
-        "churn_deletions": 16879,
-        "churn_files": 157,
-        "churn_insertions": 13977,
-        "commits_elapsed": 1144,
-        "commits_elapsed_first_parent": 440,
+        "calendar_days": 504.3,
+        "calendar_days_author": 504.3,
+        "churn_deletions": 9123,
+        "churn_files": 106,
+        "churn_insertions": 15780,
+        "commits_elapsed": 966,
+        "commits_elapsed_first_parent": 304,
         "releases_spanned": [
-          "v1.0.0",
-          "v1.0.1",
-          "v1.0.2",
-          "v1.0.3",
-          "v1.0.4",
           "v1.1.0",
           "v1.2.0",
           "v1.2.1",
@@ -3815,8 +3748,8 @@
       "nominees": [
         {
           "blamed_lines": 1,
-          "date": "2012-12-15",
-          "sha": "31d10c0b2b693a43581935913c6d8bff4111a8c5"
+          "date": "2013-01-10",
+          "sha": "ef8563ab36c6b52834ee9c35f6f75a424cd9ceef"
         }
       ],
       "subject": "Merge pull request #2072"
@@ -3856,12 +3789,39 @@
         "requests/models.py",
         "requests/packages/charade/__main__.py",
         "requests/packages/charade/__init__.py",
+        "requests/packages/charade/big5prober.py",
+        "requests/packages/charade/chardistribution.py",
+        "requests/packages/charade/charsetgroupprober.py",
+        "requests/packages/charade/codingstatemachine.py",
+        "requests/packages/charade/constants.py",
+        "requests/packages/charade/cp949prober.py",
+        "requests/packages/charade/escprober.py",
+        "requests/packages/charade/escsm.py",
+        "requests/packages/charade/eucjpprober.py",
+        "requests/packages/charade/euckrprober.py",
+        "requests/packages/charade/euctwprober.py",
+        "requests/packages/charade/gb2312prober.py",
+        "requests/packages/charade/hebrewprober.py",
         "requests/packages/charade/jpcntx.py",
+        "requests/packages/charade/langbulgarianmodel.py",
+        "requests/packages/charade/langcyrillicmodel.py",
+        "requests/packages/charade/langgreekmodel.py",
+        "requests/packages/charade/langhebrewmodel.py",
+        "requests/packages/charade/langhungarianmodel.py",
+        "requests/packages/charade/langthaimodel.py",
         "requests/packages/charade/latin1prober.py",
+        "requests/packages/charade/mbcharsetprober.py",
+        "requests/packages/charade/mbcsgroupprober.py",
+        "requests/packages/charade/mbcssm.py",
+        "requests/packages/charade/sbcharsetprober.py",
+        "requests/packages/charade/sbcsgroupprober.py",
+        "requests/packages/charade/sjisprober.py",
         "requests/packages/charade/universaldetector.py",
+        "requests/packages/charade/utf8prober.py",
         "requests/packages/urllib3/connection.py",
         "requests/packages/urllib3/connectionpool.py",
         "requests/packages/urllib3/request.py",
+        "requests/sessions.py",
         "requests/utils.py",
         "setup.py"
       ],
@@ -3873,23 +3833,50 @@
       ],
       "in_window": null,
       "lifetime": {
-        "calendar_days": 76.2,
-        "calendar_days_author": 76.2,
-        "churn_deletions": 4973,
-        "churn_files": 77,
-        "churn_insertions": 5693,
-        "commits_elapsed": 172,
-        "commits_elapsed_first_parent": 51,
+        "calendar_days": 402.4,
+        "calendar_days_author": 402.4,
+        "churn_deletions": 16470,
+        "churn_files": 151,
+        "churn_insertions": 12614,
+        "commits_elapsed": 991,
+        "commits_elapsed_first_parent": 395,
         "releases_spanned": [
+          "v1.0.0",
+          "v1.0.1",
+          "v1.0.2",
+          "v1.0.3",
+          "v1.0.4",
+          "v1.1.0",
+          "v1.2.0",
+          "v1.2.1",
+          "v1.2.2",
+          "v1.2.3",
+          "v2.0",
+          "v2.0.0",
           "v2.0.1",
           "v2.1.0"
         ]
       },
       "nominees": [
         {
+          "blamed_lines": 4279,
+          "date": "2012-12-02",
+          "sha": "ad311497fa100a7f4b11ca3df9c7a84b6084602e"
+        },
+        {
+          "blamed_lines": 54,
+          "date": "2013-03-22",
+          "sha": "80a861cb84175cdf444ce3d0c677251635859e22"
+        },
+        {
           "blamed_lines": 48,
           "date": "2013-10-24",
           "sha": "df272b7740d970a97ad243c061863892e072661a"
+        },
+        {
+          "blamed_lines": 44,
+          "date": "2013-03-22",
+          "sha": "52d328ec3c7f038765df4565d14070a04dc9ea6e"
         },
         {
           "blamed_lines": 8,
@@ -3898,8 +3885,8 @@
         },
         {
           "blamed_lines": 3,
-          "date": "2012-11-29",
-          "sha": "1960dabafdc09a3cd2a4878de99965e421786ee8"
+          "date": "2012-12-17",
+          "sha": "e7598e006c051330ef9eb5b33b6c046484af5c2b"
         },
         {
           "blamed_lines": 2,
@@ -3910,6 +3897,11 @@
           "blamed_lines": 2,
           "date": "2012-05-21",
           "sha": "96cd8e9ca0b6953794b9b3244b244dd34f975544"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2013-07-31",
+          "sha": "0ab7a52f7c04998ae68ed7da442fce32293e0fb5"
         },
         {
           "blamed_lines": 1,
@@ -3963,23 +3955,13 @@
         },
         {
           "blamed_lines": 1,
-          "date": "2013-03-22",
-          "sha": "80a861cb84175cdf444ce3d0c677251635859e22"
-        },
-        {
-          "blamed_lines": 1,
           "date": "2013-05-31",
           "sha": "93be6916f98f191eee9ac053994f61e99869735b"
         },
         {
           "blamed_lines": 1,
-          "date": "2012-11-29",
-          "sha": "a5cb6355edd67e25a4a213a3559f9da4ba8d44fc"
-        },
-        {
-          "blamed_lines": 1,
-          "date": "2012-12-02",
-          "sha": "ad311497fa100a7f4b11ca3df9c7a84b6084602e"
+          "date": "2013-01-11",
+          "sha": "a950322b0794a451491d51bd8596623964c5b323"
         },
         {
           "blamed_lines": 1,
@@ -4360,7 +4342,7 @@
       },
       "nominees": [
         {
-          "blamed_lines": 30,
+          "blamed_lines": 33,
           "date": "2012-11-29",
           "sha": "1960dabafdc09a3cd2a4878de99965e421786ee8"
         }
@@ -4368,15 +4350,34 @@
       "subject": "chardet fixes!"
     },
     {
-      "blamed_files": [],
+      "blamed_files": [
+        "requests/packages/chardet/codingstatemachine.py",
+        "requests/packages/chardet/latin1prober.py",
+        "requests/packages/chardet/sbcharsetprober.py"
+      ],
       "fix": "ccd14ddc81bbc23afa33c10643e24dfa07513f2e",
       "fix_date": "2012-11-27",
       "flags": [
-        "no-blame-lines(addition-only-or-out-of-scope)"
+        "committer-dates-compressed(use-author-days)"
       ],
       "in_window": null,
-      "lifetime": null,
-      "nominees": [],
+      "lifetime": {
+        "calendar_days": 0.0,
+        "calendar_days_author": 0.0,
+        "churn_deletions": 81,
+        "churn_files": 10,
+        "churn_insertions": 33,
+        "commits_elapsed": 6,
+        "commits_elapsed_first_parent": 6,
+        "releases_spanned": []
+      },
+      "nominees": [
+        {
+          "blamed_lines": 12,
+          "date": "2012-11-27",
+          "sha": "71898bb7937679dddbda4bd12d9e53eb5de7b1fa"
+        }
+      ],
       "subject": "fixes for python2"
     },
     {
@@ -4406,19 +4407,19 @@
       },
       "nominees": [
         {
-          "blamed_lines": 3,
+          "blamed_lines": 4,
           "date": "2012-08-27",
           "sha": "fc9b8a02148dd3b41c0323f868d8664e70c49468"
-        },
-        {
-          "blamed_lines": 2,
-          "date": "2012-06-28",
-          "sha": "a17fdf622403d487504af67708b8e6d973760eb7"
         },
         {
           "blamed_lines": 1,
           "date": "2012-07-18",
           "sha": "2c241d28011626da17dabed80e190ac84e5cf79c"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2012-06-28",
+          "sha": "a17fdf622403d487504af67708b8e6d973760eb7"
         }
       ],
       "subject": "fix chardet import"
@@ -4436,11 +4437,11 @@
       "lifetime": {
         "calendar_days": 151.8,
         "calendar_days_author": 151.8,
-        "churn_deletions": 3637,
+        "churn_deletions": 3641,
         "churn_files": 69,
-        "churn_insertions": 2333,
-        "commits_elapsed": 343,
-        "commits_elapsed_first_parent": 123,
+        "churn_insertions": 2327,
+        "commits_elapsed": 339,
+        "commits_elapsed_first_parent": 121,
         "releases_spanned": [
           "v0.13.2",
           "v0.13.3",
@@ -4456,19 +4457,9 @@
       },
       "nominees": [
         {
-          "blamed_lines": 5,
-          "date": "2012-06-28",
-          "sha": "fb2ce4f0dc063decfb7ce7da0e91b52f41646896"
-        },
-        {
-          "blamed_lines": 4,
+          "blamed_lines": 10,
           "date": "2012-06-28",
           "sha": "254adf9dc8f11257c59961408b06a3d80af086c6"
-        },
-        {
-          "blamed_lines": 1,
-          "date": "2012-06-28",
-          "sha": "35f6671ec583e75b90a026167e18cb41cdb7d760"
         },
         {
           "blamed_lines": 1,
@@ -4513,7 +4504,7 @@
       },
       "nominees": [
         {
-          "blamed_lines": 9,
+          "blamed_lines": 11,
           "date": "2012-08-19",
           "sha": "c19650b00f0c169cdf6372a093425830e11a8771"
         }
@@ -4795,13 +4786,13 @@
       ],
       "in_window": null,
       "lifetime": {
-        "calendar_days": 66.8,
-        "calendar_days_author": 66.8,
-        "churn_deletions": 1114,
+        "calendar_days": 52.2,
+        "calendar_days_author": 52.2,
+        "churn_deletions": 1116,
         "churn_files": 44,
-        "churn_insertions": 2408,
-        "commits_elapsed": 300,
-        "commits_elapsed_first_parent": 195,
+        "churn_insertions": 2321,
+        "commits_elapsed": 261,
+        "commits_elapsed_first_parent": 177,
         "releases_spanned": [
           "v0.10.0",
           "v0.10.1",
@@ -4811,21 +4802,20 @@
           "v0.10.5",
           "v0.10.6",
           "v0.10.7",
-          "v0.9.1",
           "v0.9.2",
           "v0.9.3"
         ]
       },
       "nominees": [
         {
-          "blamed_lines": 6,
-          "date": "2012-01-02",
-          "sha": "95911f059aa76c46f9da002df9724cb41fa7cdce"
+          "blamed_lines": 7,
+          "date": "2012-01-17",
+          "sha": "5cfbb0aaf50e451179ede8bcd43ca55fbdfebad5"
         },
         {
-          "blamed_lines": 4,
-          "date": "2012-01-17",
-          "sha": "29271a4100b24008719cde605a4b641745dd4678"
+          "blamed_lines": 5,
+          "date": "2012-01-02",
+          "sha": "95911f059aa76c46f9da002df9724cb41fa7cdce"
         },
         {
           "blamed_lines": 3,
@@ -4836,11 +4826,6 @@
           "blamed_lines": 3,
           "date": "2012-01-03",
           "sha": "5174ab43257e1675d119335166b40fdbb2d68bf3"
-        },
-        {
-          "blamed_lines": 2,
-          "date": "2012-01-17",
-          "sha": "5cfbb0aaf50e451179ede8bcd43ca55fbdfebad5"
         }
       ],
       "subject": "Merge branch 'iter_lines-fix' of https://github.com/fawek/requests into develop"
@@ -4962,6 +4947,7 @@
       "fix": "ec109c9ac89bf945715a429010706539a262e502",
       "fix_date": "2012-02-15",
       "flags": [
+        "multiple-candidates",
         "committer-dates-compressed(use-author-days)"
       ],
       "in_window": null,
@@ -4980,6 +4966,11 @@
           "blamed_lines": 1,
           "date": "2012-02-15",
           "sha": "00b13673e32e45d2eb6517c0cf81915467331d8f"
+        },
+        {
+          "blamed_lines": 1,
+          "date": "2012-02-15",
+          "sha": "d39cdc45d13c36faf6cbb32425afa7256bd81e5b"
         }
       ],
       "subject": "path fixes"
@@ -5031,51 +5022,15 @@
       ],
       "in_window": null,
       "lifetime": {
-        "calendar_days": 343.5,
-        "calendar_days_author": 343.5,
-        "churn_deletions": 33,
-        "churn_files": 76,
-        "churn_insertions": 12221,
-        "commits_elapsed": 1396,
-        "commits_elapsed_first_parent": 208,
+        "calendar_days": 26.0,
+        "calendar_days_author": 26.0,
+        "churn_deletions": 480,
+        "churn_files": 42,
+        "churn_insertions": 1456,
+        "commits_elapsed": 133,
+        "commits_elapsed_first_parent": 90,
         "releases_spanned": [
           "v0.10.0",
-          "v0.2.0",
-          "v0.2.1",
-          "v0.2.2",
-          "v0.2.3",
-          "v0.2.4",
-          "v0.3.0",
-          "v0.3.1",
-          "v0.3.2",
-          "v0.3.3",
-          "v0.3.4",
-          "v0.4.0",
-          "v0.4.1",
-          "v0.5.0",
-          "v0.5.1",
-          "v0.6.0",
-          "v0.6.1",
-          "v0.6.2",
-          "v0.6.3",
-          "v0.6.4",
-          "v0.6.5",
-          "v0.6.6",
-          "v0.7.0",
-          "v0.7.1",
-          "v0.7.2",
-          "v0.7.3",
-          "v0.7.4",
-          "v0.7.5",
-          "v0.7.6",
-          "v0.8.0",
-          "v0.8.1",
-          "v0.8.2",
-          "v0.8.3",
-          "v0.8.4",
-          "v0.8.5",
-          "v0.8.6",
-          "v0.8.7",
           "v0.8.8",
           "v0.8.9",
           "v0.9.0",
@@ -5087,11 +5042,6 @@
       "nominees": [
         {
           "blamed_lines": 2,
-          "date": "2011-02-13",
-          "sha": "0477018761c67152cdcc0b83d56f27e701e65b9e"
-        },
-        {
-          "blamed_lines": 2,
           "date": "2011-12-28",
           "sha": "31d495fb0220ff4bb812f457e03948cbe2b8e3a9"
         },
@@ -5099,6 +5049,11 @@
           "blamed_lines": 2,
           "date": "2012-01-21",
           "sha": "47e96b80407b52ec45136391c77b089d71ccbe18"
+        },
+        {
+          "blamed_lines": 2,
+          "date": "2011-02-17",
+          "sha": "7229dbe0331492b16ed57745b0b448e8f26160ca"
         },
         {
           "blamed_lines": 2,
@@ -5178,9 +5133,14 @@
           "sha": "44aa6806f3bf2255c151ec2661b8765ca190c0c4"
         },
         {
-          "blamed_lines": 7,
+          "blamed_lines": 13,
           "date": "2011-02-13",
           "sha": "71df02df2c9ab37a8ee40b31f5e28742d1a6cee8"
+        },
+        {
+          "blamed_lines": 3,
+          "date": "2011-02-13",
+          "sha": "e9c2b917d2ba340e440f3da35846167c86c610a8"
         },
         {
           "blamed_lines": 1,
@@ -5191,11 +5151,6 @@
           "blamed_lines": 1,
           "date": "2011-02-13",
           "sha": "871de2ab23a49dd0beaee4cd8742c54038d16e96"
-        },
-        {
-          "blamed_lines": 1,
-          "date": "2011-02-13",
-          "sha": "e9c2b917d2ba340e440f3da35846167c86c610a8"
         }
       ],
       "subject": "FIXED"
@@ -5228,12 +5183,12 @@
           "sha": "b72e1d19aff997d00ef617a3aa0eea8ccdcc3984"
         },
         {
-          "blamed_lines": 4,
+          "blamed_lines": 3,
           "date": "2011-02-13",
           "sha": "d8b19573f38aa84db95a7e4d1f1c0a2fa26517eb"
         },
         {
-          "blamed_lines": 2,
+          "blamed_lines": 3,
           "date": "2011-02-13",
           "sha": "ef9bae8d9f2dc605d4fbcdf24256b6cc82612a2d"
         },
@@ -5247,7 +5202,7 @@
     }
   ],
   "head": "3c7baaa05ab4aa49cc819ce3a819d260de19c157",
-  "method": "A (SZZ-style, git blame -w on first parent)",
+  "method": "A (SZZ-style, git blame on first parent, whitespace kept)",
   "path": ".",
   "profile": "python",
   "summary": {
@@ -5255,6 +5210,6 @@
     "in_window": null,
     "release_tags": "v[0-9]*",
     "window_start": null,
-    "with_introducer": 88
+    "with_introducer": 89
   }
 }

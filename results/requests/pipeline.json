@@ -4,7 +4,7 @@
   "head": "3c7baaa05ab4aa49cc819ce3a819d260de19c157",
   "crate_path": ".",
   "profile": "python",
-  "generated_utc": "2026-11-15T11:27:56+00:00",
+  "generated_utc": "2026-11-21T07:45:25+00:00",
   "stages": [
     {
       "stage": "clone",
@@ -41,10 +41,10 @@
     {
       "stage": "Method A (szz)",
       "status": "OK",
-      "reason": "szz: 169 fixes, 88 with a nominated introducer, 0 in window",
-      "seconds": 21,
+      "reason": "szz: 169 fixes, 89 with a nominated introducer, 0 in window",
+      "seconds": 23,
       "output": "results/requests/szz.json",
-      "sha256": "013f4b0b8662fc501e887305d2b2bf4be2008ddd7b41a8c2dcf6960e6b8d9d02"
+      "sha256": "259cef3b2a84184d9da2fa8efc36614bdc679f371474ae32d573dac85b7efe9a"
     },
     {
       "stage": "Method B (repro sweeps)",
@@ -57,10 +57,10 @@
     {
       "stage": "bundle",
       "status": "OK",
-      "reason": "bundle: 150453 bytes, sha256 a2f546d176df888c8c05344f90e10d0d6c3551ce014b69169ebad9e0804ca058, blameless gate PASS",
+      "reason": "bundle: 151493 bytes, sha256 4c9d9676db27a7a7e2a946d1efb3e728729b59590a57de1d37b76e10d1c3871e, blameless gate PASS",
       "seconds": 6,
       "output": "dist/requests/bundle.json",
-      "sha256": "a2f546d176df888c8c05344f90e10d0d6c3551ce014b69169ebad9e0804ca058"
+      "sha256": "4c9d9676db27a7a7e2a946d1efb3e728729b59590a57de1d37b76e10d1c3871e"
     }
   ]
 }

@@ -2,18 +2,18 @@
   "blameless_gate": "PASS",
   "command": "bug_age/__main__.py bundle --repo work/requests --results work/pipeline-inputs-requests/results --repo-url https://github.com/psf/requests --spike work/pipeline-inputs-requests/spike --out-of-scope 'Documentation and packaging scripts|.py files outside the requests package are blamed with it; no separate scope|which files outside the package changed behaviour' --out dist/requests",
   "outputs": {
-    "bundle.js": "312faef86bda00c2bd88e907770974309fed4e761f92674df3ae52850ec0019b",
-    "bundle.json": "a2f546d176df888c8c05344f90e10d0d6c3551ce014b69169ebad9e0804ca058"
+    "bundle.js": "3b0171f1c350c77b4ff1e6a683ee4d7434f515ca760786afe01430b6dba4c103",
+    "bundle.json": "4c9d9676db27a7a7e2a946d1efb3e728729b59590a57de1d37b76e10d1c3871e"
   },
   "schema_check": "PASS",
   "schema_version": "1.2.0",
   "size": {
-    "bundle_js_bytes": 150479,
-    "bundle_json_bytes": 150453,
+    "bundle_js_bytes": 151519,
+    "bundle_json_bytes": 151493,
     "warn_over_8mb": false
   },
   "versions": {
-    "bug-age": "2.2.0",
+    "bug-age": "2.2.1",
     "git": "git version 2.50.1 (Apple Git-155)"
   },
   "warnings": [
