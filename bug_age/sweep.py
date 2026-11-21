@@ -25,6 +25,14 @@ SKIP_RADIUS = 2      # how far either side of a midpoint to look for a testable 
 SEARCH_REPEATS = 1   # test runs per commit while searching; decisive commits get --repeats
 
 
+OVERLAY_FAILED = "test build failed (overlay does not compile here)"
+BUILD_FAILED = "test build failed (not in the overlay test; see build.log)"
+
+
+class HostError(RuntimeError):
+    """The build environment cannot run the sweep: reported as an error, never as a verdict."""
+
+
 def evaluate(runner, spec, sha, repeats):
     """Stage `sha`, build the overlay test, run it `repeats` times: PASS, FAIL, FLAKY or UNTESTABLE."""
     if repeats < 1:
@@ -58,7 +66,14 @@ def evaluate(runner, spec, sha, repeats):
             log = (logs / "build.log").read_text(encoding="utf-8")
         except (OSError, UnicodeDecodeError):
             log = ""
-        overlay_error = any(runner.overlay_marker in line for line in lines(log))
+        # Line 1 is the logged command, which names the overlay file itself: only the output counts.
+        output = lines(log)[1:]
+        if build in (126, 127):  # the shell could not find or execute the command: the host, not the commit
+            last = next((line for line in reversed(output) if line.strip()), "")
+            raise HostError(f"{sha[:10]}: the build command could not run (exit {build}): {last.strip()} "
+                            f"(see {logs / 'build.log'})")
+        overlay_error = (any(runner.overlay_marker in line for line in output)
+                         and not any(m in line for m in runner.env_markers for line in output))
         retried = False
         if not overlay_error:
             # A bucketed toolchain may be too new for this commit: retry once with the exact one.
@@ -68,7 +83,7 @@ def evaluate(runner, spec, sha, repeats):
                 fetched = runner.fetch_cmd is None or step("fetch_exact", runner.fetch_cmd, True) == 0
                 retried = fetched and step("build_exact", spec.build, False) == 0
         if not retried:
-            return result(UNTESTABLE, "test build failed (overlay does not compile here)", toolchain)
+            return result(UNTESTABLE, OVERLAY_FAILED if overlay_error else BUILD_FAILED, toolchain)
     exits = [step(f"test_{i}", spec.test, False) for i in range(1, repeats + 1)]
     passed, failed = sum(1 for e in exits if e == 0), sum(1 for e in exits if e != 0)
     # A test stopped at the step limit counts as failing, and the reason says so.
@@ -145,6 +160,12 @@ def run(runner, spec, fix, start=None, exhaustive=False):
              "untestable_between": 0, "non_monotonic": False, "frontier": None, "confirmation": "",
              "range_commits": len(commits), "commits_tested": 0, "results": []}
     of, op = probe.outcome(f), probe.outcome(p)
+    # A build that fails at the fix or its parent for a reason other than the overlay says nothing
+    # about the repro: the environment is wrong, and that is an error, not a verdict.
+    for i, name in ((f, "the fix"), (p, "the fix's parent")):
+        if probe.seen[i]["reason"] == BUILD_FAILED:
+            raise HostError(f"test build failed at {name} ({commits[i][:10]}), not in the overlay test: "
+                            f"see {spec.logs / commits[i][:12] / 'build.log'}")
     if of != PASS or op != FAIL:
         sweep["verdict"] = "repro-invalid"
         sweep["reason"] = f"expected FAIL on fix^ and PASS on fix, got {DEBUG[op]} / {DEBUG[of]}"
@@ -268,6 +289,8 @@ def _finish(sweep, probe):
 BUILD = {"rust": "cargo test --no-run",
          "python": "python -m pytest --collect-only -q -p no:cacheprovider tests/bugage_repro_test.py"}
 OVERLAY_TEST = {"rust": "bugage_repro.rs", "python": "bugage_repro_test.py"}
+# Build output that names a missing dependency rather than an error in the overlay test.
+ENV_MARKERS = {"rust": (), "python": ("No module named",)}
 
 
 def _spec_and_runner(f, tag):
@@ -307,7 +330,10 @@ def _spec_and_runner(f, tag):
     kind = f.get("runner", "docker")
     if kind == "local":
         runner = Local(spec)
-        runner.overlay_marker = OVERLAY_TEST[profile]
+        for key in ("install", "test-deps"):
+            if key in f:
+                raise UsageError(f"--{key} needs --runner docker: the local runner uses the host's packages as they are")
+        runner.overlay_marker, runner.env_markers = OVERLAY_TEST[profile], ENV_MARKERS[profile]
         return spec, runner
     if kind == "docker" and profile == "python":
         deps = [d.strip() for d in f.get("test-deps", "pytest").split(",") if d.strip()]
