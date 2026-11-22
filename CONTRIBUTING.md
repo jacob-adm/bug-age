@@ -8,7 +8,8 @@ BUG_AGE_DOCKER_TESTS=1 python3 -m unittest discover -s tests   # adds the Docker
 ```
 
 The oracle test regenerates both example runs from clones in `work/` and compares every output
-with the committed files byte for byte. The sweep tests build a toy crate, so they need cargo.
+with the committed files byte for byte. The sweep tests build a toy crate, so they need a working
+cargo toolchain; they are skipped when `cargo --version` fails.
 
 ## Contributing
 

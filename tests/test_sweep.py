@@ -13,7 +13,8 @@ from helpers import ROOT, clean_env, cli
 OK = "pub fn mul(a: i32, b: i32) -> i32 { a * b }\n"
 BUG = "pub fn mul(a: i32, b: i32) -> i32 { a + b }\n"
 NONE = "pub fn add(a: i32, b: i32) -> i32 { a + b }\n"
-HAS_CARGO = shutil.which("cargo") is not None
+# cargo on PATH is not enough: the rustup shim is there even when no toolchain is configured.
+HAS_CARGO = shutil.which("cargo") is not None and subprocess.run(["cargo", "--version"], capture_output=True).returncode == 0
 
 
 def toy_repo(bodies):
@@ -51,7 +52,7 @@ def sweep_args(repo, scratch, ov, runner="local", repeats="2"):
             "--scratch", scratch, "--logs", scratch / "logs"]
 
 
-@unittest.skipUnless(HAS_CARGO, "needs cargo to build the toy crate")
+@unittest.skipUnless(HAS_CARGO, "needs a working cargo toolchain (cargo --version) to build the toy crate")
 class Sweep(unittest.TestCase):
     """Verdicts on scripted histories."""
 
