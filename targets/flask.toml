@@ -4,6 +4,7 @@ repo_url = "https://github.com/pallets/flask"
 head = "49943b5a94413a530761350f04e896f76e8d620e"
 path = "."
 profile = "python"
+release_tag_glob = "[0-9]*"  # flask tags have no v prefix (2.0.0)
 import = "flask"
 install = "."
 test_deps = ["pytest", "asgiref", "greenlet", "python-dotenv", "blinker"]
