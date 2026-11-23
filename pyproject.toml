@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bug-age"
-version = "2.2.1"
+version = "2.2.2"
 description = "Measure how long bugs lived in a git repository, counting only bugs whose fix commit message says fix, bug or hotfix."
 readme = "README.md"
 license = "MIT OR Apache-2.0"
