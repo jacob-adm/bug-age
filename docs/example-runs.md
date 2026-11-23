@@ -6,7 +6,7 @@ The two published runs: what they contain and how to read their Method B verdict
 
 The same pipeline was run on two Rust codebases. The first, the core crate of [huggingface/tokenizers](https://github.com/huggingface/tokenizers), got every stage, including Method B sweeps for six bugs. The second, the `rmcp` crate of [modelcontextprotocol/rust-sdk](https://github.com/modelcontextprotocol/rust-sdk), was added with a config file alone, to show the pipeline carries over unchanged.
 
-**[▶ Open the live example](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)**: an explorer built from these two reports and published online. Switch between the two repositories at the top. It is a snapshot of the committed bundles and changes only when it is rebuilt and republished. Each number opens to its evidence: the SHAs, the test runs, the receipt hash and the command that reproduces it. The page also recomputes its headline numbers in your browser and flags any mismatch.
+**[▶ Open the live example](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)**: an explorer built from these two reports and the two Python runs below, and published online. Switch between the four repositories at the top. It is a snapshot of the committed bundles and changes only when it is rebuilt and republished. Each number opens to its evidence: the SHAs, the test runs, the receipt hash and the command that reproduces it. The page also recomputes its headline numbers in your browser and flags any mismatch.
 
 [![The bug-age explorer: headline bug ages, self-check and stage coverage for tokenizers. Click to open.](../article/figures/overview-tokenizers.png)](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)
 
@@ -48,7 +48,7 @@ The feasibility check, which measures toolchain and dependency drift across hist
 
 ## Example runs: requests and flask (python profile)
 
-The python profile was run on [psf/requests](https://github.com/psf/requests) and [pallets/flask](https://github.com/pallets/flask), with config files alone: [`targets/requests.toml`](../targets/requests.toml) and [`targets/flask.toml`](../targets/flask.toml). Reports: [`results/requests/PIPELINE.md`](../results/requests/PIPELINE.md), [`results/flask/PIPELINE.md`](../results/flask/PIPELINE.md); bundles in `dist/requests/` and `dist/flask/`.
+The python profile was run on [psf/requests](https://github.com/psf/requests) and [pallets/flask](https://github.com/pallets/flask), with config files alone: [`targets/requests.toml`](../targets/requests.toml) and [`targets/flask.toml`](../targets/flask.toml). Reports: [`results/requests/PIPELINE.md`](../results/requests/PIPELINE.md), [`results/flask/PIPELINE.md`](../results/flask/PIPELINE.md); bundles in `dist/requests/` and `dist/flask/`. Both are in the [live example](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb) with the Rust runs.
 
 | | requests | flask |
 |---|---|---|

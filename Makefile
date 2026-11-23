@@ -30,7 +30,7 @@ pipeline:
 
 # Explorer page for every bundled target (size gate: 8 MB).
 explorer:
-	python3 -m bug_age explorer --targets tokenizers=dist/tokenizers,rust-sdk=dist/rust-sdk --out dist/explorer
+	python3 -m bug_age explorer --targets tokenizers=dist/tokenizers,rust-sdk=dist/rust-sdk,requests=dist/requests,flask=dist/flask --out dist/explorer
 
 # Render the article from bundle references; fails on any untraced number. Figures need Chrome.
 article: explorer

@@ -25,6 +25,9 @@ def target(name):
     return tomllib.loads((ROOT / "targets" / f"{name}.toml").read_text(encoding="utf-8"))
 
 
+# The published explorer, in the order of make explorer.
+TARGETS = ("tokenizers", "rust-sdk", "requests", "flask")
+
 class Oracle(unittest.TestCase):
     """Catalog, Method A, bundle, explorer and MCP output equal the committed 1.0.2 files."""
 
@@ -81,8 +84,8 @@ class Oracle(unittest.TestCase):
     def test_explorer(self):
         """The explorer page and data files built from the committed bundles."""
         cli("explorer",
-            "--targets", f"tokenizers={ROOT / 'dist/tokenizers'},rust-sdk={ROOT / 'dist/rust-sdk'}", "--out", self.out)
-        for rel in ("index.html", "data/tokenizers.js", "data/rust-sdk.js"):
+            "--targets", ",".join(f"{n}={ROOT / 'dist' / n}" for n in TARGETS), "--out", self.out)
+        for rel in ("index.html", *(f"data/{n}.js" for n in TARGETS)):
             self.assertSameFile(self.out / rel, ROOT / "dist" / "explorer" / rel)
 
 

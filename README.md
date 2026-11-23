@@ -13,7 +13,7 @@ What you get, and the three names the documentation uses for it:
 
 - **Report.** What a run produces: the result files in `results/<name>/` and one bundle, `dist/<name>/bundle.json`, which holds every number. Each repository you run gets its own report.
 - **Explorer.** A viewer. It is a static HTML page you build from one or more bundles to browse their reports. It holds no results of its own and runs no analysis.
-- **Live example.** One explorer, built from the reports of the two [example runs](https://github.com/jacob-adm/bug-age/blob/main/docs/example-runs.md) and published online. It is a snapshot: running bug-age on other repositories does not change it.
+- **Live example.** One explorer, built from the reports of the four [example runs](https://github.com/jacob-adm/bug-age/blob/main/docs/example-runs.md) and published online. It is a snapshot: running bug-age on other repositories does not change it.
 
 To see the output first, [open the live example](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb).
 
