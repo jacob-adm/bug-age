@@ -48,3 +48,6 @@ bug-introducing commits (83 Python fixes), the true introducer is now named for 
 of 55. The Python example runs were regenerated: on psf/requests 9 of 169 primary nominees changed
 and one more fix has a nominee; on pallets/flask 6 of 185 changed and two more have one. The one
 regression test whose nominee changed was probed again (A-check). Rust is unchanged.
+
+2.2.2 changes no measurement. The README gains an Install section, and the package metadata lists
+the documentation and issue tracker, so the PyPI page links back to the repository.
