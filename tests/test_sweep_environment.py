@@ -54,6 +54,13 @@ class Environment(unittest.TestCase):
         self.assertEqual(out.returncode, 1, out.stderr)
         self.assertIn("test build failed at the fix", out.stderr)
 
+    def test_the_error_quotes_the_build_failure(self):
+        """A toolchain that cannot run is named in the error, not only its log path."""
+        out = self.sweep("echo '   Compiling toy'; echo 'error: rustup could not choose a version of cargo to run'; "
+                         "echo 'help: run rustup default stable'; exit 1")
+        self.assertEqual(out.returncode, 1, out.stderr)
+        self.assertIn("error: rustup could not choose a version of cargo to run", out.stderr)
+
     def test_an_overlay_compile_error_is_still_repro_invalid(self):
         """The marker in the build output itself keeps its meaning."""
         out = self.sweep("echo 'error: tests/bugage_repro.rs:1: cannot find function'; exit 1")

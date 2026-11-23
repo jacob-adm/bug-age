@@ -29,6 +29,15 @@ OVERLAY_FAILED = "test build failed (overlay does not compile here)"
 BUILD_FAILED = "test build failed (not in the overlay test; see build.log)"
 
 
+def _build_error(log):
+    """The first line of a build log's output that reports an error, else its last line."""
+    try:
+        output = [line.strip() for line in lines(log.read_text(encoding="utf-8", errors="replace"))[1:] if line.strip()]
+    except OSError:
+        return "no build log"
+    return next((line for line in output if "error" in line.lower()), output[-1] if output else "no output")
+
+
 class HostError(RuntimeError):
     """The build environment cannot run the sweep: reported as an error, never as a verdict."""
 
@@ -164,8 +173,9 @@ def run(runner, spec, fix, start=None, exhaustive=False):
     # about the repro: the environment is wrong, and that is an error, not a verdict.
     for i, name in ((f, "the fix"), (p, "the fix's parent")):
         if probe.seen[i]["reason"] == BUILD_FAILED:
+            log = spec.logs / commits[i][:12] / "build.log"
             raise HostError(f"test build failed at {name} ({commits[i][:10]}), not in the overlay test: "
-                            f"see {spec.logs / commits[i][:12] / 'build.log'}")
+                            f"{_build_error(log)} (see {log})")
     if of != PASS or op != FAIL:
         sweep["verdict"] = "repro-invalid"
         sweep["reason"] = f"expected FAIL on fix^ and PASS on fix, got {DEBUG[op]} / {DEBUG[of]}"
