@@ -50,7 +50,7 @@ bug-age pipeline targets/myrepo.toml                       # adds the Docker fea
 
 **4. Read the report.** `results/myrepo/PIPELINE.md` lists every stage with its status (OK, REUSED, FAILED or NOT TESTED), the reason, and the time taken. The bundle, `dist/myrepo/bundle.json`, is the report of record: every number for this repository is in it. Its sha256 and the exact command that built it are in `dist/myrepo/receipt.json`.
 
-**5. Browse the report in your own explorer.** This builds a viewer for your bundle on your machine. The published live example is not affected and keeps showing only the two example runs. To browse several of your repositories together, list them all: `--targets a=dist/a,b=dist/b`.
+**5. Browse the report in your own explorer.** This builds a viewer for your bundle on your machine. To browse several of your repositories together, list them all: `--targets a=dist/a,b=dist/b`.
 
 ```sh
 bug-age explorer --targets myrepo=dist/myrepo --out dist/explorer-myrepo

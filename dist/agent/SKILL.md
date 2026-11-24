@@ -1,6 +1,6 @@
 ---
 name: bug-age
-description: Measure how long bugs lived in a git repository with bug-age, and answer questions about the results from its bundle. Use when asked how old bugs were, which fixes took longest, how many releases shipped a bug, or to run bug-age on a new Rust repository.
+description: Measure how long bugs lived in a git repository with bug-age, and answer questions about the results from its bundle. Use when asked how old bugs were, which fixes took longest, how many releases shipped a bug, or to run bug-age on a new Rust or Python repository.
 ---
 
 # bug-age
@@ -22,7 +22,7 @@ What the numbers mean:
 
 ## Running on a new repository
 
-1. Copy `targets/rust-sdk.toml` to `targets/<name>.toml` and edit the repo URL, pinned head SHA, crate path and output directories.
-2. Run `make pipeline TARGET=targets/<name>.toml` (needs Docker).
+1. Copy `targets/rust-sdk.toml` (Rust) or `targets/flask.toml` (Python) to `targets/<name>.toml` and edit the repo URL, pinned head SHA, crate path and output directories.
+2. Run `bug-age pipeline targets/<name>.toml` (Method B and the feasibility check need Docker).
 3. Check `results/<name>/PIPELINE.md`. Every stage is OK or NOT TESTED with a reason.
 4. Optionally build the explorer page with `bug-age explorer` (see AGENTS.md).
