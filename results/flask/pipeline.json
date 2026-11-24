@@ -4,7 +4,7 @@
   "head": "49943b5a94413a530761350f04e896f76e8d620e",
   "crate_path": ".",
   "profile": "python",
-  "generated_utc": "2026-11-21T07:43:40+00:00",
+  "generated_utc": "2026-11-23T23:00:28+00:00",
   "stages": [
     {
       "stage": "clone",
@@ -42,9 +42,9 @@
       "stage": "Method A (szz)",
       "status": "OK",
       "reason": "szz: 185 fixes, 92 with a nominated introducer, 0 in window",
-      "seconds": 21,
+      "seconds": 19,
       "output": "results/flask/szz.json",
-      "sha256": "d58c021d88b34f2b1293d4018e06af28fd6f62419251b5dee5241e288b2fd20e"
+      "sha256": "8e6582a91e259df9e47f06b210b2a8e5be2087bbcc539c51ee4cfc90a98c5574"
     },
     {
       "stage": "Method B (repro sweeps)",
@@ -57,10 +57,10 @@
     {
       "stage": "bundle",
       "status": "OK",
-      "reason": "bundle: 140401 bytes, sha256 24d679a744118c2f28132feb89368f0640ddc2dda4816e302e6cdeffe0cb14fd, blameless gate PASS",
-      "seconds": 5,
+      "reason": "bundle: 142305 bytes, sha256 5a64d5b522085a047a7102579f409bfad6083fd0297abb997a2abe1a154321bd, blameless gate PASS",
+      "seconds": 4,
       "output": "dist/flask/bundle.json",
-      "sha256": "24d679a744118c2f28132feb89368f0640ddc2dda4816e302e6cdeffe0cb14fd"
+      "sha256": "5a64d5b522085a047a7102579f409bfad6083fd0297abb997a2abe1a154321bd"
     }
   ]
 }

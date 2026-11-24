@@ -16,7 +16,15 @@
         "churn_insertions": 5336,
         "commits_elapsed": 373,
         "commits_elapsed_first_parent": 143,
-        "releases_spanned": []
+        "releases_spanned": [
+          "3.0.1",
+          "3.0.2",
+          "3.0.3",
+          "3.1.0",
+          "3.1.1",
+          "3.1.2",
+          "3.1.3"
+        ]
       },
       "nominees": [
         {
@@ -45,7 +53,16 @@
         "churn_insertions": 5828,
         "commits_elapsed": 414,
         "commits_elapsed_first_parent": 154,
-        "releases_spanned": []
+        "releases_spanned": [
+          "3.0.0",
+          "3.0.1",
+          "3.0.2",
+          "3.0.3",
+          "3.1.0",
+          "3.1.1",
+          "3.1.2",
+          "3.1.3"
+        ]
       },
       "nominees": [
         {
@@ -113,7 +130,16 @@
         "churn_insertions": 6143,
         "commits_elapsed": 404,
         "commits_elapsed_first_parent": 146,
-        "releases_spanned": []
+        "releases_spanned": [
+          "3.0.0",
+          "3.0.1",
+          "3.0.2",
+          "3.0.3",
+          "3.1.0",
+          "3.1.1",
+          "3.1.2",
+          "3.1.3"
+        ]
       },
       "nominees": [
         {
@@ -145,7 +171,9 @@
         "churn_insertions": 1759,
         "commits_elapsed": 53,
         "commits_elapsed_first_parent": 41,
-        "releases_spanned": []
+        "releases_spanned": [
+          "3.1.3"
+        ]
       },
       "nominees": [
         {
@@ -175,7 +203,65 @@
         "churn_insertions": 33266,
         "commits_elapsed": 4721,
         "commits_elapsed_first_parent": 1614,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.10",
+          "0.10.1",
+          "0.11",
+          "0.11.1",
+          "0.12",
+          "0.12.1",
+          "0.12.2",
+          "0.12.3",
+          "0.12.4",
+          "0.12.5",
+          "0.12.x",
+          "0.8",
+          "0.8.1",
+          "0.9",
+          "1.0",
+          "1.0.1",
+          "1.0.2",
+          "1.0.3",
+          "1.0.4",
+          "1.0.x",
+          "1.1.0",
+          "1.1.1",
+          "1.1.2",
+          "1.1.3",
+          "1.1.4",
+          "1.1.x",
+          "2.0.0",
+          "2.0.0rc1",
+          "2.0.0rc2",
+          "2.0.1",
+          "2.0.2",
+          "2.0.3",
+          "2.0.x",
+          "2.1.0",
+          "2.1.1",
+          "2.1.2",
+          "2.1.3",
+          "2.1.x",
+          "2.2.0",
+          "2.2.1",
+          "2.2.2",
+          "2.2.3",
+          "2.2.4",
+          "2.2.5",
+          "2.2.x",
+          "2.3.0",
+          "2.3.1",
+          "2.3.2",
+          "2.3.3",
+          "2.3.x",
+          "3.0.0",
+          "3.0.1",
+          "3.0.2",
+          "3.0.3",
+          "3.1.0",
+          "3.1.1",
+          "3.1.2"
+        ]
       },
       "nominees": [
         {
@@ -246,7 +332,11 @@
         "churn_insertions": 670,
         "commits_elapsed": 154,
         "commits_elapsed_first_parent": 62,
-        "releases_spanned": []
+        "releases_spanned": [
+          "3.0.1",
+          "3.0.2",
+          "3.0.3"
+        ]
       },
       "nominees": [
         {
@@ -420,7 +510,17 @@
         "churn_insertions": 5887,
         "commits_elapsed": 640,
         "commits_elapsed_first_parent": 212,
-        "releases_spanned": []
+        "releases_spanned": [
+          "2.0.0",
+          "2.0.0rc1",
+          "2.0.0rc2",
+          "2.0.1",
+          "2.0.2",
+          "2.0.3",
+          "2.1.0",
+          "2.1.1",
+          "2.1.2"
+        ]
       },
       "nominees": [
         {
@@ -454,7 +554,12 @@
         "churn_insertions": 2524,
         "commits_elapsed": 279,
         "commits_elapsed_first_parent": 77,
-        "releases_spanned": []
+        "releases_spanned": [
+          "2.0.0",
+          "2.0.0rc1",
+          "2.0.0rc2",
+          "2.0.1"
+        ]
       },
       "nominees": [
         {
@@ -531,7 +636,16 @@
         "churn_insertions": 17034,
         "commits_elapsed": 1124,
         "commits_elapsed_first_parent": 437,
-        "releases_spanned": []
+        "releases_spanned": [
+          "1.0",
+          "1.0.1",
+          "1.0.2",
+          "1.0.3",
+          "1.0.4",
+          "1.1.0",
+          "1.1.1",
+          "1.1.2"
+        ]
       },
       "nominees": [
         {
@@ -607,7 +721,10 @@
         "churn_insertions": 19024,
         "commits_elapsed": 1328,
         "commits_elapsed_first_parent": 415,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.12.5",
+          "1.1.2"
+        ]
       },
       "nominees": [
         {
@@ -636,7 +753,16 @@
         "churn_insertions": 15049,
         "commits_elapsed": 902,
         "commits_elapsed_first_parent": 333,
-        "releases_spanned": []
+        "releases_spanned": [
+          "1.0",
+          "1.0.1",
+          "1.0.2",
+          "1.0.3",
+          "1.0.4",
+          "1.1.0",
+          "1.1.1",
+          "1.1.2"
+        ]
       },
       "nominees": [
         {
@@ -680,7 +806,12 @@
         "churn_insertions": 10836,
         "commits_elapsed": 478,
         "commits_elapsed_first_parent": 162,
-        "releases_spanned": []
+        "releases_spanned": [
+          "1.0",
+          "1.0.1",
+          "1.0.2",
+          "1.0.3"
+        ]
       },
       "nominees": [
         {
@@ -740,7 +871,9 @@
         "churn_insertions": 4967,
         "commits_elapsed": 200,
         "commits_elapsed_first_parent": 103,
-        "releases_spanned": []
+        "releases_spanned": [
+          "1.0.3"
+        ]
       },
       "nominees": [
         {
@@ -774,7 +907,24 @@
         "churn_insertions": 24356,
         "commits_elapsed": 2659,
         "commits_elapsed_first_parent": 843,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.10",
+          "0.10.1",
+          "0.11",
+          "0.11.1",
+          "0.12",
+          "0.12.1",
+          "0.12.2",
+          "0.12.3",
+          "0.12.4",
+          "0.8",
+          "0.8.1",
+          "0.9",
+          "1.0",
+          "1.0.1",
+          "1.0.2",
+          "1.0.3"
+        ]
       },
       "nominees": [
         {
@@ -816,7 +966,20 @@
         "churn_insertions": 20685,
         "commits_elapsed": 2028,
         "commits_elapsed_first_parent": 568,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.10",
+          "0.10.1",
+          "0.11",
+          "0.11.1",
+          "0.12",
+          "0.12.1",
+          "0.12.2",
+          "0.12.3",
+          "0.12.4",
+          "1.0",
+          "1.0.1",
+          "1.0.2"
+        ]
       },
       "nominees": [
         {
@@ -850,7 +1013,11 @@
         "churn_insertions": 5092,
         "commits_elapsed": 152,
         "commits_elapsed_first_parent": 54,
-        "releases_spanned": []
+        "releases_spanned": [
+          "1.0",
+          "1.0.1",
+          "1.0.2"
+        ]
       },
       "nominees": [
         {
@@ -953,7 +1120,11 @@
         "churn_insertions": 7281,
         "commits_elapsed": 529,
         "commits_elapsed_first_parent": 75,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.12",
+          "0.12.1",
+          "0.12.2"
+        ]
       },
       "nominees": [
         {
@@ -1288,7 +1459,10 @@
         "churn_insertions": 3857,
         "commits_elapsed": 478,
         "commits_elapsed_first_parent": 193,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.10",
+          "0.10.1"
+        ]
       },
       "nominees": [
         {
@@ -1429,7 +1603,13 @@
         "churn_insertions": 10271,
         "commits_elapsed": 710,
         "commits_elapsed_first_parent": 379,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.10",
+          "0.10.1",
+          "0.8",
+          "0.8.1",
+          "0.9"
+        ]
       },
       "nominees": [
         {
@@ -1468,7 +1648,9 @@
         "churn_insertions": 2993,
         "commits_elapsed": 253,
         "commits_elapsed_first_parent": 118,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.10"
+        ]
       },
       "nominees": [
         {
@@ -1521,7 +1703,11 @@
         "churn_insertions": 7373,
         "commits_elapsed": 644,
         "commits_elapsed_first_parent": 320,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.8",
+          "0.8.1",
+          "0.9"
+        ]
       },
       "nominees": [
         {
@@ -1553,7 +1739,11 @@
         "churn_insertions": 6164,
         "commits_elapsed": 558,
         "commits_elapsed_first_parent": 254,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.8",
+          "0.8.1",
+          "0.9"
+        ]
       },
       "nominees": [
         {
@@ -1740,7 +1930,14 @@
         "churn_insertions": 11900,
         "commits_elapsed": 703,
         "commits_elapsed_first_parent": 418,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.7",
+          "0.7.1",
+          "0.7.2",
+          "0.8",
+          "0.8.1",
+          "0.9"
+        ]
       },
       "nominees": [
         {
@@ -1767,7 +1964,9 @@
         "churn_insertions": 3004,
         "commits_elapsed": 271,
         "commits_elapsed_first_parent": 112,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.9"
+        ]
       },
       "nominees": [
         {
@@ -1794,7 +1993,11 @@
         "churn_insertions": 5518,
         "commits_elapsed": 431,
         "commits_elapsed_first_parent": 234,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.8",
+          "0.8.1",
+          "0.9"
+        ]
       },
       "nominees": [
         {
@@ -1847,7 +2050,17 @@
         "churn_insertions": 14918,
         "commits_elapsed": 958,
         "commits_elapsed_first_parent": 643,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.5",
+          "0.6",
+          "0.6.1",
+          "0.7",
+          "0.7.1",
+          "0.7.2",
+          "0.8",
+          "0.8.1",
+          "0.9"
+        ]
       },
       "nominees": [
         {
@@ -1891,7 +2104,14 @@
         "churn_insertions": 11376,
         "commits_elapsed": 662,
         "commits_elapsed_first_parent": 405,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.7",
+          "0.7.1",
+          "0.7.2",
+          "0.8",
+          "0.8.1",
+          "0.9"
+        ]
       },
       "nominees": [
         {
@@ -1921,7 +2141,9 @@
         "churn_insertions": 2979,
         "commits_elapsed": 252,
         "commits_elapsed_first_parent": 102,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.9"
+        ]
       },
       "nominees": [
         {
@@ -1963,7 +2185,9 @@
         "churn_insertions": 5,
         "commits_elapsed": 8,
         "commits_elapsed_first_parent": 5,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.9"
+        ]
       },
       "nominees": [
         {
@@ -2056,7 +2280,9 @@
         "churn_insertions": 1336,
         "commits_elapsed": 99,
         "commits_elapsed_first_parent": 73,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.8"
+        ]
       },
       "nominees": [
         {
@@ -2085,7 +2311,9 @@
         "churn_insertions": 5543,
         "commits_elapsed": 235,
         "commits_elapsed_first_parent": 174,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.8"
+        ]
       },
       "nominees": [
         {
@@ -2117,7 +2345,14 @@
         "churn_insertions": 11627,
         "commits_elapsed": 621,
         "commits_elapsed_first_parent": 481,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.5",
+          "0.6",
+          "0.6.1",
+          "0.7",
+          "0.7.1",
+          "0.7.2"
+        ]
       },
       "nominees": [
         {
@@ -2257,7 +2492,15 @@
         "churn_insertions": 12602,
         "commits_elapsed": 606,
         "commits_elapsed_first_parent": 483,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.4",
+          "0.5",
+          "0.6",
+          "0.6.1",
+          "0.7",
+          "0.7.1",
+          "0.7.2"
+        ]
       },
       "nominees": [
         {
@@ -2296,7 +2539,14 @@
         "churn_insertions": 8619,
         "commits_elapsed": 494,
         "commits_elapsed_first_parent": 382,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.5",
+          "0.6",
+          "0.6.1",
+          "0.7",
+          "0.7.1",
+          "0.7.2"
+        ]
       },
       "nominees": [
         {
@@ -2325,7 +2575,11 @@
         "churn_insertions": 2666,
         "commits_elapsed": 160,
         "commits_elapsed_first_parent": 113,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.7",
+          "0.7.1",
+          "0.7.2"
+        ]
       },
       "nominees": [
         {
@@ -2362,7 +2616,11 @@
         "churn_insertions": 1851,
         "commits_elapsed": 116,
         "commits_elapsed_first_parent": 80,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.7",
+          "0.7.1",
+          "0.7.2"
+        ]
       },
       "nominees": [
         {
@@ -2401,7 +2659,10 @@
         "churn_insertions": 1362,
         "commits_elapsed": 73,
         "commits_elapsed_first_parent": 48,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.7",
+          "0.7.1"
+        ]
       },
       "nominees": [
         {
@@ -2498,7 +2759,11 @@
         "churn_insertions": 6545,
         "commits_elapsed": 337,
         "commits_elapsed_first_parent": 258,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.5",
+          "0.6",
+          "0.6.1"
+        ]
       },
       "nominees": [
         {
@@ -2665,7 +2930,10 @@
         "churn_insertions": 3052,
         "commits_elapsed": 168,
         "commits_elapsed_first_parent": 157,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.6",
+          "0.6.1"
+        ]
       },
       "nominees": [
         {
@@ -2733,7 +3001,10 @@
         "churn_insertions": 4097,
         "commits_elapsed": 210,
         "commits_elapsed_first_parent": 190,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.5",
+          "0.6"
+        ]
       },
       "nominees": [
         {
@@ -2813,7 +3084,10 @@
         "churn_insertions": 3482,
         "commits_elapsed": 166,
         "commits_elapsed_first_parent": 153,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.5",
+          "0.6"
+        ]
       },
       "nominees": [
         {
@@ -2866,7 +3140,10 @@
         "churn_insertions": 3544,
         "commits_elapsed": 166,
         "commits_elapsed_first_parent": 152,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.5",
+          "0.6"
+        ]
       },
       "nominees": [
         {
@@ -2924,7 +3201,9 @@
         "churn_insertions": 2127,
         "commits_elapsed": 92,
         "commits_elapsed_first_parent": 90,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.6"
+        ]
       },
       "nominees": [
         {
@@ -3045,7 +3324,9 @@
         "churn_insertions": 2241,
         "commits_elapsed": 83,
         "commits_elapsed_first_parent": 73,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.5"
+        ]
       },
       "nominees": [
         {
@@ -3138,7 +3419,9 @@
         "churn_insertions": 1436,
         "commits_elapsed": 64,
         "commits_elapsed_first_parent": 55,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.5"
+        ]
       },
       "nominees": [
         {
@@ -3178,7 +3461,9 @@
         "churn_insertions": 1016,
         "commits_elapsed": 44,
         "commits_elapsed_first_parent": 38,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.5"
+        ]
       },
       "nominees": [
         {
@@ -3220,7 +3505,9 @@
         "churn_insertions": 1219,
         "commits_elapsed": 53,
         "commits_elapsed_first_parent": 46,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.5"
+        ]
       },
       "nominees": [
         {
@@ -3431,7 +3718,12 @@
         "churn_insertions": 4902,
         "commits_elapsed": 186,
         "commits_elapsed_first_parent": 143,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.2",
+          "0.3",
+          "0.3.1",
+          "0.4"
+        ]
       },
       "nominees": [
         {
@@ -3578,7 +3870,10 @@
         "churn_insertions": 2091,
         "commits_elapsed": 61,
         "commits_elapsed_first_parent": 53,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.3",
+          "0.3.1"
+        ]
       },
       "nominees": [
         {
@@ -3607,7 +3902,10 @@
         "churn_insertions": 2077,
         "commits_elapsed": 56,
         "commits_elapsed_first_parent": 48,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.3",
+          "0.3.1"
+        ]
       },
       "nominees": [
         {
@@ -3646,7 +3944,12 @@
         "churn_insertions": 6369,
         "commits_elapsed": 220,
         "commits_elapsed_first_parent": 175,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.1",
+          "0.2",
+          "0.3",
+          "0.3.1"
+        ]
       },
       "nominees": [
         {
@@ -3690,7 +3993,12 @@
         "churn_insertions": 8885,
         "commits_elapsed": 262,
         "commits_elapsed_first_parent": 218,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.1",
+          "0.2",
+          "0.3",
+          "0.3.1"
+        ]
       },
       "nominees": [
         {
@@ -3729,7 +4037,10 @@
         "churn_insertions": 247,
         "commits_elapsed": 7,
         "commits_elapsed_first_parent": 7,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.3",
+          "0.3.1"
+        ]
       },
       "nominees": [
         {
@@ -3873,7 +4184,9 @@
         "churn_insertions": 7159,
         "commits_elapsed": 174,
         "commits_elapsed_first_parent": 151,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.1"
+        ]
       },
       "nominees": [
         {
@@ -3983,7 +4296,9 @@
         "churn_insertions": 5534,
         "commits_elapsed": 89,
         "commits_elapsed_first_parent": 89,
-        "releases_spanned": []
+        "releases_spanned": [
+          "0.1"
+        ]
       },
       "nominees": [
         {
@@ -4101,7 +4416,7 @@
   "summary": {
     "fixes": 185,
     "in_window": null,
-    "release_tags": "v[0-9]*",
+    "release_tags": "[0-9]*",
     "window_start": null,
     "with_introducer": 92
   }

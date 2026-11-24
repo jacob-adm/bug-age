@@ -2,12 +2,12 @@
   "bug-age": "2.2.2",
   "gate_bytes": 8388608,
   "outputs": {
-    "data/flask.js": "ac4e4d96c0e8e3bb36d56b5ba2720298a3547b6a60788ad93d543e02c35c3506",
+    "data/flask.js": "0763e3eba88e43b949f6e9f51705f85d218b50f3181eac3348227f1ddabef54a",
     "data/requests.js": "6328c096cc7001c86b62f7ba6c8f52e91a23ba1a6b44b7828a372b0638f5637e",
     "data/rust-sdk.js": "badeb637292701d3c80e78f5299c27ec4d8fb9ff7d57e48dd56946108cdcab4f",
     "data/tokenizers.js": "83d67ae1dbab5c4a85fb3c98f7d0599887d9d302d82a3aca3b3b18a44710f943",
     "index.html": "57a6a45417f8fc3faa5b2d7075d1e52eb12b5d7b0d934bc02bb4e83fb0af59a4"
   },
   "size_gate": "PASS",
-  "total_bytes": 807549
+  "total_bytes": 809453
 }
