@@ -419,7 +419,9 @@ function evidenceForCheck(path) {
 /** Renders the title, self-check banner, headline tiles and coverage table. */
 function renderOverview() {
   const s = B.summary, a = s.method_a;
-  $("ov-title").textContent = B.subject.repo_url.replace(/^https?:\/\/(www\.)?github\.com\//, "") + " · " + B.subject.crate_path;
+  // A path of "." is the whole repository: the repository name alone says it.
+  $("ov-title").textContent = B.subject.repo_url.replace(/^https?:\/\/(www\.)?github\.com\//, "")
+    + (B.subject.crate_path === "." ? "" : " · " + B.subject.crate_path);
   $("ov-lede").textContent = `${a.fixes} fixes catalogued from ${B.catalog.scanned} commits up to ${short(B.subject.head)}. Half of the traced bugs lived longer than ${fmt(a.calendar_days && a.calendar_days.median)} days.`;
   CHECKS = selfCheck(B);
   const bad = CHECKS.filter(c => !c.ok);
