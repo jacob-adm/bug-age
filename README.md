@@ -9,13 +9,7 @@ It uses two independent methods and compares them:
 
 Every number comes from scripts. AI helped write the code, the Method B regression tests and the article prose, but no model produces or changes a number. See [What is deterministic and what uses AI](https://github.com/jacob-adm/bug-age/blob/main/docs/method.md#what-is-deterministic-and-what-uses-ai). bug-age supports Rust crates and Python projects.
 
-What you get, and the three names the documentation uses for it:
-
-- **Report.** What a run produces: the result files in `results/<name>/` and one bundle, `dist/<name>/bundle.json`, which holds every number. Each repository you run gets its own report.
-- **Explorer.** A viewer. It is a static HTML page you build from one or more bundles to browse their reports. It holds no results of its own and runs no analysis.
-- **Live example.** One explorer, built from the reports of the four [example runs](https://github.com/jacob-adm/bug-age/blob/main/docs/example-runs.md) and published online. It is a snapshot: running bug-age on other repositories does not change it.
-
-To see the output first, [open the live example](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb).
+Each run writes a report: the result files in `results/<name>/` and one bundle, `dist/<name>/bundle.json`, which holds every number. `bug-age explorer` builds a static HTML page for browsing one or more bundles; it adds no results. The [example runs](https://github.com/jacob-adm/bug-age/blob/main/docs/example-runs.md) cover two Rust crates and two Python projects.
 
 ## Requirements
 
@@ -89,7 +83,7 @@ The report is `results/myrepo/PIPELINE.md`, and every number is in `dist/myrepo/
 
 - [Getting started](https://github.com/jacob-adm/bug-age/blob/main/docs/getting-started.md): install, describe your repository in a config file, run every stage, read the report and browse it.
 - [Commands](https://github.com/jacob-adm/bug-age/blob/main/docs/commands.md): what each command does, the pipeline and its config file, and unattended sweeps.
-- [Example runs](https://github.com/jacob-adm/bug-age/blob/main/docs/example-runs.md): the tokenizers and rust-sdk runs, what the explorer shows, and how to read Method B verdicts.
+- [Example runs](https://github.com/jacob-adm/bug-age/blob/main/docs/example-runs.md): the tokenizers, rust-sdk, requests and flask runs, what the explorer shows, and how to read Method B verdicts.
 - [Method](https://github.com/jacob-adm/bug-age/blob/main/docs/method.md): how bugs are found, what is deterministic and what uses AI, and the rigor rules.
 - [Timings](https://github.com/jacob-adm/bug-age/blob/main/docs/timings.md): how long each stage takes on the example runs.
 - [Security](https://github.com/jacob-adm/bug-age/blob/main/SECURITY.md): what the local and Docker runners isolate and what they do not.
