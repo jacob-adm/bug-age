@@ -25,6 +25,24 @@ To see the output first, [open the live example](https://claude.ai/artifact/UDw6
 - Linux or macOS, both tested in CI.
 - It measures Rust crates and Python projects.
 
+## Install
+
+From PyPI:
+
+```
+pip install bug-age
+```
+
+From a clone:
+
+```
+git clone https://github.com/jacob-adm/bug-age
+cd bug-age
+pip install .
+```
+
+Either way pip installs `bug-age` as a console script.
+
 ## How it works
 
 1. **Find the fixes.** bug-age reads the commit history and lists every commit whose message says it fixes a bug (*fix*, *bug*, *hotfix*). A fix whose message doesn't say so is not counted.

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bug-age"
-version = "2.2.1"
+version = "2.2.2"
 description = "Measure how long bugs lived in a git repository, counting only bugs whose fix commit message says fix, bug or hotfix."
 readme = "README.md"
 license = "MIT OR Apache-2.0"
@@ -13,13 +13,20 @@ license-files = ["LICENSE-APACHE", "LICENSE-MIT"]
 requires-python = ">=3.11"
 dependencies = []
 classifiers = [
-    "Programming Language :: Python :: 3",
     "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
     "Topic :: Software Development :: Quality Assurance",
 ]
 
 [project.urls]
+Homepage = "https://github.com/jacob-adm/bug-age"
+Documentation = "https://github.com/jacob-adm/bug-age/tree/main/docs"
 Source = "https://github.com/jacob-adm/bug-age"
+Issues = "https://github.com/jacob-adm/bug-age/issues"
 
 [project.scripts]
 bug-age = "bug_age.cli:main"
