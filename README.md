@@ -17,6 +17,12 @@ What you get, and the three names the documentation uses for it:
 
 To see the output first, [open the live example](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb).
 
+## Example output
+
+The explorer's overview for the [tokenizers example run](https://github.com/jacob-adm/bug-age/blob/main/docs/example-runs.md): headline bug ages from Method A, the in-browser self-check, and what each stage covers and does not prove.
+
+[![bug-age explorer overview for the tokenizers run: median bug age 37.3 days, 93 of 109 fixes traced](https://raw.githubusercontent.com/jacob-adm/bug-age/main/article/figures/overview-tokenizers.png)](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)
+
 ## Requirements
 
 - Python 3.11 or later, standard library only.
