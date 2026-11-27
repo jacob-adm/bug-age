@@ -4,4 +4,7 @@
 graft tests
 graft targets
 graft dist
+graft results/oracle
+include scripts/oracle_study.py
+include docs/accuracy.md
 global-exclude *.py[cod] __pycache__

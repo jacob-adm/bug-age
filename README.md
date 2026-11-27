@@ -93,6 +93,7 @@ The report is `results/myrepo/PIPELINE.md`, and every number is in `dist/myrepo/
 - [Commands](https://github.com/jacob-adm/bug-age/blob/main/docs/commands.md): what each command does, the pipeline and its config file, and unattended sweeps.
 - [Example runs](https://github.com/jacob-adm/bug-age/blob/main/docs/example-runs.md): the tokenizers, rust-sdk, requests and flask runs, what the explorer shows, and how to read Method B verdicts.
 - [Method](https://github.com/jacob-adm/bug-age/blob/main/docs/method.md): how bugs are found, what is deterministic and what uses AI, and the rigor rules.
+- [Accuracy](https://github.com/jacob-adm/bug-age/blob/main/docs/accuracy.md): Method A against a developer-informed oracle of 83 Python fixes, with PyDriller on the same fixes, and how to rerun it.
 - [Timings](https://github.com/jacob-adm/bug-age/blob/main/docs/timings.md): how long each stage takes on the example runs.
 - [Security](https://github.com/jacob-adm/bug-age/blob/main/SECURITY.md): what the local and Docker runners isolate and what they do not.
 - [Versions](https://github.com/jacob-adm/bug-age/blob/main/docs/versions.md): 1.0.2, the last Rust version; 2.x, the Python package.
