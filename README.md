@@ -11,6 +11,12 @@ Every number comes from scripts. AI helped write the code, the Method B regressi
 
 Each run writes a report: the result files in `results/<name>/` and one bundle, `dist/<name>/bundle.json`, which holds every number. `bug-age explorer` builds a static HTML page for browsing one or more bundles; it adds no results. The [example runs](https://github.com/jacob-adm/bug-age/blob/main/docs/example-runs.md) cover two Rust crates and two Python projects.
 
+## Example output
+
+The explorer's overview for the [tokenizers example run](https://github.com/jacob-adm/bug-age/blob/main/docs/example-runs.md): headline bug ages from Method A, the in-browser self-check, and what each stage covers and does not prove.
+
+[![bug-age explorer overview for the tokenizers run: median bug age 37.3 days, 93 of 109 fixes traced](https://raw.githubusercontent.com/jacob-adm/bug-age/main/article/figures/overview-tokenizers.png)](https://claude.ai/artifact/UDw6jyeA4zMDGhnzL7Typb)
+
 ## Requirements
 
 - Python 3.11 or later, standard library only.
