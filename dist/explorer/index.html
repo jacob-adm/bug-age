@@ -445,7 +445,10 @@ function renderOverview() {
     ["Median releases shipped", a.releases_shipped_bug ? fmt(a.releases_shipped_bug.median) : "—", st(a.releases_shipped_bug), "method_a.releases_shipped_bug"],
     ["Fixes traced", `${a.with_introducer} / ${a.fixes}`, "with a nominated introducer", "method_a.with_introducer"],
     ["Old commits that build", f.baseline_share == null ? "NOT TESTED" : Math.round(f.baseline_share * 100) + "%", f.time_travel_share == null ? "time-travel: not run" : `with dated deps: ${Math.round(f.time_travel_share * 100)}%`, "feasibility.baseline_share"],
-    ["Behavioural sweeps", b.swept ? `${b.located} / ${b.swept}` : "NOT TESTED", b.swept ? "located exactly (all commits tested)" : "no regression tests yet", "method_b.swept"],
+    // What the sweeps found, by verdict, so a low located count is not read as nothing found.
+    ["Behavioural sweeps", b.swept ? `${b.located} / ${b.swept}` : "NOT TESTED",
+      b.swept ? ["located exactly", Object.entries(b.verdicts || {}).filter(([v]) => v !== "located").map(([v, n]) => `${n} ${v}`).join(", ")].filter(Boolean).join("; ")
+        : "no regression tests yet", "method_b.swept"],
   ];
   $("tiles").replaceChildren(...tiles.map(([k, v, sub, path]) => el("button", { class: "tile", type: "button", onclick: () => openDrawer(k, evidenceForCheck(path)) },
     el("span", { class: "k" }, k), el("span", { class: "v" }, v), el("span", { class: "s" }, sub))));
