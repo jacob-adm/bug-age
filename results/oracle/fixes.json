@@ -1,0 +1,1454 @@
+[
+ {
+  "repo": "snarfed/ownyourcheckin",
+  "fix": "da71e0ad621e9101226e0ec1deeef53b4a3d54d5",
+  "oracle": [
+   "245bb00f814f8c5d84a72e19773c4adda92c8d0e"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "245bb00f814f8c5d84a72e19773c4adda92c8d0e"
+  ],
+  "bug_age_primary": [
+   "245bb00f814f8c5d84a72e19773c4adda92c8d0e"
+  ],
+  "pydriller": [
+   "245bb00f814f8c5d84a72e19773c4adda92c8d0e"
+  ]
+ },
+ {
+  "repo": "snarfed/webmention-tools",
+  "fix": "4c95e165c6b5664d4617a3cf716aa556b4e8d8e5",
+  "oracle": [
+   "f29879a29617960f3a680cba015af2858d0cd167"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "f29879a29617960f3a680cba015af2858d0cd167"
+  ],
+  "bug_age_primary": [
+   "f29879a29617960f3a680cba015af2858d0cd167"
+  ],
+  "pydriller": [
+   "f29879a29617960f3a680cba015af2858d0cd167"
+  ]
+ },
+ {
+  "repo": "sclabs/projectile",
+  "fix": "7edc7fd44310fafa79a30660b33eb30ef99c7bdd",
+  "oracle": [
+   "1fc5c0a5d868763de36d47d98891f5d2da2a5aa0"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [],
+  "bug_age_primary": [],
+  "pydriller": []
+ },
+ {
+  "repo": "6WIND/os-vif-plugin-vhostuser-fp",
+  "fix": "d23b391094123fe0db50e9e75c31912e376f1ae7",
+  "oracle": [
+   "cb8edc16a7da61e8c42e68a0ba49cc4b34da7a56"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "81fbdd2a6ae4c63d422218064a1feaac634f236f"
+  ],
+  "bug_age_primary": [
+   "81fbdd2a6ae4c63d422218064a1feaac634f236f"
+  ],
+  "pydriller": [
+   "81fbdd2a6ae4c63d422218064a1feaac634f236f"
+  ]
+ },
+ {
+  "repo": "slesouef/PurBeurre_FoodFinder",
+  "fix": "3c8e64846354891a9e3100c2d77b326acb68e65b",
+  "oracle": [
+   "6a551a0f33b3470ca3f573d0222613f7d8f75696"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "6a551a0f33b3470ca3f573d0222613f7d8f75696"
+  ],
+  "bug_age_primary": [
+   "6a551a0f33b3470ca3f573d0222613f7d8f75696"
+  ],
+  "pydriller": [
+   "6a551a0f33b3470ca3f573d0222613f7d8f75696"
+  ]
+ },
+ {
+  "repo": "tos-kamiya/pager-with-less-like-key-binding",
+  "fix": "010d5cde69d3fd8aba29db8bc0ffbf710f24858c",
+  "oracle": [
+   "a89664ad3d4d56da296bdf3bf44d6c619acf1574"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "e36d6a79168d4596979a7c0689634ad3982de8fd"
+  ],
+  "bug_age_primary": [
+   "e36d6a79168d4596979a7c0689634ad3982de8fd"
+  ],
+  "pydriller": [
+   "e36d6a79168d4596979a7c0689634ad3982de8fd"
+  ]
+ },
+ {
+  "repo": "cdanis/intensify.pictures",
+  "fix": "4498c4e56a82bd811d1cf7cbfcc50d5f2e3f7f10",
+  "oracle": [
+   "21a4ad3b9e0f35fa7d6996729ab61ab797ab1023"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [],
+  "bug_age_primary": [],
+  "pydriller": []
+ },
+ {
+  "repo": "aldryn/aldryn-locations",
+  "fix": "0f004f45d94d62fb182baa514cfbf230c39e7449",
+  "oracle": [
+   "f76dedd7600178e49293b4dc08af354e348326be"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "2a440b1d1e322d90ca107f69b580b924f718e459",
+   "f76dedd7600178e49293b4dc08af354e348326be"
+  ],
+  "bug_age_primary": [
+   "2a440b1d1e322d90ca107f69b580b924f718e459"
+  ],
+  "pydriller": [
+   "2a440b1d1e322d90ca107f69b580b924f718e459",
+   "f76dedd7600178e49293b4dc08af354e348326be"
+  ]
+ },
+ {
+  "repo": "obormot/python-awis",
+  "fix": "307a0f14cb26089bedb65a418a71953a35a9a144",
+  "oracle": [
+   "984cdf7df21890a42ea92d70fadce51778c00e26"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "d974e5181881bb31fd9b0fa3365cfd2a1d82d6db",
+   "984cdf7df21890a42ea92d70fadce51778c00e26"
+  ],
+  "bug_age_primary": [
+   "d974e5181881bb31fd9b0fa3365cfd2a1d82d6db"
+  ],
+  "pydriller": [
+   "984cdf7df21890a42ea92d70fadce51778c00e26",
+   "d974e5181881bb31fd9b0fa3365cfd2a1d82d6db"
+  ]
+ },
+ {
+  "repo": "kezabelle/django-shouty-templates",
+  "fix": "c8b615f205e6df605a9ae4dc005f068e59ea4316",
+  "oracle": [
+   "4b1b3bdc8a702b2b6b23b51cb0799df2291c027f"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "4b1b3bdc8a702b2b6b23b51cb0799df2291c027f"
+  ],
+  "bug_age_primary": [
+   "4b1b3bdc8a702b2b6b23b51cb0799df2291c027f"
+  ],
+  "pydriller": [
+   "4b1b3bdc8a702b2b6b23b51cb0799df2291c027f"
+  ]
+ },
+ {
+  "repo": "pfeyz/larc-tagset",
+  "fix": "e2978c597ee015d94731c04ae6061fccbe0be909",
+  "oracle": [
+   "f781b917bf77e8cc62e808614954c559b756493a"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "f781b917bf77e8cc62e808614954c559b756493a"
+  ],
+  "bug_age_primary": [
+   "f781b917bf77e8cc62e808614954c559b756493a"
+  ],
+  "pydriller": [
+   "f781b917bf77e8cc62e808614954c559b756493a"
+  ]
+ },
+ {
+  "repo": "qtux/myo-raw",
+  "fix": "efb2b3783ad17ebe3da24f7150b88f7942a95952",
+  "oracle": [
+   "680775071d0dd4defb88b35f91d9122c0645eedb"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "680775071d0dd4defb88b35f91d9122c0645eedb",
+   "0baebc1acae6fe84134d06d7da988884319b71c1",
+   "13664b0bcdba36f56c5b3b98a4faed7f5262d5fe",
+   "7514fc7606c352e21b94a75d76af671484b17919"
+  ],
+  "bug_age_primary": [
+   "680775071d0dd4defb88b35f91d9122c0645eedb"
+  ],
+  "pydriller": [
+   "0baebc1acae6fe84134d06d7da988884319b71c1",
+   "13664b0bcdba36f56c5b3b98a4faed7f5262d5fe",
+   "680775071d0dd4defb88b35f91d9122c0645eedb",
+   "7514fc7606c352e21b94a75d76af671484b17919"
+  ]
+ },
+ {
+  "repo": "tadeck/onetimepass",
+  "fix": "65bc9b2c1fa89f35f0dc664742996d4742ef35f5",
+  "oracle": [
+   "0f48cf1ee324bf5fd21e2a97acd5b144ebd77f3c"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "0f48cf1ee324bf5fd21e2a97acd5b144ebd77f3c"
+  ],
+  "bug_age_primary": [
+   "0f48cf1ee324bf5fd21e2a97acd5b144ebd77f3c"
+  ],
+  "pydriller": [
+   "0f48cf1ee324bf5fd21e2a97acd5b144ebd77f3c"
+  ]
+ },
+ {
+  "repo": "jantman/versionfinder",
+  "fix": "cdc06458995f1d1423718130143ce5e253154c1d",
+  "oracle": [
+   "9699f400c7302fc64d651d8f0fa25d2be7e4432a"
+  ],
+  "changes_product_code": false,
+  "bug_age_all": [],
+  "bug_age_primary": [],
+  "pydriller": [
+   "9699f400c7302fc64d651d8f0fa25d2be7e4432a"
+  ]
+ },
+ {
+  "repo": "I2SE/eagle-bom.py",
+  "fix": "b9111d54b0f49fa2cb12809e1f62941b426b82b0",
+  "oracle": [
+   "9dae02a30ab88da2e2b79bd3bb6f994d0bc67414"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "9dae02a30ab88da2e2b79bd3bb6f994d0bc67414"
+  ],
+  "bug_age_primary": [
+   "9dae02a30ab88da2e2b79bd3bb6f994d0bc67414"
+  ],
+  "pydriller": [
+   "9dae02a30ab88da2e2b79bd3bb6f994d0bc67414"
+  ]
+ },
+ {
+  "repo": "I2SE/eagle-bom.py",
+  "fix": "204eaa5b0b3f471e407cf6142ea4991045a83176",
+  "oracle": [
+   "90041be1d3a3da572c54c31773b1bec59eb98c17"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "90041be1d3a3da572c54c31773b1bec59eb98c17"
+  ],
+  "bug_age_primary": [
+   "90041be1d3a3da572c54c31773b1bec59eb98c17"
+  ],
+  "pydriller": [
+   "90041be1d3a3da572c54c31773b1bec59eb98c17"
+  ]
+ },
+ {
+  "repo": "fmarier/browserid-tools",
+  "fix": "f0a04d16e26fa753378eb5078b5cf087bd212a47",
+  "oracle": [
+   "1de47df54561b12d5c622167d9ca3dcef86560b0"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "1de47df54561b12d5c622167d9ca3dcef86560b0"
+  ],
+  "bug_age_primary": [
+   "1de47df54561b12d5c622167d9ca3dcef86560b0"
+  ],
+  "pydriller": [
+   "1de47df54561b12d5c622167d9ca3dcef86560b0"
+  ]
+ },
+ {
+  "repo": "bwesterb/mirte",
+  "fix": "0cfc8fbd572527f6c1e146c0618dd3621ace1353",
+  "oracle": [
+   "c062307e04153cbd249a0feefa59ba29633d1dc4"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "c062307e04153cbd249a0feefa59ba29633d1dc4"
+  ],
+  "bug_age_primary": [
+   "c062307e04153cbd249a0feefa59ba29633d1dc4"
+  ],
+  "pydriller": [
+   "c062307e04153cbd249a0feefa59ba29633d1dc4"
+  ]
+ },
+ {
+  "repo": "pgjones/flake8-import-order",
+  "fix": "3f371dded0b19dba24e0287786fc615cfe3624cd",
+  "oracle": [
+   "7c04e334c6b03727e7dcc5cb50535fea14044ce6"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "7c04e334c6b03727e7dcc5cb50535fea14044ce6"
+  ],
+  "bug_age_primary": [
+   "7c04e334c6b03727e7dcc5cb50535fea14044ce6"
+  ],
+  "pydriller": [
+   "7c04e334c6b03727e7dcc5cb50535fea14044ce6"
+  ]
+ },
+ {
+  "repo": "indradhanush/U1DB-ZeroMQ-Transport",
+  "fix": "09b72c129ad5e865badd82bea0647317fa56d084",
+  "oracle": [
+   "0a7caa13de9e9264ec8070821d68fb5efe6b9e32"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "0a7caa13de9e9264ec8070821d68fb5efe6b9e32"
+  ],
+  "bug_age_primary": [
+   "0a7caa13de9e9264ec8070821d68fb5efe6b9e32"
+  ],
+  "pydriller": [
+   "0a7caa13de9e9264ec8070821d68fb5efe6b9e32"
+  ]
+ },
+ {
+  "repo": "kezabelle/django-haystackbrowser",
+  "fix": "19becb0dda500aa76d83f2cde7ecbd05f6e395ef",
+  "oracle": [
+   "46fa79c818fec025b98176e254d6a641c33f8e57"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "46fa79c818fec025b98176e254d6a641c33f8e57"
+  ],
+  "bug_age_primary": [
+   "46fa79c818fec025b98176e254d6a641c33f8e57"
+  ],
+  "pydriller": [
+   "46fa79c818fec025b98176e254d6a641c33f8e57"
+  ]
+ },
+ {
+  "repo": "ebi-ait/hca-util",
+  "fix": "3694d3ccd77f384793b9b939e6d8bb69d2865493",
+  "oracle": [
+   "a235bb26ac3ce465320bf5e10a61b2a0464593cd"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "7299294585278dfc275910d85340e0b105bd0d3f"
+  ],
+  "bug_age_primary": [
+   "7299294585278dfc275910d85340e0b105bd0d3f"
+  ],
+  "pydriller": [
+   "7299294585278dfc275910d85340e0b105bd0d3f"
+  ]
+ },
+ {
+  "repo": "JeanFred/wikiloves",
+  "fix": "46c54c41507f161bda2e8c39661a499f36912ab8",
+  "oracle": [
+   "d2e89930a2f9470b648315ca3c3893209ab99c2e"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "d2e89930a2f9470b648315ca3c3893209ab99c2e"
+  ],
+  "bug_age_primary": [
+   "d2e89930a2f9470b648315ca3c3893209ab99c2e"
+  ],
+  "pydriller": [
+   "d2e89930a2f9470b648315ca3c3893209ab99c2e"
+  ]
+ },
+ {
+  "repo": "pebble-dev/rebble-auth-py",
+  "fix": "36e478802c38d05bd64bef79253ae39c97760c5d",
+  "oracle": [
+   "559f4cd38171a446160044006d77b00624a9d60d"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "559f4cd38171a446160044006d77b00624a9d60d"
+  ],
+  "bug_age_primary": [
+   "559f4cd38171a446160044006d77b00624a9d60d"
+  ],
+  "pydriller": [
+   "559f4cd38171a446160044006d77b00624a9d60d"
+  ]
+ },
+ {
+  "repo": "kinvarbuilder/kinvarbuilder",
+  "fix": "601ade5369bbf52785bb553889bbdc6069d28f86",
+  "oracle": [
+   "14fa7448a54eddc5d6f6ece4fe0e19bbd7b83ed9"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "14fa7448a54eddc5d6f6ece4fe0e19bbd7b83ed9"
+  ],
+  "bug_age_primary": [
+   "14fa7448a54eddc5d6f6ece4fe0e19bbd7b83ed9"
+  ],
+  "pydriller": [
+   "14fa7448a54eddc5d6f6ece4fe0e19bbd7b83ed9"
+  ]
+ },
+ {
+  "repo": "adrienverge/localstripe",
+  "fix": "cdc3e1b7ce2e39468a459cdb1853eda37cc1cb1d",
+  "oracle": [
+   "6fc05fdd96a00d123b6878b4019995b0e13c7a57"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "52f3d41b98c3e0b5689ca1a406903113435f828e",
+   "6fc05fdd96a00d123b6878b4019995b0e13c7a57",
+   "549a574c6c7e10e8eeb61af42f2c69e9a0978591",
+   "9007557a13fce57adaa0b8382e8cb55587c7d4f4",
+   "9507131d7576fbe43b9690e7bc22ee771bd3edea",
+   "c59d83de867d1a864e87c27a243e28b14c720403",
+   "e471cee1dbe841a1f541dea26c6e5519188d3191"
+  ],
+  "bug_age_primary": [
+   "52f3d41b98c3e0b5689ca1a406903113435f828e"
+  ],
+  "pydriller": [
+   "52f3d41b98c3e0b5689ca1a406903113435f828e",
+   "6fc05fdd96a00d123b6878b4019995b0e13c7a57",
+   "9007557a13fce57adaa0b8382e8cb55587c7d4f4",
+   "9507131d7576fbe43b9690e7bc22ee771bd3edea",
+   "c59d83de867d1a864e87c27a243e28b14c720403",
+   "e471cee1dbe841a1f541dea26c6e5519188d3191"
+  ]
+ },
+ {
+  "repo": "shellphish/driller",
+  "fix": "42d288331ae98dd7f2b3344732b4a3e26d747c5a",
+  "oracle": [
+   "01c8425187c9fd30fc3a30e0e6c1ab9ee0b33a3a"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "01c8425187c9fd30fc3a30e0e6c1ab9ee0b33a3a"
+  ],
+  "bug_age_primary": [
+   "01c8425187c9fd30fc3a30e0e6c1ab9ee0b33a3a"
+  ],
+  "pydriller": [
+   "01c8425187c9fd30fc3a30e0e6c1ab9ee0b33a3a"
+  ]
+ },
+ {
+  "repo": "pandemicsyn/statsdpy",
+  "fix": "c87134e6e1ce077bda066ed8a64de14089a3e259",
+  "oracle": [
+   "7f502e81c71db748c636795b86b961cb048bfdfc"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "7ba4583a82461fe6547aae220930b2aacfe04191",
+   "af46bc885be8ad3aafc84d6838bb43d86daa4acd",
+   "1908abfc42593557385ee15db13f9ac85c844f64",
+   "2f2c55a424e607e8acf4fe6c4f23393f4781f426",
+   "522ebc7b0a059d8055278cfd867ddcf280a8f801",
+   "7f502e81c71db748c636795b86b961cb048bfdfc"
+  ],
+  "bug_age_primary": [
+   "7ba4583a82461fe6547aae220930b2aacfe04191"
+  ],
+  "pydriller": [
+   "1908abfc42593557385ee15db13f9ac85c844f64",
+   "2f2c55a424e607e8acf4fe6c4f23393f4781f426",
+   "522ebc7b0a059d8055278cfd867ddcf280a8f801",
+   "7ba4583a82461fe6547aae220930b2aacfe04191",
+   "7f502e81c71db748c636795b86b961cb048bfdfc",
+   "af46bc885be8ad3aafc84d6838bb43d86daa4acd"
+  ]
+ },
+ {
+  "repo": "fau-fablab/kastenwesen",
+  "fix": "8738da4321e40130404183f6088f0a2c3d46b24a",
+  "oracle": [
+   "02aeae335e0f36c078c824cd211a10870c3df4ac"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "02aeae335e0f36c078c824cd211a10870c3df4ac"
+  ],
+  "bug_age_primary": [
+   "02aeae335e0f36c078c824cd211a10870c3df4ac"
+  ],
+  "pydriller": [
+   "02aeae335e0f36c078c824cd211a10870c3df4ac"
+  ]
+ },
+ {
+  "repo": "mikaell/chromograph",
+  "fix": "676c1f8878300ce341da8b7bdc46ce2350f8aa22",
+  "oracle": [
+   "16f3bdc8009ff3b342d7cf19a036f54804e5acea"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "16f3bdc8009ff3b342d7cf19a036f54804e5acea"
+  ],
+  "bug_age_primary": [
+   "16f3bdc8009ff3b342d7cf19a036f54804e5acea"
+  ],
+  "pydriller": [
+   "16f3bdc8009ff3b342d7cf19a036f54804e5acea"
+  ]
+ },
+ {
+  "repo": "allo-/django-bingo",
+  "fix": "46cc1b8c26bcffc548a56ba1d1b295e157b1f44f",
+  "oracle": [
+   "1bec70107332f065ffab039db1f8abd78c8ae729"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "afdac755581650894b7b31503deb4e3c14605b94"
+  ],
+  "bug_age_primary": [
+   "afdac755581650894b7b31503deb4e3c14605b94"
+  ],
+  "pydriller": [
+   "afdac755581650894b7b31503deb4e3c14605b94"
+  ]
+ },
+ {
+  "repo": "s3rvac/retdec-python",
+  "fix": "74bd3f39b1a8d5962de20ce9c7d656d0a15d9dcc",
+  "oracle": [
+   "9d1e60261f1fbfa42d52ec9b07e5b01621c3ee8a"
+  ],
+  "changes_product_code": false,
+  "bug_age_all": [],
+  "bug_age_primary": [],
+  "pydriller": [
+   "9d1e60261f1fbfa42d52ec9b07e5b01621c3ee8a"
+  ]
+ },
+ {
+  "repo": "drf-forms/drf-schema-adapter",
+  "fix": "4878d552978bd7cc095d930c0b59764fc03273a5",
+  "oracle": [
+   "f4a554d59de77ad8a4d77b38f3e74f33e750d2cf"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "d1e07e29006ec4fe13804503be212ebd9a376972"
+  ],
+  "bug_age_primary": [
+   "d1e07e29006ec4fe13804503be212ebd9a376972"
+  ],
+  "pydriller": [
+   "d1e07e29006ec4fe13804503be212ebd9a376972"
+  ]
+ },
+ {
+  "repo": "zhengqunkoo/taxibros",
+  "fix": "affeebb8d644a15b3c2ee610b4d45fba288bba89",
+  "oracle": [
+   "05cd6cca01ab86272cedc6b3891d3922e184513e"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "05cd6cca01ab86272cedc6b3891d3922e184513e"
+  ],
+  "bug_age_primary": [
+   "05cd6cca01ab86272cedc6b3891d3922e184513e"
+  ],
+  "pydriller": [
+   "05cd6cca01ab86272cedc6b3891d3922e184513e"
+  ]
+ },
+ {
+  "repo": "mikeseven/EDVR",
+  "fix": "d114a6bc74e49cf0a6b3a0b4945488bd94e6e212",
+  "oracle": [
+   "fb1fe30dce0ac7a14ab7b10de4c3c684eacdc051"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "74df7f97b1876dbb34f1a50b30c292d3177ca71b",
+   "faae9fa12a9d0348218b3a02b9a521bd651cc104",
+   "2bb8b7551d71755358891710c8768f025060f3b2",
+   "639e6212edae7ecef84729dff58cac7e049d8bfc",
+   "fb1fe30dce0ac7a14ab7b10de4c3c684eacdc051"
+  ],
+  "bug_age_primary": [
+   "74df7f97b1876dbb34f1a50b30c292d3177ca71b"
+  ],
+  "pydriller": [
+   "2bb8b7551d71755358891710c8768f025060f3b2",
+   "639e6212edae7ecef84729dff58cac7e049d8bfc",
+   "faae9fa12a9d0348218b3a02b9a521bd651cc104",
+   "fb1fe30dce0ac7a14ab7b10de4c3c684eacdc051"
+  ]
+ },
+ {
+  "repo": "danhammer/pif-updates",
+  "fix": "0f2cc5c6bbc7c6cdbef50c4522b9d2d7418a3c2e",
+  "oracle": [
+   "7dfa471d5d426d0140f0dd417f3c2cc6edd051e8"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "7dfa471d5d426d0140f0dd417f3c2cc6edd051e8",
+   "973b8df9b07137b4500261d399e353d0f8a76701"
+  ],
+  "bug_age_primary": [
+   "7dfa471d5d426d0140f0dd417f3c2cc6edd051e8"
+  ],
+  "pydriller": [
+   "7dfa471d5d426d0140f0dd417f3c2cc6edd051e8",
+   "973b8df9b07137b4500261d399e353d0f8a76701"
+  ]
+ },
+ {
+  "repo": "mbukatov/pylatest",
+  "fix": "75f4c096ddd9d70adf91c45225fa6321081f8ba6",
+  "oracle": [
+   "9bdf26eb358f0fc6dae8e6d776d85c71bfa98b5b"
+  ],
+  "changes_product_code": false,
+  "bug_age_all": [],
+  "bug_age_primary": [],
+  "pydriller": [
+   "9bdf26eb358f0fc6dae8e6d776d85c71bfa98b5b"
+  ]
+ },
+ {
+  "repo": "JonnyJD/musicbrainz-isrcsubmit",
+  "fix": "ee94625f422a387f1447e89e214979208fc3888c",
+  "oracle": [
+   "12f60b44993a30aa0307cfa51096a56e44c67413"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "3d45aeb9e83a5f27ab069f6b394318141c9eaa9a",
+   "c05e2cbc93bbefb147ca542aaa75fd7243d8e45e",
+   "12f60b44993a30aa0307cfa51096a56e44c67413",
+   "8aa01045957205ea422877beae40f500982d0bab"
+  ],
+  "bug_age_primary": [
+   "3d45aeb9e83a5f27ab069f6b394318141c9eaa9a"
+  ],
+  "pydriller": [
+   "12f60b44993a30aa0307cfa51096a56e44c67413",
+   "3d45aeb9e83a5f27ab069f6b394318141c9eaa9a",
+   "c05e2cbc93bbefb147ca542aaa75fd7243d8e45e",
+   "ced16579362a3bffd0c78f9efe095c5edfee22db"
+  ]
+ },
+ {
+  "repo": "rezib/cloubed",
+  "fix": "84d03122e4e97d55a737e28c06e7cfd0df90b17a",
+  "oracle": [
+   "ff78d1d3d5dcc97e3ee8851002d1b2bc786f80ed"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "ff78d1d3d5dcc97e3ee8851002d1b2bc786f80ed"
+  ],
+  "bug_age_primary": [
+   "ff78d1d3d5dcc97e3ee8851002d1b2bc786f80ed"
+  ],
+  "pydriller": [
+   "ff78d1d3d5dcc97e3ee8851002d1b2bc786f80ed"
+  ]
+ },
+ {
+  "repo": "zenhack/iron-blogger2",
+  "fix": "2f32b4790f9670fe8f5b8b3233b2ae8d3a644af1",
+  "oracle": [
+   "d6795017c49ccc0298395bf48c9b8452042e2aa5"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "d6795017c49ccc0298395bf48c9b8452042e2aa5"
+  ],
+  "bug_age_primary": [
+   "d6795017c49ccc0298395bf48c9b8452042e2aa5"
+  ],
+  "pydriller": [
+   "16b38e4befa8abddf7d2c549060dd51f7b88a3f7",
+   "489771449c002c64c0fc318e27f77cc4bd98843b",
+   "72f240817b247cc38f6e39b37df5b1732efcb033",
+   "9bee322eed288830285143de65cd94e67a80b06d",
+   "b658e18974f364d1a84fa8f46453d576fa08ee84",
+   "d6795017c49ccc0298395bf48c9b8452042e2aa5"
+  ]
+ },
+ {
+  "repo": "praet/sluk",
+  "fix": "0bd44a41672fc47047913c0a0b0c8a6fb8448413",
+  "oracle": [
+   "537dc59c7c922a0b7f4d1a2732d171076dfcf05f"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [],
+  "bug_age_primary": [],
+  "pydriller": []
+ },
+ {
+  "repo": "alegonz/baikal",
+  "fix": "f51676ded2674720b9b6d72d35b3fbcb6bb17686",
+  "oracle": [
+   "3e69de5769a181f99c020b221d4725083a262406"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "3fe7dfcbc3dcf1d63c8cce240639090c11144d16",
+   "3c403495d2e5cd0a1f363f43e26fb4dcaf385b23"
+  ],
+  "bug_age_primary": [
+   "3fe7dfcbc3dcf1d63c8cce240639090c11144d16"
+  ],
+  "pydriller": [
+   "3c403495d2e5cd0a1f363f43e26fb4dcaf385b23",
+   "3fe7dfcbc3dcf1d63c8cce240639090c11144d16"
+  ]
+ },
+ {
+  "repo": "justinnhli/demograder",
+  "fix": "8da115be23213f03964c040917503a1706e415b2",
+  "oracle": [
+   "c99af57f6523f2f9b67f58ab090a9c1b94d98e4b"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "c99af57f6523f2f9b67f58ab090a9c1b94d98e4b"
+  ],
+  "bug_age_primary": [
+   "c99af57f6523f2f9b67f58ab090a9c1b94d98e4b"
+  ],
+  "pydriller": [
+   "c99af57f6523f2f9b67f58ab090a9c1b94d98e4b"
+  ]
+ },
+ {
+  "repo": "andrejb/leap_mx",
+  "fix": "527d7d4a67f859a3315812b100b2c58fd0eeded6",
+  "oracle": [
+   "b0ef529cc882a96903597fb5279919969fa286c3"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "b0ef529cc882a96903597fb5279919969fa286c3",
+   "45adb4d6cfdb8b9ed11e3efc398d00ec6dbdc0b0",
+   "b5309dc5910f35f5320c649be2ce2c6147030b39",
+   "53bc81a863351cdf7bfb7a252bffdd8870e71742",
+   "0b8c4ac523d3934762517c2b149fcfa0920e78c5",
+   "adea30df46100e2c66c3691ccf6242d317abb4ba",
+   "30e9417f4a4080873fd43bacffe818020affbfe7",
+   "3fc38cfa269fd7a8fa602aaf2a3e025b5403b71b",
+   "bc2fea9affe64ffc157cb70eec68bfd776dad76f"
+  ],
+  "bug_age_primary": [
+   "b0ef529cc882a96903597fb5279919969fa286c3"
+  ],
+  "pydriller": [
+   "30e9417f4a4080873fd43bacffe818020affbfe7",
+   "45adb4d6cfdb8b9ed11e3efc398d00ec6dbdc0b0",
+   "53bc81a863351cdf7bfb7a252bffdd8870e71742",
+   "b0ef529cc882a96903597fb5279919969fa286c3",
+   "b5309dc5910f35f5320c649be2ce2c6147030b39",
+   "bc2fea9affe64ffc157cb70eec68bfd776dad76f",
+   "e108a2ffec444c09b3661379a1051fda1f9952cf"
+  ]
+ },
+ {
+  "repo": "osteele/assignment-dashboard",
+  "fix": "1f1684a26af02ec4930ae9c2c4754b8d05b060b5",
+  "oracle": [
+   "8b8de29f98bbb3164fa08a26494379d4eb34b31f"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "251b99ba54e4cc7a69dd221c737455b1b5c41018",
+   "370e523319b5509167349be59e649defcb7b50ab",
+   "28e424bf86bb2ad7606eabc632a6772829be8fa4"
+  ],
+  "bug_age_primary": [
+   "251b99ba54e4cc7a69dd221c737455b1b5c41018"
+  ],
+  "pydriller": [
+   "251b99ba54e4cc7a69dd221c737455b1b5c41018",
+   "28e424bf86bb2ad7606eabc632a6772829be8fa4",
+   "370e523319b5509167349be59e649defcb7b50ab"
+  ]
+ },
+ {
+  "repo": "tmmorin/bagpipe-bgp",
+  "fix": "745d2e932a44358d737175c71c4d682fa190d70f",
+  "oracle": [
+   "76323a0caecae259e6542dc92ce3cf29dd8a1bb1"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "76323a0caecae259e6542dc92ce3cf29dd8a1bb1"
+  ],
+  "bug_age_primary": [
+   "76323a0caecae259e6542dc92ce3cf29dd8a1bb1"
+  ],
+  "pydriller": [
+   "76323a0caecae259e6542dc92ce3cf29dd8a1bb1"
+  ]
+ },
+ {
+  "repo": "Wen-Han/pyVisOS",
+  "fix": "ed855fb403abc0031bf3a005bfc2462db8be8cf9",
+  "oracle": [
+   "679a11a94deebf2b3890845ff6231fcbce456246"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "572ed22bdb5fd83a9292e5cfc489fb5d48add9d5",
+   "62a492e2d3370d2797a83504103fda443aec1ecb",
+   "679a11a94deebf2b3890845ff6231fcbce456246"
+  ],
+  "bug_age_primary": [
+   "572ed22bdb5fd83a9292e5cfc489fb5d48add9d5"
+  ],
+  "pydriller": [
+   "572ed22bdb5fd83a9292e5cfc489fb5d48add9d5",
+   "62a492e2d3370d2797a83504103fda443aec1ecb",
+   "679a11a94deebf2b3890845ff6231fcbce456246"
+  ]
+ },
+ {
+  "repo": "dedan/DrosCalciumAnalyse",
+  "fix": "c32b34ff04af504dbb46811dcd45f15598bab815",
+  "oracle": [
+   "cdb1bfc4915dc9e464e0a006e4e4d6422380028f"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "15d7dd70fc520500c256e213cbefad6f0b3c520e"
+  ],
+  "bug_age_primary": [
+   "15d7dd70fc520500c256e213cbefad6f0b3c520e"
+  ],
+  "pydriller": [
+   "15d7dd70fc520500c256e213cbefad6f0b3c520e"
+  ]
+ },
+ {
+  "repo": "ARMmbed/mbed-ls",
+  "fix": "02c24bc6d83e853cc22ca2c0c8c0e458986b149d",
+  "oracle": [
+   "316195e4d96cb47cb359618849b70c713c317a7e"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "316195e4d96cb47cb359618849b70c713c317a7e"
+  ],
+  "bug_age_primary": [
+   "316195e4d96cb47cb359618849b70c713c317a7e"
+  ],
+  "pydriller": [
+   "316195e4d96cb47cb359618849b70c713c317a7e"
+  ]
+ },
+ {
+  "repo": "Oslandia/labelconnector",
+  "fix": "2e2a77526b3e0883b9c441994272233903b6961b",
+  "oracle": [
+   "c49d74b5910b359b081aeba91854b3fd5ccff3ce"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "c49d74b5910b359b081aeba91854b3fd5ccff3ce"
+  ],
+  "bug_age_primary": [
+   "c49d74b5910b359b081aeba91854b3fd5ccff3ce"
+  ],
+  "pydriller": [
+   "c49d74b5910b359b081aeba91854b3fd5ccff3ce"
+  ]
+ },
+ {
+  "repo": "pgjones/hypercorn",
+  "fix": "bab0d3c6390f0840db9050cdb6bbdb6797640168",
+  "oracle": [
+   "836540ac4ce099ecedd7c99e5d18a92652962e55"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "836540ac4ce099ecedd7c99e5d18a92652962e55",
+   "33a6f1a3847382921ec3d37143145d1bf06ee263"
+  ],
+  "bug_age_primary": [
+   "836540ac4ce099ecedd7c99e5d18a92652962e55"
+  ],
+  "pydriller": [
+   "1ecfcc3ac8a1da1b8b12efdd5cab51fd41ad1c2f",
+   "33a6f1a3847382921ec3d37143145d1bf06ee263",
+   "4a55bb043ee79bd85aa7ff699b18dfd66632fb1a",
+   "836540ac4ce099ecedd7c99e5d18a92652962e55"
+  ]
+ },
+ {
+  "repo": "w3c/wptrunner",
+  "fix": "ea4ecfe03472ddb8cb86e5d20708b485d04488e9",
+  "oracle": [
+   "291fa69beeda50a8c5b790c7a48bf9ebbfd81653"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "9a9d62f9496c162288334017a99da59271bcd309"
+  ],
+  "bug_age_primary": [
+   "9a9d62f9496c162288334017a99da59271bcd309"
+  ],
+  "pydriller": [
+   "9a9d62f9496c162288334017a99da59271bcd309"
+  ]
+ },
+ {
+  "repo": "mvantellingen/localshop",
+  "fix": "fc8349b7a156de50fc4b35c73ce966f1616665da",
+  "oracle": [
+   "4c4d6fb1e11437b0baf1f591988bc853784c4a5e"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "4c4d6fb1e11437b0baf1f591988bc853784c4a5e"
+  ],
+  "bug_age_primary": [
+   "4c4d6fb1e11437b0baf1f591988bc853784c4a5e"
+  ],
+  "pydriller": [
+   "4c4d6fb1e11437b0baf1f591988bc853784c4a5e"
+  ]
+ },
+ {
+  "repo": "bmr-cymru/boom",
+  "fix": "35b6df1595dcb02b2549427e0a28478ab162f3bb",
+  "oracle": [
+   "96cbec8671ec98824b2d60df6a3583170f645dfe"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "96cbec8671ec98824b2d60df6a3583170f645dfe"
+  ],
+  "bug_age_primary": [
+   "96cbec8671ec98824b2d60df6a3583170f645dfe"
+  ],
+  "pydriller": [
+   "96cbec8671ec98824b2d60df6a3583170f645dfe"
+  ]
+ },
+ {
+  "repo": "mendix/m2ee-tools",
+  "fix": "3fd78fc793bd8f0efd7f319360212223bcc5bdf7",
+  "oracle": [
+   "a5fc294bf09e512f3d241ae5b7d0d08f20cc72ab"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "a5fc294bf09e512f3d241ae5b7d0d08f20cc72ab"
+  ],
+  "bug_age_primary": [
+   "a5fc294bf09e512f3d241ae5b7d0d08f20cc72ab"
+  ],
+  "pydriller": [
+   "a5fc294bf09e512f3d241ae5b7d0d08f20cc72ab"
+  ]
+ },
+ {
+  "repo": "mendix/m2ee-tools",
+  "fix": "07f2fd0eefc06d25ade19e3fca87a8c046db4db7",
+  "oracle": [
+   "bcead2e43387c4d1c239053b00cf687a5169eacb"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "bcead2e43387c4d1c239053b00cf687a5169eacb",
+   "2488ac65d4b002e5d6d10978eced31d10416d158"
+  ],
+  "bug_age_primary": [
+   "bcead2e43387c4d1c239053b00cf687a5169eacb"
+  ],
+  "pydriller": [
+   "bcead2e43387c4d1c239053b00cf687a5169eacb"
+  ]
+ },
+ {
+  "repo": "nirizr/rematch",
+  "fix": "14443194d23e3b301c178ca28fd6e7b23de86a38",
+  "oracle": [
+   "46303c42d60c9f7a6a3e769b0c903e270643742a"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "16965ec336beeb6f9068993c0987a88fb5fa3268"
+  ],
+  "bug_age_primary": [
+   "16965ec336beeb6f9068993c0987a88fb5fa3268"
+  ],
+  "pydriller": [
+   "16965ec336beeb6f9068993c0987a88fb5fa3268"
+  ]
+ },
+ {
+  "repo": "bonaime/seedlink_plotter",
+  "fix": "ccc9705015ab95056f30aa3c512aefacae17a446",
+  "oracle": [
+   "1ea0ec3f7253ee2315b6a45af4f5feb5f781edd4"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "1ea0ec3f7253ee2315b6a45af4f5feb5f781edd4"
+  ],
+  "bug_age_primary": [
+   "1ea0ec3f7253ee2315b6a45af4f5feb5f781edd4"
+  ],
+  "pydriller": [
+   "1ea0ec3f7253ee2315b6a45af4f5feb5f781edd4"
+  ]
+ },
+ {
+  "repo": "openafs-contrib/openafs-robotest",
+  "fix": "b78ca5e838eb6cdf966e9bf539832315512550bc",
+  "oracle": [
+   "344a1f8da41ae371e54ce06b18ffb764d669d330"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "89468e12ae792e78f8cf0e26b62775791c9ee78c"
+  ],
+  "bug_age_primary": [
+   "89468e12ae792e78f8cf0e26b62775791c9ee78c"
+  ],
+  "pydriller": [
+   "89468e12ae792e78f8cf0e26b62775791c9ee78c"
+  ]
+ },
+ {
+  "repo": "SonMinWoo/AnsanBladeWind",
+  "fix": "f30183df7062fabf389dffb10c87d80180924cac",
+  "oracle": [
+   "4bfaa3bfabc8d92202e0770b26ca4304e6022d04"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "4bfaa3bfabc8d92202e0770b26ca4304e6022d04"
+  ],
+  "bug_age_primary": [
+   "4bfaa3bfabc8d92202e0770b26ca4304e6022d04"
+  ],
+  "pydriller": [
+   "4bfaa3bfabc8d92202e0770b26ca4304e6022d04"
+  ]
+ },
+ {
+  "repo": "trevp/tlslite",
+  "fix": "bc7c679434a5114967ad05458aa61d9152b6ee99",
+  "oracle": [
+   "6568ad99263f25d1349912111354bc560f1d4e23"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "6568ad99263f25d1349912111354bc560f1d4e23"
+  ],
+  "bug_age_primary": [
+   "6568ad99263f25d1349912111354bc560f1d4e23"
+  ],
+  "pydriller": [
+   "6568ad99263f25d1349912111354bc560f1d4e23"
+  ]
+ },
+ {
+  "repo": "haikuports/haikuporter",
+  "fix": "13b41e85f1829d7938eeb7e331b4f435ae8c7023",
+  "oracle": [
+   "210c9e5ebe4784b2000b51bd0792ad45808365b4"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "210c9e5ebe4784b2000b51bd0792ad45808365b4"
+  ],
+  "bug_age_primary": [
+   "210c9e5ebe4784b2000b51bd0792ad45808365b4"
+  ],
+  "pydriller": [
+   "210c9e5ebe4784b2000b51bd0792ad45808365b4"
+  ]
+ },
+ {
+  "repo": "UiL-OTS-labs/iSpector",
+  "fix": "b8c16dddad125aab63e91ff858ebd8626dbf0206",
+  "oracle": [
+   "b9d1fd375c1f32e540f6ee0e363e12425cfb65a8"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "b9d1fd375c1f32e540f6ee0e363e12425cfb65a8"
+  ],
+  "bug_age_primary": [
+   "b9d1fd375c1f32e540f6ee0e363e12425cfb65a8"
+  ],
+  "pydriller": [
+   "b9d1fd375c1f32e540f6ee0e363e12425cfb65a8"
+  ]
+ },
+ {
+  "repo": "l1m5/hosts",
+  "fix": "0f942662cf22c39978aec833670d41652340d00b",
+  "oracle": [
+   "997606b3f0e98f4589dfb17d0fadb5e74868a39f"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "997606b3f0e98f4589dfb17d0fadb5e74868a39f"
+  ],
+  "bug_age_primary": [
+   "997606b3f0e98f4589dfb17d0fadb5e74868a39f"
+  ],
+  "pydriller": [
+   "997606b3f0e98f4589dfb17d0fadb5e74868a39f"
+  ]
+ },
+ {
+  "repo": "meren/oligotyping",
+  "fix": "a9877604d295bf8cd7a3351f48719e75a006d223",
+  "oracle": [
+   "6dd6aae158dd85bcbcd0d5f4bca713291b6635a5"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "6dd6aae158dd85bcbcd0d5f4bca713291b6635a5"
+  ],
+  "bug_age_primary": [
+   "6dd6aae158dd85bcbcd0d5f4bca713291b6635a5"
+  ],
+  "pydriller": [
+   "6dd6aae158dd85bcbcd0d5f4bca713291b6635a5"
+  ]
+ },
+ {
+  "repo": "dbarrosop/wee-slack",
+  "fix": "66722bf4514bc53b12cfaa13a8c7a15d1b268cce",
+  "oracle": [
+   "d7b26dd9304e6e4d757518a99867ba376008c1b1"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "d7b26dd9304e6e4d757518a99867ba376008c1b1"
+  ],
+  "bug_age_primary": [
+   "d7b26dd9304e6e4d757518a99867ba376008c1b1"
+  ],
+  "pydriller": [
+   "d7b26dd9304e6e4d757518a99867ba376008c1b1"
+  ]
+ },
+ {
+  "repo": "facebook/stetho",
+  "fix": "f5e026bf33596912ada587f9a97054e88da5440e",
+  "oracle": [
+   "eb0ca3d565ce75f147d3ef8d376230f4e1f263a2"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "eb0ca3d565ce75f147d3ef8d376230f4e1f263a2"
+  ],
+  "bug_age_primary": [
+   "eb0ca3d565ce75f147d3ef8d376230f4e1f263a2"
+  ],
+  "pydriller": [
+   "eb0ca3d565ce75f147d3ef8d376230f4e1f263a2"
+  ]
+ },
+ {
+  "repo": "DistAlgo/distalgo",
+  "fix": "e685cb39c54e44bbc581d291a61f7ed2c035aad2",
+  "oracle": [
+   "b3fb2ef1f8b0ec3b716669be7f46ca734eb6589a"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "74de4c5a7ce743766c0da981dcf76dabd23bd5f1"
+  ],
+  "bug_age_primary": [
+   "74de4c5a7ce743766c0da981dcf76dabd23bd5f1"
+  ],
+  "pydriller": [
+   "b192665afe617067222fe52fab764e27ebaba2dd"
+  ]
+ },
+ {
+  "repo": "DistAlgo/distalgo",
+  "fix": "4bffcce290dd2eafc3215e843200cfaecf2221f2",
+  "oracle": [
+   "04743b6fe10fc0baefca0ccc20d1660b329162fd"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "3933ba69825528a7292c2a90b350d129aa9ba87c"
+  ],
+  "bug_age_primary": [
+   "3933ba69825528a7292c2a90b350d129aa9ba87c"
+  ],
+  "pydriller": [
+   "3933ba69825528a7292c2a90b350d129aa9ba87c"
+  ]
+ },
+ {
+  "repo": "DistAlgo/distalgo",
+  "fix": "6154294baf41687371819c57432a1add04f99d13",
+  "oracle": [
+   "9e38876537c71046ef72a257299defd97ad303c1"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "9e38876537c71046ef72a257299defd97ad303c1",
+   "217186a37a8c9880b1110c0217b856e73c5d6fc3"
+  ],
+  "bug_age_primary": [
+   "9e38876537c71046ef72a257299defd97ad303c1"
+  ],
+  "pydriller": [
+   "217186a37a8c9880b1110c0217b856e73c5d6fc3",
+   "9e38876537c71046ef72a257299defd97ad303c1"
+  ]
+ },
+ {
+  "repo": "pkit/zerocloud",
+  "fix": "345bf795f22c183a7fa60f20aa315005692b51a9",
+  "oracle": [
+   "3e623a22cc1176f866263b8b024ad88aee5a1e23"
+  ],
+  "changes_product_code": false,
+  "bug_age_all": [],
+  "bug_age_primary": [],
+  "pydriller": [
+   "3e623a22cc1176f866263b8b024ad88aee5a1e23"
+  ]
+ },
+ {
+  "repo": "federicomariamassari/willow-tree",
+  "fix": "8b769ec8c9017bc13575220bf7b42b2b60057962",
+  "oracle": [
+   "dec5db55f1f0869bd0a08757d054682d9bdcb997"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "ae8d537292c71a00a765a76bd8caa947ce524b77",
+   "c66326a406126cbcb1324439d3035dd2d11ea90c",
+   "dec5db55f1f0869bd0a08757d054682d9bdcb997"
+  ],
+  "bug_age_primary": [
+   "ae8d537292c71a00a765a76bd8caa947ce524b77"
+  ],
+  "pydriller": [
+   "ae8d537292c71a00a765a76bd8caa947ce524b77",
+   "c66326a406126cbcb1324439d3035dd2d11ea90c",
+   "dec5db55f1f0869bd0a08757d054682d9bdcb997"
+  ]
+ },
+ {
+  "repo": "zhangn1985/ykdl",
+  "fix": "2ca3040bac6606c414021c2b3545d7cfa4ad6666",
+  "oracle": [
+   "12f09979f2fa470d50c95c56cd4e7cb902953cbc"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "12f09979f2fa470d50c95c56cd4e7cb902953cbc",
+   "72d1cb403a9472588c07a07544254060e0f7e258"
+  ],
+  "bug_age_primary": [
+   "12f09979f2fa470d50c95c56cd4e7cb902953cbc"
+  ],
+  "pydriller": [
+   "12f09979f2fa470d50c95c56cd4e7cb902953cbc"
+  ]
+ },
+ {
+  "repo": "nithinmurali/pygsheets",
+  "fix": "c14dcc80b65c6435dce3ee5373e9ab4070348920",
+  "oracle": [
+   "4cad31d25e9d57a9a85a90f62dc718b3f733dfa1"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "4cad31d25e9d57a9a85a90f62dc718b3f733dfa1"
+  ],
+  "bug_age_primary": [
+   "4cad31d25e9d57a9a85a90f62dc718b3f733dfa1"
+  ],
+  "pydriller": [
+   "4cad31d25e9d57a9a85a90f62dc718b3f733dfa1"
+  ]
+ },
+ {
+  "repo": "openstack/python-heatclient",
+  "fix": "84c6d3dbcac86c300e7e6de921af0420a6b72a09",
+  "oracle": [
+   "0b730e82b4bf63be1c3acd924a77a684a31db709"
+  ],
+  "changes_product_code": false,
+  "bug_age_all": [],
+  "bug_age_primary": [],
+  "pydriller": [
+   "0b730e82b4bf63be1c3acd924a77a684a31db709"
+  ]
+ },
+ {
+  "repo": "ypcrts/ptf",
+  "fix": "ada0891687b5a17678a47226f1e3cbdd635bdff4",
+  "oracle": [
+   "a666341aadcaaf33bdafd0d612a5000a97378a0f"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "0cf122c48c365525fc9e5e31c1ef05914509bc34"
+  ],
+  "bug_age_primary": [
+   "0cf122c48c365525fc9e5e31c1ef05914509bc34"
+  ],
+  "pydriller": [
+   "0cf122c48c365525fc9e5e31c1ef05914509bc34"
+  ]
+ },
+ {
+  "repo": "EdinburghNLP/nematus",
+  "fix": "f7fdd78de87fd4eeb7d01b7362ffa6b2c40cc2c7",
+  "oracle": [
+   "75a168d247e50a746a717be0ac514e7c314246d3"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "a89239d837c42d235abe61c2ab3b0a3e26dc8ec8",
+   "e040b6530878986a63d2f5001b3f9cb10eaae55f",
+   "75a168d247e50a746a717be0ac514e7c314246d3",
+   "136f5e04f13a1946a61137bf81cc03c0862beedc",
+   "3c7a4775d3c244a21830e1c27faa6efdadadbc2c"
+  ],
+  "bug_age_primary": [
+   "a89239d837c42d235abe61c2ab3b0a3e26dc8ec8"
+  ],
+  "pydriller": [
+   "136f5e04f13a1946a61137bf81cc03c0862beedc",
+   "3c7a4775d3c244a21830e1c27faa6efdadadbc2c",
+   "75a168d247e50a746a717be0ac514e7c314246d3",
+   "a89239d837c42d235abe61c2ab3b0a3e26dc8ec8",
+   "e040b6530878986a63d2f5001b3f9cb10eaae55f"
+  ]
+ },
+ {
+  "repo": "astro313/uvmcmcfit",
+  "fix": "62ba2acec0889f6433f8bd0296e0271b4d3e5e8a",
+  "oracle": [
+   "27720fd0ef43433b39d3795eb91b6d05a956f3ab"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "27720fd0ef43433b39d3795eb91b6d05a956f3ab"
+  ],
+  "bug_age_primary": [
+   "27720fd0ef43433b39d3795eb91b6d05a956f3ab"
+  ],
+  "pydriller": [
+   "27720fd0ef43433b39d3795eb91b6d05a956f3ab"
+  ]
+ },
+ {
+  "repo": "dnouri/deform",
+  "fix": "65f05b3d98536f9af123e0ec8b38fc0565cacb23",
+  "oracle": [
+   "5b5f89a80b42d5fd5d343f4bbedd4b5c3624e3e8"
+  ],
+  "changes_product_code": false,
+  "bug_age_all": [],
+  "bug_age_primary": [],
+  "pydriller": [
+   "5b5f89a80b42d5fd5d343f4bbedd4b5c3624e3e8"
+  ]
+ },
+ {
+  "repo": "gleb812/pch2csd",
+  "fix": "9c6766ac5adef840c215b936e4db87fb238550d0",
+  "oracle": [
+   "a368dc8c527892706157d23ee0d9567e5f3070cc"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "a368dc8c527892706157d23ee0d9567e5f3070cc"
+  ],
+  "bug_age_primary": [
+   "a368dc8c527892706157d23ee0d9567e5f3070cc"
+  ],
+  "pydriller": [
+   "a368dc8c527892706157d23ee0d9567e5f3070cc"
+  ]
+ },
+ {
+  "repo": "JoeMcEwen/FAST-PT",
+  "fix": "86e484e674fce6fa3517b954e7955eac7a5b2b71",
+  "oracle": [
+   "5e9742ee574426420ba070b3de437aae8bce8e72"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [
+   "5e9742ee574426420ba070b3de437aae8bce8e72"
+  ],
+  "bug_age_primary": [
+   "5e9742ee574426420ba070b3de437aae8bce8e72"
+  ],
+  "pydriller": [
+   "5e9742ee574426420ba070b3de437aae8bce8e72"
+  ]
+ },
+ {
+  "repo": "js216/CeNTREX",
+  "fix": "2ae79d22fe309750cc198255d9cc3d10e49f9b1e",
+  "oracle": [
+   "5661dfb8df6687d4f7b0d88000b5b11e07ace9fc"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [],
+  "bug_age_primary": [],
+  "pydriller": []
+ },
+ {
+  "repo": "01org/gbs",
+  "fix": "71d3ea8062d9613202aa5f55ac8edc26e6e56621",
+  "oracle": [
+   "bc4fa71d9d5935f8c44505ee538f7135cfefa44c"
+  ],
+  "changes_product_code": true,
+  "bug_age_all": [],
+  "bug_age_primary": [],
+  "pydriller": []
+ }
+]
