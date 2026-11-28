@@ -1,7 +1,7 @@
 {
   "format": "gate-rules/1",
-  "name": "ci-warn-ci",
-  "version": 1,
+  "name": "ci-warn",
+  "version": 2,
   "checks": [
     {
       "tool": "git-surface"
@@ -35,6 +35,7 @@
     ]
   },
   "warn_rules": [
-    "git-surface.ci"
+    "git-surface.ci",
+    "git-surface.agent"
   ]
 }
